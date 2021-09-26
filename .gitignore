@@ -68,7 +68,7 @@ local.properties
 .sts4-cache/
 
 ### Information of DataBase ###
-context-database.xml
+config.properties
 # End of https://www.toptal.com/developers/gitignore/api/eclipse
 
 Servers/
