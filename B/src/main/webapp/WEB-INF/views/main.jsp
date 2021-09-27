@@ -8,30 +8,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-------------------------------------------------------------------------------------<br>
-	**********카카오페이 데모버전************** 	
-	<form method="post" action="kakaoPay.do">
-	  <button><img src = "./resources/images/pay.png" onclick=></button>
-	</form>
-------------------------------------------------------------------------------------	
-	<table>
-		<tr>
-			<th>번호</th>
-			<th>제목</th>
-			<th>날짜</th>
-			<th>조회수</th>
-			<th>글쓴이</th>
-		</tr>
-		<c:forEach items="${list	}" var="l">
-			<tr>
-				<td>${l.sb_nno	}</td>
-				<td>${l.sb_title	}</td>
-				<td>${l.sb_date	}</td>
-				<td>${l.sb_count	}</td>
-				<td>${l.sm_name	}(${l.sm_id	})</td>
-			</tr>
-		</c:forEach>
-	</table>
-
+	<h1>main</h1>
 </body>
 </html>
