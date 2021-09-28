@@ -1,6 +1,6 @@
 # Spring Project TeamB
 
-## 
+
 
 ## Introduction
 
