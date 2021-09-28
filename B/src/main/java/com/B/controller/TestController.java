@@ -13,10 +13,10 @@ public class TestController {
 	//@Resource(name = "testService")
 	//private TestServiceImpl testService;
 
-	@RequestMapping(value = "/main.do")
+	@RequestMapping(value = "/index.do")
 	public ModelAndView main() {
 
-		ModelAndView mv = new ModelAndView("main");
+		ModelAndView mv = new ModelAndView("index");
 
 		//List<Map<String, Object>> list = testService.boardList();
 
@@ -34,7 +34,7 @@ public class TestController {
 	public String login(CommandMap commandMap) {
 
 		System.out.println(commandMap.getMap());
-		return "redirect:/main.do";
+		return "redirect:/index.do";
 	}
 
 }
