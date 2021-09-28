@@ -12,9 +12,13 @@
 a{color:black;text-decoration:none;transition:0.3s all;}
 a:link, a:visited{color:black;}
 a:hover, a:focus{text-decoration:underline;}
-
+::-webkit-scrollbar {
+	width: 0px;
+}
+html{overflow: hidden;}
+html, body{width: 100%; height: 100%;}
 #wrapper{width:100%;margin:0 auto;}
-	header{width:100%;height:120px;}
+	header{width:100%;height:120px;position:fixed;top:0;left:0;}
 		.header{margin:0 auto;}
 		#nameLine{width:1080px;text-align:right;height:30px;line-height:30px;}
 		#logoLine{width:1080px;height:55px;line-height:50px;}
@@ -30,10 +34,19 @@ a:hover, a:focus{text-decoration:underline;}
 					nav #parent li a.navMain{display:block;width:80px;height:25px;line-height:25px;border-radius:10px;margin:5px auto 0;}
 					.navMain:hover, .navMain:focus{background-color:#5AC5F0;color:#fff;}
 					nav #parent li .son{width:120px;position:absolute;}
-						nav #parent li .son li{width:120px;border-top:1px solid #fff;backgrounc-color:white;}
+						nav #parent li .son li{width:120px;border-top:1px solid #ccc;background-color:white;}
 			nav:after{content:""; display:block; clear:both;}
+	
+	#container{widht:100%;}
+		.mainContainer{width:100%;}
+			.mainContainer li.section{width:100%;height:100vh;background-color:pink;margin:0 auto;}
+			.mainContainer li.section:nth-child(even){background-color:#ccc;}
+	#container:after{content:"";display:block;clear:both;}
 </style>
 <script>
+window.addEventListener("wheel", function(e){
+	e.preventDefault();
+},{passive : false});
 $(function(){
 	$(".son").hide();
 	$("#parent li a").mouseover(function(){
@@ -41,7 +54,33 @@ $(function(){
 	}).mouseout(function(){
 		$(this).siblings(".son").stop().hide(500);
 	});
+	var $html = $("html");
+	 
+	var page = 1;
+	 
+	var lastPage = $(".content").length;
+	 
+	$html.animate({scrollTop:0},10);
+	$(window).on("wheel", function(e){
+		 
+		if($html.is(":animated")) return;
+	 
+		if(e.originalEvent.deltaY > 0){
+			if(page== lastPage) return;
+	 
+			page++;
+		}else if(e.originalEvent.deltaY < 0){
+			if(page == 1) return;
+	 
+			page--;
+		}
+		var posTop = (page-1) * $(window).height();
+	 
+		$html.animate({scrollTop : posTop});
+	});
+	$("#container").append($("footer"));
 });
+
 </script>
 </head>
 <body>
