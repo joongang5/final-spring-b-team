@@ -5,9 +5,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>index</title>
 </head>
 <body>
-	<h1>main</h1>
+	<div id="wrapper">
+		<header>
+			<div>로그인해주세요.</div>
+			<h1>로고</h1>
+			<div>검색</div>
+			<nav>
+				카테고리
+			</nav>
+		</header>
+		<div id="container">
+			
+		</div>
+		<footer>
+			<div>사이트맵</div>
+			<div>법률</div>
+			<div>SNS</div>
+			<div>카피라이트
+				&copyright;
+			</div>
+		</footer>
+	</div>
 </body>
 </html>
