@@ -18,7 +18,7 @@ a:hover, a:focus{text-decoration:underline;}
 html{overflow: hidden;}
 html, body{width: 100%; height: 100%;}
 #wrapper{width:100%;margin:0 auto;}
-	header{width:100%;height:120px;position:fixed;top:0;left:0;}
+	header{width:100%;height:120px;position:fixed;top:0;left:0;z-index:99;}
 		.header{margin:0 auto;}
 		#nameLine{width:1080px;text-align:right;height:30px;line-height:30px;}
 		#logoLine{width:1080px;height:55px;line-height:50px;}
@@ -30,9 +30,10 @@ html, body{width: 100%; height: 100%;}
 		#logoLine:after{content:"";display:block;clear:both;}
 		nav{width:100%;height:36px;line-height:35px;border-top:1px solid #eee;border-bottom:1px solid #eee;position:relative;}
 			nav #parent{width:1080px;margin:0 auto;}
-				nav #parent li{width:120px;float:left;text-align:center;line-height:35px;}
-					nav #parent li a.navMain{display:block;width:80px;height:25px;line-height:25px;border-radius:10px;margin:5px auto 0;}
+				nav #parent li{width:120px;float:left;text-align:center;line-height:35px;height:35px;}
+					nav #parent li a{display:block;width:80px;height:25px;line-height:25px;border-radius:10px;margin:5px auto 0;}
 					.navMain:hover, .navMain:focus{background-color:#5AC5F0;color:#fff;}
+					nav #parent li a:hover, nav #parent li a:focus{background-color:#5AC5F0;color:#fff;}
 					nav #parent li .son{width:120px;position:absolute;}
 						nav #parent li .son li{width:120px;border-top:1px solid #ccc;background-color:white;}
 			nav:after{content:""; display:block; clear:both;}
@@ -41,6 +42,21 @@ html, body{width: 100%; height: 100%;}
 		.mainContainer{width:100%;}
 			.mainContainer li.section{width:100%;height:100vh;background-color:pink;margin:0 auto;}
 			.mainContainer li.section:nth-child(even){background-color:#ccc;}
+				.mainContainer li.section #ad{width:100%;height:100%;position:relative;overflow:hidden;}
+					#ad #screen{width:400%;height:100%;}
+						#ad #screen .scene{float:left; width:25%;height:100%;background-color:#D6DBDF;text-align:center;line-height:979px;}
+						#ad #screen .scene:nth-child(even){background-color:#D1F2EB;}
+					#ad #screen:after{ content:""; display:block; clear:both;}
+			
+					#ad #btn{ width:240px; height:30px; position:absolute; left:50%; margin-left:-120px; bottom:100px;}	
+						#ad #btn ul{ width:100%;}
+							#ad #btn ul li{ width:20px; height:20px; border-radius:10px; background-color:#ccc; float:left; margin-left:32px; cursor:pointer;}
+							#ad #btn ul span{display:none;}
+						#ad #btn ul:after{ content:""; display:block; clear:both;}
+			
+						/*######## 이벤트 클래스 #########*/
+						#ad #btn li.addBtn{background-color:#f00;}
+			
 	#container:after{content:"";display:block;clear:both;}
 </style>
 <script>
@@ -48,37 +64,45 @@ window.addEventListener("wheel", function(e){
 	e.preventDefault();
 },{passive : false});
 $(function(){
+	//헤더 네비게이션
 	$(".son").hide();
-	$("#parent li a").mouseover(function(){
-		$(this).siblings(".son").stop().show(500);
-	}).mouseout(function(){
-		$(this).siblings(".son").stop().hide(500);
+	$("#parent li").on("mouseover focusin",function(){
+		$(this).children(".son").stop().show(500);
+	}).on("mouseout focusout",function(){
+		$(this).children(".son").stop().hide(500);
 	});
+	
+	//one페이징
 	var $html = $("html");
-	 
 	var page = 1;
-	 
-	var lastPage = $(".content").length;
-	 
+	var lastPage = $(".section").length;
 	$html.animate({scrollTop:0},10);
 	$(window).on("wheel", function(e){
-		 
 		if($html.is(":animated")) return;
-	 
 		if(e.originalEvent.deltaY > 0){
-			if(page== lastPage) return;
-	 
+			if(page == lastPage+1) return;
 			page++;
 		}else if(e.originalEvent.deltaY < 0){
 			if(page == 1) return;
-	 
 			page--;
 		}
 		var posTop = (page-1) * $(window).height();
-	 
 		$html.animate({scrollTop : posTop});
 	});
-	$("#container").append($("footer"));
+	
+	//광고 슬라이딩
+	$("#btn ul li:eq(0)").addClass("addBtn");
+	$("#btn ul li").click(function(){
+		var btnIndex = $(this).index();
+		$("#btn ul li").removeClass();
+		$("#btn ul li:eq("+btnIndex+")").addClass("addBtn");
+		width = $(".scene").width();
+		for(var i=0; i<width; i++){
+			if( btnIndex == i ){
+				$("#screen").animate({"marginLeft":"-"+width*btnIndex+"px"},500);
+			}
+		}
+	});
 });
 
 </script>
@@ -145,20 +169,30 @@ $(function(){
 		<div id="container">
 			<ul class="mainContainer">
 				<li class="section">
-					<ul id="ad">
-						<li class="scene">
-							광고1
-						</li>
-						<li class="scene">
-							광고2
-						</li>
-						<li class="scene">
-							광고3
-						</li>
-						<li class="scene">
-							광고4
-						</li>
-					</ul>
+					<div id="ad">
+						<ul id="screen">
+							<li class="scene">
+								광고1
+							</li>
+							<li class="scene">
+								광고2
+							</li>
+							<li class="scene">
+								광고3
+							</li>
+							<li class="scene">
+								광고4
+							</li>
+						</ul>
+						<div id="btn">
+							<ul>
+								<li><a href="#btn0" title="btn0"><span>0</span></a></li>
+								<li><a href="#btn1" title="btn1"><span>1</span></a></li>
+								<li><a href="#btn2" title="btn2"><span>2</span></a></li>
+								<li><a href="#btn3" title="btn3"><span>3</span></a></li>
+							</ul>
+						</div>
+					</div>
 				</li>
 				<li class="section">
 					<h2><a href="" title="거실">#거실</a></h2>
