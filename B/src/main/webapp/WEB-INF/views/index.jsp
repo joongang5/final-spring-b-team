@@ -40,8 +40,8 @@ html, body{width: 100%; height: 100%;}
 	
 	#container{widht:100%;}
 		.mainContainer{width:100%;}
-			.mainContainer li.section{width:100%;height:100vh;background-color:pink;margin:0 auto;}
-			.mainContainer li.section:nth-child(even){background-color:#ccc;}
+			.mainContainer li.section{width:100%;height:100vh;background-color:#ccc;margin:0 auto;}
+			.mainContainer li.section:nth-child(even){background-color:#ddd;}
 			/*광고영역*/
 				.mainContainer li.section #ad{width:100%;height:100%;position:relative;overflow:hidden;}
 					#ad #screen{width:400%;height:100%;}
@@ -52,13 +52,24 @@ html, body{width: 100%; height: 100%;}
 					#ad #btn{ width:160px; height:50px; position:absolute; left:50%; margin-left:-80px; bottom:100px;}
 						#ad #btn .nextPrev{width:80px;height:20px;margin:0 auto 10px;}
 							#ad #btn .nextPrev span{display:inline-block;width:20px;margin-left:20px;height:20px;line-height:20px;text-align:center;background-color:#fff;cursor:pointer;}
-						#ad #btn ul{ width:100%;}
+						/* #ad #btn ul{ width:100%;}
 							#ad #btn ul li{ width:20px; height:20px; border-radius:10px; background-color:#ccc; float:left; margin-left:20px; cursor:pointer;transition:0.3s all;}
 							#ad #btn ul span{display:none;}
 						#ad #btn ul:after{ content:""; display:block; clear:both;}
 			
-						/*######## 이벤트 클래스 #########*/
-						#ad #btn li.addBtn{background-color:#f00;border-radius:0px;}
+						######## 이벤트 클래스 #########
+						#ad #btn li.addBtn{background-color:#f00;border-radius:0px;} */
+				
+				
+				.mainContainer li.section .sector{width:1080px;height:80%;padding:10% 0;margin:0 auto;overflow:hidden;}
+					.mainContainer li.section .sector h2{padding:50px 0 100px;}
+					.mainContainer li.section .sector .product{width:150%;height:40%;}
+						.mainContainer li.section .sector .product .scene{background-color:gray;border-radius:5px;width:19%;height:100%;float:left;margin-right:1%;overflow:hidden;position:relative;cursor:pointer;}
+							.mainContainer li.section .sector .product .scene .detail{width:100%;height:100px;background-color:rgba(0,0,0,0.3);position:absolute;bottom:-100px;left:0;color:#fff;transition:0.3s all;}
+						.mainContainer li.section .sector .product .scene:hover .detail{bottom:0;}
+								.mainContainer li.section .sector .product .scene .detail .title{padding:10px;font-size:14px;}
+								.mainContainer li.section .sector .product .scene .detail .price{padding:10px;font-size:12px;}
+							
 			
 	#container:after{content:"";display:block;clear:both;}
 </style>
@@ -124,7 +135,7 @@ $(function(){
 	});
 	var autoSel = setInterval(function(){  
 		$(".next").click();
-	}, 3000);
+	}, 5000);
 });
 
 </script>
@@ -218,104 +229,217 @@ $(function(){
 					</div>
 				</li>
 				<li class="section">
-					<h2><a href="" title="거실">#거실</a></h2>
-					<ul class="product">
-						<li class="scene">
-							제품1
-						</li>
-						<li class="scene">
-							제품2
-						</li>
-						<li class="scene">
-							제품3
-						</li>
-						<li class="scene">
-							제품4
-						</li>
-						<li class="scene">
-							제품5
-						</li>
-					</ul>
+					<div class="sector">
+						<h2><a href="" title="거실">#거실</a></h2>
+						<ul class="product">
+							<li class="scene">
+								제품1
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+							<li class="scene">
+								제품2
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+							<li class="scene">
+								제품3
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+							<li class="scene">
+								제품4
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+							<li class="scene">
+								제품5
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+						</ul>
+						<p class="nextBtn">
+							next
+						</p>
+					</div>
 				</li>
 				<li class="section">
-					<h2><a href="" title="주방">#주방</a></h2>
-					<ul class="product">
-						<li class="scene">
-							제품1
-						</li>
-						<li class="scene">
-							제품2
-						</li>
-						<li class="scene">
-							제품3
-						</li>
-						<li class="scene">
-							제품4
-						</li>
-						<li class="scene">
-							제품5
-						</li>
-					</ul>
+					<div class="sector">
+						<h2><a href="" title="주방">#주방</a></h2>
+						<ul class="product">
+							<li class="scene">
+								제품1
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+							<li class="scene">
+								제품2
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+							<li class="scene">
+								제품3
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+							<li class="scene">
+								제품4
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+							<li class="scene">
+								제품5
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+						</ul>
+					</div>
 				</li>
 				<li class="section">
-					<h2><a href="" title="침실">#침실</a></h2>
-					<ul class="product">
-						<li class="scene">
-							제품1
-						</li>
-						<li class="scene">
-							제품2
-						</li>
-						<li class="scene">
-							제품3
-						</li>
-						<li class="scene">
-							제품4
-						</li>
-						<li class="scene">
-							제품5
-						</li>
-					</ul>
+					<div class="sector">
+						<h2><a href="" title="침실">#침실</a></h2>
+						<ul class="product">
+							<li class="scene">
+								제품1
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+							<li class="scene">
+								제품2
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+							<li class="scene">
+								제품3
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+							<li class="scene">
+								제품4
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+							<li class="scene">
+								제품5
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+						</ul>
+					</div>
 				</li>
 				<li class="section">
-					<h2><a href="" title="서재">#서재</a></h2>
-					<ul class="product">
-						<li class="scene">
-							제품1
-						</li>
-						<li class="scene">
-							제품2
-						</li>
-						<li class="scene">
-							제품3
-						</li>
-						<li class="scene">
-							제품4
-						</li>
-						<li class="scene">
-							제품5
-						</li>
-					</ul>
+					<div class="sector">
+						<h2><a href="" title="서재">#서재</a></h2>
+						<ul class="product">
+							<li class="scene">
+								제품1
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+							<li class="scene">
+								제품2
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+							<li class="scene">
+								제품3
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+							<li class="scene">
+								제품4
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+							<li class="scene">
+								제품5
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+						</ul>
+					</div>
 				</li>
 				<li class="section">
-					<h2><a href="" title="참화">#잡화</a></h2>
-					<ul class="product">
-						<li class="scene">
-							제품1
-						</li>
-						<li class="scene">
-							제품2
-						</li>
-						<li class="scene">
-							제품3
-						</li>
-						<li class="scene">
-							제품4
-						</li>
-						<li class="scene">
-							제품5
-						</li>
-					</ul>
+					<div class="sector">
+						<h2><a href="" title="참화">#잡화</a></h2>
+						<ul class="product">
+							<li class="scene">
+								제품1
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+							<li class="scene">
+								제품2
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+							<li class="scene">
+								제품3
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+							<li class="scene">
+								제품4
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+							<li class="scene">
+								제품5
+								<div class="detail">
+									<p class="title">제목</p>
+									<p class="price">가격</p>
+								</div>
+							</li>
+						</ul>
+					</div>
 				</li>
 			</ul>
 		</div>
