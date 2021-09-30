@@ -42,20 +42,23 @@ html, body{width: 100%; height: 100%;}
 		.mainContainer{width:100%;}
 			.mainContainer li.section{width:100%;height:100vh;background-color:pink;margin:0 auto;}
 			.mainContainer li.section:nth-child(even){background-color:#ccc;}
+			/*광고영역*/
 				.mainContainer li.section #ad{width:100%;height:100%;position:relative;overflow:hidden;}
 					#ad #screen{width:400%;height:100%;}
 						#ad #screen .scene{float:left; width:25%;height:100%;background-color:#D6DBDF;text-align:center;line-height:979px;}
 						#ad #screen .scene:nth-child(even){background-color:#D1F2EB;}
 					#ad #screen:after{ content:""; display:block; clear:both;}
 			
-					#ad #btn{ width:240px; height:30px; position:absolute; left:50%; margin-left:-120px; bottom:100px;}	
+					#ad #btn{ width:160px; height:50px; position:absolute; left:50%; margin-left:-80px; bottom:100px;}
+						#ad #btn .nextPrev{width:80px;height:20px;margin:0 auto 10px;}
+							#ad #btn .nextPrev span{display:inline-block;width:20px;margin-left:20px;height:20px;line-height:20px;text-align:center;background-color:#fff;cursor:pointer;}
 						#ad #btn ul{ width:100%;}
-							#ad #btn ul li{ width:20px; height:20px; border-radius:10px; background-color:#ccc; float:left; margin-left:32px; cursor:pointer;}
+							#ad #btn ul li{ width:20px; height:20px; border-radius:10px; background-color:#ccc; float:left; margin-left:20px; cursor:pointer;transition:0.3s all;}
 							#ad #btn ul span{display:none;}
 						#ad #btn ul:after{ content:""; display:block; clear:both;}
 			
 						/*######## 이벤트 클래스 #########*/
-						#ad #btn li.addBtn{background-color:#f00;}
+						#ad #btn li.addBtn{background-color:#f00;border-radius:0px;}
 			
 	#container:after{content:"";display:block;clear:both;}
 </style>
@@ -91,7 +94,7 @@ $(function(){
 	});
 	
 	//광고 슬라이딩
-	$("#btn ul li:eq(0)").addClass("addBtn");
+	/* $("#btn ul li:eq(0)").addClass("addBtn");
 	$("#btn ul li").click(function(){
 		var btnIndex = $(this).index();
 		$("#btn ul li").removeClass();
@@ -102,7 +105,26 @@ $(function(){
 				$("#screen").animate({"marginLeft":"-"+width*btnIndex+"px"},500);
 			}
 		}
+	}); */
+	$("#screen").append( $("#screen .scene:last") );
+	$("#screen").css({"marginLeft":"-100%"});
+
+	$(".next").click(function(){
+		$("#screen:not(:animated)").stop().animate({"marginLeft":"-=100%"},1000,"swing",function(){
+			$("#screen").append( $("#screen .scene:first") );
+			$("#screen").css({"marginLeft":"-100%"});
+		});
 	});
+	
+	$(".prev").click(function(){
+		$("#screen:not(:animated)").stop().animate({"marginLeft":"+=100%"},1000,"swing",function(){
+			$("#screen").prepend( $("#screen .scene:last") );
+			$("#screen").css({"marginLeft":"-100%"});
+		});
+	});
+	var autoSel = setInterval(function(){  
+		$(".next").click();
+	}, 3000);
 });
 
 </script>
@@ -185,12 +207,13 @@ $(function(){
 							</li>
 						</ul>
 						<div id="btn">
-							<ul>
+							<p class="nextPrev"><span class="prev">&lt;</span><span class="next">&gt;</span></p>
+							<!-- <ul>
 								<li><a href="#btn0" title="btn0"><span>0</span></a></li>
 								<li><a href="#btn1" title="btn1"><span>1</span></a></li>
 								<li><a href="#btn2" title="btn2"><span>2</span></a></li>
 								<li><a href="#btn3" title="btn3"><span>3</span></a></li>
-							</ul>
+							</ul> -->
 						</div>
 					</div>
 				</li>
