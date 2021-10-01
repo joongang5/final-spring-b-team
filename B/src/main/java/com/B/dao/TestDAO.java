@@ -14,5 +14,10 @@ public class TestDAO extends AbstractDAO {
 		return null;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> boardList(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("test.boardList", map);
+	}
+	
 
 }
