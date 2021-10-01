@@ -17,8 +17,8 @@ public class TestServiceImpl implements TestService {
 	private TestDAO testDAO;
 	
 	@Override
-	public List<Map<String, Object>> boardList() {
-		return testDAO.selectList();
+	public List<Map<String, Object>> boardList(Map<String, Object> map) {
+		return testDAO.boardList(map);
 	}
 
 }
