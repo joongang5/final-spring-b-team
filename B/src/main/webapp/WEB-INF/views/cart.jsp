@@ -13,7 +13,6 @@
 	<a href="./myinfoUpdatePW.do">비밀번호수정</a>
 	<a href="./myinfoDelete.do">회원탈퇴</a>
 	<a href="./cart.do">장바구니</a>
-	<a href="./logout.do">로그아웃</a>
 	<hr>
 	<table>
 		<tr>
