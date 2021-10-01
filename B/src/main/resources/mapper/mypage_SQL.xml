@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mypage">
+
+	<select id="myinfo" parameterType="HashMap" resultType="HashMap">
+		SELECT * FROM member WHERE m_id=#{m_id}
+	</select>
+
+	<delete id="myAccountDelete" parameterType="HashMap">
+		DELETE FROM member WHERE m_id=#{m_id}
+	</delete>
+	
+	<update id="myinfoUpdate" parameterType="HashMap">
+		UPDATE member SET m_phone=#{m_phone}, m_email=#{m_email}, m_addr=#{m_addr} WHERE m_id=#{m_id}
+	</update>
+	
+	<update id ="myAccountUpdatePW" parameterType="HashMap">
+		UPDATE member SET m_pw=#{pw1} WHERE m_id=#{m_id} 
+	</update>
+	
+	<select id ="cartList" parameterType="HashMap" resultType="HashMap">
+		SELECT * FROM cart_view WHERE m_id=#{m_id}
+	</select>
+</mapper>

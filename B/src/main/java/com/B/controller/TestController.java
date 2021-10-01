@@ -36,5 +36,6 @@ public class TestController {
 		System.out.println(commandMap.getMap());
 		return "redirect:/index.do";
 	}
+	
 
 }

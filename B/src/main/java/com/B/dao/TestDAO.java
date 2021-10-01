@@ -8,9 +8,10 @@ import org.springframework.stereotype.Repository;
 @Repository("testDAO")
 public class TestDAO extends AbstractDAO {
 	
-	@SuppressWarnings("unchecked")
+	
 	public List<Map<String, Object>> selectList() {
-		return (List<Map<String, Object>>) selectList("test.boardList");
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 
