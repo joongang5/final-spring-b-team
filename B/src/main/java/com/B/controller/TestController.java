@@ -25,17 +25,17 @@ public class TestController {
 		return mv;
 	}
 
-	@GetMapping("/login.do")
-	public String login() {
-		return "login";
-	}
+	//@GetMapping("/login.do")
+	//public String login() {
+	//	return "login";
+	//}
 
-	@PostMapping("/login.do")
-	public String login(CommandMap commandMap) {
+//	@PostMapping("/login.do")
+//	public String login(CommandMap commandMap) {
 
-		System.out.println(commandMap.getMap());
-		return "redirect:/index.do";
-	}
+//		System.out.println(commandMap.getMap());
+//		return "redirect:/index.do";
+//	}
 	
 
 }

@@ -52,4 +52,9 @@ public class AbstractDAO {
 	public void delMsg(String queryID, Map<String, Object> map) {
 		sqlSession.delete(queryID, map);
 	}
+	
+	//20211004 이현아 추가
+	public Map<String, Object> selectOne(String queryID, String id){
+		return sqlSession.selectOne(queryID, id);
+	}
 }
