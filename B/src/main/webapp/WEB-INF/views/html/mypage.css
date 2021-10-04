@@ -1,0 +1,43 @@
+/*여기부터 myPage 공통*/
+#layout-container{
+    max-width: 1200px;
+}
+
+#header-space{
+    height: 120px;
+}
+
+#myPage-main-container{
+}
+
+#myPage-sideMenu{
+}
+
+.sideMenu__item{
+    list-style: none;
+}
+
+.sideMenu__item li{
+}
+
+.sideMenu__item li:hover{
+
+}
+
+.sideMenu__item--active{
+    font-weight: bold;
+}
+
+main{
+
+}
+
+.myPage-title{
+
+}
+
+#footer-space{
+
+}
+
+/*여기까지 myPage 공통*/

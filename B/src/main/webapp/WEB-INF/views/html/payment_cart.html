@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>장바구니 | 가구</title>
+</head>
+<body>
+<div id="layout-container">
+    <header id="header-space"></header>
+        <div id="payment-main-container">
+            <aside>
+                <div class="payment-sum-container">
+                    <div class="payment-sum__section">
+                        상품 금액
+                    </div>
+                    <div class="payment-sum__value">
+                    </div>
+                    <div class="payment-sum__section">
+                        배송료
+                    </div>
+                    <div class="payment-sum__value">
+                    </div>
+                    <div class="total-amount payment-sum__section">
+                        합계
+                    </div>
+                    <div class="total-amount payment-sum__value">
+                    </div>
+                </div>
+                <div class="payment-button-container">
+                    <button>*개 상품 구매하기</button>
+                </div>
+            </aside>
+            <main>
+                <div class="payment-title">
+                    <h1>장바구니</h1>
+                </div>
+                <div class="payment-detail-container">
+                    <dlv class="select-control-container">
+                        <div class="all-select-box">
+                            <label>
+                                <input type="checkbox">
+                                모두 선택
+                            </label>
+                        </div>
+                        <div class="delete-select-box">
+                            선택 삭제
+                        </div>
+                    </dlv>
+                    <div class="payment-product-container">
+                            <!--장바구니 내 상품 출력 / 반복문 사용-->
+                        <div class="payment-product-content">
+                            <div class="product-select-box">
+                                <input type="checkbox">
+                            </div>
+                            <div class="payment-product-left-block">
+                                <div class="product-content__productThumbnail"></div>
+                            </div>
+                            <div class="payment-product-right-block">
+                                <div class="product-content__name-container">
+                                    <div class="product-content__name"></div>
+                                    <div class="product-content__cancel"></div>
+                                </div>
+                                <div class="product-content__Option-container">
+                                    <div class="option-content__name-container">
+                                        <div class="option-content__name"></div>
+                                        <div class="option-content__cancel"></div>
+                                    </div>
+                                    <div class="option-content__quantity-container">
+                                        <div class="option-content__quantity">
+                                            <div class="quantity__minus">
+                                                <button>-</button>
+                                            </div>
+                                            <div class="quantity__value">
+                                                <!--유효성 검사 함수 넣기-->
+                                                <input type="text" value="1" readonly="readonly">
+                                            </div>
+                                            <div class="quantity__plus">
+                                                <button>+</button>
+                                            </div>
+                                        </div>
+                                        <div class="option-content__sum"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--장바구니 내 상품 출력 끝-->
+                    </div>
+                </div>
+            </main>
+        </div>
+    <footer id="footer-space"></footer>
+</div>
+</body>
+</html>

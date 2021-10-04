@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>주문/결제 | 가구</title>
+</head>
+<body>
+<div id="layout-container">
+  <header id="header-space"></header>
+  <div id="payment-main-container">
+    <aside>
+      <!--클래스명이 장바구니 쪽과 동일한 div가 다수 존재하지만 css는 별개로 지정해야 함-->
+      <div class="payment-sum-container">
+        <div class="payment-sum-subject">
+          <h3>결제 금액</h3>
+        </div>
+        <div class="payment-sum__section">
+          상품 금액
+        </div>
+        <div class="payment-sum__value">
+        </div>
+        <div class="payment-sum__section">
+          배송료
+        </div>
+        <div class="payment-sum__value">
+        </div>
+        <div class="payment-sum__section">
+          쿠폰 할인
+        </div>
+        <div class="payment-sum__value">
+        </div>
+        <div class="payment-sum__section">
+          적립금 사용
+        </div>
+        <div class="payment-sum__value">
+        </div>
+        <div class="total-amount payment-sum__section">
+          최종 결제 금액
+        </div>
+        <div class="total-amount payment-sum__value">
+        </div>
+        <div class="will-point payment-sum__value">
+          * 원
+        </div>
+        <div class="will-point payment-sum__section">
+          적립 예정
+        </div>
+      </div>
+      <div class="payment-terms-container">
+        <div class="terms-confirm-container">
+          <label>
+          <input type="checkbox">
+          아래 내용에 모두 동의합니다. (필수)
+          </label>
+        </div>
+        <div class="terms-content-container">
+          <div class="terms-content-top">
+            <div class="terms-content-top__subject">
+              개인정보 수집 이용 및 제 3자 제공 동의
+            </div>
+            <div class="terms-content-top__itemBox">
+              <div class="terms-content-top__topic">
+              개인정보 제 3자 제공
+              </div>
+              <div class="terms-content-top__view">
+                <button>약관 보기</button>
+              </div>
+              <!--약관 보기 누르면 출력되는 div-->
+              <!--실제 약관 내용을 포함한다-->
+                <div class="terms-detail__background">
+                  <div class="terms-detail__popup">
+                    <div class="terms-detail__container">
+                      <div class="terms-detail__topic"></div>
+                      <div class="terms-detail__content-container">
+                        <div class="terms-detail__content"></div>
+                      </div>
+                      <div class="terms-detail-confirm">
+                        <button>확인</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              <!--약관 popup 끝-->
+            </div>
+            <div class="terms-content-top__itemBox">
+              <div class="terms-content-top__topic">
+                개인정보 수집 및 이용
+              </div>
+              <div class="terms-content-top__view">
+                <button>약관 보기</button>
+              </div>
+              <!--약관 보기 누르면 출력되는 div-->
+              <!--실제 약관 내용을 포함한다-->
+              <div class="terms-detail__background">
+                <div class="terms-detail__popup">
+                  <div class="terms-detail__container">
+                    <div class="terms-detail__topic"></div>
+                    <div class="terms-detail__content-container">
+                      <div class="terms-detail__content"></div>
+                    </div>
+                    <div class="terms-detail-confirm">
+                      <button>확인</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!--약관 popup 끝-->
+            </div>
+          </div>
+          <div class="terms-content-bottom">
+            본인은 만 14세 이상이며,<br>
+            주문 내용을 확인하였습니다.
+          </div>
+        </div>
+      </div>
+      <div class="payment-button-container">
+        <button>*원 결제하기</button>
+      </div>
+    </aside>
+    <main>
+      <div class="payment-title">
+        <h1>주문 / 결제</h1>
+      </div>
+      <div class="payment-detail-container">
+        <div class="payment-delivery">
+          <div class="payment-delivery__header">
+            <h2>배송지</h2>
+          </div>
+          <div class="payment-delivery__body">
+            <div class="payment-delivery__item">
+              <label>받는 사람
+              <input type="text">
+              </label>
+            </div>
+            <div class="payment-delivery__item">
+              <label>연락처
+                <input type="tel">
+              </label>
+            </div>
+            <div class="payment-delivery__item">
+              <label>주소
+                <!--주소 찾기 API 사용-->
+                <!--우편번호, 주소1, 주소2-->
+                <input type="text"><br>
+                <input type="text"><br>
+                <input type="text">
+              </label>
+            </div>
+            <div class="memo payment-delivery__item">
+              <label>배송시 요청사항<br>
+                <input type="text">
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="payment-product">
+          <div class="payment-product__header">
+            <h2>주문 상품</h2>
+          </div>
+          <div class="payment-product__body">
+            <!--구매할 상품 출력 / 반복문 사용-->
+            <div class="payment-product-content">
+              <div class="payment-product-left-block">
+                <div class="product-content__productThumbnail"></div>
+              </div>
+              <div class="payment-product-right-block">
+                <div class="product-content__name"></div>
+                <div class="product-content__Option-container">
+                    <div class="option-content__name"></div>
+                    <div class="option-content__price-container">
+                      <div class="option-content__price"></div>
+                      <div class="option-content__quantity"></div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <!--구매할 상품 출력 끝-->
+          </div>
+        </div>
+        <div class="payment-coupon">
+          <div class="payment-coupon__header">
+            <h2>쿠폰</h2>
+          </div>
+          <div class="payment-coupon__body">
+            <!--쿠폰 시스템 도입시 쿠폰 목록 출력 / 반복문 사용-->
+          </div>
+        </div>
+        <div class="payment-point">
+          <div class="payment-point__header">
+            <h2>적립금 사용</h2>
+          </div>
+          <div class="payment-point__body">
+            <div class="payment-point__use">
+              <!--유효성 검사 함수 넣기-->
+              <label>
+              <input type="text">
+              원
+              </label>
+              <button>전액 사용</button>
+            </div>
+            <div class="payment-point__usable">
+              <div class="payment-point__usable-section">
+                사용 가능 적립금
+              </div>
+              <div class="payment-point__usable-value">
+                *원
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="payment-plan">
+          <div class="payment-plan__header">
+            <h2>결제 수단</h2>
+          </div>
+          <div class="payment-plan__body">
+            <div class="payment-planList">
+              <!--선택 시 클래스명 추가해서 css로 선택된 버튼 나타내기-->
+              <button>카카오 페이</button>
+              <button>페이코</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer id="footer-space"></footer>
+</div>
+</body>
+</html>

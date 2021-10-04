@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>구매 내역 조회 | 가구</title>
+    <link rel="stylesheet" href="mypage.css">
+    <style>
+        .orderList-summary{
+
+        }
+
+        .orderList-summary__column-left{
+
+        }
+
+        .orderList-summary-state{
+
+        }
+
+        .orderList-summary-state__section{
+
+        }
+
+        .orderList-summary-state__value{
+
+        }
+
+        .orderList-summary-state__arrow{
+
+        }
+
+        .orderList-summary__column-right{
+
+        }
+
+        .orderList-summary-exchange{
+
+        }
+
+        .orderList-summary-exchange__section{
+
+        }
+
+        .orderList-summary-exchange__value{
+
+        }
+
+        .orderList-content-productContainer, .orderList-content__delivery{
+
+        }
+
+        .period-searchBox{
+
+        }
+
+        .orderList-contents-container{
+
+        }
+
+        .orderList-content{
+
+        }
+
+        .orderList-content__header{
+
+        }
+
+        .orderList-content__orderNo{
+
+        }
+
+        .orderList-content__orderDate{
+
+        }
+
+        .orderList-content__body{
+
+        }
+
+        .orderList-content-productContainer{
+
+        }
+
+        .orderList-content__productThumbnail{
+
+        }
+
+        .orderList-content__productName{
+
+        }
+
+        .orderList-content__productPrice{
+
+        }
+
+        .orderList-content__productOption{
+
+        }
+
+        .orderList-content__productQuantity{
+
+        }
+
+        .orderList-content__totalAmount{
+
+        }
+
+        .orderList-content__delivery{
+
+        }
+
+    </style>
+</head>
+<body>
+<!--myPage 공통 부분-->
+    <div id="layout-container">
+    <header id="header-space"></header>
+    <div id="myPage-main-container">
+            <nav id="myPage-sideMenu">
+                <div class="sideMenu__block-container">
+                    <div class="sideMenu__block">
+                    <h4>나의 쇼핑 활동</h4>
+                    <ul class="sideMenu__items">
+                        <li class="sideMenu__item sideMenu__item--active"><a href="">구매 내역 조회</a></li>
+                        <li class="sideMenu__item"><a href="">최근 본 상품</a></li>
+                        <li class="sideMenu__item"><a href="">쿠폰 / 적립금 조회</a></li>
+                        <li class="sideMenu__item"><a href="">상품 문의</a></li>
+                        <li class="sideMenu__item"><a href="">1:1 문의</a></li>
+                    </ul>
+                    </div>
+                    <div class="sideMenu-block">
+                    <h4>회원 정보</h4>
+                    <ul class="sideMenu__items">
+                        <li class="sideMenu__item"><a href="">회원 정보 조회</a></li>
+                        <li class="sideMenu__item"><a href="">주소록</a></li>
+                        <li class="sideMenu__item"><a href="">비밀번호 변경</a></li>
+                        <li class="sideMenu__item"><a href="">회원 탈퇴</a></li>
+                    </ul>
+                    </div>
+                </div>
+            </nav>
+        <main>
+            <div class="myPage-title">
+            <h1>구매 내역 조회</h1>
+            </div>
+<!--myPage 공통 부분 끝-->
+            <div class="orderList-summary">
+                <div class="orderList-summary__column-left">
+                    <div class="orderList-summary-state">
+                        <div class="orderList-summary-state__section">
+                            결제 완료
+                        </div>
+                        <div class="orderList-summary-state__value"></div>
+                    </div>
+                    <div class="orderList-summary-state__arrow"></div>
+                    <div class="orderList-summary-state">
+                        <div class="orderList-summary-state__section">
+                            출고 준비
+                        </div>
+                        <div class="orderList-summary-state__value"></div>
+                    </div>
+                    <div class="orderList-summary-state__arrow"></div>
+                    <div class="orderList-summary-state">
+                        <div class="orderList-summary-state__section">
+                            출고 완료
+                        </div>
+                        <div class="orderList-summary-state__value"></div>
+                    </div>
+                    <div class="orderList-summary-state__arrow"></div>
+                </div>
+                <div class="orderList-summary__column-right">
+                    <!--교환 및 환불 건수 표시-->
+                    <div class="orderList-summary-exchange">
+                        <div class="orderList-summary-exchange__section"></div>
+                        <div class="orderList-summary-exchange__value"></div>
+                    </div>
+                    <div class="orderList-summary-exchanged">
+                        <div class="orderList-summary-exchange__section"></div>
+                        <div class="orderList-summary-exchange__value"></div>
+                    </div>
+                    <div class="orderList-summary-exchange">
+                        <div class="orderList-summary-exchange__section"></div>
+                        <div class="orderList-summary-exchange__value"></div>
+                    </div>
+                    <div class="orderList-summary-exchange">
+                        <div class="orderList-summary-exchange__section"></div>
+                        <div class="orderList-summary-exchange__value"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="period-search-box">
+                <label>주문일
+                    <input type="date"> ~
+                    <input type="date">
+                </label>
+                <button>조회</button>
+            </div>
+            <div class="orderList-contents-container">
+                <!--주문서 출력 / 반복문 사용-->
+                <div class="orderList-content">
+                    <div class="orderList-content__header">
+                        <div class="orderList-content__orderNo"></div>
+                        <div class="orderList-content__orderDate"></div>
+                    </div>
+                    <div class="orderList-content__body">
+                        <!--주문서 내 주문한 상품 내용 출력 / 반복문 사용-->
+                        <div class="orderList-content-productContainer">
+                            <div class="orderList-product-left-block">
+                                <div class="orderList-content__productThumbnail"></div>
+                            </div>
+                            <div class="orderList-product-right-block">
+                                <div class="orderList-content__productName"></div>
+                                <div class="orderList-content__productPrice"></div>
+                                <div class="orderList-content__productOption"></div>
+                                <div class="orderList-content__productQuantity"></div>
+                            </div>
+                        </div>
+                        <!--주문한 상품 내용 출력 끝-->
+                        <div class="orderList-content__delivery">
+                        </div>
+                    </div>
+                    <div class="orderList-content__footer">
+                        <div class="orderList-content__shipping-charge">
+                        </div>
+                        <div class="orderList-content__total-amount">
+                        </div>
+                    </div>
+                </div>
+                <!--주문서 출력 끝-->
+            </div>
+        </main>
+    </div>
+    <footer id="footer-space"></footer>
+    </div>
+</body>
+</html>

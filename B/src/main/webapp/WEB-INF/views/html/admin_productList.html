@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>관리자 페이지 | 가구</title>
+  <link rel="stylesheet" href="admin.css">
+  <style>
+
+  </style>
+</head>
+<body>
+<!--admin 공통 부분-->
+<div id="layout-container">
+  <header id="admin-header"></header>
+  <div id="admin-main-container">
+    <nav id="admin-sideMenu">
+      <div class="sideMenu__block-container">
+        <ul class="sideMenu__items">
+          <li class="sideMenu__item"><a href=""><img src="">홈으로</a></li>
+          <li class="sideMenu__item"><a href=""><img src="">주문 관리</a>
+            <ul class="sideMenu__subItems">
+              <li class="sideMenu__subItem"><a href="">주문 목록</a></li>
+              <li class="sideMenu__subItem"><a href="">교환 관리</a></li>
+              <li class="sideMenu__subItem"><a href="">환불 관리</a></li>
+            </ul>
+          </li>
+          <li class="sideMenu__item sideMenu__item--active"><a href=""><img src="">상품 관리</a>
+            <ul class="sideMenu__subItems sideMenu__subItems--active">
+              <li class="sideMenu__subItem"><a href="">상품 목록</a></li>
+              <li class="sideMenu__subItem"><a href="">상품 등록</a></li>
+              <li class="sideMenu__subItem"><a href="">쿠폰 등록</a></li>
+            </ul>
+          </li>
+          <li class="sideMenu__item"><a href=""><img src="">고객 관리</a>
+            <ul class="sideMenu__subItems">
+              <li class="sideMenu__subItem"><a href="">회원 목록</a></li>
+            </ul>
+          </li>
+          <li class="sideMenu__item"><a href=""><img src="">고객 응대</a>
+            <ul class="sideMenu__subItems">
+              <li class="sideMenu__subItem"><a href="">상품 문의 목록</a></li>
+              <li class="sideMenu__subItem"><a href="">1:1 문의 목록</a></li>
+              <li class="sideMenu__subItem"><a href="">자주 묻는 질문 관리</a></li>
+              <li class="sideMenu__subItem"><a href="">리뷰 목록</a></li>
+            </ul>
+          </li>
+          <li class="sideMenu__item"><a href=""><img src="">사이트 관리</a>
+            <ul class="sideMenu__subItems">
+              <li class="sideMenu__subItem"><a href="">로그 조회</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main>
+      <!--admin 공통 부분 끝-->
+      <div class="admin-title">
+        <h1>상품 목록</h1>
+      </div>
+      <div class="category-search-box">
+        <!--선택하면 바로 이동됨-->
+        <label>카테고리로 검색
+          <select>
+            <option>1차 카테고리</option>
+          </select>
+          <select>
+            <option>2차 카테고리</option>
+          </select>
+        </label>
+      </div>
+      <div class="keyword-search-box">
+        <label for="keyword-search__word">키워드 검색</label>
+        <div class="keyword-search__bar">
+          <select id="keyword-search__column">
+            <option>상품 번호</option>
+            <option>상품명</option>
+            <option>상품</option>
+            <option>상품명</option>
+          </select>
+          <input type="search" id="keyword-search__word">
+        </div>
+        <button>검색</button>
+      </div>
+      <div class="selects-container">
+        <div class="change-displayState-box">
+          <label>선택한 상품
+            <select id="change-displayState">
+              <option>표시</option>
+              <option>비표시</option>
+            </select>
+          </label>
+          <button>일괄 변경</button>
+        </div>
+        <div class="sort-box">
+          <select id="sort__by-column">
+            <option>상품 번호순</option>
+            <option>상품명순</option>
+            <option>상품 가격순</option>
+            <option>재고순</option>
+            <option>등록일순</option>
+            <option>표시 상태순</option>
+          </select>
+        </div>
+      </div>
+      <div class="productList-container">
+        <table class="productList">
+          <thead>
+          <tr>
+            <th scope="col">선택</th>
+            <th scope="col">상품 번호</th>
+            <th colspan="2" scope="col">상품</th>
+            <th scope="col">상품 가격</th>
+            <th scope="col">재고</th>
+            <th scope="col">등록일자</th>
+            <th scope="col">
+              <select id="sort__by-saleState">
+                <option>판매 상태</option>
+                <option>판매중</option>
+                <option>판매 중단</option>
+                <option>품절</option>
+              </select>
+            </th>
+            <th scope="col">표시 상태</th>
+          </tr>
+          </thead>
+          <tbody>
+          <!--상품 목록 출력 / 반복문 사용-->
+          <tr>
+            <td>
+              <input type="checkbox">
+            </td>
+            <td>상품 번호</td>
+            <td>사진</td>
+            <td>상품 내용</td>
+            <td>상품 가격</td>
+            <td>재고</td>
+            <td>등록일자</td>
+            <td>판매 상태</td>
+            <td>표시 상태</td>
+          </tr>
+          <!--상품 목록 출력 끝-->
+          </tbody>
+        </table>
+        <div class="productList__paging"></div>
+      </div>
+    </main>
+  </div>
+  <footer id="footer-space"></footer>
+</div>
+</body>
+</html>
