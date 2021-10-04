@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -7,12 +7,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>±¸¸Å ³»¿ª</title>
+<title>êµ¬ë§¤ ë‚´ì—­</title>
 
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
 <style>
 p {
@@ -21,13 +19,13 @@ p {
 
 /* Default */
 input[type=text], input[type=password] {
-	font-family: "Malgun Gothic", "¸¼Àº °íµñ", Dotum, "µ¸¿ò", Arial, sans-serif
+	font-family: "Malgun Gothic", "ë§‘ì€ ê³ ë”•", Dotum, "ë‹ì›€", Arial, sans-serif
 }
 
 * {
 	margin: 0;
 	padding: 0;
-	font-family: "Malgun Gothic", "¸¼Àº °íµñ", Dotum, "µ¸¿ò", Arial, sans-serif
+	font-family: "Malgun Gothic", "ë§‘ì€ ê³ ë”•", Dotum, "ë‹ì›€", Arial, sans-serif
 }
 
 body {
@@ -210,14 +208,14 @@ header, footer, aside, nav, section, article {
 
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<!-- datepicker ÇÑ±¹¾î·Î -->
+<!-- datepicker í•œêµ­ì–´ë¡œ -->
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
 
 <script>
 	$(document).ready(function() {
 
-		//datepicker ÇÑ±¹¾î·Î »ç¿ëÇÏ±â À§ÇÑ ¾ğ¾î¼³Á¤
+		//datepicker í•œêµ­ì–´ë¡œ ì‚¬ìš©í•˜ê¸° ìœ„í•œ ì–¸ì–´ì„¤ì •
 		$.datepicker.setDefaults($.datepicker.regional['ko']);
 
 		// Datepicker            
@@ -242,19 +240,19 @@ header, footer, aside, nav, section, article {
 			}
 		});
 
-		//½ÃÀÛÀÏ.
+		//ì‹œì‘ì¼.
 		/*$('#searchStartDate').datepicker("option","onClose", function( selectedDate ) {    
-		    // ½ÃÀÛÀÏ datepicker°¡ ´İÈú¶§
-		    // Á¾·áÀÏÀÇ ¼±ÅÃÇÒ¼öÀÖ´Â ÃÖ¼Ò ³¯Â¥(minDate)¸¦ ¼±ÅÃÇÑ ½ÃÀÛÀÏ·Î ÁöÁ¤
+		    // ì‹œì‘ì¼ datepickerê°€ ë‹«íë•Œ
+		    // ì¢…ë£Œì¼ì˜ ì„ íƒí• ìˆ˜ìˆëŠ” ìµœì†Œ ë‚ ì§œ(minDate)ë¥¼ ì„ íƒí•œ ì‹œì‘ì¼ë¡œ ì§€ì •
 		    $("#searchEndDate").datepicker( "option", "minDate", selectedDate );
 		    $(".searchDate").find(".chkbox2").removeClass("on");
 		});
 		 */
 
-		//Á¾·áÀÏ.
+		//ì¢…ë£Œì¼.
 		/*$('#searchEndDate').datepicker("option","onClose", function( selectedDate ) {    
-		    // Á¾·áÀÏ datepicker°¡ ´İÈú¶§
-		    // ½ÃÀÛÀÏÀÇ ¼±ÅÃÇÒ¼öÀÖ´Â ÃÖ´ë ³¯Â¥(maxDate)¸¦ ¼±ÅÃÇÑ Á¾·áÀÏ·Î ÁöÁ¤ 
+		    // ì¢…ë£Œì¼ datepickerê°€ ë‹«íë•Œ
+		    // ì‹œì‘ì¼ì˜ ì„ íƒí• ìˆ˜ìˆëŠ” ìµœëŒ€ ë‚ ì§œ(maxDate)ë¥¼ ì„ íƒí•œ ì¢…ë£Œì¼ë¡œ ì§€ì • 
 		    $("#searchStartDate").datepicker( "option", "maxDate", selectedDate );
 		    $(".searchDate").find(".chkbox2").removeClass("on");
 		});
@@ -309,10 +307,10 @@ header, footer, aside, nav, section, article {
 		var startDate = $.datepicker.formatDate('yy-mm-dd', today);
 		$('#searchStartDate').val(startDate);
 
-		// Á¾·áÀÏÀº ½ÃÀÛÀÏ ÀÌÀü ³¯Â¥ ¼±ÅÃÇÏÁö ¸øÇÏµµ·Ï ºñÈ°¼ºÈ­
+		// ì¢…ë£Œì¼ì€ ì‹œì‘ì¼ ì´ì „ ë‚ ì§œ ì„ íƒí•˜ì§€ ëª»í•˜ë„ë¡ ë¹„í™œì„±í™”
 		$("#searchEndDate").datepicker("option", "minDate", startDate);
 
-		// ½ÃÀÛÀÏÀº Á¾·áÀÏ ÀÌÈÄ ³¯Â¥ ¼±ÅÃÇÏÁö ¸øÇÏµµ·Ï ºñÈ°¼ºÈ­
+		// ì‹œì‘ì¼ì€ ì¢…ë£Œì¼ ì´í›„ ë‚ ì§œ ì„ íƒí•˜ì§€ ëª»í•˜ë„ë¡ ë¹„í™œì„±í™”
 		$("#searchStartDate").datepicker("option", "maxDate", endDate);
 
 	}
@@ -320,18 +318,18 @@ header, footer, aside, nav, section, article {
 
 </head>
 <body>
-	<h1>±¸¸Å³»¿ª</h1>
+	<h1>êµ¬ë§¤ë‚´ì—­</h1>
 	<br>
 
-	<h3>ÁøÇà»óÈ²</h3>
+	<h3>ì§„í–‰ìƒí™©</h3>
 	<br>
 	<table>
 		<tr>
-			<th>°áÁ¦ ¿Ï·á</th>
-			<th rowspan="3">¢º</th>
-			<th>Ãâ°í ÁØºñ</th>
-			<th rowspan="3">¢º</th>
-			<th>Ãâ°í ¿Ï·á</th>
+			<th>ê²°ì œ ì™„ë£Œ</th>
+			<th rowspan="3">â–¶</th>
+			<th>ì¶œê³  ì¤€ë¹„</th>
+			<th rowspan="3">â–¶</th>
+			<th>ì¶œê³  ì™„ë£Œ</th>
 		</tr>
 		<tr>
 			<td>0</td>
@@ -340,77 +338,83 @@ header, footer, aside, nav, section, article {
 		</tr>
 	</table>
 	<br>
-	<table class="searchBox">
-		<caption>Á¶È¸</caption>
-		<colgroup>
-			<col width="123px">
-			<col width="*">
-		</colgroup>
-		<tbody>
-			<tr>
-				<th>Á¶È¸±â°£</th>
-				<td>
-					<ul class="searchDate">
-						<li><span class="chkbox2"> <input type="radio"
-								name="dateType" id="dateType1" onclick="setSearchDate('0d')" />
-								<label for="dateType1">´çÀÏ</label>
-						</span></li>
-						<li><span class="chkbox2"> <input type="radio"
-								name="dateType" id="dateType2" onclick="setSearchDate('3d')" />
-								<label for="dateType2">3ÀÏ</label>
-						</span></li>
-						<li><span class="chkbox2"> <input type="radio"
-								name="dateType" id="dateType3" onclick="setSearchDate('1w')" />
-								<label for="dateType3">1ÁÖ</label>
-						</span></li>
-						<li><span class="chkbox2"> <input type="radio"
-								name="dateType" id="dateType4" onclick="setSearchDate('2w')" />
-								<label for="dateType4">2ÁÖ</label>
-						</span></li>
-						<li><span class="chkbox2"> <input type="radio"
-								name="dateType" id="dateType5" onclick="setSearchDate('1m')" />
-								<label for="dateType5">1°³¿ù</label>
-						</span></li>
-						<li><span class="chkbox2"> <input type="radio"
-								name="dateType" id="dateType6" onclick="setSearchDate('3m')" />
-								<label for="dateType6">3°³¿ù</label>
-						</span></li>
-						<li><span class="chkbox2"> <input type="radio"
-								name="dateType" id="dateType7" onclick="setSearchDate('6m')" />
-								<label for="dateType7">6°³¿ù</label>
-						</span></li>
-					</ul>
 
-					<div class="clearfix">
-						<!-- ½ÃÀÛÀÏ -->
-						<span class="dset"> <input type="text"
-							class="datepicker inpType" name="searchStartDate"
-							id="searchStartDate"> <a href="#none"
-							class="btncalendar dateclick">´Ş·Â</a>
-						</span> <span class="demi">~</span>
-						<!-- Á¾·áÀÏ -->
-						<span class="dset"> <input type="text"
-							class="datepicker inpType" name="searchEndDate"
-							id="searchEndDate"> <a href="#none"
-							class="btncalendar dateclick">´Ş·Â</a>
-						</span>
-						<button type="button" id="search">Á¶È¸</button>
-					</div>
-				</td>
-			</tr>
-		<tbody>
-	</table>
+	<form>
+		<!-- search -->
+		<table class="searchBox">
+			<caption>ì¡°íšŒ</caption>
+			<colgroup>
+				<col width="123px">
+				<col width="*">
+			</colgroup>
+			<tbody>
+				<tr>
+					<th>ì¡°íšŒê¸°ê°„</th>
+					<td>
+						<ul class="searchDate">
+							<li><span class="chkbox2"> <input type="radio"
+									name="dateType" id="dateType1" onclick="setSearchDate('0d')" />
+									<label for="dateType1">ë‹¹ì¼</label>
+							</span></li>
+							<li><span class="chkbox2"> <input type="radio"
+									name="dateType" id="dateType2" onclick="setSearchDate('3d')" />
+									<label for="dateType2">3ì¼</label>
+							</span></li>
+							<li><span class="chkbox2"> <input type="radio"
+									name="dateType" id="dateType3" onclick="setSearchDate('1w')" />
+									<label for="dateType3">1ì£¼</label>
+							</span></li>
+							<li><span class="chkbox2"> <input type="radio"
+									name="dateType" id="dateType4" onclick="setSearchDate('2w')" />
+									<label for="dateType4">2ì£¼</label>
+							</span></li>
+							<li><span class="chkbox2"> <input type="radio"
+									name="dateType" id="dateType5" onclick="setSearchDate('1m')" />
+									<label for="dateType5">1ê°œì›”</label>
+							</span></li>
+							<li><span class="chkbox2"> <input type="radio"
+									name="dateType" id="dateType6" onclick="setSearchDate('3m')" />
+									<label for="dateType6">3ê°œì›”</label>
+							</span></li>
+							<li><span class="chkbox2"> <input type="radio"
+									name="dateType" id="dateType7" onclick="setSearchDate('6m')" />
+									<label for="dateType7">6ê°œì›”</label>
+							</span></li>
+						</ul>
+
+						<div class="clearfix">
+							<!-- ì‹œì‘ì¼ -->
+							<span class="dset"> <input type="text"
+								class="datepicker inpType" name="searchStartDate"
+								id="searchStartDate"> <a href="#none"
+								class="btncalendar dateclick">ë‹¬ë ¥</a>
+							</span> <span class="demi">~</span>
+							<!-- ì¢…ë£Œì¼ -->
+							<span class="dset"> <input type="text"
+								class="datepicker inpType" name="searchEndDate"
+								id="searchEndDate"> <a href="#none"
+								class="btncalendar dateclick">ë‹¬ë ¥</a>
+								
+								<button onclick="move()">ì¡°íšŒ</button>
+							</span>
+						</div>
+					</td>
+				</tr>
+			<tbody>
+		</table>
+	</form>
+
 	<br>
-	<h3>ÁÖ¹® ¸®½ºÆ®</h3>
+	<h3>ì£¼ë¬¸ ë¦¬ìŠ¤íŠ¸</h3>
 	<table>
 		<tr>
 			<th>no</th>
-			<th>Á¦Ç°¸í</th>
-			<th>Á¦Ç° ÀÌ¹ÌÁö</th>
-			<th>¼ö·®</th>
-			<th>°¡°İ</th>
-			<th>±¸¸Å ³¯Â¥</th>
-			<th>ÇöÀç »óÅÂ</th>
+			<th>ì œí’ˆëª…</th>
+			<th>ì œí’ˆ ì´ë¯¸ì§€</th>
+			<th>ìˆ˜ëŸ‰</th>
+			<th>ê°€ê²©</th>
+			<th>êµ¬ë§¤ ë‚ ì§œ</th>
+			<th>í˜„ì¬ ìƒíƒœ</th>
 		</tr>
 		<c:forEach items="${list }" var="l">
 			<tr>
@@ -420,7 +424,7 @@ header, footer, aside, nav, section, article {
 				<td>${l.cnt}</td>
 				<td>${l.p_price}</td>
 				<td>${l.p_date}</td>
-				<td>Ãâ°í ÁØºñ</td>
+				<td>ì¶œê³  ì¤€ë¹„</td>
 			</tr>
 		</c:forEach>
 	</table>
@@ -428,33 +432,9 @@ header, footer, aside, nav, section, article {
 
 
 	<br>
-	<div class="container">
-		<ul class="pagination justify-content-center">
-			<div class="row">
-				<div class="col">
-					<p>
-						<strong></strong>
-					</p>
-					<ul class="pagination pagination-sm">
-						<li class="page-item"><a class="text-dark page-link" href="#">ÀÌÀü</a></li>
-						<li class="page-item"><a class="text-dark page-link" href="#">1</a></li>
-						<li class="page-item"><a class="text-dark page-link" href="#">2</a></li>
-						<li class="page-item"><a class="text-dark page-link" href="#">3</a></li>
-						<li class="page-item"><a class="text-dark page-link" href="#">4</a></li>
-						<li class="page-item"><a class="text-dark page-link" href="#">5</a></li>
-						<li class="page-item"><a class="text-dark page-link" href="#">´ÙÀ½</a></li>
-					</ul>
-				</div>
-			</div>
-		</ul>
-	</div>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-	<script
-		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
-	<button onclick="move()">¸ŞÀÎ È­¸éÀ¸·Î</button>
+
+	<button onclick="move()">ë©”ì¸ í™”ë©´ìœ¼ë¡œ</button>
 
 
 </body>
