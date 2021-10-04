@@ -8,6 +8,8 @@ import org.apache.commons.logging.LogFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.B.common.CommandMap;
+
 public class AbstractDAO {
 	protected Log log = LogFactory.getLog(AbstractDAO.class);
 	@Autowired
@@ -56,5 +58,13 @@ public class AbstractDAO {
 	//20211004 이현아 추가
 	public Map<String, Object> selectOne(String queryID, String id){
 		return sqlSession.selectOne(queryID, id);
+	}
+	
+	public int checkId(String queryId, String id) {
+		 return sqlSession.selectOne(queryId, id);
+	}
+	
+	public void join(String queryId, Map<String, Object> map) {
+		sqlSession.insert(queryId, map);
 	}
 }

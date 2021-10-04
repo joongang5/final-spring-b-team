@@ -41,8 +41,8 @@ function login(m_id, m_pw) {
 				alert("아이디 혹은 비밀번호가 맞지 않습니다.");
 				return false;
 			} else if (data == 3) {
-				//location.href = "/view/dashboard";
-				alert("환영합니다");
+				location.href = "loginSuccess.do";
+				
 			}
 		},
 		error: function(){
@@ -70,6 +70,7 @@ function login(m_id, m_pw) {
    <input type="text" id ="m_id" name="m_id"   placeholder="ID"  autofocus onkeyup="enterKeyCheck()" >
    <input type="password" id="m_pw"  name="m_pw" placeholder="Password" onkeyup="enterKeyCheck()" >
 	<input  type="button" onclick="loginValidation()" value="로그인">
+	<input type="button" value="회원가입"  onclick="location.href='join.do'" >
 </form>
 </body>
 </html>
