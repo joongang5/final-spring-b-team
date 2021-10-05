@@ -28,10 +28,22 @@ public class MypageController {
 		return mv;
 	}
 
-	@PostMapping("/myinfoUpdate.do")
-	public String myinfoUpdate(CommandMap map, HttpServletRequest request) {
+	@PostMapping("/myinfoUpdatePhone.do")
+	public String myinfoUpdatePhone(CommandMap map, HttpServletRequest request) {
 		map.put("m_id", "wonwoo");
-		mypageService.myinfoUpdate(map.getMap());
+		mypageService.myinfoUpdatePhone(map.getMap());
+		return "redirect:/myinfo.do";
+	}
+	@PostMapping("/myinfoUpdateEmail.do")
+	public String myinfoUpdateEmail(CommandMap map, HttpServletRequest request) {
+		map.put("m_id", "wonwoo");
+		mypageService.myinfoUpdateEmail(map.getMap());
+		return "redirect:/myinfo.do";
+	}
+	@PostMapping("/myinfoUpdateAddr.do")
+	public String myinfoUpdateAddr(CommandMap map, HttpServletRequest request) {
+		map.put("m_id", "wonwoo");
+		mypageService.myinfoUpdateAddr(map.getMap());
 		return "redirect:/myinfo.do";
 	}
 

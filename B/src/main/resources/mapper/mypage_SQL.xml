@@ -13,8 +13,16 @@
 		DELETE FROM member WHERE m_id=#{m_id}
 	</delete>
 	
-	<update id="myinfoUpdate" parameterType="HashMap">
-		UPDATE member SET m_phone=#{m_phone}, m_email=#{m_email}, m_addr=#{m_addr} WHERE m_id=#{m_id}
+	<update id="myinfoUpdateEmail" parameterType="HashMap">
+		UPDATE member SET m_email=#{m_email} WHERE m_id=#{m_id}
+	</update>
+	
+	<update id="myinfoUpdatePhone" parameterType="HashMap">
+		UPDATE member SET m_phone=#{m_phone} WHERE m_id=#{m_id}
+	</update>
+	
+	<update id="myinfoUpdateAddr" parameterType="HashMap">
+		UPDATE member SET m_addr=#{m_addr} WHERE m_id=#{m_id}
 	</update>
 	
 	<update id ="myAccountUpdatePW" parameterType="HashMap">

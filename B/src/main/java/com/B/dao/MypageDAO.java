@@ -16,8 +16,18 @@ public class MypageDAO extends AbstractDAO {
 		delete("mypage.myAccountDelete", map);
 	}
 
-	public void myinfoUpdate(Map<String, Object> map) {
-		update("mypage.myinfoUpdate", map);
+	public void myinfoUpdatePhone(Map<String, Object> map) {
+		update("mypage.myinfoUpdatePhone", map);
+		
+	}
+	
+	public void myinfoUpdateEmail(Map<String, Object> map) {
+		update("mypage.myinfoUpdateEmail", map);
+		
+	}
+	
+	public void myinfoUpdateAddr(Map<String, Object> map) {
+		update("mypage.myinfoUpdateAddr", map);
 		
 	}
 

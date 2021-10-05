@@ -25,11 +25,6 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public void myinfoUpdate(Map<String, Object> map) {
-		mypageDAO.myinfoUpdate(map);
-	}
-
-	@Override
 	public void myAccountUpdatePW(Map<String, Object> map) {
 		mypageDAO.myAccountUpdatePW(map);
 
@@ -38,5 +33,21 @@ public class MypageServiceImpl implements MypageService {
 	@Override
 	public List<Map<String, Object>> cartList(Map<String, Object> map) {
 		return mypageDAO.cartList(map);
+	}
+
+	@Override
+	public void myinfoUpdatePhone(Map<String, Object> map) {
+		mypageDAO.myinfoUpdatePhone(map);
+		
+	}
+
+	@Override
+	public void myinfoUpdateEmail(Map<String, Object> map) {
+		mypageDAO.myinfoUpdateEmail(map);
+	}
+
+	@Override
+	public void myinfoUpdateAddr(Map<String, Object> map) {
+		mypageDAO.myinfoUpdateAddr(map);
 	}
 }

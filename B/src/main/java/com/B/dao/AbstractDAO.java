@@ -54,17 +54,21 @@ public class AbstractDAO {
 	public void delMsg(String queryID, Map<String, Object> map) {
 		sqlSession.delete(queryID, map);
 	}
-	
-	//20211004 이현아 추가
-	public Map<String, Object> selectOne(String queryID, String id){
+
+	public Map<String, Object> selectOne(String queryID, String id) {
 		return sqlSession.selectOne(queryID, id);
 	}
-	
+
 	public int checkId(String queryId, String id) {
-		 return sqlSession.selectOne(queryId, id);
+		return sqlSession.selectOne(queryId, id);
 	}
-	
+
 	public void join(String queryId, Map<String, Object> map) {
 		sqlSession.insert(queryId, map);
+	}
+
+	// 게시판 총 게시물 구하기
+	public int totalList(String queryID, Map<String, Object> map) {
+		return sqlSession.selectOne(queryID, map);
 	}
 }

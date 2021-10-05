@@ -51,7 +51,7 @@
 		<scope>provided</scope>
 		<version>1.18.12</version>
 	</dependency>
-		<!--	전자정부	페이징	-->
+		<!-- 전자정부 페이징 -->
 	<dependency>
 		<groupId>egovframework.rte</groupId>
 		<artifactId>egovframework.rte.ptl.mvc</artifactId>

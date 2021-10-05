@@ -8,7 +8,11 @@ public interface MypageService {
 	
 	public void myAccountDelete(Map<String, Object> map);
 	
-	public void myinfoUpdate(Map<String, Object> map);
+	public void myinfoUpdatePhone(Map<String, Object> map);
+	
+	public void myinfoUpdateEmail(Map<String, Object> map);
+	
+	public void myinfoUpdateAddr(Map<String, Object> map);
 	
 	public void myAccountUpdatePW(Map<String, Object> map);
 	
