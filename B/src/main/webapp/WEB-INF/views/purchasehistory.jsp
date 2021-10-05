@@ -14,7 +14,6 @@
 
 <style>
 
-
 /* Default */
 input[type=text], input[type=password] {
 	font-family: "Malgun Gothic", "맑은 고딕", Dotum, "돋움", Arial, sans-serif
@@ -23,7 +22,8 @@ input[type=text], input[type=password] {
 * {
 	margin: 0;
 	padding: 0;
-/* 	font-family: "Malgun Gothic", "맑은 고딕", Dotum, "돋움", Arial, sans-serif */
+	text-align: center;
+	/* 	font-family: "Malgun Gothic", "맑은 고딕", Dotum, "돋움", Arial, sans-serif */
 }
 
 body {
@@ -322,9 +322,10 @@ header, footer, aside, nav, section, article {
 	<br>
 	<br>
 	<br>
-	<br>
-	
+
 	<h3>진행상황</h3>
+	<br>
+	<br>
 	<br>
 	<table>
 		<tr>
@@ -340,7 +341,7 @@ header, footer, aside, nav, section, article {
 			<td>0</td>
 		</tr>
 	</table>
-	
+
 	<br>
 	<br>
 	<br>
@@ -401,7 +402,7 @@ header, footer, aside, nav, section, article {
 								class="datepicker inpType" name="searchEndDate"
 								id="searchEndDate"> <a href="#none"
 								class="btncalendar dateclick">달력</a>
-								
+
 								<button onclick="move()">조회</button>
 							</span>
 						</div>
@@ -413,6 +414,7 @@ header, footer, aside, nav, section, article {
 
 	<br>
 	<h3>주문 리스트</h3>
+	<br>
 	<table>
 		<tr>
 			<th>no</th>
@@ -427,8 +429,9 @@ header, footer, aside, nav, section, article {
 			<tr>
 				<td>${l.p_no}</td>
 				<td>${l.p_title}</td>
-				<td><img src="https://blogger.googleusercontent.com/img/a/${l.p_img}" 
-				style="width: 150px; height: 150px;"></td>
+				<td><img
+					src="https://blogger.googleusercontent.com/img/a/${l.p_img}"
+					style="width: 150px; height: 150px;"></td>
 				<td>${l.cnt}</td>
 				<td>${l.p_price}</td>
 				<td>${l.p_date}</td>
@@ -442,7 +445,7 @@ header, footer, aside, nav, section, article {
 	<br>
 	<br>
 
-	<button onclick="move()">메인 화면으로</button>
+	<button onclick="move()">메인 화면으로 -></button>
 
 </body>
 </html>
