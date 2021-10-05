@@ -7,15 +7,13 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>구매 내역</title>
+<title>구매 내역 조회</title>
 
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
 
 <style>
-p {
-	margin: 20px 0px;
-}
+
 
 /* Default */
 input[type=text], input[type=password] {
@@ -25,7 +23,7 @@ input[type=text], input[type=password] {
 * {
 	margin: 0;
 	padding: 0;
-	font-family: "Malgun Gothic", "맑은 고딕", Dotum, "돋움", Arial, sans-serif
+/* 	font-family: "Malgun Gothic", "맑은 고딕", Dotum, "돋움", Arial, sans-serif */
 }
 
 body {
@@ -318,9 +316,14 @@ header, footer, aside, nav, section, article {
 
 </head>
 <body>
-	<h1>구매내역</h1>
+	<h1>구매 내역 조회</h1>
 	<br>
 
+	<br>
+	<br>
+	<br>
+	<br>
+	
 	<h3>진행상황</h3>
 	<br>
 	<table>
@@ -337,6 +340,10 @@ header, footer, aside, nav, section, article {
 			<td>0</td>
 		</tr>
 	</table>
+	
+	<br>
+	<br>
+	<br>
 	<br>
 
 	<form>
@@ -420,7 +427,8 @@ header, footer, aside, nav, section, article {
 			<tr>
 				<td>${l.p_no}</td>
 				<td>${l.p_title}</td>
-				<td>${l.p_img }</td>
+				<td><img src="https://blogger.googleusercontent.com/img/a/${l.p_img}" 
+				style="width: 150px; height: 150px;"></td>
 				<td>${l.cnt}</td>
 				<td>${l.p_price}</td>
 				<td>${l.p_date}</td>
@@ -429,13 +437,12 @@ header, footer, aside, nav, section, article {
 		</c:forEach>
 	</table>
 
-
-
+	<br>
+	<br>
+	<br>
 	<br>
 
-
 	<button onclick="move()">메인 화면으로</button>
-
 
 </body>
 </html>

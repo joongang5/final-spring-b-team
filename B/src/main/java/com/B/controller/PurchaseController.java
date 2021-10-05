@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.B.common.CommandMap;
 import com.B.serivce.TestServiceImpl;
 
+//권오선 추가
+
 @Controller
 public class PurchaseController {
 	@Resource(name = "testService")
