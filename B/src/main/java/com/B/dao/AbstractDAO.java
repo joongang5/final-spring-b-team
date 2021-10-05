@@ -1,5 +1,6 @@
 package com.B.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -7,8 +8,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import com.B.common.CommandMap;
 
 public class AbstractDAO {
 	protected Log log = LogFactory.getLog(AbstractDAO.class);
@@ -70,5 +69,10 @@ public class AbstractDAO {
 	// 게시판 총 게시물 구하기
 	public int totalList(String queryID, Map<String, Object> map) {
 		return sqlSession.selectOne(queryID, map);
+	}
+	
+	//20211005 강재하 추가
+	public List<HashMap<String, Object>> selectList(String queryID) {
+		return sqlSession.selectList(queryID);
 	}
 }
