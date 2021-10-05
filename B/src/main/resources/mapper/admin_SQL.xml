@@ -64,14 +64,14 @@
 
 	<select id="logList" parameterType="HashMap"
 		resultType="HashMap">
-		SELECT * FROM log
+		SELECT * FROM log_view
 		<choose>
 			<when test="searchName == 'ip'">
 				WHERE l_ip LIKE CONCAT('%',#{search},'%') ORDER BY
 				l_no DESC LIMIT #{startPage}, #{lastPage}
 			</when>
 			<when test="searchName == 'id'">
-				WHERE l_id LIKE CONCAT('%',#{search},'%') ORDER BY
+				WHERE m_id LIKE CONCAT('%',#{search},'%') ORDER BY
 				l_no DESC LIMIT #{startPage}, #{lastPage}
 			</when>
 			<when test="searchName == 'target'">
@@ -83,10 +83,8 @@
 				l_no DESC LIMIT #{startPage}, #{lastPage}
 			</when>
 			<when test="startDay != null and endDay != null">
-			<![CDATA[
-				WHERE l_date <= #{startDay} AND l_date >= #{endDay} ORDER
+				WHERE DAT BETWEEN #{startDay} AND #{endDay} ORDER
 				BY l_no DESC LIMIT #{startPage}, #{lastPage}
-			]]>
 			</when>
 			<when test="order == 'l_no'">
 				ORDER BY l_no ASC LIMIT #{startPage}, #{lastPage}
@@ -102,13 +100,13 @@
 
 	<select id="logTotalList" parameterType="hashMap"
 		resultType="Integer">
-		SELECT COUNT(*) FROM log
+		SELECT COUNT(*) FROM log_view
 		<choose>
 			<when test="searchName == 'ip'">
 				WHERE l_ip LIKE CONCAT('%',#{search},'%')
 			</when>
 			<when test="searchName == 'id'">
-				WHERE l_id LIKE CONCAT('%',#{search},'%')
+				WHERE m_id LIKE CONCAT('%',#{search},'%')
 			</when>
 			<when test="searchName == 'target'">
 				WHERE l_target LIKE CONCAT('%',#{search},'%')
@@ -117,12 +115,10 @@
 				WHERE l_data LIKE CONCAT('%',#{search},'%')
 			</when>
 			<when test="startDay != null and endDay != null">
-				<![CDATA[
-				WHERE l_date <= #{startDay} AND l_date >= #{endDay}
-			]]>
+				WHERE DAT BETWEEN #{startDay} AND #{endDay}
 			</when>
 			<otherwise>
-				ORDER BY l_no DESC LIMIT #{startPage}, #{lastPage}
+				ORDER BY l_no DESC
 			</otherwise>
 		</choose>
 	</select>

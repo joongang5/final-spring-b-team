@@ -30,33 +30,25 @@ public class AdminController {
 	public ModelAndView adminMember(CommandMap map, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("adminMember");
 		map.put("m_id", "admin");
-		String search = request.getParameter("search");
-		String searchName = request.getParameter("searchName");
-		
-		String startDay = request.getParameter("startDay");
-		String endDay = request.getParameter("endDay");
-		
-		String order = request.getParameter("order");
-		System.out.println(order);
 		
 		// 검색 값 map에 붙이기
-		if (searchName != null) {
-			map.put("search", search);
-			map.put("searchName", searchName);
-			mv.addObject("search", search);
-			mv.addObject("searchName", searchName);
+		if (map.containsKey("searchName")) {
+			//map.put("search", search);
+			//map.put("searchName", searchName);
+			mv.addObject("search", map.get("search"));
+			mv.addObject("searchName", map.get("searchName"));
 		}
 		
-		if(startDay != null && endDay != null) {
-			map.put("startDay", startDay);
-			map.put("endDay", endDay);
-			mv.addObject("startDay", startDay);
-			mv.addObject("endDay", endDay);
+		if(map.containsKey("startDay") && map.containsKey("endDay")) {
+			//map.put("startDay", startDay);
+			//map.put("endDay", endDay);
+			mv.addObject("startDay", map.get("startDay"));
+			mv.addObject("endDay", map.get("endDay"));
 		}
 		
-		if(order != null) {
-			map.put("order", order);
-			mv.addObject("order", order);
+		if(map.containsKey("order")) {
+			//map.put("order", order);
+			mv.addObject("order", map.get("order"));
 		}
 
 		// 데이터베이스로 보낼 map만들기
@@ -105,35 +97,36 @@ public class AdminController {
 
 	@GetMapping("/adminLog.do")
 	public ModelAndView adminLog(CommandMap map, HttpServletRequest request) {
+		System.out.println(map.getMap());
 		ModelAndView mv = new ModelAndView("adminLog");
 		map.put("m_id", "admin");
-		String search = request.getParameter("search");
-		String searchName = request.getParameter("searchName");
+		//String search = request.getParameter("search");
+		//String searchName = request.getParameter("searchName");
 		
-		String startDay = request.getParameter("startDay");
-		String endDay = request.getParameter("endDay");
+		//String startDay = request.getParameter("startDay");
+		//String endDay = request.getParameter("endDay");
 		
-		String order = request.getParameter("order");
-		System.out.println(order);
+		//String order = request.getParameter("order");
+		//System.out.println(order);
 		
 		// 검색 값 map에 붙이기
-		if (searchName != null) {
-			map.put("search", search);
-			map.put("searchName", searchName);
-			mv.addObject("search", search);
-			mv.addObject("searchName", searchName);
+		if (map.containsKey("searchName")) {
+			//map.put("search", search);
+			//map.put("searchName", searchName);
+			mv.addObject("search", map.get("search"));
+			mv.addObject("searchName", map.get("searchName"));
 		}
 		
-		if(startDay != null && endDay != null) {
-			map.put("startDay", startDay);
-			map.put("endDay", endDay);
-			mv.addObject("startDay", startDay);
-			mv.addObject("endDay", endDay);
+		if(map.containsKey("startDay") && map.containsKey("endDay")) {
+			//map.put("startDay", startDay);
+			//map.put("endDay", endDay);
+			mv.addObject("startDay", map.get("startDay"));
+			mv.addObject("endDay", map.get("endDay"));
 		}
 		
-		if(order != null) {
-			map.put("order", order);
-			mv.addObject("order", order);
+		if(map.containsKey("order")) {
+			//map.put("order", order);
+			mv.addObject("order", map.get("order"));
 		}
 
 		PaginationInfo paginationInfo = new PaginationInfo();
