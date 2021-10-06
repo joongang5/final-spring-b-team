@@ -17,8 +17,18 @@
 		<![CDATA[
 			SELECT * FROM (
 				SELECT *, RANK() OVER (PARTITION BY c_main ORDER BY p_date DESC) AS RN FROM product_view
-			) AS RANKING WHERE RANKING.RN <=5		
-		]]>
+			) AS RANKING WHERE RANKING.RN <=5
+		]]>	
+	</select>
+	
+	<select id="productList2" parameterType="HashMap" resultType="HashMap">
+			SELECT * FROM product_view WHERE c_main=#{category} ORDER BY 
+			<choose>
+				<when test="optionSelect == 'p_priceUp'">p_price DESC </when>
+				<when test="optionSelect == 'p_priceDown'">p_price </when>
+				<otherwise>${optionSelect} DESC </otherwise>
+			</choose>
+			LIMIT 0, ${listSelect}
 	</select>
 	
 </mapper>

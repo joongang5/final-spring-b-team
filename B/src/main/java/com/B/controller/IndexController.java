@@ -6,8 +6,11 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.B.common.CommandMap;
@@ -34,6 +37,17 @@ public class IndexController {
 		mv.addObject("productList", productList);
 
 		return mv;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@PostMapping(value="/productList.do", produces = "text/plain;charset=utf-8")
+	@ResponseBody
+	public String productList(CommandMap map) {
+		List<HashMap<String, Object>> productList = (List<HashMap<String, Object>>)indexService.productList2(map.getMap());
+		JSONObject jsonList = new JSONObject();
+		jsonList.put("list", productList);
+		System.out.println(jsonList.toJSONString());
+		return jsonList.toJSONString();
 	}
 
 

@@ -18,5 +18,8 @@ public class IndexDAO extends AbstractDAO {
 	public List<Map<String, Object>> productList() {
 		return selectList2("index.productList");
 	}
+	public List<HashMap<String, Object>> productList2(Map<String, Object> map) {
+		return selectList3("index.productList2", map);
+	}
 
 }

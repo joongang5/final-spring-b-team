@@ -8,4 +8,5 @@ public interface IndexService{
 	public List<HashMap<String, Object>> getCategory();
 	public List<HashMap<String, Object>> getCategoryMain();
 	public List<Map<String, Object>> productList() ;
+	public List<HashMap<String, Object>> productList2(Map<String, Object> map) ;
 }

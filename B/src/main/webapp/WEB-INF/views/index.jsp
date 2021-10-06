@@ -167,6 +167,43 @@ $(function(){
 			$(this).css({"marginLeft":"-30%"});
 		});
 	});
+	
+	//카테고리 옵션
+	$(".sectorSelecter").change(function(){
+		var selectName = $(this).attr("name");
+		var option = $(this).val();
+		var selectName2 = "";
+		var option2 = "";
+		var category = $(this).siblings("input[name=category]").val();
+		if(selectName == "optionSelect"){
+			selectName2 = $(this).siblings(".listSelect").attr("name");
+			option2 = $(this).siblings(".listSelect").val();
+		}else{
+			selectName2 = $(this).siblings(".optionSelect").attr("name");
+			option2 = $(this).siblings(".optionSelect").val();
+		}
+		
+		$(this).parent().siblings(".product").empty();
+		var html = '<li class="scene sebu"><img alt="세부페이지로 이동" src="./resources/images/move.png" title="' + category + '로 이동하기"></li>';
+		$.ajax({
+			url:"${pageContext.request.contextPath}/productList.do?"+selectName+"="+option+"&&"+selectName2+"="+option2+"&&category="+category,
+			type:"POST",
+			success:function(data){
+				var list = data.list;
+				console.log(data);
+				console.log(list);
+				$.each(list, function(index, value){
+					html += '<li class="scene"><img src="https://blogger.googleusercontent.com/img/a/'+list[index].p_img+'" alt="'+list[index].p_title+'" class="sceneImg"/><div class="detail"><p class="title"><span style="color:#999;font-size:12px;">['+list[index].c_main+' > '+list[index].c_sub+']</span><br/>'+list[index].p_title+'</p><p class="price">'+list[index].p_price+'원</p></div></li>';
+					console.log(index);
+					console.log(value);
+				});
+				console.log(html);
+			}, error : function(request, status, error){
+				alert("error : " + error);
+			}
+		});
+		$(this).parent().siblings(".product").html(html);
+	});
 });
 
 </script>
@@ -241,17 +278,17 @@ $(function(){
 						<div class="sector">
 							<h2>
 								<a href="" title="${cM.c_main }">#${cM.c_main }</a>
-								<select class="sectorSelecter optionSelect">
+								<select name="optionSelect" class="sectorSelecter optionSelect">
 									<option value="p_date" selected>등록순</option>
 									<option value="p_sell">구매순</option>
 									<option value="p_priceUp">가격순(▲)</option>
 									<option value="p_priceDown">가격순(▼)</option>
 								</select>
-								<select class="sectorSelecter listSelect">
+								<select name="listSelect" class="sectorSelecter listSelect">
 									<option value="5" selected>5개</option>
 									<option value="10">10개</option>
 								</select>
-								<input type="hidden" value="${cM.c_main }"/>
+								<input name="category" type="hidden" value="${cM.c_main }"/>
 							</h2>
 							<ul class="product">
 								<li class="scene sebu">
