@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"	
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="product">
+	<select id="productList" resultType="HashMap">
+		SELECT * FROM product_view
+	</select>
+	
+	<select id="cateList" resultType="HashMap">
+		SELECT distinct(c_main) FROM category
+	</select>
+	
+	<select id="cateList2" parameterType="String" resultType="HashMap">
+		SELECT c_sub FROM category WHERE c_main = #{c_main}
+	</select>
+	
+	<select id="categorySearch" parameterType="String" resultType="HashMap">
+		SELECT * FROM product_view WHERE c_main = #{c_main} AND c_sub=#{c_sub} 
+	</select>
+</mapper>
