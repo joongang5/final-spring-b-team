@@ -30,9 +30,8 @@ public class IndexController {
 		mv.addObject("categoryMain",categoryMain);
 		
 		//컨테이너
-		//List<Map<String, Object>> productList = indexService.productList(categoryMain);
-		
-		
+		List<Map<String, Object>> productList = indexService.productList();
+		mv.addObject("productList", productList);
 
 		return mv;
 	}

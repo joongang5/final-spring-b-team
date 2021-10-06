@@ -5,12 +5,20 @@
 
 <mapper namespace="index">
 
-	<select id="getCategory" parameterType="HashMap" resultType="HashMap">
+	<select id="getCategory" resultType="HashMap">
 		SELECT * FROM category
 	</select>
 	
-	<select id="getCategoryMain" parameterType="HashMap" resultType="HashMap">
+	<select id="getCategoryMain" resultType="HashMap">
 		SELECT DISTINCT c_main FROM category
+	</select>
+	
+	<select id="productList" resultType="HashMap">
+		<![CDATA[
+			SELECT * FROM (
+				SELECT *, RANK() OVER (PARTITION BY c_main ORDER BY p_date DESC) AS RN FROM product_view
+			) AS RANKING WHERE RANKING.RN <=5		
+		]]>
 	</select>
 	
 </mapper>

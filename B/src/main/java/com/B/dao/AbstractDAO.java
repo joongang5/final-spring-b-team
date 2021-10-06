@@ -75,4 +75,7 @@ public class AbstractDAO {
 	public List<HashMap<String, Object>> selectList(String queryID) {
 		return sqlSession.selectList(queryID);
 	}
+	public List<Map<String, Object>> selectList2(String queryID) {
+		return sqlSession.selectList(queryID);
+	}
 }

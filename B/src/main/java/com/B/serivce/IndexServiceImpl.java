@@ -2,6 +2,7 @@ package com.B.serivce;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class IndexServiceImpl implements IndexService {
 	}
 	public List<HashMap<String, Object>> getCategoryMain() {
 		return indexDAO.getCategoryMain();
+	}
+	public List<Map<String, Object>> productList() {
+		return indexDAO.productList();
 	}
 
 	
