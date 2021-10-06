@@ -54,4 +54,10 @@ public class AbstractDAO2 { // 20211005 이현아 새롭게 만듬
 		return sqlSession.selectList(queryID,c_main) ;
 	}
 	
+	public int totalList(String queryID, Map<String, Object> map) {
+		return sqlSession.selectOne(queryID, map);
+
+	}
+	
+
 }

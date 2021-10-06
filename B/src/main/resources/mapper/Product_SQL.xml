@@ -7,6 +7,26 @@
 		SELECT * FROM product_view
 	</select>
 	
+	<select id="productList2" parameterType="HashMap" resultType="HashMap">
+		SELECT * FROM product_view
+		<choose>
+			<when test="searchName == 'p_no'">
+				WHERE p_no LIKE CONCAT('%', #{search}, '%') ORDER BY
+				p_no DESC LIMIT #{startPage}, #{lastPage}
+			</when>
+			<when test="searchName == 'p_title'">
+				WHERE p_title LIKE CONCAT('%', #{search}, '%') ORDER
+				BY p_no DESC LIMIT #{startPage}, #{lastPage}
+			</when>
+			<when test="order == 'p_no'">
+				ORDER BY p_no ASC LIMIT #{startPage}, #{lastPage}
+			</when>
+			<otherwise>
+				ORDER BY p_no DESC LIMIT #{startPage}, #{lastPage}
+			</otherwise>
+		</choose>
+	</select>
+	
 	<select id="cateList" resultType="HashMap">
 		SELECT distinct(c_main) FROM category
 	</select>
@@ -17,5 +37,17 @@
 	
 	<select id="categorySearch" parameterType="String" resultType="HashMap">
 		SELECT * FROM product_view WHERE c_main = #{c_main} AND c_sub=#{c_sub} 
+	</select>
+	
+		<select id="totalList" parameterType="HashMap" resultType="Integer">
+		SELECT COUNT(*) FROM product_view
+		<choose>
+			<when test="searchName == 'p_no'">
+				WHERE p_no LIKE CONCAT('%', #{search}, '%')
+			</when>
+			<when test="searchName == 'p_title'">
+				WHERE p_title LIKE CONCAT('%', #{search}, '%')
+			</when>	
+		</choose>
 	</select>
 </mapper>

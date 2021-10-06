@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-@Repository("orderDAO")
+@Repository("productDAO")
 public class ProductDAO extends AbstractDAO2 {
 
 	public List<Map<String, Object>> productList() {
@@ -25,8 +25,12 @@ public class ProductDAO extends AbstractDAO2 {
 		return selectList("product.categorySearch",p);
 	}
 
-	
+	public int totalList(Map<String, Object> map) {
+		return totalList("product.totalList",map);
+	}
+
+	public List<Map<String, Object>> productList(Map<String, Object> map) {
+		return selectList("product.productList2", map) ;
+	}
+
 }
-	
-
-

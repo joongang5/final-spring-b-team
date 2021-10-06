@@ -8,6 +8,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,14 +17,20 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.B.common.CommandMap;
 import com.B.serivce.ProductServiceImpl;
+import com.B.util.Util;
+
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller
 public class ProductController {
 	@Resource(name = "productService")
 	private ProductServiceImpl productService;
 	
+	@Autowired
+	private Util util;
+	
 	@GetMapping(value = "/product.do") //상품 목록 조회
-	public ModelAndView admin(HttpServletRequest req) {
+	public ModelAndView admin(CommandMap map, HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView("product");
 		List<Map<String, Object>>  product = productService.productList();
 		List<Map<String, Object>> categoryMain = productService.cateList();
@@ -43,6 +50,45 @@ public class ProductController {
 		mv.addObject("list", product);
 		mv.addObject("categoryMain", categoryMain);
 		mv.addObject("categorySearch",categorySearch);
+		
+		
+		/////////////////////////////검색+ 페이징////////////////////////////////
+		
+		if (map.containsKey("searchName")) {
+			mv.addObject("search", map.get("search"));
+			mv.addObject("searchName", map.get("searchName"));
+		}
+		
+		if(map.containsKey("order")) {
+			mv.addObject("order", map.get("order"));
+		}
+		
+		PaginationInfo paginationInfo = new PaginationInfo();
+		int pageNo = 1; // 현재 페이지 번호
+		int listScale = 10; // 한 페이지에 나올 글 수
+		int pageScale = 10; // 페이지 개수
+
+		if (req.getParameter("pageNo") != null) {
+			pageNo = util.str2Int2(req.getParameter("pageNo"));
+		}
+
+		paginationInfo.setCurrentPageNo(pageNo);
+		paginationInfo.setRecordCountPerPage(listScale);
+		paginationInfo.setPageSize(pageScale);
+
+		int startPage = paginationInfo.getFirstRecordIndex(); // 시작페이지
+		int lastPage = paginationInfo.getRecordCountPerPage(); // 마지막 페이지
+
+		map.put("startPage", startPage);
+		map.put("lastPage", lastPage);
+
+		List<Map<String, Object>> productList = productService.productList(map.getMap());
+		int totalCount = productService.totalList(map.getMap());	
+		paginationInfo.setTotalRecordCount(totalCount); // 전체 글 수 저장
+		mv.addObject("paginationInfo", paginationInfo);
+		mv.addObject("pageNo", pageNo);
+		mv.addObject("productList", productList); // 현 페이지 번호
+		mv.addObject("totalCount", totalCount); // 전체 글 수
 	
 		return mv;
 				

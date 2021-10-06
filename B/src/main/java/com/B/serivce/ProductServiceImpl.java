@@ -34,6 +34,14 @@ public class ProductServiceImpl implements ProductService {
 	public List<Map<String, Object>> categorySearch(Map<String, Object> p ) {
 		return productDAO.categorySearch(p);
 	}
+	public int totalList(Map<String, Object> map) {
+		
+		return productDAO.totalList(map);
+	}
+	public List<Map<String, Object>> productList(Map<String, Object> map) {
+		return productDAO.productList(map);
+	}
+
 
 
 }
