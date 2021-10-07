@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -45,21 +46,19 @@ public class LoginController {
 			} else {
 				return 2 ;
 			}
-				
-		
-		
-		
-	}	
+	}
 	
-	@GetMapping(value = "/loginSuccess.do")
-	public ModelAndView success(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView();
-		HttpSession session = request.getSession();
-		String name = (String) session.getAttribute("m_name");
-		mv.addObject("name", name);
-		
-		return mv;
-}
+	@RequestMapping(value= "/naverCallback.do")
+	public String logout() {
+		return "logout";
+	}
+	
+	@RequestMapping(value= "/logout.do")
+	public String callback() {
+		return "logout";
+	}
+	
+	
 	
 	@GetMapping(value = "/join.do")
 	public String join() {
