@@ -4,8 +4,6 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
-import com.B.common.CommandMap;
-
 @Repository("loginDAO")
 public class LoginDAO extends AbstractDAO{
 	

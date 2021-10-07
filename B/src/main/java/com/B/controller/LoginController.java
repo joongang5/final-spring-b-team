@@ -40,8 +40,7 @@ public class LoginController {
 			if(login.get("m_pw").equals(pw)) {
 				HttpSession session = request.getSession();
 				session.setAttribute("m_id", login.get("m_id"));
-				session.setAttribute("m_name", login.get("m_name"));
-				
+				session.setAttribute("m_name", login.get("m_name"));	
 				return 3;
 			} else {
 				return 2 ;
@@ -57,8 +56,6 @@ public class LoginController {
 	public String callback() {
 		return "logout";
 	}
-	
-	
 	
 	@GetMapping(value = "/join.do")
 	public String join() {
@@ -81,16 +78,25 @@ public class LoginController {
 		
 	    int checkId = loginService.checkId((String)ma.getMap().get("m_id"));
 	    
-	   
 	    if (checkId == 0) {
 	    	loginService.join(map);
 	    	return 0;
 	    }else {
 	    	return 1;
 	    }
+	}
+	
+	@GetMapping(value="/logout.do")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
 		
-		
-		
-	}	
+		if (session.getAttribute("m_id") != null) {
+			session.removeAttribute("m_id");
+		}
+		if (session.getAttribute("m_name") != null) {
+			session.removeAttribute("m_name");
+		}
+		return "redirect:/login.do";
+	}
 		
 }
