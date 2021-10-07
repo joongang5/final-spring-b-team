@@ -28,8 +28,8 @@ input[type=text], input[type=password] {
 
 body {
 	font-size: 12px;
-	color: #555;
-0	background: transparent;
+	color: #555; 0
+	background: transparent;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-webkit-text-size-adjust: none;
@@ -339,7 +339,7 @@ header, footer, aside, nav, section, article {
 			<td>0</td>
 			<td>2</td>
 			<td>0</td>
-		</tr>
+		</tr >
 	</table>
 
 	<br>
@@ -436,7 +436,16 @@ header, footer, aside, nav, section, article {
 				<td>${l.cnt}</td>
 				<td>${l.p_price}</td>
 				<td>${l.p_date}</td>
-				<td>출고 준비</td>
+
+				<td>
+					<c:if test="${l.o_state == 0}">
+						<p>결제 완료</p>
+					</c:if> <c:if test="${l.o_state == 1}">
+						<p>출고 준비</p>
+					</c:if> <c:if test="${l.o_state == 2}">
+						<p>출고 완료</p>
+					</c:if>
+				</td>
 			</tr>
 		</c:forEach>
 	</table>
