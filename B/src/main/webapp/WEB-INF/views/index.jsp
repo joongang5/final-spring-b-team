@@ -26,6 +26,7 @@ html, body{width: 100%; height: 100%;}
 			#nameLine{width:1200px;text-align:right;height:20px;line-height:20px;font-size:13px;}
 		#logoLine{width:1200px;height:65px;line-height:65px;}
 			#logoLine h1{width:100px;height:100%;float:left;color:#FFA335;}
+				#logoLine h1 img{height:80%;padding-top:6px;}
 			#logoLine .center{width:1000px;text-align:center;float:left;}
 				#logoLine .center input{padding:8px 10px;width:400px;vertical-align:top;margin-top:15px;border-radius:15px;border:1px solid gray;}
 				#logoLine .center input:focus{outline:none;}
@@ -248,7 +249,7 @@ $(function(){
 				</div>
 			</div>
 			<div id="logoLine" class="header">
-				<h1>로고</h1>
+				<h1><img alt="Spring.B" src="./resources/images/Logo2.png"></h1>
 				<p class="center"><input type="text" placeholder="검색"></p>
 				<p class="right"></p>
 			</div>
