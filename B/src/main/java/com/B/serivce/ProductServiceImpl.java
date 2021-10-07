@@ -42,6 +42,12 @@ public class ProductServiceImpl implements ProductService {
 		return productDAO.productList(map);
 	}
 
-
+	public int categorySearch2(Map<String, Object> p) { //c_no찾기
+		return productDAO.categorySearch2(p);
+	}
+	public void register(Map<String, Object> map) {
+		productDAO.register(map);
+		
+	}
 
 }

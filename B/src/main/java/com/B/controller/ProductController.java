@@ -106,7 +106,35 @@ public class ProductController {
 		return sub;
 	}
 	
+	@GetMapping(value ="/registerProduct.do")
+	public ModelAndView register() {
+		ModelAndView mv = new ModelAndView("register");
+		List<Map<String, Object>> categoryMain = productService.cateList();
+		mv.addObject("categoryMain", categoryMain);
+		return mv;
+	}
 	
+	@PostMapping(value ="registerProduct.do")
+	public String register2(CommandMap map) {
+		productService.register(map.getMap());
+		return "redirect:/product.do";
+		
+	}
+	
+	@PostMapping(value = "searchCategoryNum.do")
+	@ResponseBody
+	public int search(HttpServletRequest req) {
+		String c_main = req.getParameter("c_main");
+		String c_sub = req.getParameter("c_sub");
+		Map<String, Object> p = new HashMap<String, Object>();
+		p.put("c_main", c_main);
+		p.put("c_sub", c_sub);
+		
+		int c_no = productService.categorySearch2(p);
+		
+		
+		return c_no;
+	}
 	
 		
 	}

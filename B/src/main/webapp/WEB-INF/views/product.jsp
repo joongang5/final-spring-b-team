@@ -195,12 +195,9 @@ function linkPage(pageNo) {
   <footer id="footer-space"></footer>
 
 
- 검색 <select> <option value="상품번호"  > 상품번호 </option>
-			  <option value="상품명"> 상품명 </option>
-			  <option value="상품가격"> 상품가격 </option>
-			  <option value="재고"> 재고 </option>
-			  <option value="등록일자">등록일자</option> 
- 	</select>
+   <div class="registerProduct">
+   		<a href="./registerProduct.do"> 상품 등록 </a>
+   </div>	
  	
 
 </body>

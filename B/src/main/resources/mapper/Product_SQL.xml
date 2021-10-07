@@ -3,6 +3,10 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="product">
+	<insert id="register">
+		INSERT INTO product(p_title,p_price,p_cnt,c_no) VALUES ( #{p_title},#{p_price},#{p_cnt},#{c_no} )
+	</insert>
+
 	<select id="productList" resultType="HashMap">
 		SELECT * FROM product_view
 	</select>
@@ -39,7 +43,7 @@
 		SELECT * FROM product_view WHERE c_main = #{c_main} AND c_sub=#{c_sub} 
 	</select>
 	
-		<select id="totalList" parameterType="HashMap" resultType="Integer">
+	<select id="totalList" parameterType="HashMap" resultType="Integer">
 		SELECT COUNT(*) FROM product_view
 		<choose>
 			<when test="searchName == 'p_no'">
@@ -50,4 +54,9 @@
 			</when>	
 		</choose>
 	</select>
+	
+	<select id="findCNo" parameterType="HashMap" resultType="Integer">
+		SELECT c_no FROM category WHERE c_main = #{c_main} AND c_sub=#{c_sub} 
+	</select>
+	
 </mapper>
