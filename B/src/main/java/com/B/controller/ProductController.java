@@ -42,6 +42,7 @@ public class ProductController {
 		System.out.println(c_main);
 		System.out.println(c_sub);
 		Map<String, Object> p = new HashMap<String, Object>();
+		//다음부터는 map.getMap()으로 한번에 하기.. 밑에 처럼 하지말고..미래의 현아에게..
 		p.put("c_main", c_main);
 		p.put("c_sub", c_sub);
 		System.out.println(p);
