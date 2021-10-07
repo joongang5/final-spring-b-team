@@ -10,7 +10,7 @@
 	</select>
 	
 	<select id="getCategoryMain" resultType="HashMap">
-		<![CDATA[SELECT CAST(@rownum:=@rownum+1 AS SIGNED integer) rnum, c.c_main FROM category c, (SELECT @ROWNUM:=0)R WHERE 1=1 GROUP BY c_main ORDER BY rnum]]>
+		<![CDATA[SELECT CAST(@rownum:=@rownum+1 AS SIGNED integer) rnum, c.c_main FROM category c, (SELECT @ROWNUM:=0)R WHERE 1=1 GROUP BY c_main ORDER BY rnum ASC]]>
 	</select>
 	
 	<select id="productList" resultType="HashMap">

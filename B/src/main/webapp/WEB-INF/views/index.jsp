@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>index</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<style type="text/css">
+<style>
 *{padding:0;margin:0;list-style:none;}
 a{color:black;text-decoration:none;transition:0.3s all;}
 a:link, a:visited{color:black;}
@@ -18,9 +18,11 @@ a:hover, a:focus{text-decoration:underline;}
 html{overflow: hidden;}
 html, body{width: 100%; height: 100%;}
 #wrapper{width:100%;margin:0 auto;}
-	header{width:100%;height:122px;position:fixed;top:0;left:0;z-index:99;}
+	header{width:100%;height:124px;position:fixed;top:0;left:0;z-index:99;}
 		.header{margin:0 auto;}
-		#nameLine2{width:100%;height:20px;background-color:#F2E3D5;border-bottom:1px solid #000;}
+		#nameLine2{width:100%;height:20px;border-bottom:2px solid;border-image: linear-gradient(to right, #FFA335, #F2E3D5, #fff);border-image-slice: 1;
+			background: linear-gradient(to right, #F2E3D5,#FFA335);
+		}
 			#nameLine{width:1200px;text-align:right;height:20px;line-height:20px;font-size:13px;}
 		#logoLine{width:1200px;height:65px;line-height:65px;}
 			#logoLine h1{width:100px;height:100%;float:left;color:#FFA335;}
@@ -29,7 +31,7 @@ html, body{width: 100%; height: 100%;}
 				#logoLine .center input:focus{outline:none;}
 			#logoLine .right{width:100px;float:left;}
 		#logoLine:after{content:"";display:block;clear:both;}
-		nav{width:100%;height:36px;line-height:35px;border-top:1px solid #ccc;border-bottom:1px solid #ccc;position:relative;}
+		nav{width:100%;height:37px;line-height:37px;border-top:1px solid;border-bottom:1px solid;border-image: linear-gradient(to right, #F2E3D5, #FFA335);border-image-slice: 1;position:relative;}
 			nav #parent{width:1200px;margin:0 auto;}
 				nav #parent li{width:120px;float:left;text-align:center;line-height:35px;height:35px;}
 					nav #parent li a{display:block;width:80px;height:25px;line-height:25px;border-radius:10px;margin:5px auto 0;font-size:15px;}
@@ -85,9 +87,17 @@ html, body{width: 100%; height: 100%;}
 						.mainContainer li.section .sector .nextBtn .cross{display:inline-block;width:0px;}
 						.mainContainer li.section .sector .nextBtn:hover .cross{width:16px;}
 					.mainContainer li.section .sector .nextBtn:after{content:"";display:block;clear:both;}
-							
-			
+
 	#container:after{content:"";display:block;clear:both;}
+	
+	footer{width:100%;border-top:2px solid;border-image: linear-gradient(to right, #fff, #FFA335, #F2E3D5);border-image-slice: 1;background-color:#F2E3D5;height:200px;}
+		#footer{width:1200px;margin:0 auto;font-size:12px;}
+			#sns{height:40px;padding-top:10px;}
+				#sns p{display:inline-flex;margin-right:8px;}
+					#sns p img{width:24px;cursor:pointer;}
+		
+			#law{height:40px;padding-top:30px;}
+				#law span{margin-right:8px;cursor:pointer;}
 </style>
 <script>
 //one페이징을 위한 휠기능 막기
@@ -313,11 +323,14 @@ $(function(){
 			</ul>
 		</div>
 		<footer>
-			<div>사이트맵</div>
-			<div>법률</div>
-			<div>SNS</div>
-			<div>카피라이트
-				&copy; 2021 Spring.B
+			<div id="footer">
+				<div id="sns">
+					<p><img alt="인스타그램" src="./resources/images/instargram.png" title="인스타그램"></p>
+					<p><img alt="페이스북" src="./resources/images/facebook.png" title="페이스북"></p>
+					<p><img alt="네이버블로그" src="./resources/images/naver.png" title="네이버블로그"></p>
+				</div>
+				<div id="law"><span id="userLaw"><strong>개인정보처리방침</strong></span><span id="useLaw">이용약관</span></div>
+				<div id="copyright">&copy; 2021 Spring.B</div>
 			</div>
 		</footer>
 	</div>
