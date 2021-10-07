@@ -114,6 +114,7 @@ window.addEventListener('load', function () {
 		});
 </script>
 
+<a href="./index.do">메인으로</a>
 
 
 </body>
