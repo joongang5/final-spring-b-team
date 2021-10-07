@@ -136,6 +136,7 @@
 	<c:when test="${fn:length(adminMember) gt 0 }">
 	<table>
 		<tr>
+			<th>상품사진</th>
 			<th>회원번호</th>
 			<th>ID</th>
 			<th>이름</th>
@@ -145,6 +146,7 @@
 		</tr>
 		<c:forEach items="${adminMember }" var="am">
 			<tr>
+				<td></td>
 				<td>${am.m_no}</td>
 				<td>${am.m_id}</td>
 				<td>${am.m_name}</td>

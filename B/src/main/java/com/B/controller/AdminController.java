@@ -31,23 +31,18 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView("adminMember");
 		map.put("m_id", "admin");
 		
-		// 검색 값 map에 붙이기
+		// 해당 값들이 map에 포함하고 있다면 mv로 넘기기
 		if (map.containsKey("searchName")) {
-			//map.put("search", search);
-			//map.put("searchName", searchName);
 			mv.addObject("search", map.get("search"));
 			mv.addObject("searchName", map.get("searchName"));
 		}
 		
 		if(map.containsKey("startDay") && map.containsKey("endDay")) {
-			//map.put("startDay", startDay);
-			//map.put("endDay", endDay);
 			mv.addObject("startDay", map.get("startDay"));
 			mv.addObject("endDay", map.get("endDay"));
 		}
 		
 		if(map.containsKey("order")) {
-			//map.put("order", order);
 			mv.addObject("order", map.get("order"));
 		}
 
@@ -100,32 +95,19 @@ public class AdminController {
 		System.out.println(map.getMap());
 		ModelAndView mv = new ModelAndView("adminLog");
 		map.put("m_id", "admin");
-		//String search = request.getParameter("search");
-		//String searchName = request.getParameter("searchName");
-		
-		//String startDay = request.getParameter("startDay");
-		//String endDay = request.getParameter("endDay");
-		
-		//String order = request.getParameter("order");
-		//System.out.println(order);
-		
-		// 검색 값 map에 붙이기
+
+		// 해당 값들이 map에 포함하고 있다면 mv로 넘기기
 		if (map.containsKey("searchName")) {
-			//map.put("search", search);
-			//map.put("searchName", searchName);
 			mv.addObject("search", map.get("search"));
 			mv.addObject("searchName", map.get("searchName"));
 		}
 		
 		if(map.containsKey("startDay") && map.containsKey("endDay")) {
-			//map.put("startDay", startDay);
-			//map.put("endDay", endDay);
 			mv.addObject("startDay", map.get("startDay"));
 			mv.addObject("endDay", map.get("endDay"));
 		}
 		
 		if(map.containsKey("order")) {
-			//map.put("order", order);
 			mv.addObject("order", map.get("order"));
 		}
 
