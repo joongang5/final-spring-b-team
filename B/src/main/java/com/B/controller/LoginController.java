@@ -30,7 +30,7 @@ public class LoginController {
 	
 	@PostMapping(value="/login.do")
 	@ResponseBody
-	public int login (HttpServletRequest request) {	
+	public int login (HttpServletRequest request) {	//ajax로 
 		String id =  request.getParameter("m_id");
 	    String pw = request.getParameter("m_pw");
 	
@@ -48,17 +48,15 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value= "/naverCallback.do")
-	public String logout() {
+	public String callback() { //네이버 api 관련
 		return "logout";
 	}
 	
-	@RequestMapping(value= "/logout.do")
-	public String callback() {
-		return "logout";
-	}
+	
+
 	
 	@GetMapping(value = "/join.do")
-	public String join() {
+	public String join() { //회원가입 
 
 		return "join";
 	}
