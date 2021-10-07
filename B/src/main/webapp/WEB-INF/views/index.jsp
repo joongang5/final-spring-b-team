@@ -21,7 +21,7 @@ html, body{width: 100%; height: 100%;}
 	header{width:100%;height:124px;position:fixed;top:0;left:0;z-index:99;}
 		.header{margin:0 auto;}
 		#nameLine2{width:100%;height:20px;border-bottom:2px solid;border-image: linear-gradient(to right, #FFA335, #F2E3D5, #fff);border-image-slice: 1;
-			background: linear-gradient(to right, #F2E3D5,#FFA335);
+			background: linear-gradient(to right, #F2E3D5, #F2E3D5, #FFA335);
 		}
 			#nameLine{width:1200px;text-align:right;height:20px;line-height:20px;font-size:13px;}
 		#logoLine{width:1200px;height:65px;line-height:65px;}
