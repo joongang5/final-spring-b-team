@@ -59,5 +59,13 @@ public class AbstractDAO2 { // 20211005 이현아 새롭게 만듬
 
 	}
 	
+	public int findCNo(String queryID, Map<String, Object> map) {
+		return sqlSession.selectOne(queryID, map);
+
+	}
+	
+	public void register(String queryID, Map<String, Object> map) {
+		sqlSession.insert(queryID, map);
+	}
 
 }

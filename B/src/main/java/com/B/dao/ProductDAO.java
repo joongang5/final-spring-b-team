@@ -32,5 +32,14 @@ public class ProductDAO extends AbstractDAO2 {
 	public List<Map<String, Object>> productList(Map<String, Object> map) {
 		return selectList("product.productList2", map) ;
 	}
+	
+	public int categorySearch2(Map<String, Object> p) {
+		return findCNo("product.findCNo",p);
+	}
+
+	public void register(Map<String, Object> map) {
+		register("product.register",map);
+		
+	}
 
 }

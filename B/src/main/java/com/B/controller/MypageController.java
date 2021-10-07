@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,65 +22,107 @@ public class MypageController {
 
 	@GetMapping("/myinfo.do")
 	public ModelAndView myinfo(CommandMap map, HttpServletRequest request) {
-		map.put("m_id", "wonwoo");
-		ModelAndView mv = new ModelAndView("myinfo");
-		Map<String, Object> myinfo = mypageService.myinfo(map.getMap());
-		mv.addObject("myinfo", myinfo);
-		return mv;
+		HttpSession session = request.getSession();
+		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
+			map.put("m_id", session.getAttribute("m_id"));
+			map.put("m_name", session.getAttribute("m_name"));
+			ModelAndView mv = new ModelAndView("myinfo");
+			Map<String, Object> myinfo = mypageService.myinfo(map.getMap());
+			mv.addObject("myinfo", myinfo);
+			return mv;
+		} else {
+			return new ModelAndView("login");
+		}
 	}
 
 	@PostMapping("/myinfoUpdatePhone.do")
 	public String myinfoUpdatePhone(CommandMap map, HttpServletRequest request) {
-		map.put("m_id", "wonwoo");
-		mypageService.myinfoUpdatePhone(map.getMap());
-		return "redirect:/myinfo.do";
+		HttpSession session = request.getSession();
+		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
+			map.put("m_id", session.getAttribute("m_id"));
+			map.put("m_name", session.getAttribute("m_name"));
+			mypageService.myinfoUpdatePhone(map.getMap());
+			return "redirect:/myinfo.do";
+		} else {
+			return "redirect:/login.do";
+		}
 	}
+
 	@PostMapping("/myinfoUpdateEmail.do")
 	public String myinfoUpdateEmail(CommandMap map, HttpServletRequest request) {
-		map.put("m_id", "wonwoo");
-		mypageService.myinfoUpdateEmail(map.getMap());
-		return "redirect:/myinfo.do";
+		HttpSession session = request.getSession();
+		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
+			map.put("m_id", session.getAttribute("m_id"));
+			map.put("m_name", session.getAttribute("m_name"));
+			mypageService.myinfoUpdateEmail(map.getMap());
+			return "redirect:/myinfo.do";
+		} else {
+			return "redirect:/login.do";
+		}
 	}
+
 	@PostMapping("/myinfoUpdateAddr.do")
 	public String myinfoUpdateAddr(CommandMap map, HttpServletRequest request) {
-		map.put("m_id", "wonwoo");
-		mypageService.myinfoUpdateAddr(map.getMap());
-		return "redirect:/myinfo.do";
+		HttpSession session = request.getSession();
+		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
+			map.put("m_id", session.getAttribute("m_id"));
+			map.put("m_name", session.getAttribute("m_name"));
+			map.put("m_id", "wonwoo");
+			mypageService.myinfoUpdateAddr(map.getMap());
+			return "redirect:/myinfo.do";
+		} else {
+			return "redirect:/login.do";
+		}
 	}
 
 	@GetMapping("/myinfoDelete.do")
 	public String myinfoDelete(CommandMap map, HttpServletRequest request) {
-		map.put("m_id", "wonwoo");
+		HttpSession session = request.getSession();
+		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
+			map.put("m_id", session.getAttribute("m_id"));
+			map.put("m_name", session.getAttribute("m_name"));
 			return "myinfoDelete";
+		} else {
+			return "login";
+		}
 	}
 
 	@GetMapping("/myinfoUpdatePW.do")
 	public String myinfoUpdatePW(CommandMap map, HttpServletRequest request) {
-		map.put("m_id", "wonwoo");
-		return "myinfoUpdatePW";
+		HttpSession session = request.getSession();
+		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
+			map.put("m_id", session.getAttribute("m_id"));
+			map.put("m_name", session.getAttribute("m_name"));
+			return "myinfoUpdatePW";
+		} else {
+			return "login";
+		}
 	}
 
 	@PostMapping("/myAccountDelete.do")
 	public String myAccountDelete(CommandMap map, HttpServletRequest request) {
-		map.put("m_id", "wonwoo");
-		mypageService.myAccountDelete(map.getMap());
-		return "redirect:/logout.do";
+		HttpSession session = request.getSession();
+		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
+			map.put("m_id", session.getAttribute("m_id"));
+			map.put("m_name", session.getAttribute("m_name"));
+			mypageService.myAccountDelete(map.getMap());
+			return "redirect:/logout.do";
+		} else {
+			return "redirect:/login.do";
+		}
 	}
 
 	@PostMapping("/myAccountChangePW.do")
 	public String myAccountChangePW(CommandMap map, HttpServletRequest request) {
-		map.put("m_id", "wonwoo");
-		mypageService.myAccountUpdatePW(map.getMap());
-		return "redirect:myinfoUpdatePW.do?msg=ok";
-	}
+		HttpSession session = request.getSession();
+		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
+			map.put("m_id", session.getAttribute("m_id"));
+			map.put("m_name", session.getAttribute("m_name"));
+			mypageService.myAccountUpdatePW(map.getMap());
+			return "redirect:myinfoUpdatePW.do?msg=ok";
 
-	@GetMapping("/cart.do")
-	public ModelAndView cart(CommandMap map, HttpServletRequest request) {
-		map.put("m_id", "wonwoo");
-		ModelAndView mv = new ModelAndView("cart");
-		List<Map<String, Object>> cartList = mypageService.cartList(map.getMap());
-		mv.addObject("cart", cartList);
-		return mv;
+		} else {
+			return "redirect:/login.do";
+		}
 	}
-
 }

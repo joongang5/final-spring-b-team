@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cart">
+
+	<select id ="cartList" parameterType="HashMap" resultType="HashMap">
+		SELECT * FROM cart_view WHERE m_id=#{m_id}
+	</select>
+	
+	<delete id="cartOneDelete" parameterType="HashMap">
+		DELETE FROM cart where ca_no=#{ca_no} AND m_no=(SELECT m_no FROM member WHERE m_id=#{m_id})
+	</delete>
+	
+	<update id="cartProductUpDown" parameterType="HashMap">
+		UPDATE cart SET cnt=#{cnt} WHERE ca_no=#{ca_no}
+	</update>
+</mapper>
