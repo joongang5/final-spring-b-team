@@ -29,7 +29,7 @@ input[type=text], input[type=password] {
 body {
 	font-size: 12px;
 	color: #555;
-	background: transparent;
+0	background: transparent;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-webkit-text-size-adjust: none;
@@ -347,10 +347,10 @@ header, footer, aside, nav, section, article {
 	<br>
 	<br>
 
-	<form>
+	<form action="./orderhistory1.do" method="get">
 		<!-- search -->
 		<table class="searchBox">
-			<caption>조회</caption>
+			<caption>주문 조회</caption>
 			<colgroup>
 				<col width="123px">
 				<col width="*">
@@ -394,16 +394,17 @@ header, footer, aside, nav, section, article {
 							<!-- 시작일 -->
 							<span class="dset"> <input type="text"
 								class="datepicker inpType" name="searchStartDate"
-								id="searchStartDate"> <a href="#none"
-								class="btncalendar dateclick">달력</a>
+								id="searchStartDate"
+								<c:if test="${startDay ne null }">value=${startDay }</c:if>>
+								<a href="#none" class="btncalendar dateclick">달력</a>
 							</span> <span class="demi">~</span>
 							<!-- 종료일 -->
 							<span class="dset"> <input type="text"
 								class="datepicker inpType" name="searchEndDate"
-								id="searchEndDate"> <a href="#none"
-								class="btncalendar dateclick">달력</a>
-
-								<button onclick="move()">조회</button>
+								id="searchEndDate"
+								<c:if test="${endDay ne null }">value=${endDay }</c:if>>
+								<a href="#none" class="btncalendar dateclick">달력</a>
+								<button>조회</button>
 							</span>
 						</div>
 					</td>

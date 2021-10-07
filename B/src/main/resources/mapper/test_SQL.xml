@@ -8,6 +8,12 @@
 		resultType="HashMap">
 		<!-- SELECT * FROM order_view WHERE p_no=#{p_no} -->
 		SELECT * FROM order_view
+		<choose>
+			<when test="startDay != null and endDay != null">
+				WHERE m_date BETWEEN #{startDay} AND #{endDay} ORDER
+				BY m_no DESC LIMIT #{startPage}, #{lastPage}
+			</when>
+		</choose>
 	</select>
 
 </mapper>

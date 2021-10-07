@@ -11,7 +11,7 @@ public class CommandMap {
 	public Object get(String key) {
 		return map.get(key);
 	}
-	
+
 	public void put(String key, Object value) {
 		map.put(key, value);
 	}
