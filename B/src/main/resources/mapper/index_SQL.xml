@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="index">
+
+	<select id="getCategory" resultType="HashMap">
+		SELECT * FROM category
+	</select>
+	
+	<select id="getCategoryMain" resultType="HashMap">
+		SELECT DISTINCT c_main FROM category
+	</select>
+	
+	<select id="productList" resultType="HashMap">
+		<![CDATA[
+			SELECT * FROM (
+				SELECT *, RANK() OVER (PARTITION BY c_main ORDER BY p_date DESC) AS RN FROM product_view
+			) AS RANKING WHERE RANKING.RN <=5
+		]]>	
+	</select>
+	
+	<select id="productList2" parameterType="HashMap" resultType="HashMap">
+			SELECT * FROM product_view WHERE c_main=#{category} ORDER BY 
+			<choose>
+				<when test="optionSelect == 'p_priceUp'">p_price DESC </when>
+				<when test="optionSelect == 'p_priceDown'">p_price </when>
+				<otherwise>${optionSelect} DESC </otherwise>
+			</choose>
+			LIMIT 0, ${listSelect}
+	</select>
+	
+</mapper>
