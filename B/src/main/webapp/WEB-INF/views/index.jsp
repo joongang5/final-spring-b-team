@@ -214,7 +214,7 @@ $(function(){
 						<a href="" title="로그인">로그인해주세요.</a>				
 					</c:if>
 					<c:if test="${sessionScope.m_id ne null}">			
-						<a href="" title="로그아웃">??님, 안녕하세요.</a><br>
+						<a href="" title="로그아웃">${sessionScope.m_name}님, 안녕하세요.</a><br>
 						<a href="" title="마이페이지">마이페이지</a>			
 					</c:if>
 				</div>
@@ -228,11 +228,11 @@ $(function(){
 				<ul id="parent">
 					<c:forEach items="${categoryMain }" var="cm">					
 						<li class="navMain">
-							<a href="" title="${cm.c_main }" class="navMain">${cm.c_main }</a>
+							<a href="./categoryPage.do?category=${cm.c_main }" title="${cm.c_main }" class="navMain">${cm.c_main }</a>
 							<ul class="son">
 								<c:forEach items="${category }" var="c">
 									<c:if test="${cm.c_main eq c.c_main}">
-										<li class="navSon"><a href="" title="${cm.c_main } &gt; ${c.c_sub}" class="navSon">${c.c_sub}</a></li>
+										<li class="navSon"><a href="./categoryPage.do?category=${c.c_no }" title="${cm.c_main } &gt; ${c.c_sub}" class="navSon">${c.c_sub}</a></li>
 									</c:if>
 								</c:forEach>
 							</ul>
