@@ -49,5 +49,9 @@ public class ProductServiceImpl implements ProductService {
 		productDAO.register(map);
 		
 	}
+	public void modifyState(Map<String, Object> p) {
+		productDAO.modifyState(p);
+		
+	}
 
 }

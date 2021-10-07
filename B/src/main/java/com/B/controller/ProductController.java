@@ -19,6 +19,7 @@ import com.B.common.CommandMap;
 import com.B.serivce.ProductServiceImpl;
 import com.B.util.Util;
 
+
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller
@@ -136,6 +137,22 @@ public class ProductController {
 		return c_no;
 	}
 	
+	@PostMapping(value="productModify.do")
+	public String modify(CommandMap map) {
+		Map<String, Object> p = new HashMap<String, Object>();
+		String e = (String) map.getMap().get("modify");
+		String[] ee = e.split(",");
+		for (int i = 0; i < ee.length; i++) {
+				p.put("p_no",Integer.parseInt(ee[i]));
+				p.put("p_state", map.getMap().get("p_state"));
+				productService.modifyState(p);
+		}
 		
+		return "redirect:/product.do";
 	}
+	
+	
+	
+	}
+
 

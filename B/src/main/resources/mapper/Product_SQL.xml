@@ -59,4 +59,8 @@
 		SELECT c_no FROM category WHERE c_main = #{c_main} AND c_sub=#{c_sub} 
 	</select>
 	
+	<update id="modifyState" parameterType="HashMap">
+		UPDATE product SET p_state=#{p_state} WHERE p_no=#{p_no}
+	</update>
+	
 </mapper>

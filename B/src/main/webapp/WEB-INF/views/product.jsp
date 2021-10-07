@@ -44,8 +44,24 @@ function linkPage(pageNo) {
 			"<c:if test="${startDay ne null && endDay ne null}">&startDay=${startDay}&endDay=${endDay}</c:if>"+
 			"<c:if test="${order ne null}">&order=${order}</c:if>";
 }
+
+$(document).ready(function(){
+	
+	$(".checkbox").click(function(){
+		var arr = []
+		$(".checkbox").each(function(){
+			if($(this).is(":checked"))
+			arr.push($(this).val())
+			
+			
+		})
+
+		 $('input[name=modify]').attr('value',arr)
+			
+	})
+})
  
- 
+
 
 </script>
 <body>
@@ -83,15 +99,21 @@ function linkPage(pageNo) {
         </form>
       </div>
       <div class="selects-container">
+      
+       <form action="productModify.do" method="post">
         <div class="change-displayState-box">
           <label>선택한 상품
-            <select id="change-displayState">
-              <option>표시</option>
-              <option>비표시</option>
+            <select id="p_state" name="p_state">
+              <option value="1">표시</option>
+              <option value="0">비표시</option>
             </select>
+            <input type="hidden" id="modify"  value="" name="modify">
           </label>
-          <button>일괄 변경</button>
+          <button type="submit">일괄 변경</button>
         </div>
+          </form>
+          
+          
         <div class="sort-box">
           <select id="sort__by-column">
             <option>상품 번호순</option>
@@ -135,7 +157,7 @@ function linkPage(pageNo) {
 		<c:if test="${empty categorySearch }">
 		<c:forEach items="${productList}" var="p">
 		<tr>
-			<td><input type="checkbox"></td>
+			<td><input type="checkbox" class="checkbox" value="${p.p_no}"></td>
 			<td>${p.p_no }</td>
 			<td>${p.p_date }</td>
 			<td>${p.c_main }</td>
@@ -160,7 +182,7 @@ function linkPage(pageNo) {
 		<c:if test="${!empty categorySearch }">
 		<c:forEach items="${categorySearch }" var="cs">
 		<tr>
-			<td><input type="checkbox"></td>
+			<td><input type="checkbox" class="checkbox" value="${p_pno}"></td>
 			<td>${cs.p_no }</td>
 			<td>${cs.p_date }</td>
 			<td>${cs.c_main }</td>

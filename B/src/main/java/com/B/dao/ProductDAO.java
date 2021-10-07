@@ -42,4 +42,9 @@ public class ProductDAO extends AbstractDAO2 {
 		
 	}
 
+	public void modifyState(Map<String, Object> p) {
+		update("product.modifyState",p);
+		
+	}
+
 }
