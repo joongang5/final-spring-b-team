@@ -43,9 +43,10 @@ public class IndexController {
 	@PostMapping(value="/productList.do", produces = "text/plain;charset=utf-8")
 	@ResponseBody
 	public String productList(CommandMap map) {
-		List<HashMap<String, Object>> productList = (List<HashMap<String, Object>>)indexService.productList2(map.getMap());
+		List<HashMap<String, Object>> productList = indexService.productList2(map.getMap());
 		JSONObject jsonList = new JSONObject();
 		jsonList.put("list", productList);
+		jsonList.put("test", "test");
 		System.out.println(jsonList.toJSONString());
 		return jsonList.toJSONString();
 	}

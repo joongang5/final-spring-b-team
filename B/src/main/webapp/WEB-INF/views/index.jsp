@@ -175,6 +175,7 @@ $(function(){
 		var selectName2 = "";
 		var option2 = "";
 		var category = $(this).siblings("input[name=category]").val();
+		var classNum = $(this).siblings("input[name=classNum]").val();
 		if(selectName == "optionSelect"){
 			selectName2 = $(this).siblings(".listSelect").attr("name");
 			option2 = $(this).siblings(".listSelect").val();
@@ -188,21 +189,17 @@ $(function(){
 		$.ajax({
 			url:"${pageContext.request.contextPath}/productList.do?"+selectName+"="+option+"&&"+selectName2+"="+option2+"&&category="+category,
 			type:"POST",
+			dataType:"json",
 			success:function(data){
 				var list = data.list;
-				console.log(data);
-				console.log(list);
 				$.each(list, function(index, value){
 					html += '<li class="scene"><img src="https://blogger.googleusercontent.com/img/a/'+list[index].p_img+'" alt="'+list[index].p_title+'" class="sceneImg"/><div class="detail"><p class="title"><span style="color:#999;font-size:12px;">['+list[index].c_main+' > '+list[index].c_sub+']</span><br/>'+list[index].p_title+'</p><p class="price">'+list[index].p_price+'원</p></div></li>';
-					console.log(index);
-					console.log(value);
 				});
-				console.log(html);
+				$(".product"+classNum).html(html);
 			}, error : function(request, status, error){
 				alert("error : " + error);
 			}
 		});
-		$(this).parent().siblings(".product").html(html);
 	});
 });
 
@@ -289,8 +286,9 @@ $(function(){
 									<option value="10">10개</option>
 								</select>
 								<input name="category" type="hidden" value="${cM.c_main }"/>
+								<input name="classNum" type="hidden" value="${cM.rnum }"/>
 							</h2>
-							<ul class="product">
+							<ul class="product product${cM.rnum }">
 								<li class="scene sebu">
 									<img alt="세부페이지로 이동" src="./resources/images/move.png" title="${cM.c_main }로 이동하기">
 								</li>

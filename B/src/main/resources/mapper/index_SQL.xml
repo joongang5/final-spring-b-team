@@ -10,7 +10,7 @@
 	</select>
 	
 	<select id="getCategoryMain" resultType="HashMap">
-		SELECT DISTINCT c_main FROM category
+		<![CDATA[SELECT CONCAT(@rownum:=@rownum+1) rnum, c.c_main FROM category c, (SELECT @ROWNUM:=0)R WHERE 1=1 GROUP BY c_main]]>
 	</select>
 	
 	<select id="productList" resultType="HashMap">
