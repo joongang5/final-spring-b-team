@@ -14,8 +14,13 @@
 /* reset.css */
 /* header.css */
 /* footer.css */
-
 /* container.css */	
+::-webkit-scrollbar {
+	width: 0px;
+}
+html{overflow: hidden;}
+html, body{width: 100%; height: 100%;}
+#wrapper{width:100%;margin:0 auto;}
 	#container{widht:100%;}
 		.mainContainer{width:100%;}
 			.mainContainer li.section{width:100%;height:100vh;margin:0 auto;}
