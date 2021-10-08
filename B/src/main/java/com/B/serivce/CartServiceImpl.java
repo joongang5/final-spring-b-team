@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.B.dao.CartDAO;
-import com.B.dao.MypageDAO;
 
 @Service("cartService")
 public class CartServiceImpl implements CartService {
@@ -18,6 +17,11 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public List<Map<String, Object>> cartList(Map<String, Object> map) {
 		return cartDAO.cartList(map);
+	}
+
+	@Override
+	public Map<String, Object> getCartViewByCartNo(int caNo) {
+		return cartDAO.getCartViewByCartNo(caNo);
 	}
 
 	@Override

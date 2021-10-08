@@ -58,24 +58,16 @@ $(document).ready(function(){
 		} else {
 			$(".chBox").prop("checked", false);
 		}
-		var cnt = parseInt(cnt) + 1; //숫자로 변경해서 +1
-		location.href="./onclickCheckBox.do?ca_no="+no+"&cnt="+cnt;
+
+		onclickCheckBoxAJAX();
+		/* var cnt = parseInt(cnt) + 1; //숫자로 변경해서 +1
+		location.href="./onclickCheckBox.do?ca_no="+no+"&cnt="+cnt; */
 	});
 	
 	$(".chBox").click(function(){
 		$("#allCheck").prop("checked", false);
-		
-		var test = $(this).parent().siblings(".countP").find(".count").text();
-		var test2 = $(this).parent().siblings(".totalP").find(".total").val();
-		alert(test);
-		alert(test2);
-		alert(test*test2);
-		var test3 = $("#totalPrice").val();
-		var test4 = (test*test2 + parseInt(test3));
-		alert(test3);
-		alert(test4);
-		$("#totalPrice").val(test4);
-		
+
+		onclickCheckBoxAJAX();
 	});
 	
 	$(".selectDelete_btn").click(function(){
@@ -100,6 +92,35 @@ $(document).ready(function(){
 	});
 });
 
+function onclickCheckBoxAJAX() {
+	var checkArr = document.getElementsByClassName("chBox");
+	var checkValueArr = new Array();
+	for (var i = 0; i < checkArr.length; i++) {
+		var item = checkArr[i];
+		if (item.checked) {
+			checkValueArr.push(item.value);
+		}
+	}
+	
+	if (checkValueArr.length <= 0){
+		$("#totalPrice").val("0");
+		return;
+	}
+   	$.ajax({
+    	url : "./onclickCheckBoxAJAX.do",
+    	type : "post",
+     	traditional : true,
+     	dataType : "json",
+    	data : { "checkValueArr" : checkValueArr },
+    	success : function(data) {
+    		$("#totalPrice").val(data.totalPrice);
+    	}, 
+    	error : function(xhr, status, error) {
+            alert("error : ", error);
+      	}
+   	});
+}
+
 </script>
 </head>
 <body>
@@ -111,7 +132,7 @@ $(document).ready(function(){
 	<hr>
 	<c:choose>
 	<c:when test="${fn:length(cart) gt 0 }">
-		<button data-cartNum="${c.ca_no}">선택 삭제</button>
+		<button type ="button" class="selectDelete_btn">선택 삭제</button>
 			<table>
 				<tr>
 					<th><input type="checkbox" name="allCheck" id="allCheck"
@@ -130,14 +151,10 @@ $(document).ready(function(){
 							src="https://blogger.googleusercontent.com/img/a/${c.p_img}"
 							style="width: 150px; height: 150px;"></td>
 						<td>${c.p_title}</td>
-						<td class="countP"><button
-								<c:if test="${c.cnt eq 1}">disabled="disalbled"</c:if>
-								onclick="down(${c.ca_no }, ${c.cnt})">◀</button><span class="count">${c.cnt}</span>
-							<button <c:if test="${c.cnt eq 10}">disabled="disalbled"</c:if>
-								onclick="up(${c.ca_no }, ${c.cnt})">▶</button></td>
-						<td class="totalP"><input class="total" type="hidden" value="${c.p_price}"><fmt:formatNumber pattern="###,###,###"
+						<td class="countP" id="cBtn"><span class="productCount${c.ca_no }">${c.cnt}</span></td>
+						<td class="totalP"><input class="totalPrice${c.ca_no }" type="hidden" value="${c.p_price}"><fmt:formatNumber pattern="###,###,###"
 								value="${c.p_price * c.cnt}" /></td>
-						<td><button onclick="cartOneDelete(${c.ca_no})">삭제</button></td>
+						<td><button>삭제</button></td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -145,11 +162,15 @@ $(document).ready(function(){
 		<form>
 			<table>
 				<tr>
-					<th>총 상품 금액</th>
+					<th>상품 금액</th>
+					<th>배송료</th>
+					<th>총금액</th>
 				</tr>
 	
 				<tr>
 					<td><input id="totalPrice" type="text" value="0"/>원</td>
+					<td>2500원</td>
+					<td>102500원</td>
 				</tr>
 			</table>
 			<button>구입하기</button>

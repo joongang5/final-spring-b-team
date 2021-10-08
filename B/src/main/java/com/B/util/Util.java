@@ -16,7 +16,7 @@ public class Util {
 		}
 	}
 
-	public int str2Int2(String str) { // 숫자변환 가능하면 변환, 아니면 0
+	public static int str2Int2(String str) { // 숫자변환 가능하면 변환, 아니면 0
 		try {
 			return Integer.parseInt(str);
 		} catch (Exception e) {
@@ -42,5 +42,13 @@ public class Util {
 			ip = request.getRemoteAddr();
 		}
 		return ip;
+	}
+	
+	public static int getIntValue(Object obj) throws Exception {
+		if (obj == null)
+			throw new Exception();
+		
+		String strValue = String.valueOf(obj);
+		return Integer.parseInt(strValue);
 	}
 }

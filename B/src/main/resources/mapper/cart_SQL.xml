@@ -9,6 +9,10 @@
 		SELECT * FROM cart_view WHERE m_id=#{m_id}
 	</select>
 	
+	<select id ="getCartViewByCartNo" parameterType="int" resultType="HashMap">
+		SELECT * FROM cart_view WHERE ca_no=#{caNo}
+	</select>
+	
 	<delete id="cartOneDelete" parameterType="HashMap">
 		DELETE FROM cart where ca_no=#{ca_no} AND m_no=(SELECT m_no FROM member WHERE m_id=#{m_id})
 	</delete>

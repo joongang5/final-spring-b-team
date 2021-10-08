@@ -58,6 +58,10 @@ public class AbstractDAO {
 		return sqlSession.selectOne(queryID, id);
 	}
 
+	public Map<String, Object> selectOne(String queryID, int key) {
+		return sqlSession.selectOne(queryID, key);
+	}
+	
 	public int checkId(String queryId, String id) {
 		return sqlSession.selectOne(queryId, id);
 	}
