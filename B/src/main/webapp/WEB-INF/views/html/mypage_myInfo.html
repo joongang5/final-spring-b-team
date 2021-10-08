@@ -11,15 +11,15 @@
         }
 
         .myInfo-body{
-        border: 5px solid #eeded5;
-        padding: 40px;
+            border: 5px solid #eeded5;
+            padding: 40px;
         }
 
         .myInfo-content__short-container{
             display: flex;
             padding: 5px 0;
             justify-content: flex-start;
-            font-size: 14pt;
+            font-size: 13pt;
             align-items: center;
             min-height: 50px;
         }
@@ -47,7 +47,7 @@
             width: 100px;
             padding: 10px;
             border-radius: 10px;
-            font-size: large;
+            font-size: 12pt;
         }
 
         .phoneNo{
@@ -60,7 +60,7 @@
             font-size: 13pt;
         }
 
-        .change-content{margin-bottom: 20px;}
+        .change-content{margin-bottom: 15px;}
 
         .change-form{
 
@@ -71,7 +71,7 @@
         }
 
         .change-phoneNo input[type="tel"]{
-            width: 200px;
+            width: 275px;
         }
 
         .change-buttons-container{
@@ -99,7 +99,13 @@
         }
 
         .change-address{
-        display: none;
+        /* display: none; */
+        }
+
+        .change-address .small-button{
+            height: 37px;
+            width: 110px;
+            font-size: 11pt;
         }
 
         .change-address input[type="text"]{
@@ -107,15 +113,16 @@
             margin-bottom: 10px;
         }
 
-        .change-address input[type="text"]:first-child{
+        .change-address input[type="text"]:nth-child(2){
+            display: inline;
             width: 100px;
         }
 
-        .change-address input[type="text"]:nth-child(2){
+        .change-address input[type="text"]:nth-child(3){
             width: 500px;
         }
 
-        .change-address input[type="text"]:nth-child(3){
+        .change-address input[type="text"]:nth-child(4){
             width: 500px;
         }
 
@@ -213,7 +220,7 @@
                             <div class="change-email change-content">
                                 변경할 이메일 주소를 입력하세요.
                             </div>
-                            <div class="change-phoneNo change-form">
+                            <div class="change-email change-form">
                                 <input type="email">
                             </div>
                             <div class="change-email change-buttons-container">
@@ -239,6 +246,7 @@
                             </div>
                             <div class="change-address change-form">
                                 <!--주소 찾기 API-->
+                                <button class="small-button">주소 찾기</button>
                                 <input type="text">
                                 <input type="text">
                                 <input type="text">

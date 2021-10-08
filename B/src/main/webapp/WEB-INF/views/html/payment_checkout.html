@@ -68,7 +68,9 @@
     }
 
 
-    .payment-product-content{padding-bottom: 10px;}
+    .payment-product-content{
+      padding-bottom: 10px;
+    }
 
     .payment-product-left-block, .payment-product-right-block{
 
@@ -277,8 +279,21 @@
       /* top: 25%; */
       background: white;
       padding: 30px;
-      box-shadow: 0px 0px 13px 9px rgb(0.0.0,0.14);
+      box-shadow: 0px 0px 13px 9px rgba(0,0,0,0.14);
+      animation-fill-mode: forwards;
+      animation-duration: 0.6s;
+      animation-timing-function: ease-in-out;
+      animation-name: appear-popup;
     }
+    @keyframes appear-popup {
+      from {
+        margin-top: 12%;
+      }
+      to {
+        margin-top: 15%;
+      }
+    }
+
 
     .terms-detail__container{
       margin: auto;

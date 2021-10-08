@@ -112,7 +112,7 @@ form {
 
 input[type="tel"],
 input[type="email"],
-input[type="text"]
+input[type="text"],
 .password{
     background: #eeded5;
     /* border: 1px solid #403429; */
