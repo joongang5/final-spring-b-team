@@ -43,7 +43,7 @@ $(function(){
 					<ul class="son">
 						<c:forEach items="${category }" var="c">
 							<c:if test="${cm.c_main eq c.c_main}">
-								<li class="navSon"><a href="./categoryPage.do?category=${c.c_no }" title="${cm.c_main } &gt; ${c.c_sub}" class="navSon">${c.c_sub}</a></li>
+								<li class="navSon"><a href="./categoryPage.do?category=${cm.c_main }&&sub=${c.c_no }" title="${cm.c_main } &gt; ${c.c_sub}" class="navSon">${c.c_sub}</a></li>
 							</c:if>
 						</c:forEach>
 					</ul>

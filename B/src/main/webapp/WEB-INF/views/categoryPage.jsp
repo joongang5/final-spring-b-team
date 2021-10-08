@@ -230,7 +230,7 @@ $(function(){
 							</h2>
 							<ul class="product product${cM.rnum }">
 								<li class="scene sebu">
-									<img alt="${cM.c_main }페이지로 이동" src="./resources/images/move.png" title="${cM.c_main }페이지로 이동하기" onclick="location.href='./categoryPage.do?category=${cM.c_main }'">
+									<img alt="세부페이지로 이동" src="./resources/images/move.png" title="${cM.c_main }로 이동하기">
 								</li>
 								<c:forEach items="${productList }" var="pl">
 									<c:if test="${pl.c_main eq cM.c_main}">
