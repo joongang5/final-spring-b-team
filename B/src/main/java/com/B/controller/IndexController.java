@@ -21,7 +21,19 @@ public class IndexController {
 	@Resource(name = "indexService")
 	private IndexServiceImpl indexService;
 
+	@RequestMapping(value = "/header.do")
+	public ModelAndView header(CommandMap map) {
+		ModelAndView mv = new ModelAndView("header");
+		
+		//헤더
+		List<HashMap<String, Object>> category = indexService.getCategory();
+		List<HashMap<String, Object>> categoryMain = indexService.getCategoryMain();
+		mv.addObject("category", category);
+		mv.addObject("categoryMain",categoryMain);
 
+		return mv;
+	}
+	
 	@RequestMapping(value = "/index.do")
 	public ModelAndView main1(CommandMap map) {
 		ModelAndView mv = new ModelAndView("index");
