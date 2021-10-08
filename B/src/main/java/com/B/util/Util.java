@@ -44,10 +44,7 @@ public class Util {
 		return ip;
 	}
 	
-	public static int getIntValue(Object obj) throws Exception {
-		if (obj == null)
-			throw new Exception();
-		
+	public static int parseInt(Object obj) {
 		String strValue = String.valueOf(obj);
 		return Integer.parseInt(strValue);
 	}

@@ -108,8 +108,8 @@ public class CartController {
 		for (int i = 0; i < checkValueArr.length; i++) {
 			int caNo = Util.str2Int2(checkValueArr[i]);
 			Map<String, Object> cartViewDTOMap = cartService.getCartViewByCartNo(caNo);
-			int price = Util.getIntValue(cartViewDTOMap.get("p_price"));
-			int count = Util.getIntValue(cartViewDTOMap.get("cnt"));
+			int price = Util.parseInt(cartViewDTOMap.get("p_price"));
+			int count = Util.parseInt(cartViewDTOMap.get("cnt"));
 			totalPrice += price * count;
 		}
 

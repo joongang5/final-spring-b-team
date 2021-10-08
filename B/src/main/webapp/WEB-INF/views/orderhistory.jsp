@@ -23,7 +23,7 @@ input[type=text], input[type=password] {
 	margin: 0;
 	padding: 0;
 	text-align: center;
-	/* 	font-family: "Malgun Gothic", "맑은 고딕", Dotum, "돋움", Arial, sans-serif */
+	font-family: "Malgun Gothic", "맑은 고딕", Dotum, "돋움", Arial, sans-serif
 }
 
 body {
@@ -336,9 +336,12 @@ header, footer, aside, nav, section, article {
 			<th>출고 완료</th>
 		</tr>
 		<tr>
-			<td>0</td>
-			<td>2</td>
-			<td>0</td>
+			<td>${stateTotalCountArr[0] }</td>
+			<td>${stateTotalCountArr[1] }</td>
+			<td>${stateTotalCountArr[2] }</td>
+			<%-- <c:forEach items="${stateTotalCountArr }" var="stateTotalCount">
+				<td>${stateTotalCount }</td>
+			</c:forEach> --%>
 		</tr >
 	</table>
 
