@@ -53,5 +53,16 @@ public class ProductServiceImpl implements ProductService {
 		productDAO.modifyState(p);
 		
 	}
+	public Map<String, Object> productDetail(Map<String, Object> map) {
+		return productDAO.productDetail(map);
+	}
+	public void modifyDetail(Map<String, Object> map) {
+		productDAO.modifyDetail(map);
+		
+	}
+	public void deleteProduct(String p_no) {
+		productDAO.deleteProduct(p_no);
+		
+	}
 
 }

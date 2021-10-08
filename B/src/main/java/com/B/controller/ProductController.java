@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -98,7 +99,7 @@ public class ProductController {
 	
 	@PostMapping(value ="/categoryMain.do")
 	@ResponseBody
-	public ArrayList<String> categoryMain(HttpServletRequest req) {
+	public ArrayList<String> categoryMain(HttpServletRequest req) { 
 		String c_main = req.getParameter("real_c_main");
 		List<Map<String, Object>> category = productService.cateList2(c_main);
 		ArrayList<String> sub = new ArrayList<String>();
@@ -152,8 +153,32 @@ public class ProductController {
 		return "redirect:/product.do";
 	}
 	
-	
-	
+	@GetMapping(value="/productDetail.do")
+	public ModelAndView detail(CommandMap map, HttpServletRequest req) {
+		ModelAndView mv = new ModelAndView("productDetail");
+		map.put("p_no",req.getParameter("p_no"));
+		Map<String, Object> oneProduct = productService.productDetail(map.getMap());
+
+		
+		mv.addObject("detail", oneProduct);
+		
+		
+		return  mv;
 	}
-
-
+	
+	@PostMapping(value="/productDetail.do")
+	public String detail2(CommandMap map) {
+		productService.modifyDetail(map.getMap());
+		
+		return "redirect:/product.do";
+	}
+	
+	@PostMapping(value="/deleteProduct.do")
+	@ResponseBody
+	public String delete(HttpServletRequest req) {
+		
+		String p_no = req.getParameter("p_no");
+		productService.deleteProduct(p_no);
+		return "redirect:/product.do";
+	}
+}

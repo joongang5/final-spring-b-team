@@ -162,7 +162,7 @@ $(document).ready(function(){
 			<td>${p.p_date }</td>
 			<td>${p.c_main }</td>
 			<td>${p.c_sub }</td>
-			<td>${p.p_title}</td>
+			<td><a href="./productDetail.do?p_no=${p.p_no}"> ${p.p_title} </a></td>
 			<td>${p.p_price }</td>
 			<td>${p.p_cnt }</td>
 			<td><img src="https://blogger.googleusercontent.com/img/a/${p.p_img}" style="width:100px;height:100px;"></td>

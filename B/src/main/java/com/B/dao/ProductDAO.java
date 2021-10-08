@@ -6,6 +6,8 @@ import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.B.common.CommandMap;
+
 @Repository("productDAO")
 public class ProductDAO extends AbstractDAO2 {
 
@@ -44,6 +46,20 @@ public class ProductDAO extends AbstractDAO2 {
 
 	public void modifyState(Map<String, Object> p) {
 		update("product.modifyState",p);
+		
+	}
+
+	public Map<String, Object> productDetail(Map<String, Object> map) {
+		return selectOne("product.productDetail",map);
+	}
+
+	public void modifyDetail(Map<String, Object> map) {
+		update("product.modifyDetail",map);
+		
+	}
+
+	public void deleteProduct(String p_no) {
+		delete2("product.deleteProduct",p_no);
 		
 	}
 

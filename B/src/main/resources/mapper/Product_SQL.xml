@@ -63,4 +63,15 @@
 		UPDATE product SET p_state=#{p_state} WHERE p_no=#{p_no}
 	</update>
 	
+	<select id="productDetail" parameterType="HashMap" resultType="HashMap">
+		SELECT * FROM product_view WHERE p_no=#{p_no}
+	</select>
+	
+	<update id="modifyDetail" parameterType="HashMap">
+		UPDATE product SET p_title=#{p_title}, p_price=#{p_price}, p_cnt=#{p_cnt} WHERE p_no=#{p_no}
+	</update>
+	
+	<delete id="deleteProduct">
+		DELETE FROM product WHERE p_no=#{p_no}
+	</delete>
 </mapper>
