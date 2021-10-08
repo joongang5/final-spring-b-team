@@ -3,8 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <title>관리자 페이지 | 가구</title>
-  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/admin.css">
   <style>
+    .change-orderState-box{
+
+    }
+
+
+    .change-orderState-box label{
+
+    }
+
+    #change-orderState {
+      background-color: #eeded5;
+      width: 115px;
+      padding: 7px 14px;
+      border-radius: 8px;
+      background-position-x: 94%;
+      background-position-y: center;
+      margin-right: 10px;
+    }
+
+      .orderList-container{
+        margin-top: 25px;
+      }
+
+    .orderList{margin: auto;}
+
+    .orderList th:nth-child(5){
+
+    }
+
+    .orderList th:nth-child(8){
+
+    }
+
+    #sort__by-orderState{
+
+    }
+
+    .orderList td{
+
+    }
+
+    .orderList__paging {
+
+    }
 
   </style>
 </head>
@@ -58,14 +103,17 @@
         <h1>주문 목록</h1>
       </div>
       <div class="period-search-box">
-        <label>주문일
+        <label>
+          <p>주문일 검색</p>
           <input type="date"> ~
           <input type="date">
         </label>
-        <button>조회</button>
+        <button class="search-button">조회</button>
       </div>
       <div class="keyword-search-box">
-        <label for="keyword-search__word">키워드 검색</label>
+        <label for="keyword-search__word">
+          <p>키워드 검색</p>
+        </label>
         <div class="keyword-search__bar">
           <select id="keyword-search__column">
             <option>주문 번호</option>
@@ -75,19 +123,20 @@
           </select>
           <input type="search" id="keyword-search__word">
         </div>
-          <button>검색</button>
+          <button class="search-button">검색</button>
       </div>
       <div class="change-orderState-box">
-        <label>선택한 주문
-          <select id="change-orderState">
+        <label>
+          <p>선택한 주문</p>
+          <select id="change-orderState" class="search-select">
             <option>결제 완료</option>
             <option>출고 준비</option>
           </select>
         </label>
-        <button>일괄 변경</button>
+        <button class="search-button">일괄 변경</button>
       </div>
       <div class="orderList-container">
-        <table class="orderList">
+        <table class="list-table orderList">
           <thead>
             <tr>
               <th scope="col">선택</th>
@@ -111,7 +160,10 @@
           <!--주문 목록 출력 / 반복문 사용-->
             <tr>
               <td>
-                <input type="checkbox">
+                <label>
+                  <input type="checkbox">
+                  <span class="checkMark"></span>
+                </label>
               </td>
               <td>주문 번호</td>
               <td>주문자</td>
@@ -125,11 +177,18 @@
           <!--주문 목록 출력 끝-->
           </tbody>
         </table>
-        <div class="orderList__paging"></div>
+        <div class="paging orderList__paging">
+          <!--페이징 출력-->
+          <a class="page-value">1</a>
+          <a class="page-value">2</a>
+          <a class="page-value">3</a>
+          <a class="page-value">4</a>
+          <a class="page-value">5</a>
+        </div>
       </div>
     </main>
   </div>
-  <footer id="footer-space"></footer>
+  <footer id="admin-footer"></footer>
 </div>
 </body>
 </html>

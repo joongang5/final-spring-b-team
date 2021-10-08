@@ -3,8 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <title>관리자 페이지 | 가구</title>
-  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/admin.css">
   <style>
+    .memberList-container{
+
+    }
+
+    .memberList{
+
+    }
+
+    th:first-child{
+      width: auto;
+    }
+
+    td button{
+      background: transparent;
+      color: red;
+      font-size: 11pt;
+      font-style: italic;
+      font-weight: 500;
+      border-radius: 5px;
+    }
+
+    td button:hover{
+      background: rgba(247,164,164,0.36);
+    }
 
   </style>
 </head>
@@ -58,15 +83,18 @@
         <h1>회원 목록</h1>
       </div>
       <div class="period-search-box">
-        <label>가입 기간
+        <label>
+          <p>가입 기간</p>
           <input type="date"> ~
           <input type="date">
         </label>
-        <button>조회</button>
+        <button class="search-button">조회</button>
       </div>
       <div class="selects-container">
         <div class="keyword-search-box">
-          <label for="keyword-search__word">키워드 검색</label>
+          <label for="keyword-search__word">
+            <p>키워드 검색</p>
+          </label>
           <div class="keyword-search__bar">
             <select id="keyword-search__column">
               <option>ID</option>
@@ -75,7 +103,7 @@
             </select>
             <input type="search" id="keyword-search__word">
           </div>
-          <button>검색</button>
+          <button class="search-button">검색</button>
         </div>
         <div class="sort-box">
           <select id="sort__by-column">
@@ -85,7 +113,7 @@
         </div>
       </div>
       <div class="memberList-container">
-        <table class="memberList">
+        <table class="list-table memberList">
           <thead>
           <tr>
             <th scope="col">회원 번호</th>
@@ -99,9 +127,6 @@
           <tbody>
           <!--회원 목록 출력 / 반복문 사용-->
           <tr>
-            <td>
-              <input type="checkbox">
-            </td>
             <td>회원 번호</td>
             <td>ID</td>
             <td>이름</td>
@@ -114,11 +139,18 @@
           <!--회원 목록 출력 끝-->
           </tbody>
         </table>
-        <div class="memberList__paging"></div>
+        <div class="paging memberList__paging">
+          <!--페이징 출력-->
+          <a class="page-value">1</a>
+          <a class="page-value">2</a>
+          <a class="page-value">3</a>
+          <a class="page-value">4</a>
+          <a class="page-value">5</a>
+        </div>
       </div>
     </main>
   </div>
-  <footer id="footer-space"></footer>
+  <footer id="admin-footer"></footer>
 </div>
 </body>
 </html>

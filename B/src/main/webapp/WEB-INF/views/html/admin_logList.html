@@ -3,8 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>관리자 페이지 | 가구</title>
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/admin.css">
     <style>
+        .selects-container{
+
+        }
+
+        .logList-container{
+
+        }
+
+        .logList{
+
+        }
+
+        .period-search-box label p{
+            margin-right: 40px;
+        }
+
+        .logList th:nth-child(5){
+
+        }
+
+        .logList th:nth-child(6){
+
+        }
 
     </style>
 </head>
@@ -14,7 +38,7 @@
     <header id="admin-header"></header>
     <div id="admin-main-container">
         <nav id="admin-sideMenu">
-          <div class="sideMenu__block-container">
+            <div class="sideMenu__block-container">
                 <ul class="sideMenu__items">
                     <li class="sideMenu__item"><a href=""><img src="">홈으로</a></li>
                     <li class="sideMenu__item"><a href=""><img src="">주문 관리</a>
@@ -58,15 +82,18 @@
                 <h1>로그 조회</h1>
             </div>
             <div class="period-search-box">
-                <label>입력 기간
+                <label>
+                    <p>입력 기간</p>
                     <input type="date"> ~
                     <input type="date">
                 </label>
-                <button>조회</button>
+                <button class="search-button">조회</button>
             </div>
             <div class="selects-container">
                 <div class="keyword-search-box">
-                    <label for="keyword-search__word">키워드 검색</label>
+                    <label for="keyword-search__word">
+                        <p>키워드 검색</p>
+                    </label>
                     <div class="keyword-search__bar">
                         <select id="keyword-search__column">
                             <option>IP</option>
@@ -75,7 +102,7 @@
                         </select>
                         <input type="search" id="keyword-search__word">
                     </div>
-                    <button>검색</button>
+                    <button class="search-button">검색</button>
                 </div>
                 <div class="sort-box">
                     <select id="sort__by-column">
@@ -87,9 +114,10 @@
                 </div>
             </div>
             <div class="logList-container">
-                <table class="logList">
+                <table class="list-table logList">
                     <thead>
                     <tr>
+                        <th scope="col">선택</th>
                         <th scope="col">로그 번호</th>
                         <th scope="col">입력일</th>
                         <th scope="col">IP</th>
@@ -109,7 +137,10 @@
                     <!--로그 목록 출력 / 반복문 사용-->
                     <tr>
                         <td>
-                            <input type="checkbox">
+                            <label>
+                                <input type="checkbox">
+                                <span class="checkMark"></span>
+                            </label>
                         </td>
                         <td>로그 번호</td>
                         <td>입력일</td>
@@ -121,11 +152,18 @@
                     <!--로그 목록 출력 끝-->
                     </tbody>
                 </table>
-                <div class="logList__paging"></div>
+                <div class="paging logList__paging">
+                    <!--페이징 출력-->
+                    <a class="page-value">1</a>
+                    <a class="page-value">2</a>
+                    <a class="page-value">3</a>
+                    <a class="page-value">4</a>
+                    <a class="page-value">5</a>
+                </div>
             </div>
         </main>
     </div>
-    <footer id="footer-space"></footer>
+    <footer id="admin-footer"></footer>
 </div>
 </body>
 </html>

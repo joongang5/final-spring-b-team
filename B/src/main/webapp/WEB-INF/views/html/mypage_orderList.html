@@ -3,38 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <title>구매 내역 조회 | 가구</title>
-    <link rel="stylesheet" href="mypage.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/mypage.css">
+    <link rel="stylesheet" href="./css/invoice.css">
     <style>
         .orderList-summary{
-
+            display: flex;
+            border: 7px solid #EEDED5;
+            margin: 20px 10px 50px 10px;
         }
 
         .orderList-summary__column-left{
-
+            margin: 5% 7%;
+            width: 80%;
+            display: flex;
+            justify-content: center;
         }
 
         .orderList-summary-state{
-
+            display: grid;
+            text-align: center;
+            align-content: center;
+            margin: 0 20px;
         }
 
         .orderList-summary-state__section{
-
+            font-size: 15pt;
         }
 
         .orderList-summary-state__value{
-
+            font-size: xx-large;
+            font-family: math;
+            font-weight: 600;
+            color: #FF8A00;
         }
 
         .orderList-summary-state__arrow{
+            align-self: center;
+        }
 
+        .orderList-summary-state__arrow img{
+            width: 40px;
+            height: 40px;
         }
 
         .orderList-summary__column-right{
-
+            margin: 5% 9% 5% 0;
+            width: 20%;
         }
 
         .orderList-summary-exchange{
-
+            display: flex;
+            justify-content: space-evenly;
         }
 
         .orderList-summary-exchange__section{
@@ -42,73 +62,40 @@
         }
 
         .orderList-summary-exchange__value{
+            font-family: math;
+            color: #FF8A00;
+            font-weight: 600;
+        }
+
+        label{
 
         }
 
-        .orderList-content-productContainer, .orderList-content__delivery{
-
+        label p{
+            display: inline;
+            margin: 0 15px;
+            font-weight: bold;
+            font-size: 13pt;
         }
 
-        .period-searchBox{
+        .period-search-box{
+            margin: 20px 10px;
+            display: flex;
+            align-items: center;
+        }
 
+        .period-search-box button{
+            padding: 8px;
+            border-radius: 8px;
+            width: 75px;
+            font-size: 17px;
+            font-weight: 500;
+            margin-left: 10px;
         }
 
         .orderList-contents-container{
-
+            margin-top: 30px;
         }
-
-        .orderList-content{
-
-        }
-
-        .orderList-content__header{
-
-        }
-
-        .orderList-content__orderNo{
-
-        }
-
-        .orderList-content__orderDate{
-
-        }
-
-        .orderList-content__body{
-
-        }
-
-        .orderList-content-productContainer{
-
-        }
-
-        .orderList-content__productThumbnail{
-
-        }
-
-        .orderList-content__productName{
-
-        }
-
-        .orderList-content__productPrice{
-
-        }
-
-        .orderList-content__productOption{
-
-        }
-
-        .orderList-content__productQuantity{
-
-        }
-
-        .orderList-content__totalAmount{
-
-        }
-
-        .orderList-content__delivery{
-
-        }
-
     </style>
 </head>
 <body>
@@ -119,7 +106,7 @@
             <nav id="myPage-sideMenu">
                 <div class="sideMenu__block-container">
                     <div class="sideMenu__block">
-                    <h4>나의 쇼핑 활동</h4>
+                    <h3>나의 쇼핑 활동</h3>
                     <ul class="sideMenu__items">
                         <li class="sideMenu__item sideMenu__item--active"><a href="">구매 내역 조회</a></li>
                         <li class="sideMenu__item"><a href="">최근 본 상품</a></li>
@@ -128,8 +115,8 @@
                         <li class="sideMenu__item"><a href="">1:1 문의</a></li>
                     </ul>
                     </div>
-                    <div class="sideMenu-block">
-                    <h4>회원 정보</h4>
+                    <div class="sideMenu__block">
+                    <h3>회원 정보</h3>
                     <ul class="sideMenu__items">
                         <li class="sideMenu__item"><a href="">회원 정보 조회</a></li>
                         <li class="sideMenu__item"><a href="">주소록</a></li>
@@ -150,46 +137,68 @@
                         <div class="orderList-summary-state__section">
                             결제 완료
                         </div>
-                        <div class="orderList-summary-state__value"></div>
+                        <div class="orderList-summary-state__value">1</div>
                     </div>
-                    <div class="orderList-summary-state__arrow"></div>
+                    <div class="orderList-summary-state__arrow">
+                        <img src="img/right-arrow.png">
+                    </div>
                     <div class="orderList-summary-state">
                         <div class="orderList-summary-state__section">
                             출고 준비
                         </div>
-                        <div class="orderList-summary-state__value"></div>
+                        <div class="orderList-summary-state__value">1</div>
                     </div>
-                    <div class="orderList-summary-state__arrow"></div>
+                    <div class="orderList-summary-state__arrow">
+                        <img src="img/right-arrow.png">
+                    </div>
                     <div class="orderList-summary-state">
                         <div class="orderList-summary-state__section">
                             출고 완료
                         </div>
-                        <div class="orderList-summary-state__value"></div>
+                        <div class="orderList-summary-state__value">1</div>
                     </div>
-                    <div class="orderList-summary-state__arrow"></div>
+                    <div class="orderList-summary-state__arrow">
+                    </div>
                 </div>
                 <div class="orderList-summary__column-right">
                     <!--교환 및 환불 건수 표시-->
                     <div class="orderList-summary-exchange">
-                        <div class="orderList-summary-exchange__section"></div>
-                        <div class="orderList-summary-exchange__value"></div>
-                    </div>
-                    <div class="orderList-summary-exchanged">
-                        <div class="orderList-summary-exchange__section"></div>
-                        <div class="orderList-summary-exchange__value"></div>
-                    </div>
-                    <div class="orderList-summary-exchange">
-                        <div class="orderList-summary-exchange__section"></div>
-                        <div class="orderList-summary-exchange__value"></div>
+                        <div class="orderList-summary-exchange__section">
+                            교환 진행
+                        </div>
+                        <div class="orderList-summary-exchange__value">
+                            0
+                        </div>
                     </div>
                     <div class="orderList-summary-exchange">
-                        <div class="orderList-summary-exchange__section"></div>
-                        <div class="orderList-summary-exchange__value"></div>
+                        <div class="orderList-summary-exchange__section">
+                            교환 완료
+                        </div>
+                        <div class="orderList-summary-exchange__value">
+                            0
+                        </div>
+                    </div>
+                    <div class="orderList-summary-exchange">
+                        <div class="orderList-summary-exchange__section">
+                            환불 진행
+                        </div>
+                        <div class="orderList-summary-exchange__value">
+                            0
+                        </div>
+                    </div>
+                    <div class="orderList-summary-exchange">
+                        <div class="orderList-summary-exchange__section">
+                            환불 완료
+                        </div>
+                        <div class="orderList-summary-exchange__value">
+                            0
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="period-search-box">
-                <label>주문일
+                <label>
+                    <p>주문일</p>
                     <input type="date"> ~
                     <input type="date">
                 </label>
@@ -197,32 +206,47 @@
             </div>
             <div class="orderList-contents-container">
                 <!--주문서 출력 / 반복문 사용-->
-                <div class="orderList-content">
-                    <div class="orderList-content__header">
-                        <div class="orderList-content__orderNo"></div>
-                        <div class="orderList-content__orderDate"></div>
+                <div class="order-content">
+                    <div class="order-content__header">
+                        <div class="in-orderList order-content__orderNo"><a href="">20211006-1233456</a></div>
+                        <div class="order-content__orderDate">2021.10.06 15:36</div>
                     </div>
-                    <div class="orderList-content__body">
                         <!--주문서 내 주문한 상품 내용 출력 / 반복문 사용-->
-                        <div class="orderList-content-productContainer">
-                            <div class="orderList-product-left-block">
-                                <div class="orderList-content__productThumbnail"></div>
+                    <div class="order-content__body">
+                        <div class="order-content-productContainer">
+                            <div class="order-product-left-block">
+                                <div class="product-content__productThumbnail">
+                                    <img src="./img/no-image.png">
+                                </div>
                             </div>
-                            <div class="orderList-product-right-block">
-                                <div class="orderList-content__productName"></div>
-                                <div class="orderList-content__productPrice"></div>
-                                <div class="orderList-content__productOption"></div>
-                                <div class="orderList-content__productQuantity"></div>
+                            <div class="order-product-right-block">
+                                <div class="product-content__name">상품명</div>
+                                <div class="product-content__option-container">
+                                    <div class="option-content__name">옵션</div>
+                                    <div class="option-content__price-container">
+                                        <div class="option-content__price">50,000원</div>
+                                        <div class="option-content__quantity">1개</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <!--주문한 상품 내용 출력 끝-->
-                        <div class="orderList-content__delivery">
+                        <div class="order-content__delivery-container">
+                            <div class="order-content__delivery">
+                                출고 완료
+                            </div>
+                            <!--출고 완료일 경우 출력되는 div-->
+                            <div class="order-content__delivery-tracking">
+                                <a href="">배송 추적</a>
+                            </div>
                         </div>
                     </div>
-                    <div class="orderList-content__footer">
-                        <div class="orderList-content__shipping-charge">
+                    <div class="order-content__footer">
+                        <div class="order-content__shipping-charge">
+                            배송료 0원
                         </div>
-                        <div class="orderList-content__total-amount">
+                        <div class="order-content__total-amount">
+                            결제 금액 <span class="total-amount__value">50,000</span>원
                         </div>
                     </div>
                 </div>
