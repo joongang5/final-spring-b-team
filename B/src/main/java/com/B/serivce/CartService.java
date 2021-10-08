@@ -11,4 +11,6 @@ public interface CartService {
 	public void cartOneDelete(Map<String, Object> map);
 	
 	public void cartProductUpDown(Map<String, Object> map);
+	
+	public int deleteCartByCartNo(int caNo);
 }

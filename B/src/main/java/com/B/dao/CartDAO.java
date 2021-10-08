@@ -25,4 +25,8 @@ public class CartDAO extends AbstractDAO {
 		update("cart.cartProductUpDown", map);
 		
 	}
+	
+	public int deleteCartByCartNo(int caNo) {
+		return delete("cart.deleteCartByCartNo", caNo);
+	}
 }

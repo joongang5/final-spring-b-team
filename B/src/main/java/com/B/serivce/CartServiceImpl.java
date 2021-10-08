@@ -35,4 +35,9 @@ public class CartServiceImpl implements CartService {
 		
 	}
 
+	@Override
+	public int deleteCartByCartNo(int caNo) {
+		return cartDAO.deleteCartByCartNo(caNo);
+	}
+
 }

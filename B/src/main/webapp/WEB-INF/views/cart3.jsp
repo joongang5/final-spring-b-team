@@ -38,16 +38,93 @@ function cartOneDelete(no){
 	}
 }
 
-function down(no, cnt){
+function down(no){
 	//alert("down" + no);
-	var cnt = parseInt(cnt) - 1; //숫자로 변경해서 -1
-	location.href="./cartProductDown.do?ca_no="+no+"&cnt="+cnt;
+	
+	var cntSpanId = "#cnt" + no;
+    var strCnt = $(cntSpanId).text();
+	var checkValueArr = getCheckedCartNoArr();
+	var cnt = parseInt(strCnt) - 1; //숫자로 변경해서 -1
+	
+	if(cnt < 1){
+		return;	
+	}
+	
+	var data = {};
+	data["checkValueArr"] = checkValueArr;
+	data["ca_no"] = no;
+	data["cnt"] = cnt;
+	var sendData = JSON.stringify(data);
+	
+	$.ajax({
+    	url : "./cartProductDown.do",
+    	type : "post",
+     	dataType : "json",
+    	data : { "sendData" : sendData },
+    	success : function(data) {
+    		// 수량받기
+    		$(cntSpanId).text(data.cnt);
+    		
+    		var unitPriceId = "#unitPrice" + no;
+    		var unitPrice = $(unitPriceId).val();
+    		
+    		var totalPriceId = "#totalPrice" + no;
+    		var totalPriceValue = data.cnt * unitPrice;
+    		var totalPriceStr = totalPriceValue;
+    		
+    		$(totalPriceId).text(totalPriceValue);
+    		
+    		$("#totalPrice").text(data.totalPrice);
+    	}, 
+    	error : function(xhr, status, error) {
+            alert("error : ", error);
+      	}
+   	});
 }
 
 function up(no, cnt){
 	//alert("up" + no);
-	var cnt = parseInt(cnt) + 1; //숫자로 변경해서 +1
-	location.href="./cartProductUp.do?ca_no="+no+"&cnt="+cnt;
+	//var cnt = parseInt(cnt) + 1; //숫자로 변경해서 +1
+	//location.href="./cartProductUp.do?ca_no="+no+"&cnt="+cnt;
+	var cntSpanId = "#cnt" + no;
+    var strCnt = $(cntSpanId).text();
+	var checkValueArr = getCheckedCartNoArr();
+	var cnt = parseInt(strCnt) + 1; //숫자로 변경해서 -1
+	
+	if(cnt > 10){
+		return;	
+	}
+	
+	var data = {};
+	data["checkValueArr"] = checkValueArr;
+	data["ca_no"] = no;
+	data["cnt"] = cnt;
+	var sendData = JSON.stringify(data);
+	
+	$.ajax({
+    	url : "./cartProductDown.do",
+    	type : "post",
+     	dataType : "json",
+    	data : { "sendData" : sendData },
+    	success : function(data) {
+    		// 수량받기
+    		$(cntSpanId).text(data.cnt);
+    		
+    		var unitPriceId = "#unitPrice" + no;
+    		var unitPrice = $(unitPriceId).val();
+    		
+    		var totalPriceId = "#totalPrice" + no;
+    		var totalPriceValue = data.cnt * unitPrice;
+    		var totalPriceStr = totalPriceValue;
+    		
+    		$(totalPriceId).text(totalPriceValue);
+    		
+    		$("#totalPrice").text(data.totalPrice);
+    	}, 
+    	error : function(xhr, status, error) {
+            alert("error : ", error);
+      	}
+   	});
 }
 
 $(document).ready(function(){
@@ -74,38 +151,32 @@ $(document).ready(function(){
 		var confirm_val = confirm("정말 삭제하시겠습니까?");
 		  
 	  	if(confirm_val) {
-	   		var checkArr = new Array();
-	   
-	   		$("input[class='chBox']:checked").each(function(){
-	    		checkArr.push($(this).attr("data-cartNum"));
-	   		});
-	    
-		   	$.ajax({
-		    	url : "/shop/deleteCart",
-		    	type : "post",
-		    	data : { chbox : checkArr },
-		    	success : function(){
-		     	location.href = "/shop/cartList";
-		     	}
-		   	});
+	  		onclickDeleteAllButton();
+	  	} 
+	});
+	
+	$(".delete_btn").click(function(){
+		var confirm_val = confirm("정말 삭제하시겠습니까?");
+		  
+	  	if(confirm_val) {
+	  		var caNo= $(this).val();
+	  		onclickDeleteOneButton(caNo);
 	  	} 
 	});
 });
 
+// 체크박스가 클릭될때 마다 실행될 내용
 function onclickCheckBoxAJAX() {
-	var checkArr = document.getElementsByClassName("chBox");
-	var checkValueArr = new Array();
-	for (var i = 0; i < checkArr.length; i++) {
-		var item = checkArr[i];
-		if (item.checked) {
-			checkValueArr.push(item.value);
-		}
-	}
+	var checkValueArr = getCheckedCartNoArr();
 	
+	// 만약 선택된 체크박스가 하나도 없다면
 	if (checkValueArr.length <= 0){
-		$("#totalPrice").val("0");
+		// 합계를 계산 할 필요가 없기 때문에 그냥 0으로 설정 후 마친다.
+		$("#totalPrice").text("0");
 		return;
 	}
+	
+	// 선택된 체크박스가 하나 이상인 경우 컨트롤러에 선택된 카트 넘버들을 보낸다.
    	$.ajax({
     	url : "./onclickCheckBoxAJAX.do",
     	type : "post",
@@ -113,7 +184,7 @@ function onclickCheckBoxAJAX() {
      	dataType : "json",
     	data : { "checkValueArr" : checkValueArr },
     	success : function(data) {
-    		$("#totalPrice").val(data.totalPrice);
+    		$("#totalPrice").text(data.totalPrice);
     	}, 
     	error : function(xhr, status, error) {
             alert("error : ", error);
@@ -121,6 +192,70 @@ function onclickCheckBoxAJAX() {
    	});
 }
 
+// 선택 삭제 버튼이 클릭될 때 마다 처리
+function onclickDeleteAllButton() {
+	var checkValueArr = getCheckedCartNoArr();
+	
+	// 만약 선택된 체크박스가 하나도 없다면
+	if(checkValueArr.length <= 0){
+		// 삭제를 할 필요가 없기 때문에 그냥 끝낸다.
+		return;
+	}
+	
+	// 선택된 체크박스가 하나 이상인 경우 컨트롤러에 선택된 카트 넘버들을 보낸다.
+	$.ajax({
+    	url : "./onclickDeleteAllButtonAJAX.do",
+    	type : "post",
+     	traditional : true,
+    	data : { "checkValueArr" : checkValueArr },
+    	success : function(result) {
+    		if (result > 0) {
+    			location.href="./cart.do";
+    		} else {
+	    		alert("실패 메세지");
+    		}
+    	}, 
+    	error : function(xhr, status, error) {
+            alert("error : ", error);
+      	}
+   	});
+}
+
+//상품에 삭제버튼을 눌렀을 때 처리(하나만 삭제)
+function onclickDeleteOneButton(caNo) {
+	
+	$.ajax({
+    	url : "./onclickDeleteOneButtonAJAX.do",
+    	type : "post",
+    	data : { "caNo" : caNo },
+    	success : function(result) {
+    		if (result > 0) {
+    			location.href="./cart.do";
+    		} else {
+	    		alert("해당 상품이 장바구니에 존재하지 않습니다.");
+    		}
+    	}, 
+    	error : function(xhr, status, error) {
+            alert("error : ", error);
+      	}
+   	});
+}
+
+function getCheckedCartNoArr(){
+	// 문서상에 있는 모든 체크박스를 찾아온다. (클래스명을 chBox으로 설정한 것들)
+	var checkArr = document.getElementsByClassName("chBox");
+	// 그 중 필요한 체크박스는 선택된 체크박스이기 때문에 새로 배열을 만들어서
+	// 선택된 체크박스만 모아 놓는다.
+	var checkValueArr = new Array();
+	for(var i = 0; i < checkArr.length; i++){
+		var item = checkArr[i];
+		if(item.checked){
+			// 실제로 배열에 저장되는 값은 카트 넘버이다.
+			checkValueArr.push(item.value);
+		}
+	}
+	return checkValueArr;
+}
 </script>
 </head>
 <body>
@@ -151,10 +286,18 @@ function onclickCheckBoxAJAX() {
 							src="https://blogger.googleusercontent.com/img/a/${c.p_img}"
 							style="width: 150px; height: 150px;"></td>
 						<td>${c.p_title}</td>
-						<td class="countP" id="cBtn"><span class="productCount${c.ca_no }">${c.cnt}</span></td>
-						<td class="totalP"><input class="totalPrice${c.ca_no }" type="hidden" value="${c.p_price}"><fmt:formatNumber pattern="###,###,###"
-								value="${c.p_price * c.cnt}" /></td>
-						<td><button>삭제</button></td>
+						<td>
+							<button onclick="down(${c.ca_no })">◀</button>
+							<span id="cnt${c.ca_no}">${c.cnt}</span>
+							<button onclick="up(${c.ca_no })">▶</button>
+						</td>
+						<td>
+							<input id="unitPrice${c.ca_no}" type="hidden" value="${c.p_price}">
+							<span id="totalPrice${c.ca_no}">${c.p_price * c.cnt}</span>
+						</td>
+						<td>
+							<button type="button" name="btn${c.ca_no }" class="delete_btn" value="${c.ca_no }">삭제</button>
+						</td>
 					</tr>
 				</c:forEach>
 			</table>
@@ -168,7 +311,10 @@ function onclickCheckBoxAJAX() {
 				</tr>
 	
 				<tr>
-					<td><input id="totalPrice" type="text" value="0"/>원</td>
+					<td>
+						<span id="totalPrice">0</span>
+						<span>원</span>
+					</td>
 					<td>2500원</td>
 					<td>102500원</td>
 				</tr>

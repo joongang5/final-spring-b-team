@@ -17,6 +17,14 @@
 		DELETE FROM cart where ca_no=#{ca_no} AND m_no=(SELECT m_no FROM member WHERE m_id=#{m_id})
 	</delete>
 	
+	<delete id="deleteCart" parameterType="HashMap">
+		DELETE FROM cart where ca_no=#{ca_no} AND m_no=(SELECT m_no FROM member WHERE m_id=#{m_id})
+	</delete>
+	
+	<delete id ="deleteCartByCartNo" parameterType="int">
+		DELETE FROM cart WHERE ca_no=#{caNo}
+	</delete>
+	
 	<update id="cartProductUpDown" parameterType="HashMap">
 		UPDATE cart SET cnt=#{cnt} WHERE ca_no=#{ca_no}
 	</update>

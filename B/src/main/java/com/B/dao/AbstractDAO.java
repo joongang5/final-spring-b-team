@@ -34,7 +34,12 @@ public class AbstractDAO {
 		printQueryId(queryID);
 		return sqlSession.delete(queryID, map);
 	}
-
+	
+	public int delete(String queryID, int key) {
+		printQueryId(queryID);
+		return sqlSession.delete(queryID, key);
+	}
+	
 	public void update(String queryID, Map<String, Object> map) {
 		printQueryId(queryID);
 		sqlSession.update(queryID, map);
