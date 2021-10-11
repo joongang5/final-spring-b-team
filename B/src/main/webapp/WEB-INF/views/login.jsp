@@ -71,9 +71,15 @@ function login(m_id, m_pw) {
 <form>
    <h1>로그인</h1>
    
+   
    <input type="text" id ="m_id" name="m_id"   placeholder="ID"  autofocus onkeyup="enterKeyCheck()" >
+   
    <input type="password" id="m_pw"  name="m_pw" placeholder="Password" onkeyup="enterKeyCheck()" >
+   
+   <div>class="save_id"<input type ="checkbox" id ="save_id"/><label for ="save_id">아이디저장</lavel></div>
+   
 	<input  type="button" onclick="loginValidation()" value="로그인">
+	
 	<input type="button" value="회원가입"  onclick="location.href='join.do'" >
 </form>
 </div>
