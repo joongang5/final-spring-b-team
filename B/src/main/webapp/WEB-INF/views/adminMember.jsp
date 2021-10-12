@@ -7,7 +7,36 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 페이지 - 회원관리</title>
+<title>관리자 페이지 | 가구</title>
+<link rel="stylesheet" href="./resources/css/base.css">
+<link rel="stylesheet" href="./resources/css/admin.css">
+<style>
+    .memberList-container{
+
+    }
+
+    .memberList{
+
+    }
+
+    th:first-child{
+      width: auto;
+    }
+
+    td button{
+      background: transparent;
+      color: red;
+      font-size: 11pt;
+      font-style: italic;
+      font-weight: 500;
+      border-radius: 5px;
+    }
+
+    td button:hover{
+      background: rgba(247,164,164,0.36);
+    }
+
+  </style>
 </head>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -103,50 +132,142 @@
 	}
 </script>
 <body>
-	<a href="./adminMember.do">회원관리</a>
-	<a href="./adminLog.do">로그관리</a>
-	<h1>회원 조회</h1>
-	<h2>${totalCount }명의 회원이 존재합니다.</h2>
-	<c:if test="${searchName ne null }">
-		<h2>
-			검색조건 : ${searchName } / 검색어 : ${search }
-			<button onclick="location.href='./adminMember.do'">검색초기화</button>
-		</h2>
-	</c:if>
-	<hr>
-	<form action="./adminMember.do" method="get">
-	<p>입력기간 : <input type="text" id="datepicker_start" name="startDay"<c:if test="${startDay ne null }">value=${startDay }</c:if>> ~ <input type="text" id="datepicker_end" readonly="readonly" name="endDay" <c:if test="${endDay ne null }">value=${endDay }</c:if>> <button type="submit">조회</button></p>
-	</form>
-	<form action="./adminMember.do" method="get">
-	키워드 검색 : 
-		<select name="searchName">
-			<option value="m_id"<c:if test="${searchName eq 'm_id'}">selected="selected"</c:if>>ID</option>
+<!--admin 공통 부분-->
+<div id="layout-container">
+  <header id="admin-header"></header>
+  <div id="admin-main-container">
+    <nav id="admin-sideMenu">
+      <div class="sideMenu__block-container">
+        <ul class="sideMenu__items">
+          <li class="sideMenu__item">
+            <div class="sideMenu-container">
+              <div><img src="./img/setting.png"></div>
+              <div><a href="">홈으로</a></div>
+            </div>
+          </li>
+          <li class="sideMenu__item">
+            <div class="sideMenu-container">
+              <div><img src="./img/delivery.png"></div>
+              <div><a href="">주문 관리</a></div>
+            </div>
+            <div class="sideMenu-sub-container">
+              <ul class="sideMenu__subItems">
+                <li class="sideMenu__subItem"><a href="">주문 목록</a></li>
+                <li class="sideMenu__subItem"><a href="">교환 관리</a></li>
+                <li class="sideMenu__subItem"><a href="">환불 관리</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="sideMenu__item">
+            <div class="sideMenu-container">
+              <div><img src="./img/furniture.png"></div>
+              <div><a href="">상품 관리</a></div>
+            </div>
+            <div class="sideMenu-sub-container">
+              <ul class="sideMenu__subItems">
+                <li class="sideMenu__subItem"><a href="">상품 목록</a></li>
+                <li class="sideMenu__subItem"><a href="">상품 등록</a></li>
+                <li class="sideMenu__subItem"><a href="">쿠폰 등록</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="sideMenu__item sideMenu__item--active">
+            <div class="sideMenu-container">
+              <div><img src="./img/user.png"></div>
+              <div><a href="">고객 관리</a></div>
+            </div>
+            <div class="sideMenu-sub-container">
+              <ul class="sideMenu__subItems sideMenu__subItems--active">
+                <li class="sideMenu__subItem sideMenu__subItem--active"><a href="">회원 목록</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="sideMenu__item">
+            <div class="sideMenu-container">
+              <div><img src="./img/support.png"></div>
+              <div><a href="">고객 응대</a></div>
+            </div>
+            <div class="sideMenu-sub-container">
+              <ul class="sideMenu__subItems">
+                <li class="sideMenu__subItem"><a href="">상품 문의 목록</a></li>
+                <li class="sideMenu__subItem"><a href="">1:1 문의 목록</a></li>
+                <li class="sideMenu__subItem"><a href="">자주 묻는 질문 관리</a></li>
+                <li class="sideMenu__subItem"><a href="">리뷰 목록</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="sideMenu__item">
+            <div class="sideMenu-container">
+              <div><img src="./img/browser.png"></div>
+              <div><a href="">사이트 관리</a></div>
+            </div>
+            <div class="sideMenu-sub-container">
+              <ul class="sideMenu__subItems">
+                <li class="sideMenu__subItem"><a href="">로그 조회</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main>
+      <!--admin 공통 부분 끝-->
+      <div class="admin-title">
+        <h1>회원 목록</h1>
+      </div>
+      <div class="period-search-box">
+      <form action="./adminMember.do" method="get">
+        <label>
+          <p>가입 기간</p>
+          <input type="text" id="datepicker_start" name="startDay"<c:if test="${startDay ne null }">value=${startDay }</c:if>> ~
+          <input type="text" id="datepicker_end" readonly="readonly" name="endDay" <c:if test="${endDay ne null }">value=${endDay }</c:if>>
+        </label>
+        <button class="search-button" type="submit">조회</button>
+        </form>
+      </div>
+      <div class="selects-container">
+        <div class="keyword-search-box">
+          <form action="./adminMember.do" method="get">
+          <label for="keyword-search__word">
+            <p>키워드 검색</p>
+          </label>
+          <div class="keyword-search__bar">
+            <select id="keyword-search__column" name="searchName">
+              <option value="m_id"<c:if test="${searchName eq 'm_id'}">selected="selected"</c:if>>ID</option>
 			<option value="m_name"<c:if test="${searchName eq 'm_name'}">selected="selected"</c:if>>이름</option>
 			<option value="m_email"<c:if test="${searchName eq 'm_email'}">selected="selected"</c:if>>이메일</option>
-		</select> <input type="text" name="search"<c:if test="${search ne null }">value=${search }</c:if>>
-		<button type="submit">검색</button> 
-	</form>
-	<br>
-	<select name="searchName" onchange="order()" id="order">
-			<option value="">선택</option>
+            </select>
+            <input type="search" name="search" id="keyword-search__word" <c:if test="${search ne null }">value=${search }</c:if>>
+          </div>
+          <button class="search-button" type="submit">검색</button>
+          </form>
+        </div>
+        <div class="sort-box">
+          <select name="searchName" onchange="order()" id="order">
+            <option value="">선택</option>
 			<option value="m_no"<c:if test="${order eq 'm_no'}">selected="selected"</c:if>>회원번호 순</option>
 			<option value="m_date"<c:if test="${order eq 'm_date'}">selected="selected"</c:if>>가입일 순</option>
-		</select>
-	<c:choose>
+          </select>
+        </div>
+      </div>
+      <c:choose>
 	<c:when test="${fn:length(adminMember) gt 0 }">
-	<table>
-		<tr>
-			<th>상품사진</th>
-			<th>회원번호</th>
-			<th>ID</th>
-			<th>이름</th>
-			<th>이메일</th>
-			<th>가입일</th>
-			<th>삭제</th>
-		</tr>
-		<c:forEach items="${adminMember }" var="am">
-			<tr>
-				<td></td>
+      <div class="memberList-container">
+        <table class="list-table memberList">
+          <thead>
+          <tr>
+            <th scope="col">회원 번호</th>
+            <th scope="col">ID</th>
+            <th scope="col">이름</th>
+            <th scope="col">이메일</th>
+            <th scope="col">가입일</th>
+            <th scope="col">삭제</th>
+          </tr>
+          </thead>
+          <tbody>
+          <!--회원 목록 출력 / 반복문 사용-->
+          <c:forEach items="${adminMember }" var="am">
+          <tr>
 				<td>${am.m_no}</td>
 				<td>${am.m_id}</td>
 				<td>${am.m_name}</td>
@@ -155,14 +276,23 @@
 				<td><button type="submit" onclick="deleteMember('${am.m_id}')">삭제</button></td>
 			</tr>
 		</c:forEach>
-	</table>
-	<!-- 페이징은 여기에 -->
-	<ui:pagination paginationInfo="${paginationInfo }" type="text"
+          <!--회원 목록 출력 끝-->
+          </tbody>
+        </table>
+        <div class="paging memberList__paging">
+          <!--페이징 출력-->
+          <ui:pagination paginationInfo="${paginationInfo }" type="text"
 		jsFunction="linkPage" />
-		</c:when>
+        </div>
+      </div>
+      </c:when>
 		<c:otherwise>
 			<h2>출력할 글이 없습니다.</h2>
 		</c:otherwise>
 	</c:choose>
+    </main>
+  </div>
+  <footer id="admin-footer"></footer>
+</div>
 </body>
 </html>
