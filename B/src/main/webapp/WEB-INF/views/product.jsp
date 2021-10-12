@@ -7,7 +7,90 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>상품 목록</title>
+<title>관리자 페이지 | 가구</title>
+<link rel="stylesheet" href="./resources/css/base.css">
+<link rel="stylesheet" href="./resources/css/admin.css">
+<style>
+    .category-search-box{
+      margin-bottom: 10px;
+    }
+
+    .category-search-box label{
+
+    }
+
+    .category-search-box select{
+      /* background: #eeded5; */
+      width: 200px;
+      padding: 8px 14px;
+    }
+
+    .selects-container{
+
+    }
+
+    .change-displayState-box{
+      margin-bottom: 10px;
+    }
+
+    .change-displayState-box label{
+
+    }
+
+    #change-displayState{
+
+    }
+
+    .change-displayState-box button{
+
+    }
+
+    .productList-container{
+
+    }
+
+    .productList{
+      /* border: 1px solid black; */
+      /* border-collapse: collapse; */
+    }
+
+    .productList th:nth-child(3){
+
+    }
+
+    .productList th:nth-child(7){
+
+    }
+
+    .product-thumbnail-td{
+      width: 50px;
+      height: 50px;
+      overflow: hidden;
+    }
+
+
+    .product-thumbnail-td img{
+      width: 100%;
+      object-fit: cover;
+    }
+
+    #sort__by-saleState{
+
+    }
+
+    .productList td{
+      font-size: 10pt;
+    }
+
+    .productList__paging {
+
+    }
+    
+    .checkbox{
+    	
+    }
+
+    </style>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -61,24 +144,104 @@ $(document).ready(function(){
 	})
 })
  
-
-
 </script>
 <body>
+<!--admin 공통 부분-->
+<div id="layout-container">
+  <header id="admin-header"></header>
+  <div id="admin-main-container">
+    <nav id="admin-sideMenu">
+      <div class="sideMenu__block-container">
+        <ul class="sideMenu__items">
+          <li class="sideMenu__item">
+            <div class="sideMenu-container">
+              <div><img src="./resources/images/setting.png" style="height:30px;width:30px;"></div>
+              <div><a href="./index.do">홈으로</a></div>
+            </div>
+          </li>
+          <li class="sideMenu__item">
+            <div class="sideMenu-container">
+              <div><img src="./resources/images/delivery.png" style="height:30px;width:30px;"></div>
+              <div><a href="">주문 관리</a></div>
+            </div>
+            <div class="sideMenu-sub-container">
+              <ul class="sideMenu__subItems">
+                <li class="sideMenu__subItem"><a href="">주문 목록</a></li>
+                <li class="sideMenu__subItem"><a href="">교환 관리</a></li>
+                <li class="sideMenu__subItem"><a href="">환불 관리</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="sideMenu__item sideMenu__item--active">
+            <div class="sideMenu-container">
+              <div><img src="./resources/images/furniture.png" style="height:30px;width:30px;"></div>
+              <div><a href="./product.do">상품 관리</a></div>
+            </div>
+            <div class="sideMenu-sub-container">
+              <ul class="sideMenu__subItems sideMenu__subItems--active">
+                <li class="sideMenu__subItem sideMenu__subItem--active"><a href="./product.do">상품 목록</a></li>
+                <li class="sideMenu__subItem"><a href="./registerProduct.do">상품 등록</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="sideMenu__item">
+            <div class="sideMenu-container">
+              <div><img src="./resources/images/user.png" style="height:30px;width:30px;"></div>
+              <div><a href="">고객 관리</a></div>
+            </div>
+            <div class="sideMenu-sub-container">
+              <ul class="sideMenu__subItems">
+                <li class="sideMenu__subItem"><a href="">회원 목록</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="sideMenu__item">
+            <div class="sideMenu-container">
+              <div><img src="./resources/images/support.png" style="height:30px;width:30px;"></div>
+              <div><a href="">고객 응대</a></div>
+            </div>
+            <div class="sideMenu-sub-container">
+              <ul class="sideMenu__subItems">
+                <li class="sideMenu__subItem"><a href="">상품 문의 목록</a></li>
+                <li class="sideMenu__subItem"><a href="">1:1 문의 목록</a></li>
+                <li class="sideMenu__subItem"><a href="">자주 묻는 질문 관리</a></li>
+                <li class="sideMenu__subItem"><a href="">리뷰 목록</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="sideMenu__item">
+            <div class="sideMenu-container">
+              <div><img src="./resources/images/browser.png" style="height:30px;width:30px;"></div>
+              <div><a href="">사이트 관리</a></div>
+            </div>
+            <div class="sideMenu-sub-container">
+              <ul class="sideMenu__subItems">
+                <li class="sideMenu__subItem"><a href="">로그 조회</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main>
+      <!--admin 공통 부분 끝-->
+      
+      
       <div class="admin-title">
         <h1>상품 목록</h1>
       </div>
       <form id="category-search-box" name="category-search-box" action="product.do" method="get">
       <div class="category-search-box">
-        <!--선택하면 바로 이동됨-->
-        <label>카테고리로 검색
-          <select id="cMainSelected" name="cMainSelected" onchange="selectMain(this)">
+        <!--클릭하면 기능 구동되는 걸루....ㅠㅠㅠㅠ-->
+        <label>
+        <p>카테고리로 검색</p>
+          <select id="cMainSelected" class="search-select" name="cMainSelected" onchange="selectMain(this)">
             <option>1차 카테고리</option> 
             <c:forEach items="${categoryMain}" var="ca">
             <option value="${ca.c_main}">${ca.c_main }</option>            
             </c:forEach>
           </select>
-          <select id="cSubSelected" name="cSubSelected">
+          <select id="cSubSelected"   class="search-select" name="cSubSelected">
             <option>2차 카테고리</option>
           </select>
         </label>
@@ -87,29 +250,34 @@ $(document).ready(function(){
       </form>
       
       <div class="keyword-search-box">
-        <label for="keyword-search__word">키워드 검색</label>
+        <label for="keyword-search__word">
+            <p>키워드 검색</p>
+        </label>
         <form action="product.do" method="get">
         <div class="keyword-search__bar">
-          <select id="searchName" name="searchName">
+          <select id="keyword-search__column" name="searchName">
             <option value="p_no"<c:if test="${searchName eq 'p_no'}">selected="selected"</c:if>>상품 번호</option>
             <option value="p_title"<c:if test="${searchName eq 'p_title'}">selected="selected"</c:if>>상품명</option>
-          </select>  <input type="text" name="search"<c:if test="${search ne null }">value=${search }</c:if>>
-        	<button type="submit">검색</button>
+          </select>  <input type="text" id="keyword-search__word" name="search"<c:if test="${search ne null }">value=${search }</c:if>>
+        	<button type="submit" class="search-button">검색</button>
         </div>
         </form>
       </div>
+      
+      
       <div class="selects-container">
       
        <form action="productModify.do" method="post">
         <div class="change-displayState-box">
-          <label>선택한 상품
-            <select id="p_state" name="p_state">
+          <label>
+          	<p>선택한 상품</p>
+            <select id="change-displayState" class="search-select" name="p_state">
               <option value="1">표시</option>
               <option value="0">비표시</option>
             </select>
             <input type="hidden" id="modify"  value="" name="modify">
           </label>
-          <button type="submit">일괄 변경</button>
+          <button type="submit" class="search-button">일괄 변경</button>
         </div>
           </form>
           
@@ -126,22 +294,18 @@ $(document).ready(function(){
         </div>
       </div>
       <div class="productList-container">
-        <table class="productList" border="1">
-          <thead>
-          </thead>
-          <tbody>
-          <!--상품 목록 출력 / 반복문 사용-->
-          
+        <table class="list-table productList" >
+          <thead>      
           <tr>
-			<th>선택</th>
-		 	<th>상품번호</th>
-			<th>등록일자</th>
-			<th>상위카테고리</th>
-			<th>하위카테고리</th>
-			<th>상품명</th>
-			<th>상품가격</th>
-			<th>재고</th>
-			<th>상품이미지</th>
+			<th scope="col">선택</th>
+		 	<th scope="col">상품번호</th>
+			<th colspan="2" scope="col">상품</th>
+			<th scope="col">상품가격</th>
+			<th scope="col">재고</th>
+			<th scope="col">등록일자</th>
+			<th scope="col">상위카테고리</th>
+			<th scope="col">하위카테고리</th>
+			<th scope="col">상품이미지</th>
 			<th scope="col">
               <select id="sort__by-saleState">
                 <option>판매 상태</option>
@@ -159,12 +323,12 @@ $(document).ready(function(){
 		<tr>
 			<td><input type="checkbox" class="checkbox" value="${p.p_no}"></td>
 			<td>${p.p_no }</td>
-			<td>${p.p_date }</td>
-			<td>${p.c_main }</td>
-			<td>${p.c_sub }</td>
 			<td><a href="./productDetail.do?p_no=${p.p_no}"> ${p.p_title} </a></td>
 			<td>${p.p_price }</td>
 			<td>${p.p_cnt }</td>
+			<td>${p.p_date }</td>
+			<td>${p.c_main }</td>
+			<td>${p.c_sub }</td>
 			<td><img src="https://blogger.googleusercontent.com/img/a/${p.p_img}" style="width:100px;height:100px;"></td>
 			<td> <c:if test="${p.p_state eq 1}"> 판매중 </c:if>
 			<c:if test="${p.p_state eq 0 }">
@@ -208,18 +372,13 @@ $(document).ready(function(){
           </tbody>
         </table>
         <c:if test="${empty categorySearch }">
-        <div class="productList__paging">
+        <div class="paging productList__paging">
           <ui:pagination paginationInfo="${paginationInfo }" type="text" jsFunction="linkPage" />
       </div>
      </c:if>
    
   </div>
-  <footer id="footer-space"></footer>
-
-
-   <div class="registerProduct">
-   		<a href="./registerProduct.do"> 상품 등록 </a>
-   </div>	
+  <footer id="admin-footer"></footer>	
  	
 
 </body>
