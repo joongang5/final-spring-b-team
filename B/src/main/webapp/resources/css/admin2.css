@@ -53,7 +53,7 @@
     background: #FF8A00;
     font-weight: bold;
     color: white;
-    padding-bottom: 0px;
+    /* padding-bottom: 0px; */
 }
 
 .sideMenu__item img{
@@ -200,7 +200,7 @@ select{
     -webkit-appearance: none;
     -moz-appearance: none;
     background: transparent;
-    background-image: url('../images/down.png');
+    background-image: url('../img/down.png');
     background-size: 16px;
     background-repeat: no-repeat;
     background-position-y: 60%;
@@ -281,7 +281,7 @@ td{
 }
 
 td input[type="checkbox"] {
-	
+
 }
 
 th select{
@@ -292,7 +292,7 @@ th select{
 }
 
 th:first-child{
-    width: 31px;
+    width: 150px;
 }
 
 .paging{

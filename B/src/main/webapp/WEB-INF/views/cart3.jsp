@@ -246,7 +246,7 @@ function getCheckedCartNoArr(){
 	var checkArr = document.getElementsByClassName("chBox");
 	// 그 중 필요한 체크박스는 선택된 체크박스이기 때문에 새로 배열을 만들어서
 	// 선택된 체크박스만 모아 놓는다.
-	var checkValueArr = new Array();
+	var checkValueArr = new Array(); 
 	for(var i = 0; i < checkArr.length; i++){
 		var item = checkArr[i];
 		if(item.checked){
@@ -315,7 +315,10 @@ function getCheckedCartNoArr(){
 						<span id="totalPrice">0</span>
 						<span>원</span>
 					</td>
-					<td>2500원</td>
+					<td>
+						<span id="shippingFee">0</span>
+						<span>원</span>
+					</td>
 					<td>102500원</td>
 				</tr>
 			</table>

@@ -62,6 +62,20 @@ public class IndexController {
 		System.out.println(jsonList.toJSONString());
 		return jsonList.toJSONString();
 	}
-
+	
+	@RequestMapping(value = "/categoryPage.do")
+	public ModelAndView categoryPage(CommandMap map) {
+		ModelAndView mv = new ModelAndView("categoryPage");
+		String mainCategory = (String) map.get("category");
+		String subCategory = (String) map.get("sub");
+		
+		mv.addObject("mainCategory", mainCategory);
+		mv.addObject("subCategory", subCategory);
+		
+		List<HashMap<String, Object>> category = indexService.getCategory();
+		mv.addObject("category", category);
+		
+		return mv;
+	}
 
 }

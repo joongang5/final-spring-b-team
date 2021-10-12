@@ -21,7 +21,7 @@
 html, body{width: 100%; height: 100%;}
 #wrapper{width:100%;margin:0 auto;}
 	header{background-color:rgba(255,255,255,0);}
-	#container{widht:100%;}
+	#container{width:100%;}
 		.mainContainer{width:100%;}
 			.mainContainer li.section{width:100%;height:100vh;margin:0 auto;}
 			/*광고영역*/
@@ -214,7 +214,7 @@ $(function(){
 					<li class="section">
 						<div class="sector">
 							<h2>
-								<a href="" title="${cM.c_main }">#${cM.c_main }</a>
+								<a href="/categoryPage.do?category=${cM.c_main }" title="${cM.c_main }">#${cM.c_main }</a>
 								<select name="optionSelect" class="sectorSelecter optionSelect">
 									<option value="p_date" selected>등록순</option>
 									<option value="p_sell">구매순</option>
@@ -234,7 +234,7 @@ $(function(){
 								</li>
 								<c:forEach items="${productList }" var="pl">
 									<c:if test="${pl.c_main eq cM.c_main}">
-										<li class="scene">
+										<li class="scene" onclick="location.href='/productDetail.do?category=${cM.c_main }&&sub= ${pl.c_sub }&&product=${pl.p_no }'">
 											<img src="https://blogger.googleusercontent.com/img/a/${pl.p_img }" alt="${pl.p_title }" class="sceneImg"/>
 											<div class="detail">
 												<p class="title">
