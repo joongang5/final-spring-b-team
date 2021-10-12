@@ -1,5 +1,6 @@
 package com.B.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,11 @@ public class OrderDAO extends AbstractDAO{
 	}
 
 	public List<Map<String, Object>> getListByMemberNo(Map<String, Object> map) {
-		return selectList("order_list.getListByMemberNo", map);
+		return selectList("order.getListByMemberNo", map);
 	}
+
+	public Map<String, Object> getOrderProductInfo(int p_no) {
+		return selectOne("order.getOrderProductInfo", p_no);
+	}
+
 }

@@ -1,5 +1,6 @@
 package com.B.serivce;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +24,11 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<Map<String, Object>> getListByMemberNo(Map<String, Object> map) {
 		return orderDAO.getListByMemberNo(map);
+	}
+
+	@Override
+	public Map<String, Object> getOrderProductInfo(int p_no) {
+		return orderDAO.getOrderProductInfo(p_no);
 	}
 
 	

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,10 +14,9 @@
             margin: 0;
         }
 
-        .order-content__header{border-bottom: none;background: #eeded5;}
-
-        .order-content__body{
-
+        .order-content__header{
+        border-bottom: none;
+        background: #eeded5;
         }
 
         .order-product-right-block{
@@ -26,34 +27,12 @@
             width: 30%;
         }
 
-        .order-content__delivery{
-
-        }
-
-        /**/
-
-        .order-content__delivery select{
-
-        }
-
         .order-delivery__released{
             text-align: left;
             border: 1px solid #eeded5;
             padding: 15px;
             margin-top: 10px;
             /* display: none; */
-        }
-
-        .order-delivery__courier{
-
-        }
-
-        .order-delivery__tracking{
-
-        }
-
-        .order-delivery__tracking label{
-
         }
 
         label p{
@@ -72,44 +51,8 @@
             height: 30px;
         }
 
-        .personalInfo-container{
-
-        }
-
-        .personalInfo-content-container{
-
-        }
-
-        .personalInfo-content__header{
-
-        }
-
         .personalInfo-content__body{
             height: 100%;
-        }
-
-        .personalInfo-content__section{
-
-        }
-
-        .personalInfo-content__value{
-
-        }
-
-
-        .delivery{
-
-        }
-
-        .delivery input[type="text"]{
-
-        }
-
-        .personalInfo-name{
-
-        }
-
-        .personalInfo-tel{
         }
 
         .personalInfo-address{
@@ -118,16 +61,15 @@
         }
 
 
-        .post-code {width: 30%;}
+        .post-code {
+        width: 30%;
+        }
 
 
         .personalInfo-memo{
             width: 93%;
             margin-bottom: 5px;
         }
-
-        .payment{
-}
 
         .orderState-save-container{
             text-align: center;
@@ -140,7 +82,6 @@
             border-radius: 15px;
             font-size: 15pt;
         }
-
 
     </style>
 </head>

@@ -1,5 +1,7 @@
 package com.B.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,7 +11,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.B.common.CommandMap;
@@ -104,5 +108,56 @@ public class OrderController {
 		
 		return mv;
 	}
+	
+	
+	@GetMapping("/checkout_temp.do")
+	public ModelAndView tempCheckout() {
+		ModelAndView mv = new ModelAndView("checkout_temp");
+		return mv;
+	}
+	
+	@PostMapping("/checkout.do")
+	public ModelAndView readCheckout(CommandMap map, @RequestParam(value="p_no$cnt",required=true) String[] as, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("checkout");
+		/*
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("m_id");
+		*/
+		//임시 멤버, 임시 상품 파라미터 사용
+		System.out.println(map.get("m_id"));
+		String id = (String) map.get("m_id");
+		
+		if (as != null) {
+			//상품 데이터 가져오기
+			List<Map<String, Object>> orderProductList = new ArrayList<Map<String, Object>>();
+			for (int i = 0; i < as.length; i++) {
+				Map<String, Object> orderProduct = new HashMap<>();
+			    String[] str = as[i].split(",");
+			    int p_no = Integer.parseInt(str[0]);
+			    int cnt = Integer.parseInt(str[1]);
+			    System.out.println("p_no="+p_no);
+			    System.out.println("cnt="+cnt);
+			    orderProduct = orderService.getOrderProductInfo(p_no);
+			    orderProduct.put("cnt", cnt);
+			    orderProduct.put("amount", (int)orderProduct.get("p_price")*cnt);
+			    orderProductList.add(orderProduct);
+			}
+			mv.addObject("orderProductList", orderProductList);
+			
+			//멤버 데이터 가져오기
+			Map<String, Object> memberInfo = loginService.login(id);
+			//이름, 연락처, 주소, 적립금만 가져가기
+			//주소는 칼럼 분할 문제 때문에 일단 생략
+			mv.addObject("m_name", memberInfo.get("m_name"));
+			//mv.addObject("memberInfo", memberInfo.get("m_addr"));
+			mv.addObject("m_phone", memberInfo.get("m_phone"));
+			mv.addObject("m_point", memberInfo.get("m_point"));
+		} else {
+			//가져온 상품 없을 때 처리할 내용
+		}
+		
+		return mv;
+	}
+	
 	
 }

@@ -1,81 +1,125 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>   
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>주문/결제 | 가구</title>
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+	 function DaumPostcode() {
+	    new daum.Postcode({
+	        oncomplete: function(data) {
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                let addr = ''; // 주소 변수
+                let extraAddr = ''; // 참고항목 변수
+
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+
+                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+                if(data.userSelectedType === 'R'){
+                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    // 건물명이 있을 때 추가 (-공동주택일 경우에만 추가하는 건 일단 제외)
+                    if(data.buildingName !== ''){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    // 조합된 참고항목을 해당 필드에 넣는다.
+                    document.getElementById("detailAddress").value = extraAddr;
+                
+                } else {
+                    document.getElementById("detailAddress").value = '';
+                }
+
+                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                document.getElementById('postcode').value = data.zonecode;
+                document.getElementById("address").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("detailAddress").focus();
+	        }
+	    }).open();
+	 } 
+	 
+	 function openTerms(termsNo) {
+		document.getElementById(termsNo).style.display = "block";
+	 }
+	 
+	 function closeTerms(termsNo) {
+		document.getElementById(termsNo).style.display = "none";
+	 }
+	 
+	 function reflectPoint(totalAmount, usablePoint, maxPoint=0) {
+		let usePoint = document.getElementById("usePoint").value;
+		if (usePoint % 100 != 0) {
+			alert("적립금은 100원 단위로만 사용 가능합니다.");
+			usePoint = 0;
+			document.getElementById("usePoint").value = '';
+		}
+		if (usePoint > usablePoint) {
+			alert("사용 가능 적립금을 초과했습니다.");
+			usePoint = usablePoint;
+			document.getElementById("usePoint").value = usablePoint;
+		}
+		if (maxPoint != 0) {
+			usePoint = maxPoint;
+			document.getElementById("usePoint").value = maxPoint;
+		}
+		document.getElementById("reflectedPoint").innerHTML = usePoint;
+		document.getElementById("totalAmount").innerHTML = (totalAmount - usePoint).toLocaleString('ko-KR');
+		document.getElementById("checkout").innerHTML = (totalAmount - usePoint).toLocaleString('ko-KR') + "원 결제하기";
+		document.getElementById("willPoint").innerHTML = ( (totalAmount - usePoint)*0.05 ).toLocaleString('ko-KR');
+	 }
+	 
+	 function checkForCheckout() {
+		 let agreeOrNot = document.getElementById("agreeToTerms").checked;
+		 if(!agreeOrNot) {
+			 alert("개인정보 수집 이용 및 제 3자 제공에 동의하셔야 결제를 진행하실 수 있습니다.");
+			 return false;
+		 }
+		 
+		 if(document.getElementById("receiver").value == "") {
+			 alert("수령인을 입력하세요.");
+			 document.getElementById("receiver").focus();
+			 return false;
+		 }
+		 
+		 if(document.getElementById("tel").value == "") {
+			 alert("연락처를 입력하세요.");
+			 document.getElementById("tel").focus();
+			 return false;
+		 }
+		 
+		 if(document.getElementById("postcode").value == "") {
+			 alert("배송지를 입력하세요.");
+			 document.getElementById("address").focus();
+			 return false;
+		 }
+	 }
+	</script>
   <link rel="stylesheet" href="./resources/css/base.css">
   <link rel="stylesheet" href="./resources/css/order-sheet.css">
   <style>
-    /*장바구니와 공통*/
-    #payment-main-container{
-
-    }
-
-    aside{
-
-    }
-
-    main{
-
-    }
-
-    .payment-sum-container{
-
-    }
-
-    .payment-sum__section{
-
-    }
-
-    .payment-sum__value{
-
-    }
-
-    .payment-sum__value span::after{
-
-    }
-
-    .total-amount{
-
-    }
-
-    .amount__value {
-
-    }
-
-    .amount__sign{
-
-    }
-
-    .payment-sum__short-container{
-
-    }
-
-    .payment-total-amount-container{
-
-    }
-
-    .payment-button-container{
-
-    }
-
-    .payment-button-container button{
-
-    }
-
-    .payment-title{
-
-    }
-
-
     .payment-product-content{
       padding-bottom: 10px;
     }
-
-    .payment-product-left-block, .payment-product-right-block{
-
-    }
-
+    
     .payment-product-left-block{
       height: 120px;
     }
@@ -85,26 +129,10 @@
       height: 120px;
     }
 
-    .product-content__productThumbnail img{
-
-    }
-
-    .payment-product-right-block{
-
-    }
-
-    .product-content__name{
-
-    }
-
     .product-content__option-container{
       height: 35%;
     }
-
-    .option-content__name{
-
-    }
-
+    
     .option-content__price-container{
       display: flex;
     }
@@ -114,20 +142,12 @@
     }
 
 
-    /**/
-
-    .total-amount__value{
-
+    label{
+    /* display: grid; */
     }
-
-    label{/* display: grid; */}
 
     label p{
       margin-left: 30px;
-    }
-
-    .terms-confirm-container input[type="checkbox"]{
-
     }
 
     .terms-confirm-container .checkMark {
@@ -143,16 +163,8 @@
       height: 11px;
     }
 
-    .payment-sum-subject{
-
-    }
-
     .payment-sum-subject h3{
       margin-top: 0px;
-    }
-
-    .total-amount{
-
     }
 
     .payment-will-point-container{
@@ -160,10 +172,6 @@
       justify-content: flex-end;
       font-size: 11pt;
       align-items: center;
-    }
-
-    .will-point__value{
-
     }
 
     .will-point__value .amount__value{
@@ -185,18 +193,6 @@
       /* display: flex; */
       /* align-items: center; */
       padding-bottom: 10px;
-    }
-
-    input[type="checkbox"]{
-
-    }
-
-    .terms-content-container{
-
-    }
-
-    .terms-content-top{
-
     }
 
     .terms-content-top__subject{
@@ -244,9 +240,6 @@
       -moz-transform: rotate(45deg);
     }
 
-    .terms-content-top__view button{
-
-    }
 
     /*여기서부터 약관 팝업*/
     .first-terms{
@@ -306,16 +299,8 @@
       padding: 20px 0;
     }
 
-    .terms-detail__content-container{
-
-    }
-
     .terms-detail__content{
       padding: 20px 0;
-    }
-
-    .terms-detail-confirm{
-
     }
 
     .terms-detail-confirm button{
@@ -326,14 +311,11 @@
     }
     /*약관 팝업 끝*/
 
+
     .terms-content-bottom{
       margin-top: 15px;
       font-size: 11pt;
       font-weight: 500;
-    }
-
-    .payment-detail-container{
-      /* margin-right: 15px; */
     }
 
     
@@ -354,9 +336,6 @@
       margin-bottom: 60px;
     }
 
-    .payment-delivery__body{
-
-    }
 
     .payment-delivery__item{
       display: flex;
@@ -413,28 +392,12 @@
       margin-right: 10px;
     }
 
-    .address input[type="text"]:nth-child(3){
-
-    }
-
-    .address input[type="text"]:nth-child(4){
-
-    }
-
     .memo p{
      display: block;
     }
 
     .memo input[type="text"]{
       width: 100%;
-    }
-
-    .payment-product{
-
-    }
-
-    .payment-product__body{
-
     }
 
     .option-content__quantity{
@@ -460,24 +423,8 @@
       width: 2px;
     }
 
-    .payment-coupon{
-
-    }
-
-    .payment-coupon__body{
-
-    }
-
-    .payment-point{
-
-    }
-
     .payment-point__body{
       display: flex;
-    }
-
-    .payment-point__use{
-
     }
 
     .payment-point__use label{
@@ -509,30 +456,10 @@
       font-size: 12pt;
     }
 
-    .payment-point__usable-section{
-
-    }
-
-    .payment-point__usable-value{
-
-    }
-
     .payment-point__usable-value .amount__value{
       margin-left: 10px;
       color: #ff8a00;
       font-weight: 600;
-    }
-
-    .payment-plan{
-
-    }
-
-    .payment-plan__body{
-
-    }
-
-    .payment-planList{
-
     }
 
     .payment-plan-button{
@@ -557,9 +484,12 @@
   </style>
 </head>
 <body>
+<!-- 상품값 null일 때 처리 내용 넣어야 함 : '유효하지 않는 요청입니다.' -->
+<!-- 세션값 null일 때 처리 내용 넣어야 함 : 로그인 화면으로 튕겨내기 -->
+
 <!--약관 보기 누르면 출력되는 div-->
 <!--실제 약관 내용을 포함한다-->
-<div class="first-terms terms-detail__background">
+<div id="firstTerms" class="first-terms terms-detail__background">
   <div class="terms-detail__popup">
     <div class="terms-detail__container">
       <div class="terms-detail__topic">
@@ -571,7 +501,7 @@
         </div>
       </div>
       <div class="terms-detail-confirm">
-        <button>확인</button>
+        <button onclick="closeTerms('firstTerms');">확인</button>
       </div>
     </div>
   </div>
@@ -579,7 +509,7 @@
 <!--약관 popup 끝-->
 <!--약관 보기 누르면 출력되는 div-->
 <!--실제 약관 내용을 포함한다-->
-<div class="second-terms terms-detail__background">
+<div id="secondTerms" class="second-terms terms-detail__background">
   <div class="terms-detail__popup">
     <div class="terms-detail__container">
       <div class="terms-detail__topic">
@@ -591,7 +521,7 @@
         </div>
       </div>
       <div class="terms-detail-confirm">
-        <button>확인</button>
+        <button onclick="closeTerms('secondTerms');">확인</button>
       </div>
     </div>
   </div>
@@ -615,7 +545,7 @@
                 받는 사람
               </div>
               <div class="receiver payment-delivery__form">
-                <input type="text">
+                <input type="text" id="receiver" name="m_name" value="${m_name}">
               </div>
             </div>
             <div class="tel payment-delivery__item">
@@ -623,7 +553,7 @@
                 연락처
               </div>
               <div class="tel payment-delivery__form">
-                <input type="tel">
+                <input type="tel" id="tel" name="m_phone" value="${m_phone}" onKeyup="this.value=this.value.replace(/[^-0-9]/g,'');"/>
               </div>
             </div>
             <div class="address long-item payment-delivery__item">
@@ -633,10 +563,10 @@
                 <!--주소 찾기 API 사용-->
                 <!--우편번호, 주소1, 주소2-->
               <div class="address payment-delivery__form">
-                <button class="small-button">주소 찾기</button>
-                <input type="text">
-                <input type="text">
-                <input type="text">
+                <button class="small-button" onclick="DaumPostcode()">주소 찾기</button>
+                <input type="text" id="postcode" placeholder="우편 번호" readonly="readonly">
+                <input type="text" id="address" placeholder="주소">
+                <input type="text" id="detailAddress" placeholder="상세 주소">
               </div>
             </div>
             <div class="memo long-item payment-delivery__item">
@@ -654,58 +584,38 @@
             <h2>주문 상품</h2>
           </div>
           <div class="payment-section-body payment-product__body">
+          
             <!--구매할 상품 출력 / 반복문 사용-->
-            <div class="payment-product-content">
-              <div class="payment-product-left-block">
-                <div class="product-content__productThumbnail">
-                  <img src="./resources/images/no-image.png">
-                </div>
-              </div>
-              <div class="payment-product-right-block">
-                <div class="product-content__name">
-                  상품명
-                </div>
-                <div class="product-content__option-container">
-                    <div class="option-content__name">
-                      옵션
-                    </div>
-                    <div class="option-content__price-container">
-                      <div class="option-content__price">
-                        <span class="amount__value">50,000</span>원
-                      </div>
-                      <div class="option-content__quantity">
-                        <span class="number__value">1</span>개
-                      </div>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <!--샘플용 2번째 레이어-->
-            <div class="payment-product-content">
-              <div class="payment-product-left-block">
-                <div class="product-content__productThumbnail">
-                  <img src="./resources/images/no-image.png">
-                </div>
-              </div>
-              <div class="payment-product-right-block">
-                <div class="product-content__name">
-                  상품명
-                </div>
-                <div class="product-content__option-container">
-                  <div class="option-content__name">
-                    옵션
-                  </div>
-                  <div class="option-content__price-container">
-                    <div class="option-content__price">
-                      <span class="amount__value">50,000</span>원
-                    </div>
-                    <div class="option-content__quantity">
-                      <span class="number__value">1</span>개
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <c:set var="totalAmount" value="0"/>
+            <c:forEach var="list" items="${orderProductList}">
+	            <div class="payment-product-content">
+	              <div class="payment-product-left-block">
+	                <div class="product-content__productThumbnail">
+	                  <!-- <img src="./resources/images/no-image.png"> -->
+	                  <img src="https://blogger.googleusercontent.com/img/a/${list.p_img}">
+	                </div>
+	              </div>
+	              <div class="payment-product-right-block">
+	                <div class="product-content__name">
+	                  ${list.p_title}
+	                </div>
+	                <div class="product-content__option-container">
+	                    <div class="option-content__name">
+	                      옵션
+	                    </div>
+	                    <div class="option-content__price-container">
+	                      <div class="option-content__price">
+	                        <span class="amount__value"><fmt:formatNumber value="${list.p_price}" pattern="#,###"/></span>원
+	                      </div>
+	                      <div class="option-content__quantity">
+	                        <span class="number__value">${list.cnt}</span>개
+	                      </div>
+	                    </div>
+	                </div>
+	              </div>
+	            </div>
+	            <c:set var="totalAmount" value="${totalAmount + list.amount}"/>
+	         </c:forEach>
             <!--구매할 상품 출력 끝-->
           </div>
         </div>
@@ -723,19 +633,18 @@
           </div>
           <div class="payment-section-body payment-point__body">
             <div class="payment-point__use">
-              <!--유효성 검사 함수 넣기-->
               <label>
-              <input type="text">
+              <input type="text" id="usePoint" onblur="reflectPoint(${totalAmount},${m_point});" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"/>
               원
               </label>
-              <button class="small-button">전액 사용</button>
+              <button class="small-button" onclick="reflectPoint(${totalAmount},${m_point},${m_point});">전액 사용</button>
             </div>
             <div class="payment-point__usable">
               <div class="payment-point__usable-section">
                 사용 가능 적립금
               </div>
               <div class="payment-point__usable-value">
-                <span class="amount__value">1,000</span>원
+                <span class="amount__value"><fmt:formatNumber value="${m_point}" pattern="#,###"/></span>원
               </div>
             </div>
           </div>
@@ -765,13 +674,14 @@
             상품 금액
           </div>
           <div class="payment-sum__value">
-            <span class="amount__value">50,000</span>원
+            <span class="amount__value"><fmt:formatNumber value="${totalAmount}" pattern="#,###"/></span>원
           </div>
         </div>
         <div class="payment-sum__short-container">
           <div class="payment-sum__section">
             배송료
           </div>
+          <!-- 상품 테이블에 배송료 칼럼도 만들어야 함 -->
           <div class="payment-sum__value">
             <span class="amount__sign">+</span>
             <span class="amount__value">0</span>원
@@ -792,7 +702,7 @@
           </div>
           <div class="payment-sum__value">
             <span class="amount__sign">-</span>
-            <span class="amount__value">0</span>원
+            <span id="reflectedPoint" class="amount__value">0</span>원
           </div>
         </div>
       </div>
@@ -802,12 +712,14 @@
             최종 결제 금액
           </div>
           <div class="total-amount payment-sum__value">
-            <span class="total-amount__value amount__value">50,000</span>원
+            <span id="totalAmount" class="total-amount__value amount__value">
+            <fmt:formatNumber value="${totalAmount}" pattern="#,###"/></span>원
           </div>
         </div>
         <div class="payment-will-point-container">
           <div class="will-point__value">
-            <span class="amount__value">0</span>원
+           <c:set var="willPoint" value="${totalAmount * 0.05}"/>
+            <span id="willPoint" class="amount__value"><fmt:formatNumber value="${willPoint}" pattern="#,###"/></span>원
           </div>
           <div class="will-point__section">
             적립 예정
@@ -817,7 +729,7 @@
       <div class="payment-terms-container">
         <div class="terms-confirm-container">
           <label>
-            <input type="checkbox">
+            <input type="checkbox" id="agreeToTerms">
             <p>아래 내용에 모두 동의합니다. (필수)</p>
             <span class="checkMark"></span>
           </label>
@@ -832,7 +744,7 @@
                 개인정보 제 3자 제공
               </div>
               <div class="terms-content-top__view">
-                <a href="">약관 보기</a>
+                <a href="javascript:void(0);" onclick="openTerms('firstTerms');">약관 보기</a>
               </div>
             </div>
             <div class="terms-content-top__itemBox">
@@ -840,7 +752,7 @@
                 개인정보 수집 및 이용
               </div>
               <div class="terms-content-top__view">
-                <a href="">약관 보기</a>
+                <a href="javascript:void(0);" onclick="openTerms('secondTerms');">약관 보기</a>
               </div>
 
             </div>
@@ -852,7 +764,7 @@
         </div>
       </div>
       <div class="payment-button-container">
-        <button>50,000원 결제하기</button>
+        <button type="submit" id="checkout" onclick="return checkForCheckout()"><fmt:formatNumber value="${totalAmount}" pattern="#,###"/>원 결제하기</button>
       </div>
     </aside>
   </div>

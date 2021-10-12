@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,15 +8,6 @@
   <link rel="stylesheet" href="./resources/css/base.css">
   <link rel="stylesheet" href="./resources/css/admin.css">
   <style>
-    .change-orderState-box{
-
-    }
-
-
-    .change-orderState-box label{
-
-    }
-
     #change-orderState {
       background-color: #eeded5;
       width: 115px;
@@ -29,28 +22,9 @@
         margin-top: 25px;
       }
 
-    .orderList{margin: auto;}
-
-    .orderList th:nth-child(5){
-
+    .orderList{
+    margin: auto;
     }
-
-    .orderList th:nth-child(8){
-
-    }
-
-    #sort__by-orderState{
-
-    }
-
-    .orderList td{
-
-    }
-
-    .orderList__paging {
-
-    }
-
   </style>
 </head>
 <body>

@@ -90,4 +90,6 @@ public class AbstractDAO {
 	public List<HashMap<String, Object>> selectList3(String queryID, Map<String, Object> map) {
 		return sqlSession.selectList(queryID, map);
 	}
+	
+
 }

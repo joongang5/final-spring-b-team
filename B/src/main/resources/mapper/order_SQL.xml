@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"	
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="order_list">
+<mapper namespace="order">
 	<select id="getListByMemberNo" parameterType="HashMap"
 		resultType="HashMap">
 		<!-- SELECT * FROM order_view WHERE m_no=#{m_no} -->
@@ -28,5 +28,10 @@
 			</when>
 		</choose>
 	</select>
+
+	<select id="getOrderProductInfo" parameterType="Integer" resultType="HashMap">
+		SELECT * FROM product_view WHERE p_no=#{p_no}
+	</select>
+	
 </mapper>
 
