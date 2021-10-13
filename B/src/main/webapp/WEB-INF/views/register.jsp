@@ -214,12 +214,13 @@ function selectSub(c_sub){
 <label>상품대표사진 <br>
 <input id="p_img" name= "p_img"  type="file" accept="image/*"  >
 </label>
-<button type="submit">업로드</button>
-</form>
+<button type="submit">업로드</button> 
+</form> 
 
 <c:if test="${sessionScope.p_img ne null }">
 <label>미리보기</label> <br>
 <img alt="미리보기" src="./resources/uploadFile/${sessionScope.p_img }" style="width:200px;height:200px;">
+ <button onclick="location.href='./removeImgSession.do'">이미지 삭제</button> <br>
 </c:if>
 
 <form action="registerProduct.do" method="post">

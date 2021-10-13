@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -113,7 +114,7 @@ public class ProductController {
 	}
 	
 	@GetMapping(value ="/registerProduct.do")
-	public ModelAndView register() {
+	public ModelAndView register() {//상품 등록 페이지
 		ModelAndView mv = new ModelAndView("register");
 		List<Map<String, Object>> categoryMain = productService.cateList();
 		mv.addObject("categoryMain", categoryMain);
@@ -121,7 +122,7 @@ public class ProductController {
 	}
 	
 	@PostMapping(value ="registerProduct.do")
-	public String register2(HttpServletRequest req, CommandMap map) {
+	public String register2(HttpServletRequest req, CommandMap map) {//상품 등록
 		HttpSession session = req.getSession();
 		map.put("p_img", session.getAttribute("p_img"));
 		productService.register(map.getMap());
@@ -191,7 +192,7 @@ public class ProductController {
 	}
 	
 	@PostMapping(value="fileUpload.do")
-	public String upload(HttpServletRequest req, MultipartFile p_img) {
+	public String upload(HttpServletRequest req, MultipartFile p_img) { //파일 업로드
 		String savePath = req.getSession().getServletContext().getRealPath("./resources/uploadFile");
 		
 		if(!p_img.isEmpty()) {
@@ -213,5 +214,15 @@ public class ProductController {
 		}
 		return null;
 		
+	}
+	
+	@RequestMapping(value ="removeImgSession.do")
+	public String removeImgSession(HttpServletRequest req) {
+		HttpSession session = req.getSession();
+		if (session.getAttribute("p_img") != null) {
+			session.removeAttribute("p_img");
+		}
+		
+		return "redirect:/registerProduct.do";
 	}
 }
