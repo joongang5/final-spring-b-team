@@ -36,7 +36,7 @@ public class CartController {
 		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
 			map.put("m_id", session.getAttribute("m_id"));
 			map.put("m_name", session.getAttribute("m_name"));
-			ModelAndView mv = new ModelAndView("cart3");
+			ModelAndView mv = new ModelAndView("cart");
 			List<Map<String, Object>> cartList = cartService.cartList(map.getMap());
 			mv.addObject("cart", cartList);
 			return mv;
