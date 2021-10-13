@@ -132,7 +132,7 @@
 						<li class="sideMenu__item">
 							<div class="sideMenu-container">
 								<div>
-									<img src="./img/setting.png">
+									<img src="./resources/images/setting.png">
 								</div>
 								<div>
 									<a href="">홈으로</a>
@@ -142,7 +142,7 @@
 						<li class="sideMenu__item">
 							<div class="sideMenu-container">
 								<div>
-									<img src="./img/delivery.png">
+									<img src="./resources/images/delivery.png">
 								</div>
 								<div>
 									<a href="">주문 관리</a>
@@ -159,7 +159,7 @@
 						<li class="sideMenu__item">
 							<div class="sideMenu-container">
 								<div>
-									<img src="./img/furniture.png">
+									<img src="./resources/images/furniture.png">
 								</div>
 								<div>
 									<a href="">상품 관리</a>
@@ -176,22 +176,22 @@
 						<li class="sideMenu__item">
 							<div class="sideMenu-container">
 								<div>
-									<img src="./img/user.png">
+									<img src="./resources/images/user.png">
 								</div>
 								<div>
-									<a href="">고객 관리</a>
+									<a href="./adminMember.do">고객 관리</a>
 								</div>
 							</div>
 							<div class="sideMenu-sub-container">
 								<ul class="sideMenu__subItems">
-									<li class="sideMenu__subItem"><a href="">회원 목록</a></li>
+									<li class="sideMenu__subItem"><a href="./adminMember.do">회원 목록</a></li>
 								</ul>
 							</div>
 						</li>
 						<li class="sideMenu__item">
 							<div class="sideMenu-container">
 								<div>
-									<img src="./img/support.png">
+									<img src="./resources/images/support.png">
 								</div>
 								<div>
 									<a href="">고객 응대</a>
@@ -209,16 +209,16 @@
 						<li class="sideMenu__item sideMenu__item--active">
 							<div class="sideMenu-container">
 								<div>
-									<img src="./img/browser.png">
+									<img src="./resources/images/browser.png">
 								</div>
 								<div>
-									<a href="">사이트 관리</a>
+									<a href="./adminLog.do">사이트 관리</a>
 								</div>
 							</div>
 							<div class="sideMenu-sub-container">
 								<ul class="sideMenu__subItems sideMenu__subItems--active">
 									<li class="sideMenu__subItem sideMenu__subItem--active"><a
-										href="">로그 조회</a></li>
+										href="./adminLog.do">로그 조회</a></li>
 								</ul>
 							</div>
 						</li>
@@ -285,17 +285,17 @@
 							<table class="list-table logList">
 								<thead>
 									<tr>
-										<th scope="col">선택</th>
+										<!-- <th scope="col">선택</th> -->
 										<th scope="col">로그 번호</th>
 										<th scope="col">입력일</th>
 										<th scope="col">IP</th>
 										<th scope="col">아이디</th>
-										<th scope="col"><select id="sort__by-target">
+										<th scope="col"><!-- <select id="sort__by-target">
 												<option>Target</option>
-												<!--Target 출력 / 반복문 사용-->
+												Target 출력 / 반복문 사용
 												<option>Target</option>
-												<!--Target 출력 끝-->
-										</select></th>
+												Target 출력 끝
+										</select> -->Target</th>
 										<th scope="col">내용</th>
 									</tr>
 								</thead>
@@ -303,9 +303,9 @@
 									<c:forEach items="${list }" var="l">
 									<!--로그 목록 출력 / 반복문 사용-->
 									<tr>
-										<td><label> <input type="checkbox"> <span
+										<!-- <td><label> <input type="checkbox"> <span
 												class="checkMark"></span>
-										</label></td>
+										</label></td> -->
 										<td>${l.l_no }</td>
 										<td>${l.l_date }</td>
 										<td>${l.l_ip }</td>
