@@ -7,12 +7,83 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>구매 내역 조회</title>
+<title>구매 내역 조회 | 가구</title>
 
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
 
+<!-- <link rel="stylesheet" href="./resources/css/base.css">  -->
+<link rel="stylesheet" href="./resources/css/mypage.css">
+<link rel="stylesheet" href="./resources/css/invoice.css">
+
+
 <style>
+
+/* add 테두리 */
+.orderList-summary {
+	display: flex;
+	border: 10px dashed #EEDED5;
+	margin: 10px 10px 10px 10px;
+	padding : 50px;
+}
+
+
+/* add 버튼 */
+.snip1535 {
+	background-color: #c47135;
+	border: none;
+	color: #ffffff;
+	cursor: pointer;
+	display: inline-block;
+	font-family: 'BenchNine', Arial, sans-serif;
+	font-size: 1em;
+	font-size: 10px;
+	line-height: 1em;
+	margin: 5px 5px;
+	outline: none;
+	padding: 10px 40px 10px;
+	position: relative;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+.snip1535:before, .snip1535:after {
+	border-color: transparent;
+	-webkit-transition: all 0.25s;
+	transition: all 0.25s;
+	border-style: solid;
+	border-width: 0;
+	content: "";
+	height: 24px;
+	position: absolute;
+	width: 24px;
+}
+
+.snip1535:before {
+	border-color: #c47135;
+	border-right-width: 2px;
+	border-top-width: 2px;
+	right: -5px;
+	top: -5px;
+}
+
+.snip1535:after {
+	border-bottom-width: 2px;
+	border-color: #c47135;
+	border-left-width: 2px;
+	bottom: -5px;
+	left: -5px;
+}
+
+.snip1535:hover, .snip1535.hover {
+	background-color: #c47135;
+}
+
+.snip1535:hover:before, .snip1535.hover:before, .snip1535:hover:after,
+	.snip1535.hover:after {
+	height: 100%;
+	width: 100%;
+}
 
 /* Default */
 input[type=text], input[type=password] {
@@ -22,8 +93,9 @@ input[type=text], input[type=password] {
 * {
 	margin: 0;
 	padding: 0;
-	text-align: center;
-	font-family: "Malgun Gothic", "맑은 고딕", Dotum, "돋움", Arial, sans-serif
+	text-align: none;
+	font-family: "Malgun Gothic", "맑은 고딕", Dotum, "돋움", Arial, sans-serif;
+	/* font-family: 'Noto Serif KR', serif; */
 }
 
 body {
@@ -34,7 +106,8 @@ body {
 	-moz-user-select: none;
 	-webkit-text-size-adjust: none;
 	-moz-text-size-adjust: none;
-	-ms-text-size-adjust: none
+	-ms-text-size-adjust: none;
+	text-align: center;
 }
 
 ol, ul {
@@ -121,19 +194,28 @@ header, footer, aside, nav, section, article {
 }
 
 .searchBox tbody th {
-	padding: 20px 10px 20px 35px;
+	padding: 20px 10px 10px 35px;
+	font-size: 14px; font-weight : bold; text-align : left; vertical-align
+	: top; border : none; font-size : 14px; font-weight : bold; text-align
+	: left; vertical-align : top; border : none;
+	background: #FFAA28;
+	font-weight: bold;
+	text-align: left;
+	vertical-align: top;
+	border: none;
 	font-size: 14px;
 	font-weight: bold;
 	text-align: left;
 	vertical-align: top;
 	border: none;
-	background: #e6e6e6
+	/* background: #e6e6e6 */
 }
 
 .searchBox tbody td {
 	padding: 12px 10px 12px 25px;
 	border: none;
-	background-color: #efefef
+	background: #FDEBC8;
+	/* 	background-color: #efefef */
 }
 
 .searchDate {
@@ -171,11 +253,13 @@ header, footer, aside, nav, section, article {
 	font-size: 14px;
 	font-weight: bold;
 	color: #fff;
+	/* color: black; */
 	text-align: center;
 	line-height: 25px;
 	text-decoration: none;
 	cursor: pointer;
-	background: #a5b0b6
+	/* background: #a5b0b6; */
+	background: #FFC846;
 }
 
 .searchDate li .chkbox2.on label {
@@ -316,149 +400,181 @@ header, footer, aside, nav, section, article {
 
 </head>
 <body>
-	<h1>구매 내역 조회</h1>
-	<br>
 
-	<br>
-	<br>
-	<br>
+	<!--myPage 공통 부분-->
+	<div id="layout-container">
+		<header id="header-space"></header>
+		<div id="myPage-main-container">
+			<nav id="myPage-sideMenu">
+				<div class="sideMenu__block-container">
+					<div class="sideMenu__block">
+						<h3>나의 쇼핑 활동</h3>
+						<ul class="sideMenu__items">
+							<li class="sideMenu__item sideMenu__item--active"><a href="">구매
+									내역 조회</a></li>
+							<li class="sideMenu__item"><a href="">최근 본 상품</a></li>
+							<li class="sideMenu__item"><a href="">쿠폰 / 적립금 조회</a></li>
+							<li class="sideMenu__item"><a href="">상품 문의</a></li>
+							<li class="sideMenu__item"><a href="">1:1 문의</a></li>
+						</ul>
+					</div>
+					<div class="sideMenu__block">
+						<h3>회원 정보</h3>
+						<ul class="sideMenu__items">
+							<li class="sideMenu__item"><a href="">회원 정보 조회</a></li>
+							<li class="sideMenu__item"><a href="">주소록</a></li>
+							<li class="sideMenu__item"><a href="">비밀번호 변경</a></li>
+							<li class="sideMenu__item"><a href="">회원 탈퇴</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<main>
+				<div class="myPage-title">
+					<h1></h1>
+				</div>
+				<!--myPage 공통 부분 끝-->
 
-	<h3>진행상황</h3>
-	<br>
-	<br>
-	<br>
-	<table>
-		<tr>
-			<th>결제 완료</th>
-			<th rowspan="3">▶</th>
-			<th>출고 준비</th>
-			<th rowspan="3">▶</th>
-			<th>출고 완료</th>
-		</tr>
-		<tr>
-			<td>${stateTotalCountArr[0] }</td>
-			<td>${stateTotalCountArr[1] }</td>
-			<td>${stateTotalCountArr[2] }</td>
-			<%-- <c:forEach items="${stateTotalCountArr }" var="stateTotalCount">
+
+				<!-- <img src="http://localhost/img/furniturepic.png"
+	style="width: 150px; height: 150px;"> -->
+				<br> <br> <br> <br>
+				<h1 align="left">구매 내역 조회</h1>
+				<br> <br>
+				<!-- <h3 align="center">진행상황</h3> -->
+				<br>
+
+				<div class="orderList-summary__column-left">
+					<div class="orderList-summary">
+						<table>
+							<tr>
+								<th style="font-size: 20px;">결제 완료</th>
+								<th rowspan="3"><img
+									src="./resources/images/right-arrow-org.png"></th>
+								<th style="font-size: 20px;">출고 준비</th>
+								<th rowspan="3"><img
+									src="./resources/images/right-arrow-org.png"></th>
+								<th style="font-size: 20px;">출고 완료</th>
+							</tr>
+							<tr>
+								<td style="font-size: 30px; color: orange; font-weight: bold;">${stateTotalCountArr[0] }</td>
+								<td style="font-size: 30px; color: orange; font-weight: bold;">${stateTotalCountArr[1] }</td>
+								<td style="font-size: 30px; color: orange; font-weight: bold;">${stateTotalCountArr[2] }</td>
+								<%-- <c:forEach items="${stateTotalCountArr }" var="stateTotalCount">
 				<td>${stateTotalCount }</td>
 			</c:forEach> --%>
-		</tr >
-	</table>
+							</tr>
+						</table>
+					</div>
+				</div>
 
-	<br>
-	<br>
-	<br>
-	<br>
+				<br><br>
 
-	<form action="./orderhistory1.do" method="get">
-		<!-- search -->
-		<table class="searchBox">
-			<caption>주문 조회</caption>
-			<colgroup>
-				<col width="123px">
-				<col width="*">
-			</colgroup>
-			<tbody>
-				<tr>
-					<th>조회기간</th>
-					<td>
-						<ul class="searchDate">
-							<li><span class="chkbox2"> <input type="radio"
-									name="dateType" id="dateType1" onclick="setSearchDate('0d')" />
-									<label for="dateType1">당일</label>
-							</span></li>
-							<li><span class="chkbox2"> <input type="radio"
-									name="dateType" id="dateType2" onclick="setSearchDate('3d')" />
-									<label for="dateType2">3일</label>
-							</span></li>
-							<li><span class="chkbox2"> <input type="radio"
-									name="dateType" id="dateType3" onclick="setSearchDate('1w')" />
-									<label for="dateType3">1주</label>
-							</span></li>
-							<li><span class="chkbox2"> <input type="radio"
-									name="dateType" id="dateType4" onclick="setSearchDate('2w')" />
-									<label for="dateType4">2주</label>
-							</span></li>
-							<li><span class="chkbox2"> <input type="radio"
-									name="dateType" id="dateType5" onclick="setSearchDate('1m')" />
-									<label for="dateType5">1개월</label>
-							</span></li>
-							<li><span class="chkbox2"> <input type="radio"
-									name="dateType" id="dateType6" onclick="setSearchDate('3m')" />
-									<label for="dateType6">3개월</label>
-							</span></li>
-							<li><span class="chkbox2"> <input type="radio"
-									name="dateType" id="dateType7" onclick="setSearchDate('6m')" />
-									<label for="dateType7">6개월</label>
-							</span></li>
-						</ul>
+				<form action="./orderhistory1.do" method="get">
+					<!-- search -->
+					<table class="searchBox">
+						<caption>주문 조회</caption>
+						<colgroup>
+							<col width="123px">
+							<col width="*">
+						</colgroup>
+						<tbody>
+							<tr>
+								<th style="color: white;">주문일</th>
+								<td>
+									<ul class="searchDate">
+										<li><span class="chkbox2"> <input type="radio"
+												name="dateType" id="dateType1" onclick="setSearchDate('0d')" />
+												<label for="dateType1">당일</label>
+										</span></li>
+										<li><span class="chkbox2"> <input type="radio"
+												name="dateType" id="dateType2" onclick="setSearchDate('3d')" />
+												<label for="dateType2">3일</label>
+										</span></li>
+										<li><span class="chkbox2"> <input type="radio"
+												name="dateType" id="dateType3" onclick="setSearchDate('1w')" />
+												<label for="dateType3">1주</label>
+										</span></li>
+										<li><span class="chkbox2"> <input type="radio"
+												name="dateType" id="dateType4" onclick="setSearchDate('2w')" />
+												<label for="dateType4">2주</label>
+										</span></li>
+										<li><span class="chkbox2"> <input type="radio"
+												name="dateType" id="dateType5" onclick="setSearchDate('1m')" />
+												<label for="dateType5">1개월</label>
+										</span></li>
+										<li><span class="chkbox2"> <input type="radio"
+												name="dateType" id="dateType6" onclick="setSearchDate('3m')" />
+												<label for="dateType6">3개월</label>
+										</span></li>
+										<li><span class="chkbox2"> <input type="radio"
+												name="dateType" id="dateType7" onclick="setSearchDate('6m')" />
+												<label for="dateType7">6개월</label>
+										</span></li>
+									</ul>
 
-						<div class="clearfix">
-							<!-- 시작일 -->
-							<span class="dset"> <input type="text"
-								class="datepicker inpType" name="searchStartDate"
-								id="searchStartDate"
-								<c:if test="${startDay ne null }">value=${startDay }</c:if>>
-								<a href="#none" class="btncalendar dateclick">달력</a>
-							</span> <span class="demi">~</span>
-							<!-- 종료일 -->
-							<span class="dset"> <input type="text"
-								class="datepicker inpType" name="searchEndDate"
-								id="searchEndDate"
-								<c:if test="${endDay ne null }">value=${endDay }</c:if>>
-								<a href="#none" class="btncalendar dateclick">달력</a>
-								<button>조회</button>
-							</span>
-						</div>
-					</td>
-				</tr>
-			<tbody>
-		</table>
-	</form>
+									<div class="clearfix">
+										<!-- 시작일 -->
+										<span class="dset"> <input type="text"
+											class="datepicker inpType" name="searchStartDate"
+											id="searchStartDate"
+											<c:if test="${startDay ne null }">value=${startDay }</c:if>>
+											<a href="#none" class="btncalendar dateclick">달력</a>
+										</span> <span class="demi">~</span>
+										<!-- 종료일 -->
+										<span class="dset"> <input type="text"
+											class="datepicker inpType" name="searchEndDate"
+											id="searchEndDate"
+											<c:if test="${endDay ne null }">value=${endDay }</c:if>>
+											<a href="#none" class="btncalendar dateclick">달력</a>
+											<button class="snip1535">조회</button>
+										</span>
+									</div>
+								</td>
+							</tr>
+						<tbody>
+					</table>
+				</form>
 
-	<br>
-	<h3>주문 리스트</h3>
-	<br>
-	<table>
-		<tr>
-			<th>no</th>
-			<th>제품명</th>
-			<th>제품 이미지</th>
-			<th>수량</th>
-			<th>가격</th>
-			<th>구매 날짜</th>
-			<th>현재 상태</th>
-		</tr>
-		<c:forEach items="${list }" var="l">
-			<tr>
-				<td>${l.p_no}</td>
-				<td>${l.p_title}</td>
-				<td><img
-					src="https://blogger.googleusercontent.com/img/a/${l.p_img}"
-					style="width: 150px; height: 150px;"></td>
-				<td>${l.cnt}</td>
-				<td>${l.p_price}</td>
-				<td>${l.p_date}</td>
+				<br>
+				<h3>주문 리스트</h3>
+				<br>
+				<table>
+					<tr>
+						<th>no</th>
+						<th>제품명</th>
+						<th>제품 이미지</th>
+						<th>수량</th>
+						<th>가격</th>
+						<th>구매 날짜</th>
+						<th>현재 상태</th>
+					</tr>
+					<c:forEach items="${list }" var="l">
+						<tr>
+							<td>${l.p_no}</td>
+							<td>${l.p_title}</td>
+							<td><img
+								src="https://blogger.googleusercontent.com/img/a/${l.p_img}"
+								style="width: 150px; height: 150px;"></td>
+							<td>${l.cnt}</td>
+							<td>${l.p_price}</td>
+							<td>${l.p_date}</td>
 
-				<td>
-					<c:if test="${l.o_state == 0}">
-						<p>결제 완료</p>
-					</c:if> <c:if test="${l.o_state == 1}">
-						<p>출고 준비</p>
-					</c:if> <c:if test="${l.o_state == 2}">
-						<p>출고 완료</p>
-					</c:if>
-				</td>
-			</tr>
-		</c:forEach>
-	</table>
+							<td><c:if test="${l.o_state == 0}">
+									<p>결제 완료</p>
+								</c:if> <c:if test="${l.o_state == 1}">
+									<p>출고 준비</p>
+								</c:if> <c:if test="${l.o_state == 2}">
+									<p>출고 완료</p>
+								</c:if></td>
+						</tr>
+					</c:forEach>
+				</table>
 
-	<br>
-	<br>
-	<br>
-	<br>
+				<br> <br> <br> <br>
 
-	<button onclick="move()">메인 화면으로 -></button>
-
+				<button class="snip1535" onclick="move()">메인 화면으로</button>
+				<br> <br>
 </body>
 </html>
+
