@@ -1,6 +1,5 @@
 package com.B.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -67,13 +66,30 @@ public class MypageController {
 		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
 			map.put("m_id", session.getAttribute("m_id"));
 			map.put("m_name", session.getAttribute("m_name"));
-			map.put("m_id", "wonwoo");
 			mypageService.myinfoUpdateAddr(map.getMap());
 			return "redirect:/myinfo.do";
 		} else {
 			return "redirect:/login.do";
 		}
 	}
+	
+	@PostMapping("/myinfoUpdateAddr2.do")
+	public String myinfoUpdateAddr2(CommandMap map, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
+			map.put("m_id", session.getAttribute("m_id"));
+			map.put("m_name", session.getAttribute("m_name"));
+			
+			String m_addr = map.getMap().get("postcode") + "|" +  map.getMap().get("address") + "|" +  map.getMap().get("detailAddress");
+			map.put("m_addr", m_addr);
+			
+			mypageService.myinfoUpdateAddr(map.getMap());
+			return "redirect:/myinfo.do";
+		} else {
+			return "redirect:/login.do";
+		}
+	}
+	
 
 	@GetMapping("/myinfoDelete.do")
 	public String myinfoDelete(CommandMap map, HttpServletRequest request) {

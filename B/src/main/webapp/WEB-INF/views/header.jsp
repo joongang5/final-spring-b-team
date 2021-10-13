@@ -26,7 +26,7 @@ $(function(){
 			</c:if>
 			<c:if test="${sessionScope.m_id ne null}">			
 				<a id="logOut" href="" title="로그아웃">${sessionScope.m_name}님, 안녕하세요.</a><br>
-				<a href="" title="마이페이지">마이페이지</a>			
+				<a href="./myinfo.do" title="마이페이지">마이페이지</a>			
 			</c:if>
 		</div>
 	</div>
