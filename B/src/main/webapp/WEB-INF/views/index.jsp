@@ -10,14 +10,15 @@
 <link href="./resources/css/reset.css" rel="stylesheet"/>
 <link href="./resources/css/footer.css" rel="stylesheet"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<style>
+<style type="text/css">
 /* reset.css */
 /* header.css */
 /* footer.css */
 /* container.css */	
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
 	width: 0px;
-}
+} */
+html{overflow: hidden;}
 html, body{width: 100%; height: 100%;}
 #wrapper{width:100%;margin:0 auto;}
 	header{background-color:rgba(255,255,255,0);}
@@ -69,9 +70,9 @@ html, body{width: 100%; height: 100%;}
 </style>
 <script>
 //one페이징을 위한 휠기능 막기
-window.addEventListener("wheel", function(e){
+/* window.addEventListener("wheel", function(e){
 	e.preventDefault();
-},{passive : false});
+},{passive : false}); */
 $(function(){
 	//one페이징
 	var $html = $("html");

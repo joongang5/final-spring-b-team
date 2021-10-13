@@ -31,7 +31,7 @@ $(function(){
 		</div>
 	</div>
 	<div id="logoLine" class="header">
-		<h1><img alt="Spring.B" src="./resources/images/Logo2.png"></h1>
+		<h1><a href="./index.do" title="Spring.B"><img alt="Spring.B" src="./resources/images/Logo2.png"></a></h1>
 		<p class="center"><input type="text" placeholder="검색"></p>
 		<p class="right"></p>
 	</div>

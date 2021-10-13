@@ -68,13 +68,33 @@ public class IndexController {
 		ModelAndView mv = new ModelAndView("categoryPage");
 		String mainCategory = (String) map.get("category");
 		String subCategory = (String) map.get("sub");
-		
+		String option = (String) map.get("option");
+		String title = "";
+		if(mainCategory != null && subCategory !=null) {
+			title = mainCategory + "&gt;" + subCategory;
+		}else if(mainCategory != null && subCategory ==null) {
+			title = mainCategory;
+		}else {
+			title = "가구";
+		}
+		mv.addObject("title",title);
 		mv.addObject("mainCategory", mainCategory);
 		mv.addObject("subCategory", subCategory);
 		
 		List<HashMap<String, Object>> category = indexService.getCategory();
+		List<HashMap<String, Object>> categoryMain = indexService.getCategoryMain();
 		mv.addObject("category", category);
-		
+		mv.addObject("categoryMain",categoryMain);
+		String optionSelect = "p_date";
+		if(option != null) {
+			optionSelect = option;
+		}
+		map.put("option2", optionSelect);
+		mv.addObject("optionSelect", optionSelect);
+		List<HashMap<String, Object>> cp_productList = indexService.cp_productList(map.getMap());
+		mv.addObject("cp_productList", cp_productList);
+		System.out.println(cp_productList);
+		System.out.println(map.getMap());
 		return mv;
 	}
 
