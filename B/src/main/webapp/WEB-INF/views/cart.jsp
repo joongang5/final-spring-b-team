@@ -517,7 +517,7 @@ function getCheckedCartNoArr(){
 					<c:otherwise>
 						<h2>장바구니에 상품이 없습니다.</h2>
 						<h3>
-							<a href="./index2.do">상품 담으러가기</a>
+							<a href="./index.do">상품 담으러가기</a>
 						</h3>
 					</c:otherwise>
 				</c:choose>
