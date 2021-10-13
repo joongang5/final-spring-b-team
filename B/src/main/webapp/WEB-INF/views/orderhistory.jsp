@@ -193,7 +193,7 @@ header, footer, aside, nav, section, article {
 }
 
 .searchBox tbody th {
-	padding: 20px 10px 10px 35px;
+	padding: 35px 10px 10px 30px;
 	font-size: 14px;
 	font-weight: bold;
 	text-align: left;
@@ -209,7 +209,7 @@ header, footer, aside, nav, section, article {
 	text-align: left;
 	vertical-align: top;
 	border: none;
-	font-size: 14px;
+	font-size: 20px;
 	font-weight: bold;
 	text-align: left;
 	vertical-align: top;
@@ -244,7 +244,7 @@ header, footer, aside, nav, section, article {
 
 .searchDate li .chkbox2 {
 	display: block;
-	text-align: center
+	text-align: center;
 }
 
 .searchDate li .chkbox2 input {
@@ -455,11 +455,9 @@ header, footer, aside, nav, section, article {
 						<table>
 							<tr>
 								<th style="font-size: 20px;">결제 완료</th>
-								<th rowspan="3"><img
-									src="./resources/images/right-arrow-org.png"></th>
+								<th rowspan="3"><marquee direction=right><img src="./resources/images/right-arrow-org.png"></marquee></th>
 								<th style="font-size: 20px;">출고 준비</th>
-								<th rowspan="3"><img
-									src="./resources/images/right-arrow-org.png"></th>
+								<th rowspan="3"><marquee direction=right><img src="./resources/images/right-arrow-org.png"></marquee></th>
 								<th style="font-size: 20px;">출고 완료</th>
 							</tr>
 							<tr>
@@ -475,7 +473,7 @@ header, footer, aside, nav, section, article {
 					</div>
 				</div>
 
-				<br><br>
+				<br> <br>
 
 				<form action="./orderhistory1.do" method="get">
 					<!-- search -->
@@ -568,11 +566,11 @@ header, footer, aside, nav, section, article {
 							<td>${l.p_date}</td>
 
 							<td><c:if test="${l.o_state == 0}">
-									<p>결제 완료</p>
+									<b style="color: blue;">결제 완료</b>
 								</c:if> <c:if test="${l.o_state == 1}">
-									<p>출고 준비</p>
+									<b style="color: red;">출고 준비</b>
 								</c:if> <c:if test="${l.o_state == 2}">
-									<p>출고 완료</p>
+									<b style="color: green; ">출고 완료</b>
 								</c:if></td>
 						</tr>
 					</c:forEach>
@@ -580,8 +578,11 @@ header, footer, aside, nav, section, article {
 
 				<br> <br> <br> <br>
 
-				<button class="snip1535" onclick="move()">메인 화면으로</button>
+				<button class="snip1535" onclick="location.href='index.do'">메인 화면으로</button>
 				<br> <br>
+			</main>
+		</div>
+		<footer id="footer-space"></footer>
+	</div>
 </body>
 </html>
-<<<<<<< Updated upstream ======= >>>>>>> Stashed changes
