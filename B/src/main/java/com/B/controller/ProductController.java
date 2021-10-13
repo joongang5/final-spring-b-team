@@ -1,5 +1,7 @@
 package com.B.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.B.common.CommandMap;
@@ -180,5 +183,24 @@ public class ProductController {
 		String p_no = req.getParameter("p_no");
 		productService.deleteProduct(p_no);
 		return "redirect:/product.do";
+	}
+	
+	@PostMapping(value="fileUpload.do")
+	public void upload(HttpServletRequest req, MultipartFile mf) {
+		String savePath = req.getSession().getServletContext().getRealPath("./resources/uploadFile");
+		
+		if(!mf.isEmpty()) {
+			String originName = mf.getOriginalFilename();
+			String ext = originName.substring(originName.lastIndexOf("."));
+			System.out.println(originName);
+			try {
+				mf.transferTo(new File(savePath + "/" + originName));
+				System.out.println("파일 저장 완료");
+			} catch (IllegalStateException | IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 	}
 }
