@@ -4,7 +4,7 @@
 
 <mapper namespace="product">
 	<insert id="register">
-		INSERT INTO product(p_title,p_price,p_cnt,c_no) VALUES ( #{p_title},#{p_price},#{p_cnt},#{c_no} )
+		INSERT INTO product(p_title,p_img,p_price,p_cnt,c_no) VALUES ( #{p_title},#{p_img},#{p_price},#{p_cnt},#{c_no} )
 	</insert>
 
 	<select id="productList" resultType="HashMap">

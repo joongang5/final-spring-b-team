@@ -297,7 +297,7 @@ $(document).ready(function(){
         <table class="list-table productList" >
           <thead>      
           <tr>
-			<th scope="col">선택</th>
+			<th scope="col" >선택</th>
 		 	<th scope="col">상품번호</th>
 			<th colspan="2" scope="col">상품</th>
 			<th scope="col">상품가격</th>
@@ -309,7 +309,7 @@ $(document).ready(function(){
 			<th scope="col">
               <select id="sort__by-saleState">
                 <option>판매 상태</option>
-                <option>판매중</option>
+                <option>표시</option>
                 <option>판매 중단</option>
                 <option>품절</option>
               </select>
@@ -321,19 +321,21 @@ $(document).ready(function(){
 		<c:if test="${empty categorySearch }">
 		<c:forEach items="${productList}" var="p">
 		<tr>
-			<td><input type="checkbox" class="checkbox" value="${p.p_no}"></td>
-			<td>${p.p_no }</td>
-			<td><a href="./productDetail.do?p_no=${p.p_no}"> ${p.p_title} </a></td>
-			<td>${p.p_price }</td>
-			<td>${p.p_cnt }</td>
-			<td>${p.p_date }</td>
-			<td>${p.c_main }</td>
-			<td>${p.c_sub }</td>
-			<td><img src="https://blogger.googleusercontent.com/img/a/${p.p_img}" style="width:100px;height:100px;"></td>
-			<td> <c:if test="${p.p_state eq 1}"> 판매중 </c:if>
+			<td scope="col"><input type="checkbox" class="checkbox" value="${p.p_no}"></td>
+			<td scope="col">${p.p_no }</td>
+			<td colspan="2"><a href="./productDetail.do?p_no=${p.p_no}"> ${p.p_title} </a></td>
+			<td scope="col">${p.p_price }</td>
+			<td scope="col">${p.p_cnt }</td>
+			<td scope="col">${p.p_date }</td>
+			<td scope="col">${p.c_main }</td>
+			<td scope="col">${p.c_sub }</td>
+			<td scope="col"><c:if test="${p.p_no lt 58 }"><img src="https://blogger.googleusercontent.com/img/a/${p.p_img}" style="width:100px;height:100px;"></c:if>
+							<c:if test="${p.p_no ge 58 }"><img src="./resources/uploadFile/${p.p_img}"style="width:100px;height:100px;"></c:if>
+			</td>
+			<td scope="col"> <c:if test="${p.p_state eq 1}"> 판매중 </c:if>
 			<c:if test="${p.p_state eq 0 }">
 			 판매 중단</c:if> </td>
-			<td> <c:if test="${p.p_state eq 1}"> 표시 </c:if>
+			<td scope="col"> <c:if test="${p.p_state eq 1}"> 표시 </c:if>
 			<c:if test="${p.p_state eq 0 }">
 			 미표시</c:if> </td>
 			

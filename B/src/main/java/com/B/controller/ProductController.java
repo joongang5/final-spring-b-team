@@ -9,12 +9,13 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -22,7 +23,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.B.common.CommandMap;
 import com.B.serivce.ProductServiceImpl;
 import com.B.util.Util;
-
 
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -121,8 +121,13 @@ public class ProductController {
 	}
 	
 	@PostMapping(value ="registerProduct.do")
-	public String register2(CommandMap map) {
+	public String register2(HttpServletRequest req, CommandMap map) {
+		HttpSession session = req.getSession();
+		map.put("p_img", session.getAttribute("p_img"));
 		productService.register(map.getMap());
+		if (session.getAttribute("p_img") != null) {
+			session.removeAttribute("p_img");
+		}
 		return "redirect:/product.do";
 		
 	}
@@ -186,21 +191,27 @@ public class ProductController {
 	}
 	
 	@PostMapping(value="fileUpload.do")
-	public void upload(HttpServletRequest req, MultipartFile mf) {
+	public String upload(HttpServletRequest req, MultipartFile p_img) {
 		String savePath = req.getSession().getServletContext().getRealPath("./resources/uploadFile");
 		
-		if(!mf.isEmpty()) {
-			String originName = mf.getOriginalFilename();
-			String ext = originName.substring(originName.lastIndexOf("."));
-			System.out.println(originName);
+		if(!p_img.isEmpty()) {
+			String originName = p_img.getOriginalFilename();
+			String fName = FilenameUtils.getBaseName(originName);
+			String exe = FilenameUtils.getExtension(originName);
+			System.out.println(fName);
 			try {
-				mf.transferTo(new File(savePath + "/" + originName));
+				p_img.transferTo(new File(savePath + "/" + fName +"."+ exe));
+				HttpSession session = req.getSession();
+				session.setAttribute("p_img", fName +"."+ exe);
 				System.out.println("파일 저장 완료");
+				return "redirect:/registerProduct.do";
 			} catch (IllegalStateException | IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+
 			}
 		}
+		return null;
 		
 	}
 }

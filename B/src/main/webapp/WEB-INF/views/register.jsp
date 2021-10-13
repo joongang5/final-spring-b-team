@@ -210,32 +210,38 @@ function selectSub(c_sub){
       <!--admin 공통 부분 끝-->
       
 <h1>상품 등록</h1>
-<form action="registerProduct.do" method="post">
-<div class="register"> 
-
-<label> 상품명 <br>
-<input type="text" id="p_title" name="p_title"></label>
-<br><br>
-<label>가격 <br>
-<input type="text" id="p_price" name="p_price"></label>
-<br><br>
 <form action="fileUpload.do" method ="post" enctype="multipart/form-data" id="uploadForm">	
 <label>상품대표사진 <br>
 <input id="p_img" name= "p_img"  type="file" accept="image/*"  >
 </label>
+<button type="submit">업로드</button>
 </form>
+
+<c:if test="${sessionScope.p_img ne null }">
+<label>미리보기</label> <br>
+<img alt="미리보기" src="./resources/uploadFile/${sessionScope.p_img }" style="width:200px;height:200px;">
+</c:if>
+
+<form action="registerProduct.do" method="post">
+<div class="register"> 
+
+<label> 상품명 <br>
+<input type="text" id="p_title" name="p_title" required></label>
+<br><br>
+<label>가격 <br>
+<input type="text" id="p_price" name="p_price" required></label>
 <br><br>
 <label>재고량 <br>
-<input type="text" id="p_cnt" name="p_cnt"></label>
+<input type="text" id="p_cnt" name="p_cnt" required></label>
  <br><br>
 <label> 상품 카테고리 선택 <br>
-<select id="cMainSelected" name="cMainSelected" onchange="selectMain(this)">
+<select id="cMainSelected" name="cMainSelected" onchange="selectMain(this)" required>
             <option>1차 카테고리</option> 
             <c:forEach items="${categoryMain}" var="ca">
             <option value="${ca.c_main}">${ca.c_main }</option>            
             </c:forEach>
           </select>
-          <select id="cSubSelected" name="cSubSelected" onchange="selectSub(this)">
+          <select id="cSubSelected" name="cSubSelected" onchange="selectSub(this)" required>
             <option>2차 카테고리</option>
           </select>
           <input type="hidden" id="c_no" name="c_no" value=""> 
