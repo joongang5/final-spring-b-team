@@ -74,7 +74,7 @@ function login(m_id, m_pw) {
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
-	background: linear-gradient(to right, #F2E3D5, #F2E3D5, #FFA335); 
+	background: #FF8A00; 
 	background-size: cover;
 	 }
 	 boby::before{
@@ -83,31 +83,83 @@ function login(m_id, m_pw) {
 	 top: 0; right: 0; bottom: 0; left: 0;
 	 background-color: ;
 	 }
+	 .login-form{
 	 
-}
+	 }
+	 
+	.idin  { /* 아이디 입력인풋 */
 	
-	</style>
-<section class="login-form">
+	 width:100%;
+    padding:15px;
+    margin:5px;
+    border-radius:1px;
+    border:1px solid #ccc;
+    font-family:inherit;
 
-   <h1>로그인</h1>
+
+	 }
+	 
+	 .login_sns {
+  padding: 20px;
+  display: flex;
+}
+
+
+.login_sns li {
+  padding: 0px 15px;
+}
+
+
+.login_sns a {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 50px;
+  background: white;
+  font-size: 20px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4), -3px -3px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+	.save_id <!-- 아이디 기억 -->
+	{	 
+	
+	}
+	.loginbt <!-- 회원가입버튼 -->
+	{
+	
+	}
+	
+}
+		 #save_id
+	</style>
+	
+<form class="login-form">
+
+   <h1>LOGIN</h1>
    
-	<div id="idin"> <!-- 아이디 입력창 -->  
+	<div class="idin"> <!-- 아이디  비밀번호 입력창 -->  
  
        <input type="text" id ="m_id" name="m_id" placeholder="ID" 
 		autofocus onkeyup="enterKeyCheck()" >
-    </div>
-    
-    
-   	<div id="pwin"> <!-- 비밀번호 입력창 -->
-   
-   <input type="password" id="m_pw"  name="m_pw" placeholder="Password"
+		
+   <div class="pwin">
+   </div>
+  	   <input type="password" id="m_pw"  name="m_pw" placeholder="Password"
     onkeyup="enterKeyCheck()" >
-    
    
-   
+  </div>
+  
+  
     <div class="save_id"> <!-- 아이디 기억 -->
-     </div><input type ="checkbox" id ="save_id"/>
-     <label for ="save_id"> 아이디저장 </lavel></div>
+     <input type ="checkbox" id ="save_id"/>
+     
+     
+     <label for ="save_id"> 아이디저장 </lavel>
+     </div>
    
    
 	<div id="loginbt"> <!-- 로그인 버튼 -->	
@@ -119,8 +171,11 @@ function login(m_id, m_pw) {
 	<div class="joinbt"> <!-- 회원가입 버튼 -->
 	<input type="button"  onclick="location.href='join.do'" value="회원가입" >
 	</div>
-	
 
+            <div class="login_sns">
+            <li><a href=""><i class="fab fa-instagram"></i></a></li>
+            <li><a href=""><i class="fab fa-facebook-f"></i></a></li>
+            <li><a href=""><i class="fab fa-twitter"></i></a></li>
 </div>
 <br>
 <!-- 네이버아이디로로그인 버튼 노출 영역 -->
