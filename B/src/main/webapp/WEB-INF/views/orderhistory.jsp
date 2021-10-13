@@ -24,9 +24,8 @@
 	display: flex;
 	border: 10px dashed #EEDED5;
 	margin: 10px 10px 10px 10px;
-	padding : 50px;
+	padding: 30px;
 }
-
 
 /* add 버튼 */
 .snip1535 {
@@ -195,9 +194,16 @@ header, footer, aside, nav, section, article {
 
 .searchBox tbody th {
 	padding: 20px 10px 10px 35px;
-	font-size: 14px; font-weight : bold; text-align : left; vertical-align
-	: top; border : none; font-size : 14px; font-weight : bold; text-align
-	: left; vertical-align : top; border : none;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: left;
+	vertical-align: top;
+	border: none;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: left;
+	vertical-align: top;
+	border: none;
 	background: #FFAA28;
 	font-weight: bold;
 	text-align: left;
@@ -460,6 +466,7 @@ header, footer, aside, nav, section, article {
 								<td style="font-size: 30px; color: orange; font-weight: bold;">${stateTotalCountArr[0] }</td>
 								<td style="font-size: 30px; color: orange; font-weight: bold;">${stateTotalCountArr[1] }</td>
 								<td style="font-size: 30px; color: orange; font-weight: bold;">${stateTotalCountArr[2] }</td>
+
 								<%-- <c:forEach items="${stateTotalCountArr }" var="stateTotalCount">
 				<td>${stateTotalCount }</td>
 			</c:forEach> --%>
@@ -577,4 +584,4 @@ header, footer, aside, nav, section, article {
 				<br> <br>
 </body>
 </html>
-
+<<<<<<< Updated upstream ======= >>>>>>> Stashed changes
