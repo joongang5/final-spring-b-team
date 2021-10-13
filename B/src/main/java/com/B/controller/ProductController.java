@@ -212,7 +212,7 @@ public class ProductController {
 
 			}
 		}
-		return null;
+		return "redirect:/registerProduct.do";
 		
 	}
 	
