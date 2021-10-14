@@ -85,5 +85,7 @@ public class AdminController {
 		adminService.memberDelete(map.getMap());
 		return "redirect:/adminMember.do";
 	}
+	
+	
 
 }

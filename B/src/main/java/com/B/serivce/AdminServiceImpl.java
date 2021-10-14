@@ -28,4 +28,21 @@ public class AdminServiceImpl implements AdminService {
 	public int memberTotalList(Map<String, Object> map) {
 		return adminDAO.memberTotalList(map);
 	}
+
+	//이현아가 추가
+	@Override
+	public List<Map<String, Object>> getAdminOrderList(Map<String, Object> map) {
+		return adminDAO.getAdminOrderList(map);
+	}
+	
+	@Override
+	public int getOrderTotalList(Map<String, Object> map) {
+		return adminDAO.getOrderTotalList(map);
+	}
+	
+	@Override
+	public void modifyState(Map<String, Object> p) {
+		adminDAO.modifyState(p);
+		
+	}
 }

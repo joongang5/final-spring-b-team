@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin2">
+
+	<select id="adminOrderList" parameterType="HashMap" resultType="HashMap">
+		SELECT * FROM order_view
+		<choose>
+			<when test="searchName == 'o_no'">
+				WHERE o_no LIKE CONCAT('%', #{search}, '%') ORDER BY
+				o_no DESC LIMIT #{startPage}, #{lastPage}
+			</when>
+			<when test="searchName == 'm_id'">
+				WHERE m_id LIKE CONCAT('%', #{search}, '%') ORDER
+				BY o_no DESC LIMIT #{startPage}, #{lastPage}
+			</when>
+			<when test="searchName == 'p_no'">
+				WHERE p_no LIKE CONCAT('%', #{search}, '%') ORDER
+				BY o_no DESC LIMIT #{startPage}, #{lastPage}
+			</when>
+			<when test="searchName == 'p_title'">
+				WHERE p_title LIKE CONCAT('%', #{search}, '%') ORDER
+				BY o_no DESC LIMIT #{startPage}, #{lastPage}
+			</when>
+			<when test="startDay != null and endDay != null">
+				WHERE DAT BETWEEN #{startDay} AND #{endDay} ORDER
+				BY o_no DESC LIMIT #{startPage}, #{lastPage}
+			</when>
+			<otherwise>
+				ORDER BY o_no DESC LIMIT #{startPage}, #{lastPage}
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="orderTotalList" parameterType="HashMap"  resultType="Integer">
+		SELECT COUNT(*) FROM order_view
+		<choose>
+			<when test="searchName == 'm_id'">
+				WHERE m_id LIKE CONCAT('%', #{search}, '%')
+			</when>
+			<when test="searchName == 'm_name'">
+				WHERE m_name LIKE CONCAT('%', #{search}, '%')
+			</when>
+			<when test="searchName == 'm_email'">
+				WHERE m_email LIKE CONCAT('%', #{search}, '%')
+			</when>
+			<when test="startDay != null and endDay != null">
+				WHERE DAT BETWEEN #{startDay} AND #{endDay}
+			</when>
+		</choose>
+	</select>
+
+	<update id="modifyState" parameterType="HashMap">
+		UPDATE order_list SET o_state=#{o_state} WHERE o_no=#{o_no}
+	</update>
+
+</mapper>
