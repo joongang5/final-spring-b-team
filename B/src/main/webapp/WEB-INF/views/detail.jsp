@@ -50,9 +50,15 @@
 			#reviewArea{width:100%;padding-top:30px;}
 				#reviewBar{width:100%;border-top:1px solid #ddd;border-bottom:1px solid #ddd;padding:5px 0;background-color:#fff;}
 					#reviewNav{width:1200px;margin:0 auto;overflow:hidden;display:flex;justify-content: space-evenly;}
-						#reviewNav li {float:left;}
+						#reviewNav li {float:left;padding:5px 20px;}
+							#reviewNav li a{padding:5px 20px;}
+							#reviewNav li a:hover, #reviewNav li a:focus{text-decoration:none;}
+						.selected{background-color:#FF8A00;color:#fff;font-weight:600;}
 				
-				#review{clear:both;width:1200px;margin:0 auto;padding-top:15px;}
+				#review{clear:both;width:1200px;margin:0 auto;padding-top:25px;}
+					#review li{padding-top:50px;}
+						#review .service{text-align:center;font-size:24px;font-weight:700;}
+							#review .service img{width:500px;}
 				
 						
 	#container:after{content:"";display:block;clear:both;}
@@ -104,11 +110,11 @@ $(function(){
 		$($(this).attr("href")).show();
 		$("#reviewNav li a").removeClass("selected");
 		$(this).addClass("selected");
+		return false;
 	});
 	var subNav = $("#reviewBar");
 	var wrapMarginT = parseInt($("#wrapper").css("marginTop"));
 	var headH = wrapMarginT + 127 + $("#productDetail").height();
-	console.log(headH);
 	$(window).scroll(function(){
 		var nowScroll = $(document).scrollTop();
 		if(nowScroll >= headH ){
@@ -169,8 +175,8 @@ $(function(){
 					</div>
 					<ul id="review">
 						<li id="tab0"><img src="./resources/images/detail.jpg" alt="배송정보"/></li>
-						<li id="tab1">리뷰</li>
-						<li id="tab2">문의사항</li>
+						<li id="tab1" class="service">서비스 준비중입니다...<br><img src="./resources/images/Logo.png" alt="Spring.B"/></li>
+						<li id="tab2" class="service">서비스 준비중입니다...<br><img src="./resources/images/Logo.png" alt="Spring.B"/></li>
 					</ul>
 				</div>
 			</div>
