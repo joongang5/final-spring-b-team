@@ -153,7 +153,6 @@ public class MypageController {
 		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
 			map.put("m_id", session.getAttribute("m_id"));
 			map.put("m_name", session.getAttribute("m_name"));
-			mypageService.myAccountUpdatePW(map.getMap());
 			
 			HashMap<String, Object> map2 = new HashMap<String, Object>();
 			map2.put("l_ip", util.getUserIp(request));
@@ -162,6 +161,9 @@ public class MypageController {
 			map2.put("m_no", session.getAttribute("m_no"));
 			
 			logService.writeLog(map2);
+			
+			mypageService.myAccountUpdatePW(map.getMap());
+			
 			
 			return "redirect:myinfoUpdatePW.do?msg=ok";
 

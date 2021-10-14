@@ -49,16 +49,16 @@ public class LoginController {
 				HttpSession session = request.getSession();
 				session.setAttribute("m_id", login.get("m_id"));
 				session.setAttribute("m_name", login.get("m_name"));
-				session.setAttribute("m_no", login.get("m_no"));
 				
 				map.put("l_data", "로그인 성공");
-				map.put("m_no", login.get("m_no"));
+				map.put("l_id", login.get("m_id"));
 				
 				logService.writeLog(map);
 				
 				return 3;
 			} else {
-				
+				map.put("l_data", "로그인 실패");
+				logService.writeLog(map);
 				return 2 ;
 			}
 	}
@@ -80,7 +80,11 @@ public class LoginController {
 	
 	@PostMapping(value="/join.do")
 	@ResponseBody
-	public int join(CommandMap ma) {	
+	public int join(CommandMap ma, Map<String, Object> map, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		
+		map.put("l_ip", util.getUserIp(request));
+	    map.put("l_target", "Logout");
 		
 		String m_addr = ma.getMap().get("postcode2") + "|" +  ma.getMap().get("address2") +  "|" +  ma.getMap().get("detailAddress2");
 		System.out.println(m_addr);
@@ -91,6 +95,10 @@ public class LoginController {
 	    System.out.println(checkId);
 	    
 	    if (checkId == 0) {
+	    	
+	    	map.put("l_data", "회원가입 성공");
+			map.put("l_id", session.getAttribute("m_id"));
+
 	    	loginService.join(ma.getMap());
 	    	
 	    	return 0;
@@ -108,20 +116,22 @@ public class LoginController {
 		map.put("l_ip", util.getUserIp(request));
 	    map.put("l_target", "Logout");
 	    
-		if (session.getAttribute("m_id") != null || session.getAttribute("m_name") != null || session.getAttribute("m_no") != null) {
+		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
 			
 			
 		    map.put("l_data", "로그아웃 성공");
-			map.put("m_no", session.getAttribute("m_no"));
+			map.put("l_id", session.getAttribute("m_id"));
 			
 			logService.writeLog(map);
 			
-			session.removeAttribute("m_no");
 			session.removeAttribute("m_id");
 			session.removeAttribute("m_name");
 			
 			return "redirect:/login.do";
 		} else {
+			map.put("l_data", "로그아웃 실패");
+			logService.writeLog(map);
+			
 			return "redirect:/login.do";
 		}
 	}
