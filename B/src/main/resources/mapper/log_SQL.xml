@@ -67,7 +67,7 @@
 	</select>
 	
 	<insert id="writeLog" parameterType="hashMap">
-		INSERT INTO log (l_ip, l_target, l_data <if test="m_no != null">, m_no</if>) VALUES(#{l_ip}, #{l_target}, #{l_data} <if test="m_no != null">, #{m_no}</if>)
+		INSERT INTO log (l_ip, l_target, l_data <if test="l_id != null">, l_id</if>) VALUES(#{l_ip}, #{l_target}, #{l_data} <if test="l_id != null">, #{l_id}</if>)
 	</insert>
 
 </mapper>

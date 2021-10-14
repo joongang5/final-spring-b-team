@@ -309,7 +309,7 @@
 										<td>${l.l_no }</td>
 										<td>${l.l_date }</td>
 										<td>${l.l_ip }</td>
-										<td>${l.m_id }</td>
+										<td>${l.l_id }</td>
 										<td>${l.l_target }</td>
 										<td>${l.l_data }</td>
 									</tr>
