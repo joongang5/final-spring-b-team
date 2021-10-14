@@ -82,7 +82,6 @@ public class LoginController {
 	@PostMapping(value="/join.do")
 	@ResponseBody
 	public int join(CommandMap ma, Map<String, Object> map, HttpServletRequest request) {
-		HttpSession session = request.getSession();
 		
 		map.put("l_ip", util.getUserIp(request));
 	    map.put("l_target", "Join");
