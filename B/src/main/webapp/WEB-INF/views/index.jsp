@@ -215,7 +215,7 @@ $(function(){
 					<li class="section">
 						<div class="sector">
 							<h2>
-								<a href="/categoryPage.do?category=${cM.c_main }" title="${cM.c_main }">#${cM.c_main }</a>
+								<a href="./categoryPage.do?category=${cM.c_main }" title="${cM.c_main }">#${cM.c_main }</a>
 								<select name="optionSelect" class="sectorSelecter optionSelect">
 									<option value="p_date" selected>등록순</option>
 									<option value="p_sell">구매순</option>
