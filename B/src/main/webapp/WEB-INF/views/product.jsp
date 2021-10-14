@@ -301,15 +301,8 @@ $(document).ready(function(){
 			<th scope="col">상위카테고리</th>
 			<th scope="col">하위카테고리</th>
 			<th scope="col">상품이미지</th>
-			<th scope="col">
-              <select id="sort__by-saleState">
-                <option>판매 상태</option>
-                <option>판매중</option>
-                <option>판매 중단</option>
-                <option>품절</option>
-              </select>
-            </th>
-            <th scope="col">표시 상태</th>
+			<th scope="col">판매상태</th>
+            <th scope="col">표시상태</th>
 		
 			
 		</tr>

@@ -280,9 +280,15 @@
 							</tr>
 							<tr>
 								<th>썸네일</th>
-								<td><img
-									src="https://blogger.googleusercontent.com/img/a/${detail.p_img}"
-									style="width: 200px; height: 200px;"></td>
+								<td> <c:if test="${detail.p_no lt 58 }">
+								<img src="https://blogger.googleusercontent.com/img/a/${detail.p_img}"
+									style="width: 200px; height: 200px;"></c:if>
+								<c:if test="${detail.p_no ge 58 }">
+								 <img src="./resources/uploadFile/${detail.p_img}"style="width: 200px; height: 200px;">
+								</c:if>	
+								
+									
+									</td>
 							</tr>
 
 

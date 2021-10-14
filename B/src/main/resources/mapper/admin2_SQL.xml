@@ -37,14 +37,17 @@
 	<select id="orderTotalList" parameterType="HashMap"  resultType="Integer">
 		SELECT COUNT(*) FROM order_view
 		<choose>
+			<when test="searchName == 'o_no'">
+				WHERE o_no LIKE CONCAT('%', #{search}, '%')
+			</when>
 			<when test="searchName == 'm_id'">
 				WHERE m_id LIKE CONCAT('%', #{search}, '%')
 			</when>
-			<when test="searchName == 'm_name'">
-				WHERE m_name LIKE CONCAT('%', #{search}, '%')
+			<when test="searchName == 'p_no'">
+				WHERE p_no LIKE CONCAT('%', #{search}, '%')
 			</when>
-			<when test="searchName == 'm_email'">
-				WHERE m_email LIKE CONCAT('%', #{search}, '%')
+			<when test="searchName == 'p_title'">
+				WHERE p_title LIKE CONCAT('%', #{search}, '%')
 			</when>
 			<when test="startDay != null and endDay != null">
 				WHERE DAT BETWEEN #{startDay} AND #{endDay}
