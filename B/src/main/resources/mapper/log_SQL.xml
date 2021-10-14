@@ -14,7 +14,7 @@
 				l_no DESC LIMIT #{startPage}, #{lastPage}
 			</when>
 			<when test="searchName == 'id'">
-				WHERE m_id LIKE CONCAT('%',#{search},'%') ORDER BY
+				WHERE l_id LIKE CONCAT('%',#{search},'%') ORDER BY
 				l_no DESC LIMIT #{startPage}, #{lastPage}
 			</when>
 			<when test="searchName == 'target'">
@@ -49,7 +49,7 @@
 				WHERE l_ip LIKE CONCAT('%',#{search},'%')
 			</when>
 			<when test="searchName == 'id'">
-				WHERE m_id LIKE CONCAT('%',#{search},'%')
+				WHERE l_id LIKE CONCAT('%',#{search},'%')
 			</when>
 			<when test="searchName == 'target'">
 				WHERE l_target LIKE CONCAT('%',#{search},'%')
