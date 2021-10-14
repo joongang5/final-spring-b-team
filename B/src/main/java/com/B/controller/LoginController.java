@@ -85,7 +85,7 @@ public class LoginController {
 		HttpSession session = request.getSession();
 		
 		map.put("l_ip", util.getUserIp(request));
-	    map.put("l_target", "Logout");
+	    map.put("l_target", "Join");
 		
 		String m_addr = ma.getMap().get("postcode2") + "|" +  ma.getMap().get("address2") +  "|" +  ma.getMap().get("detailAddress2");
 		System.out.println(m_addr);
@@ -96,20 +96,17 @@ public class LoginController {
 	    System.out.println(checkId);
 	    
 	    if (checkId == 0) {
-	    	
-	    	map.put("l_data", "회원가입 성공");
-			map.put("l_id", session.getAttribute("m_id"));
-			logService.writeLog(map);
-
 	    	loginService.join(ma.getMap());
-	    	
+	    	map.put("l_data", "회원가입 성공");
+			map.put("l_id", ma.get("m_id"));
+	    	logService.writeLog(map);
 	    	return 0;
 	    	
 	    }else {
-	    	map.put("l_data", "회원가입 실패");
-	    	logService.writeLog(map);
-	    	
 	    	loginService.join(ma.getMap());
+	    	map.put("l_data", "회원가입 실패");
+	    	map.put("l_id", ma.get("m_id"));
+	    	logService.writeLog(map);
 	    	return 1;
 	    }
 	}
@@ -132,7 +129,7 @@ public class LoginController {
 			session.removeAttribute("m_id");
 			session.removeAttribute("m_name");
 			
-			return "redirect:/login.do";
+			return "login";
 		} else {
 			map.put("l_data", "로그아웃 실패");
 			logService.writeLog(map);

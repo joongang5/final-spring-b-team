@@ -72,7 +72,7 @@
 		} else {
 			$("#checkResult1").css("color", "blue");
 			$("#checkResult1").text("");
-			return true;
+			return false;
 		}
 	}
 
@@ -89,7 +89,7 @@
 			$("#checkResult2").css("color", "blue");
 			$("#checkResult2").text("");
 			$("#updateBtn").attr("disabled", false);
-			return true;
+			return false;
 		}
 	}
 
@@ -140,7 +140,7 @@
                     비밀번호를 변경하려면 다음 정보를 입력하세요.
                 </div>
                 <form action="./myAccountChangePW.do" method="post"
-				onsubmit="submit()">
+				onsubmit="return submit()">
                 <div class="change-password-body">
                     <!--현재 비밀번호, 변경할 비밀번호*2-->
                     <div class="myInfo-content__short-container">
