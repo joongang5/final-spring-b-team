@@ -93,8 +93,9 @@ input[type=text], input[type=password] {
 	margin: 0;
 	padding: 0;
 	text-align: none;
-	font-family: "Malgun Gothic", "맑은 고딕", Dotum, "돋움", Arial, sans-serif;
-	/* font-family: 'Noto Serif KR', serif; */
+	/* 	font-family: "Malgun Gothic", "맑은 고딕", Dotum, "돋움", Arial, sans-serif;
+ */
+	font-family: 'Noto Serif KR', serif;
 }
 
 body {
@@ -275,14 +276,15 @@ header, footer, aside, nav, section, article {
 .demi {
 	display: inline-block;
 	margin: 0 1px;
-	vertical-align: middle
+	vertical-align: middle;
 }
 
 .inpType {
 	padding-left: 6px;
 	height: 24px;
 	line-height: 24px;
-	border: 1px solid #dbdbdb
+	border: 1px solid #dbdbdb;
+	text-align: center;
 }
 
 .btncalendar {
@@ -416,7 +418,7 @@ header, footer, aside, nav, section, article {
 					<div class="sideMenu__block">
 						<h3>나의 쇼핑 활동</h3>
 						<ul class="sideMenu__items">
-							<li class="sideMenu__item sideMenu__item--active"><a href="">구매
+							<li class="sideMenu__item sideMenu__item--active"><a href="./orderhistory.do">구매
 									내역 조회</a></li>
 							<li class="sideMenu__item"><a href="">최근 본 상품</a></li>
 							<li class="sideMenu__item"><a href="">쿠폰 / 적립금 조회</a></li>
@@ -455,9 +457,13 @@ header, footer, aside, nav, section, article {
 						<table>
 							<tr>
 								<th style="font-size: 20px;">결제 완료</th>
-								<th rowspan="3"><marquee direction=right><img src="./resources/images/right-arrow-org.png"></marquee></th>
+								<th rowspan="3"><marquee direction=right>
+										<img src="./resources/images/right-arrow-org.png">
+									</marquee></th>
 								<th style="font-size: 20px;">출고 준비</th>
-								<th rowspan="3"><marquee direction=right><img src="./resources/images/right-arrow-org.png"></marquee></th>
+								<th rowspan="3"><marquee direction=right>
+										<img src="./resources/images/right-arrow-org.png">
+									</marquee></th>
 								<th style="font-size: 20px;">출고 완료</th>
 							</tr>
 							<tr>
@@ -570,7 +576,7 @@ header, footer, aside, nav, section, article {
 								</c:if> <c:if test="${l.o_state == 1}">
 									<b style="color: red;">출고 준비</b>
 								</c:if> <c:if test="${l.o_state == 2}">
-									<b style="color: green; ">출고 완료</b>
+									<b style="color: green;">출고 완료</b>
 								</c:if></td>
 						</tr>
 					</c:forEach>
@@ -578,7 +584,8 @@ header, footer, aside, nav, section, article {
 
 				<br> <br> <br> <br>
 
-				<button class="snip1535" onclick="location.href='index.do'">메인 화면으로</button>
+				<button class="snip1535" onclick="location.href='index.do'">메인
+					화면으로</button>
 				<br> <br>
 			</main>
 		</div>
