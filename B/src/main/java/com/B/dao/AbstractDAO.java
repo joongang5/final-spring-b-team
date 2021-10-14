@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -80,6 +81,10 @@ public class AbstractDAO {
 		return sqlSession.selectOne(queryID, map);
 	}
 	
+	//20211014 정원우 추가 로그남기기
+	public void insertLog(String queryID, Map<String, Object> map) {
+		sqlSession.insert(queryID, map);
+	}
 	//20211005 강재하 추가
 	public List<HashMap<String, Object>> selectList(String queryID) {
 		return sqlSession.selectList(queryID);

@@ -11,8 +11,4 @@ public interface AdminService {
 
 	public void memberDelete(Map<String, Object> map);
 
-	public List<Map<String, Object>> logList(Map<String, Object> map);
-
-	public int logTotalList(Map<String, Object> map);
-
 }

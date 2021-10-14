@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="log">
+
+	<select id="logList" parameterType="HashMap"
+		resultType="HashMap">
+		SELECT * FROM log_view
+		<choose>
+			<when test="searchName == 'ip'">
+				WHERE l_ip LIKE CONCAT('%',#{search},'%') ORDER BY
+				l_no DESC LIMIT #{startPage}, #{lastPage}
+			</when>
+			<when test="searchName == 'id'">
+				WHERE m_id LIKE CONCAT('%',#{search},'%') ORDER BY
+				l_no DESC LIMIT #{startPage}, #{lastPage}
+			</when>
+			<when test="searchName == 'target'">
+				WHERE l_target LIKE CONCAT('%',#{search},'%') ORDER
+				BY l_no DESC LIMIT #{startPage}, #{lastPage}
+			</when>
+			<when test="searchName == 'content'">
+				WHERE l_data LIKE CONCAT('%',#{search},'%') ORDER BY
+				l_no DESC LIMIT #{startPage}, #{lastPage}
+			</when>
+			<when test="startDay != null and endDay != null">
+				WHERE DAT BETWEEN #{startDay} AND #{endDay} ORDER
+				BY l_no DESC LIMIT #{startPage}, #{lastPage}
+			</when>
+			<when test="order == 'l_no'">
+				ORDER BY l_no ASC LIMIT #{startPage}, #{lastPage}
+			</when>
+			<when test="order == 'l_date'">
+				ORDER BY l_date ASC LIMIT #{startPage}, #{lastPage}
+			</when>
+			<otherwise>
+				ORDER BY l_no DESC LIMIT #{startPage}, #{lastPage}
+			</otherwise>
+		</choose>
+	</select>
+
+	<select id="logTotalList" parameterType="hashMap"
+		resultType="Integer">
+		SELECT COUNT(*) FROM log_view
+		<choose>
+			<when test="searchName == 'ip'">
+				WHERE l_ip LIKE CONCAT('%',#{search},'%')
+			</when>
+			<when test="searchName == 'id'">
+				WHERE m_id LIKE CONCAT('%',#{search},'%')
+			</when>
+			<when test="searchName == 'target'">
+				WHERE l_target LIKE CONCAT('%',#{search},'%')
+			</when>
+			<when test="searchName == 'content'">
+				WHERE l_data LIKE CONCAT('%',#{search},'%')
+			</when>
+			<when test="startDay != null and endDay != null">
+				WHERE DAT BETWEEN #{startDay} AND #{endDay}
+			</when>
+			<otherwise>
+				ORDER BY l_no DESC
+			</otherwise>
+		</choose>
+	</select>
+	
+	<insert id="writeLog" parameterType="hashMap">
+		INSERT INTO log (l_ip, l_target, l_data <if test="m_no != null">, m_no</if>) VALUES(#{l_ip}, #{l_target}, #{l_data} <if test="m_no != null">, #{m_no}</if>)
+	</insert>
+
+</mapper>

@@ -20,11 +20,4 @@ public class AdminDAO extends AbstractDAO {
 		return totalList("admin.memberTotalList", map);
 	}
 	
-	public List<Map<String, Object>> logList(Map<String, Object> map) {
-		return (List<Map<String, Object>>) selectList("admin.logList", map);
-	}
-	
-	public int logTotalList(Map<String, Object> map) {
-		return totalList("admin.logTotalList", map);
-	}
 }
