@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Spring.B 디테일 페이지</title>
+<title>[${detail.c_main } > ${detail.c_sub }]${detail.p_title }</title>
 <link href="./resources/css/header.css" rel="stylesheet"/>
 <link href="./resources/css/reset.css" rel="stylesheet"/>
 <link href="./resources/css/footer.css" rel="stylesheet"/>
@@ -19,8 +19,8 @@
 #wrapper{width:100%;margin:0 auto;}
 	#container{width:100%;padding-top:170px;padding-bottom:300px;}
 		#mainContainer{width:100%;}
-			#productDetail{width:1200px;margin:0 auto;column-count: 2;column-gap: 50px;column-rule-color: #eee;column-rule-style: solid;column-width: 1px;padding-bottom:25px;}
-				#productDetail .pdSon{width:100%;}
+			#productDetail{width:1200px;min-height:400px;margin:0 auto;column-count: 2;column-gap: 50px;column-rule-color: #eee;column-rule-style: solid;column-width: 1px;padding-bottom:25px;}
+				#productDetail .pdSon{width:100%;min-height:400px;}
 				#productImg{width:100%;}
 					#productImg img{display:block;width:100%;}
 				#productContent{}
