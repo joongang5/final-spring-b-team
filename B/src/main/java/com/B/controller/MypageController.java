@@ -128,21 +128,25 @@ public class MypageController {
 	@PostMapping("/myAccountDelete.do")
 	public String myAccountDelete(CommandMap map, HttpServletRequest request) {
 		HttpSession session = request.getSession();
+		
+		HashMap<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("l_ip", util.getUserIp(request));
+		map2.put("l_target", "Withdrawal");
+		
 		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
 			map.put("m_id", session.getAttribute("m_id"));
 			map.put("m_name", session.getAttribute("m_name"));
 			
-			HashMap<String, Object> map2 = new HashMap<String, Object>();
-			map2.put("l_ip", util.getUserIp(request));
-			map2.put("l_target", "Withdrawal");
 			map2.put("l_data", "회원탈퇴 성공");
-			map2.put("m_no", session.getAttribute("m_no"));
-			
+			map2.put("l_id", session.getAttribute("m_id"));
 			logService.writeLog(map2);
+			
 			mypageService.myAccountDelete(map.getMap());
 			
 			return "redirect:/login.do";
 		} else {
+			map2.put("l_data", "회원탈퇴 실패");
+			logService.writeLog(map2);
 			return "redirect:/login.do";
 		}
 	}
@@ -150,16 +154,18 @@ public class MypageController {
 	@PostMapping("/myAccountChangePW.do")
 	public String myAccountChangePW(CommandMap map, HttpServletRequest request) {
 		HttpSession session = request.getSession();
+		
+		HashMap<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("l_ip", util.getUserIp(request));
+		map2.put("l_target", "ChangePW");
+		
 		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
 			map.put("m_id", session.getAttribute("m_id"));
 			map.put("m_name", session.getAttribute("m_name"));
 			
-			HashMap<String, Object> map2 = new HashMap<String, Object>();
-			map2.put("l_ip", util.getUserIp(request));
-			map2.put("l_target", "ChangePW");
-			map2.put("l_data", "비밀번호 변경 성공");
-			map2.put("m_no", session.getAttribute("m_no"));
 			
+			map2.put("l_data", "비밀번호 변경 성공");
+			map2.put("l_id", session.getAttribute("m_id"));
 			logService.writeLog(map2);
 			
 			mypageService.myAccountUpdatePW(map.getMap());
@@ -168,6 +174,9 @@ public class MypageController {
 			return "redirect:myinfoUpdatePW.do?msg=ok";
 
 		} else {
+			map2.put("l_data", "비밀번호 변경 실패");
+			logService.writeLog(map2);
+			
 			return "redirect:/login.do";
 		}
 	}

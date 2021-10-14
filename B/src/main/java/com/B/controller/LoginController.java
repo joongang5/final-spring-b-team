@@ -58,6 +58,7 @@ public class LoginController {
 				return 3;
 			} else {
 				map.put("l_data", "로그인 실패");
+				map.put("l_id", login.get("m_id"));
 				logService.writeLog(map);
 				return 2 ;
 			}
@@ -98,13 +99,17 @@ public class LoginController {
 	    	
 	    	map.put("l_data", "회원가입 성공");
 			map.put("l_id", session.getAttribute("m_id"));
+			logService.writeLog(map);
 
 	    	loginService.join(ma.getMap());
 	    	
 	    	return 0;
 	    	
 	    }else {
-
+	    	map.put("l_data", "회원가입 실패");
+	    	logService.writeLog(map);
+	    	
+	    	loginService.join(ma.getMap());
 	    	return 1;
 	    }
 	}
