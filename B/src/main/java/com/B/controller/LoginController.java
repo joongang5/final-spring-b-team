@@ -82,29 +82,23 @@ public class LoginController {
 	
 	@PostMapping(value="/join.do")
 	@ResponseBody
-	public int join(CommandMap ma, Map<String, Object> map, HttpServletRequest request) {	
-		/* HttpSession session = request.getSession(); */
+	public int join(CommandMap ma) {	
 		
 		String m_addr = ma.getMap().get("postcode2") + "|" +  ma.getMap().get("address2") +  "|" +  ma.getMap().get("detailAddress2");
 		System.out.println(m_addr);
 		ma.put("m_addr", m_addr);
 		
-		map.put("l_ip", util.getUserIp(request));
-	    map.put("l_target", "Join");
-	    
 	    int checkId = loginService.checkId((String)ma.getMap().get("m_id"));
+	    
+	    System.out.println(checkId);
 	    
 	    if (checkId == 0) {
 	    	loginService.join(ma.getMap());
 	    	
-	    	map.put("l_data", "회원가입 성공");
-			/* map.put("m_no", session.getAttribute("m_no")); */
-			logService.writeLog(map);
 	    	return 0;
 	    	
 	    }else {
-	    	map.put("l_data", "회원가입 실패");
-	    	logService.writeLog(map);
+
 	    	return 1;
 	    }
 	}
