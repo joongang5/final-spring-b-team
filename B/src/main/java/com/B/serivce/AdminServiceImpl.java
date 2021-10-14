@@ -45,4 +45,8 @@ public class AdminServiceImpl implements AdminService {
 		adminDAO.modifyState(p);
 		
 	}
+	@Override
+	public Map<String, Object> getAdminOrderDetail(Map<String, Object> map) {
+		return adminDAO.getAdminOrderDetail(map);
+	}
 }

@@ -33,5 +33,9 @@ public class AdminDAO extends AbstractDAO {
 		update("admin2.modifyState",p);
 		
 	}
+
+	public Map<String, Object> getAdminOrderDetail(Map<String, Object> map) {
+		return selectOne("admin2.adminOrderDetail",map);
+	}
 	
 }

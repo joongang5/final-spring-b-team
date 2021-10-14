@@ -318,7 +318,7 @@ $(".checkbox").click(function(){
               <td>${ao.m_id}</td>
               <td>${ao.DAT}</td>
               <!--여기서 주문 내역은 간결하게 출력한다. ex) 상품 ooo 외 *개-->
-              <td>${ao.p_title} 외 ${ao.cnt} 개</td>
+              <td><a href="./admin_orderDetail.do?o_no=${ao.o_no }" >${ao.p_title} 외 ${ao.cnt} 개</a></td>
               <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${ao.p_price * ao.cnt }" />원</td>      
               <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${ ao.p_price * ao.cnt - ao.pa_usePoint }" />원</td>
               <td><c:if test="${ao.o_state eq 2 }">출고 완료✔</c:if><c:if test="${ao.o_state eq 1 }">출고 준비📦</c:if> <c:if test="${ao.o_state eq 0 }">결제 완료💸</c:if></td>

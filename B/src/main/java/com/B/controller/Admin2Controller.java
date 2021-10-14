@@ -74,5 +74,17 @@ public class Admin2Controller {
 		}
 		return "redirect:/admin_orderList.do";
 	}
+	
+	@RequestMapping(value="admin_orderDetail")
+	public ModelAndView orderDetail(HttpServletRequest req, CommandMap map) {
+		ModelAndView mv = new ModelAndView("admin_orderDetail");
+		
+		map.put("o_no", req.getParameter("o_no"));
+		
+		Map<String, Object> orderDetail = adminService.getAdminOrderDetail(map.getMap()); 
+		mv.addObject("orderDetail", orderDetail); 
+		
+		return mv;
+	}
 
 }
