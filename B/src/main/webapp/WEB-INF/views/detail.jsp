@@ -53,7 +53,7 @@
 						#reviewNav li {float:left;padding:5px 20px;}
 							#reviewNav li a{padding:5px 20px;}
 							#reviewNav li a:hover, #reviewNav li a:focus{text-decoration:none;}
-						.selected{background-color:#FF8A00;color:#fff;font-weight:600;}
+							#reviewNav li .selected{background-color:#FF8A00;color:#fff;font-weight:600;}
 				
 				#review{clear:both;width:1200px;margin:0 auto;padding-top:25px;}
 					#review li{padding-top:50px;text-align:center;}
