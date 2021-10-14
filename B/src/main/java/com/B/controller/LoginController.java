@@ -58,8 +58,6 @@ public class LoginController {
 				
 				return 3;
 			} else {
-				map.put("l_data", "로그인 실패");
-				logService.writeLog(map);
 				
 				return 2 ;
 			}
@@ -110,7 +108,7 @@ public class LoginController {
 		map.put("l_ip", util.getUserIp(request));
 	    map.put("l_target", "Logout");
 	    
-		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null && session.getAttribute("m_no") != null) {
+		if (session.getAttribute("m_id") != null || session.getAttribute("m_name") != null || session.getAttribute("m_no") != null) {
 			
 			
 		    map.put("l_data", "로그아웃 성공");
@@ -124,10 +122,6 @@ public class LoginController {
 			
 			return "redirect:/login.do";
 		} else {
-			
-			map.put("l_data", "로그아웃 실패");
-			logService.writeLog(map);
-			
 			return "redirect:/login.do";
 		}
 	}
