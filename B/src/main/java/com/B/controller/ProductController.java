@@ -36,6 +36,7 @@ public class ProductController {
 	private Util util;
 	
 	@GetMapping(value = "/product.do") //상품 목록 조회
+	@ResponseBody
 	public ModelAndView admin(CommandMap map, HttpServletRequest req) {
 		ModelAndView mv = new ModelAndView("product");
 		List<Map<String, Object>>  product = productService.productList();
@@ -47,7 +48,7 @@ public class ProductController {
 		System.out.println(c_main);
 		System.out.println(c_sub);
 		Map<String, Object> p = new HashMap<String, Object>();
-		//다음부터는 map.getMap()으로 한번에 하기.. 밑에 처럼 하지말고..미래의 현아에게..
+
 		p.put("c_main", c_main);
 		p.put("c_sub", c_sub);
 		System.out.println(p);
@@ -88,6 +89,14 @@ public class ProductController {
 
 		map.put("startPage", startPage);
 		map.put("lastPage", lastPage);
+		
+		
+		//orderRule
+		if(req.getParameter("rule") != null) {
+			map.put("rule", req.getParameter("rule"));
+
+		}
+		
 
 		List<Map<String, Object>> productList = productService.productList(map.getMap());
 		int totalCount = productService.totalList(map.getMap());	
@@ -96,6 +105,14 @@ public class ProductController {
 		mv.addObject("pageNo", pageNo);
 		mv.addObject("productList", productList); // 현 페이지 번호
 		mv.addObject("totalCount", totalCount); // 전체 글 수
+		
+		
+			
+			
+		
+		
+		
+		
 	
 		return mv;
 				
@@ -151,14 +168,16 @@ public class ProductController {
 	@PostMapping(value="productModify.do")
 	public String modify(CommandMap map) {
 		Map<String, Object> p = new HashMap<String, Object>();
-		String e = (String) map.getMap().get("modify");
-		String[] ee = e.split(",");
-		for (int i = 0; i < ee.length; i++) {
-				p.put("p_no",Integer.parseInt(ee[i]));
+		if (map.getMap().get("modify") != "") {
+			String e = (String) map.getMap().get("modify");
+			System.out.println(e);
+			String[] ee = e.split(",");
+			for (int i = 0; i < ee.length; i++) {
+				p.put("p_no", Integer.parseInt(ee[i]));
 				p.put("p_state", map.getMap().get("p_state"));
 				productService.modifyState(p);
+			}
 		}
-		
 		return "redirect:/product.do";
 	}
 	
@@ -195,7 +214,17 @@ public class ProductController {
 	public String upload(HttpServletRequest req, MultipartFile p_img) { //파일 업로드
 		String savePath = req.getSession().getServletContext().getRealPath("./resources/uploadFile");
 		
+		File mkdir = new File(savePath);
+		
+		if(!mkdir.exists()) {
+			mkdir.mkdir();
+			System.out.println("폴더 생성");
+		}else {
+			System.out.println("폴더 생성 필요 없음");
+		}
+		
 		if(!p_img.isEmpty()) {
+			System.out.println(savePath);
 			String originName = p_img.getOriginalFilename();
 			String fName = FilenameUtils.getBaseName(originName);
 			String exe = FilenameUtils.getExtension(originName);
@@ -225,4 +254,5 @@ public class ProductController {
 		
 		return "redirect:/registerProduct.do";
 	}
+	
 }
