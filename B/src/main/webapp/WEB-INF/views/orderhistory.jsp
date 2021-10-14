@@ -7,7 +7,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>구매 내역 조회 | 가구</title>
+<title>주문배송내역 조회 | 가구</title>
 
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
@@ -536,7 +536,7 @@ header, footer, aside, nav, section, article {
 						<h3>나의 쇼핑 활동</h3>
 						<ul class="sideMenu__items">
 							<li class="sideMenu__item sideMenu__item--active"><a
-								href="./orderhistory.do">구매 내역 조회</a></li>
+								href="./orderhistory.do">주문배송내역 조회</a></li>
 							<li class="sideMenu__item"><a href="">최근 본 상품</a></li>
 							<li class="sideMenu__item"><a href="">쿠폰 / 적립금 조회</a></li>
 							<li class="sideMenu__item"><a href="">상품 문의</a></li>
@@ -564,8 +564,8 @@ header, footer, aside, nav, section, article {
 				<!-- <img src="http://localhost/img/furniturepic.png"
 	style="width: 150px; height: 150px;"> -->
 				<br> <br> <br> <br>
-				<h1 align="left">구매 내역 조회</h1>
-				<br> <br>
+				<h1 align="left">주문배송내역 조회</h1>
+				
 				<!-- <h3 align="center">진행상황</h3> -->
 				<br>
 
@@ -596,8 +596,9 @@ header, footer, aside, nav, section, article {
 					</div>
 				</div>
 
-				<!-- 슬라이드 기능 추가 -->
+				<br>
 
+				<!-- 슬라이드 기능 추가 -->
 				<div class="slider">
 					<input type="radio" name="slide" id="slide1" checked> <input
 						type="radio" name="slide" id="slide2"> <input type="radio"
@@ -684,7 +685,9 @@ header, footer, aside, nav, section, article {
 				</form>
 
 				<br>
-				<h3>주문 리스트</h3>
+				<br>
+				<h3 align="left">주문 리스트</h3>
+				<br>
 				<br>
 				<table>
 					<tr>
@@ -693,7 +696,7 @@ header, footer, aside, nav, section, article {
 						<th>제품 이미지</th>
 						<th>수량</th>
 						<th>가격</th>
-						<th>구매 날짜</th>
+						<th>주문 날짜</th>
 						<th>현재 상태</th>
 					</tr>
 					<c:forEach items="${list }" var="l">
