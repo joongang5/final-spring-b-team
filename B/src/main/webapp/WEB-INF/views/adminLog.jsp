@@ -135,7 +135,7 @@
 									<img src="./resources/images/setting.png">
 								</div>
 								<div>
-									<a href="">홈으로</a>
+									<a href="./index.do">홈으로</a>
 								</div>
 							</div>
 						</li>
@@ -162,13 +162,13 @@
 									<img src="./resources/images/furniture.png">
 								</div>
 								<div>
-									<a href="">상품 관리</a>
+									<a href="./product.do">상품 관리</a>
 								</div>
 							</div>
 							<div class="sideMenu-sub-container">
 								<ul class="sideMenu__subItems">
-									<li class="sideMenu__subItem"><a href="">상품 목록</a></li>
-									<li class="sideMenu__subItem"><a href="">상품 등록</a></li>
+									<li class="sideMenu__subItem"><a href="./product.do">상품 목록</a></li>
+									<li class="sideMenu__subItem"><a href="./registerProduct.do">상품 등록</a></li>
 									<li class="sideMenu__subItem"><a href="">쿠폰 등록</a></li>
 								</ul>
 							</div>
@@ -184,7 +184,8 @@
 							</div>
 							<div class="sideMenu-sub-container">
 								<ul class="sideMenu__subItems">
-									<li class="sideMenu__subItem"><a href="./adminMember.do">회원 목록</a></li>
+									<li class="sideMenu__subItem"><a href="./adminMember.do">회원
+											목록</a></li>
 								</ul>
 							</div>
 						</li>
@@ -290,29 +291,31 @@
 										<th scope="col">입력일</th>
 										<th scope="col">IP</th>
 										<th scope="col">아이디</th>
-										<th scope="col"><!-- <select id="sort__by-target">
+										<th scope="col">
+											<!-- <select id="sort__by-target">
 												<option>Target</option>
 												Target 출력 / 반복문 사용
 												<option>Target</option>
 												Target 출력 끝
-										</select> -->Target</th>
+										</select> -->Target
+										</th>
 										<th scope="col">내용</th>
 									</tr>
 								</thead>
 								<tbody>
 									<c:forEach items="${list }" var="l">
-									<!--로그 목록 출력 / 반복문 사용-->
-									<tr>
-										<!-- <td><label> <input type="checkbox"> <span
+										<!--로그 목록 출력 / 반복문 사용-->
+										<tr>
+											<!-- <td><label> <input type="checkbox"> <span
 												class="checkMark"></span>
 										</label></td> -->
-										<td>${l.l_no }</td>
-										<td>${l.l_date }</td>
-										<td>${l.l_ip }</td>
-										<td>${l.l_id }</td>
-										<td>${l.l_target }</td>
-										<td>${l.l_data }</td>
-									</tr>
+											<td>${l.l_no }</td>
+											<td>${l.l_date }</td>
+											<td>${l.l_ip }</td>
+											<td>${l.l_id }</td>
+											<td>${l.l_target }</td>
+											<td>${l.l_data }</td>
+										</tr>
 									</c:forEach>
 									<!--로그 목록 출력 끝-->
 								</tbody>
@@ -320,14 +323,14 @@
 							<div class="paging logList__paging">
 								<!--페이징 출력-->
 								<ui:pagination paginationInfo="${paginationInfo}" type="text"
-										jsFunction="linkPage"/>
+									jsFunction="linkPage" />
 							</div>
 						</div>
-		</c:when>
-		<c:otherwise>
-			<h2>출력할 글이 없습니다.</h2>
-		</c:otherwise>
-	</c:choose>
+					</c:when>
+					<c:otherwise>
+						<h2>출력할 글이 없습니다.</h2>
+					</c:otherwise>
+				</c:choose>
 			</main>
 		</div>
 		<footer id="admin-footer"></footer>
