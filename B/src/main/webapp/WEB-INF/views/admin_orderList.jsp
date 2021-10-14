@@ -283,6 +283,7 @@ $(".checkbox").click(function(){
           <select id="change-orderState" class="search-select" name="o_state" >
             <option value="0">결제 완료</option>
             <option value="1">출고 준비</option>
+            <option value="2">출고 완료</option>
           </select>
           <input type="hidden" id="modify"  value="" name="modify">
         </label>
