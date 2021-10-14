@@ -56,8 +56,8 @@
 						.selected{background-color:#FF8A00;color:#fff;font-weight:600;}
 				
 				#review{clear:both;width:1200px;margin:0 auto;padding-top:25px;}
-					#review li{padding-top:50px;}
-						#review .service{text-align:center;font-size:24px;font-weight:700;}
+					#review li{padding-top:50px;text-align:center;}
+						#review .service{font-size:24px;font-weight:700;}
 							#review .service img{width:500px;}
 				
 						
@@ -168,7 +168,7 @@ $(function(){
 				<div id="reviewArea">
 					<div id="reviewBar">
 						<ul id="reviewNav">
-							<li><a class="selected"  href="#tab0" title="배송정보">배송정보</a></li>
+							<li><a class="selected" href="#tab0" title="배송정보">배송정보</a></li>
 							<li><a href="#tab1" title="리뷰">리뷰</a></li>
 							<li><a href="#tab2" title="문의사항">문의사항</a></li>
 						</ul>
