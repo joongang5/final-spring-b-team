@@ -108,7 +108,7 @@ $(function(){
 					<div id="productList" class="sector">
 						<div class="product">
 							<c:forEach items="${cp_productList }" var="l">
-								<figure class="scene">
+								<figure class="scene" onclick="location.href='./detail.do?category=${l.c_main }&&sub= ${l.c_sub }&&product=${l.p_no }'">
 									<img src="https://blogger.googleusercontent.com/img/a/${l.p_img }" alt="${l.p_title }" class="sceneImg"/>
 									<figcaption class="detail">
 										<p class="title">

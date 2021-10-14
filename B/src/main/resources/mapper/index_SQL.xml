@@ -43,4 +43,8 @@
 			</choose>
 	</select>
 	
+	<select id="detail" parameterType="HashMap" resultType="HashMap">
+		SELECT * FROM product_view WHERE p_no=#{product}
+	</select>
+	
 </mapper>

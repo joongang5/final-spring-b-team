@@ -32,6 +32,9 @@ public class IndexServiceImpl implements IndexService {
 	public List<HashMap<String, Object>> cp_productList(Map<String, Object> map) {
 		return indexDAO.cp_productList(map);
 	}
+	public Map<String, Object> detail(Map<String, Object> map) {
+		return indexDAO.detail(map);
+	}
 
 	
 

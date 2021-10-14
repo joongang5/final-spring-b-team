@@ -235,7 +235,7 @@ $(function(){
 								</li>
 								<c:forEach items="${productList }" var="pl">
 									<c:if test="${pl.c_main eq cM.c_main}">
-										<li class="scene" onclick="location.href='/productDetail.do?category=${cM.c_main }&&sub= ${pl.c_sub }&&product=${pl.p_no }'">
+										<li class="scene" onclick="location.href='./detail.do?category=${cM.c_main }&&sub= ${pl.c_sub }&&product=${pl.p_no }'">
 											<img src="https://blogger.googleusercontent.com/img/a/${pl.p_img }" alt="${pl.p_title }" class="sceneImg"/>
 											<div class="detail">
 												<p class="title">
