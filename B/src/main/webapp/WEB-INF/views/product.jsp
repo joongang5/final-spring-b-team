@@ -144,6 +144,7 @@ $(document).ready(function(){
 	})
 })
  
+
 </script>
 <body>
 <!--admin 공통 부분-->
@@ -283,14 +284,7 @@ $(document).ready(function(){
           
           
         <div class="sort-box">
-          <select id="sort__by-column">
-            <option>상품 번호순</option>
-            <option>상품명순</option>
-            <option>상품 가격순</option>
-            <option>재고순</option>
-            <option>등록일순</option>
-            <option>표시 상태순</option>
-          </select>
+          
         </div>
       </div>
       <div class="productList-container">
@@ -309,7 +303,7 @@ $(document).ready(function(){
 			<th scope="col">
               <select id="sort__by-saleState">
                 <option>판매 상태</option>
-                <option>표시</option>
+                <option>판매중</option>
                 <option>판매 중단</option>
                 <option>품절</option>
               </select>
@@ -318,10 +312,15 @@ $(document).ready(function(){
 		
 			
 		</tr>
-		<c:if test="${empty categorySearch }">
+		<c:if test="${empty categorySearch}">
 		<c:forEach items="${productList}" var="p">
 		<tr>
-			<td scope="col"><input type="checkbox" class="checkbox" value="${p.p_no}"></td>
+			<td scope="col">
+			<label>
+                <input type="checkbox"  class="checkbox" value="${p.p_no}">
+                <span class="checkMark"></span>
+              </label>
+			</td>
 			<td scope="col">${p.p_no }</td>
 			<td colspan="2"><a href="./productDetail.do?p_no=${p.p_no}"> ${p.p_title} </a></td>
 			<td scope="col">${p.p_price }</td>
@@ -348,7 +347,12 @@ $(document).ready(function(){
 		<c:if test="${!empty categorySearch }">
 		<c:forEach items="${categorySearch }" var="cs">
 		<tr>
-			<td><input type="checkbox" class="checkbox" value="${p_pno}"></td>
+			<td>
+			  <label>
+                <input type="checkbox"  class="checkbox" value="${cs.p_no}">
+                <span class="checkMark"></span>
+              </label>
+            </td>
 			<td>${cs.p_no }</td>
 			<td>${cs.p_date }</td>
 			<td>${cs.c_main }</td>
@@ -356,7 +360,8 @@ $(document).ready(function(){
 			<td>${cs.p_title}</td>
 			<td>${cs.p_price }</td>
 			<td>${cs.p_cnt }</td>
-			<td><img src="https://blogger.googleusercontent.com/img/a/${cs.p_img}" style="width:100px;height:100px;"></td>
+			<td><c:if test="${cs.p_no lt 58 }"><img src="https://blogger.googleusercontent.com/img/a/${cs.p_img}" style="width:100px;height:100px;"></c:if>
+							<c:if test="${cs.p_no ge 58 }"><img src="./resources/uploadFile/${cs.p_img}"style="width:100px;height:100px;"></c:if></td>
 			<td><c:if test="${cs.p_state eq 1}"> 판매중</c:if>
 			 <c:if test="${cs.p_state eq 0 }"> 판매 중단 </c:if></td>
 			<td> <c:if test="${cs.p_state eq 1}"> 판매</c:if>
@@ -373,11 +378,15 @@ $(document).ready(function(){
           <!--상품 목록 출력 끝-->
           </tbody>
         </table>
-        <c:if test="${empty categorySearch }">
+        <c:if test="${empty categorySearch}">
         <div class="paging productList__paging">
           <ui:pagination paginationInfo="${paginationInfo }" type="text" jsFunction="linkPage" />
       </div>
      </c:if>
+     
+     
+     
+     
    
   </div>
   <footer id="admin-footer"></footer>	

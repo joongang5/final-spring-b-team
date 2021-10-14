@@ -91,11 +91,6 @@ public class ProductController {
 		map.put("lastPage", lastPage);
 		
 		
-		//orderRule
-		if(req.getParameter("rule") != null) {
-			map.put("rule", req.getParameter("rule"));
-
-		}
 		
 
 		List<Map<String, Object>> productList = productService.productList(map.getMap());
