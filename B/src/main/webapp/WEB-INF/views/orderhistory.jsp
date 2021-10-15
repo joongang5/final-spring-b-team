@@ -213,11 +213,11 @@ input[type=text], input[type=password] {
 	/* 	font-family: "Malgun Gothic", "맑은 고딕", Dotum, "돋움", Arial, sans-serif;
  */
 	font-family: 'Noto Serif KR', serif;
-}
+} 
 
 body {
-	font-size: 12px;
-	color: #555; 0
+	font-size: 15px;
+	color: #403429;
 	background: transparent;
 	-webkit-user-select: none;
 	-moz-user-select: none;
@@ -536,7 +536,7 @@ header, footer, aside, nav, section, article {
 						<h3>나의 쇼핑 활동</h3>
 						<ul class="sideMenu__items">
 							<li class="sideMenu__item sideMenu__item--active"><a
-								href="./orderhistory.do">주문배송내역 조회</a></li>
+								href="./orderhistory.do">구매 내역 조회</a></li>
 							<li class="sideMenu__item"><a href="">최근 본 상품</a></li>
 							<li class="sideMenu__item"><a href="">쿠폰 / 적립금 조회</a></li>
 							<li class="sideMenu__item"><a href="">상품 문의</a></li>
@@ -564,7 +564,7 @@ header, footer, aside, nav, section, article {
 				<!-- <img src="http://localhost/img/furniturepic.png"
 	style="width: 150px; height: 150px;"> -->
 				<br> <br> <br> <br>
-				<h1 align="left">주문배송내역 조회</h1>
+				<h1 align="left">주문배송내역</h1>
 				
 				<!-- <h3 align="center">진행상황</h3> -->
 				<br>
@@ -605,7 +605,7 @@ header, footer, aside, nav, section, article {
 						name="slide" id="slide3"> <input type="radio" name="slide"
 						id="slide4">
 					<ul id="imgholder" class="imgs">
-						<li><img src="./resources/images/slide12.jpg"></li>
+						<li><img src="./resources/images/slide19.jpg"></li>
 						<li><img src="./resources/images/slide13.jpg"></li>
 						<li><img src="./resources/images/slide14.jpg"></li>
 						<li><img src="./resources/images/slide15.jpg"></li>
@@ -696,6 +696,7 @@ header, footer, aside, nav, section, article {
 						<th>제품 이미지</th>
 						<th>수량</th>
 						<th>가격</th>
+						<th>결제 방식</th>
 						<th>주문 날짜</th>
 						<th>현재 상태</th>
 					</tr>
@@ -705,9 +706,18 @@ header, footer, aside, nav, section, article {
 							<td>${l.p_title}</td>
 							<td><img
 								src="https://blogger.googleusercontent.com/img/a/${l.p_img}"
-								style="width: 150px; height: 150px;"></td>
+								style="width: 110px; height: 110px;"></td>
 							<td>${l.cnt}</td>
-							<td>${l.p_price}</td>
+							<td>${l.p_price}원</td>
+							
+							<td><c:if test="${l.pa_plan eq 'kakaopay'}">
+									<img src="./resources/images/kakaopay.png">
+								</c:if> <c:if test="${l.pa_plan eq 'payco'}">
+									<img src="./resources/images/payco.png">
+								</c:if><c:if test="${l.pa_plan eq 'inicis'}">
+									<img src="./resources/images/inicis.png">
+								</c:if></td>
+							
 							<td>${l.p_date}</td>
 
 							<td><c:if test="${l.o_state == 0}">

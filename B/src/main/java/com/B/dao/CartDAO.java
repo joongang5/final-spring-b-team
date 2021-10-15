@@ -29,4 +29,16 @@ public class CartDAO extends AbstractDAO {
 	public int deleteCartByCartNo(int caNo) {
 		return delete("cart.deleteCartByCartNo", caNo);
 	}
+
+	public int checkCart(Map<String, Object> map) {
+		return selectOne2("cart.checkCart", map);
+	}
+
+	public void insertProductInCart(Map<String, Object> map) {
+		insert("cart.insertProductInCart", map);
+	}
+
+	public void updateAmountProductInCart(Map<String, Object> map) {
+		update("cart.updateAmountProductInCart", map);
+	}
 }
