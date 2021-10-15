@@ -64,7 +64,19 @@
 	#container:after{content:"";display:block;clear:both;}
 </style>
 <script>
+function check(){
+	alert("장바구니에 상품이 담겼습니다.");
+	if (confirm("장바구니로 가시겠습니까?")) {
+		location.href = './cart.do';
+		return true;
+	} else {
+		alert("취소되었습니다.");
+		return false;
+	}
+}
+
 $(function(){
+
 	$("#link").click(function(){
 		var url = '';
 		var textarea = document.createElement("textarea");
@@ -99,7 +111,11 @@ $(function(){
 	$("#buyBtn p").click(function(){
 		var index = $(this).index();
 		if(index == 0){
-			alert("장바구니에 담음");
+			var p_no = "${detail.p_no}";
+			var cnt = $("#detailCnt").val();
+			var c_main = "${detail.c_main}";
+			var c_sub = "${detail.c_sub}";
+			location.href = "./insertProductInCart.do?p_no="+p_no+"&cnt="+cnt+"&c_main="+c_main+"&c_sub="+c_sub;
 		}else{
 			alert("질러~");
 		}
@@ -163,6 +179,11 @@ $(function(){
 						<div id="buyBtn">
 							<p>장바구니</p><p>구매하기</p>
 						</div>
+						<c:if test="${param.msg eq 'ok'}">
+						<script type="text/javascript">
+							check();
+						</script>
+			</c:if>
 					</div>
 				</div>
 				<div id="reviewArea">

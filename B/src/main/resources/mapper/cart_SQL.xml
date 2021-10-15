@@ -28,4 +28,16 @@
 	<update id="cartProductUpDown" parameterType="HashMap">
 		UPDATE cart SET cnt=#{cnt} WHERE ca_no=#{ca_no}
 	</update>
+	
+	<insert id="insertProductInCart" parameterType="HashMap">
+		INSERT INTO cart (p_no, m_no, cnt) VALUES (#{p_no}, #{m_no}, #{cnt})
+	</insert>
+	
+	<select id="checkCart" parameterType="HashMap" resultType="Integer">
+		SELECT count(*) from cart WHERE p_no=#{p_no} AND m_no=#{m_no}
+	</select>
+	
+	<update id="updateAmountProductInCart" parameterType="HashMap">
+		UPDATE cart SET cnt = cnt + #{cnt} WHERE p_no=#{p_no} AND m_no=#{m_no}
+	</update>
 </mapper>

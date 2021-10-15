@@ -49,6 +49,7 @@ public class LoginController {
 				HttpSession session = request.getSession();
 				session.setAttribute("m_id", login.get("m_id"));
 				session.setAttribute("m_name", login.get("m_name"));
+				session.setAttribute("m_no", login.get("m_no"));
 				
 				map.put("l_data", "로그인 성공");
 				map.put("l_id", login.get("m_id"));

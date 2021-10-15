@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -30,6 +29,8 @@ public class AbstractDAO {
 		printQueryId(queryID);
 		return sqlSession.selectOne(queryID, map);
 	}
+	
+	
 
 	public int delete(String queryID, Map<String, Object> map) {
 		printQueryId(queryID);
@@ -112,5 +113,9 @@ public class AbstractDAO {
 	public List<HashMap<String, Object>> selectList3(String queryID, Map<String, Object> map) {
 		return sqlSession.selectList(queryID, map);
 	}
-
+	
+	//20211015 정원우 장바구니 수량 추가
+	public void insert(String queryID, Map<String, Object> map) {
+		sqlSession.insert(queryID, map);
+	}
 }
