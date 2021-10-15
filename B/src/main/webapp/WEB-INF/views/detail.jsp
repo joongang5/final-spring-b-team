@@ -116,7 +116,11 @@ $(function(){
 			var c_main = "${detail.c_main}";
 			var c_sub = "${detail.c_sub}";
 			location.href = "./insertProductInCart.do?p_no="+p_no+"&cnt="+cnt+"&c_main="+c_main+"&c_sub="+c_sub;
-		}else{
+		} else{
+			if ('${sessionScope.m_id}' == '') {
+			location.href =	'login.do'
+			return false;
+			}
 			var newForm = $('<form></form>');
 			newForm.attr('action', 'checkout.do');
 			newForm.attr('method', 'post');

@@ -71,7 +71,6 @@
 		let array_p_no$cnt= [];
 		
 		<c:set var="totalAmount" value="0"/>
-		
 		<c:forEach var="list" items="${orderProductList}">
 		array_p_no$cnt.push('${list.p_no}'+'$'+'${list.cnt}');
 		<c:set var="totalAmount" value="${totalAmount + list.amount}"/>
@@ -625,6 +624,7 @@
 
     .option-content__quantity{
       margin-left: 33px;
+      position: relative;
     }
 
     .number__value{
@@ -632,15 +632,15 @@
       margin-right: 5px;
     }
 
-    .option-content__price .amount__value{
-      position: relative;
+    .option-content__price{
+      
     }
 
-    .option-content__price .amount__value::after{
+    .option-content__quantity ::before{
       content: '';
       position: absolute;
       background: #e5e5e5;
-      left: 85px;
+      left: -50%;
       top: 1px;
       height: 21px;
       width: 2px;
