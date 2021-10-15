@@ -21,8 +21,8 @@
 
 /* add 슬라이드 이미지 */
 .slider {
-	width: 800px;
-	height: 150px;
+	width: 1082;
+	height: 200px;
 	position: relative;
 	margin: 0 auto;
 	overflow: hidden; /* 현재 슬라이드 오른쪽에 위치한 나머지 슬라이드 들이 보이지 않도록 가림 */
@@ -40,7 +40,7 @@ ul.imgs {
 
 ul.imgs li {
 	position: absolute;
-	left: 500px;
+	left: 50px;
 	transition-delay: 1s; /* 새 슬라이드가 이동해 오는 동안 이전 슬라이드 이미지가 배경이 보이도록 지연 */
 	padding: 0;
 	margin: 0;
@@ -48,7 +48,7 @@ ul.imgs li {
 
 .bullets {
 	position: absolute;
-	left: 50%;
+	left: 40%;
 	transform: translateX(-50%);
 	bottom: 5px;
 	z-index: 2;
@@ -57,7 +57,7 @@ ul.imgs li {
 .bullets label {
 	display: inline-block;
 	border-radius: 50%;
-	background-color: rgba(0, 0, 0, 0.55);
+	background-color: rgba(180, 4, 106, 0.5);
 	width: 15px;
 	height: 15px;
 	cursor: pointer;
@@ -605,10 +605,10 @@ header, footer, aside, nav, section, article {
 						name="slide" id="slide3"> <input type="radio" name="slide"
 						id="slide4">
 					<ul id="imgholder" class="imgs">
-						<li><img src="./resources/images/slide19.jpg"></li>
-						<li><img src="./resources/images/slide13.jpg"></li>
-						<li><img src="./resources/images/slide14.jpg"></li>
-						<li><img src="./resources/images/slide15.jpg"></li>
+						<li><img src="./resources/images/banner1.jpg"></li>
+						<li><img src="./resources/images/banner2.jpg"></li>
+						<li><img src="./resources/images/banner3.jpg"></li>
+						<li><img src="./resources/images/banner4.jpg"></li>
 
 					</ul>
 					<div class="bullets">
