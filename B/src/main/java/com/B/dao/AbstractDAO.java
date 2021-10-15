@@ -45,6 +45,11 @@ public class AbstractDAO {
 		printQueryId(queryID);
 		sqlSession.update(queryID, map);
 	}
+	
+	public int update2(String queryID, Map<String, Object> map) {
+		printQueryId(queryID);
+		return sqlSession.update(queryID, map);
+	}
 
 	// 메시지에서 no로 id불러오기
 	public String getName(String queryID, Map<String, Object> map) {
@@ -68,6 +73,10 @@ public class AbstractDAO {
 		return sqlSession.selectOne(queryID, key);
 	}
 	
+	public int selectOne2(String queryID, Map<String, Object> map) {
+		return sqlSession.selectOne(queryID, map);
+	}
+	
 	public int checkId(String queryId, String id) {
 		return sqlSession.selectOne(queryId, id);
 	}
@@ -75,7 +84,15 @@ public class AbstractDAO {
 	public void join(String queryId, Map<String, Object> map) {
 		sqlSession.insert(queryId, map);
 	}
-
+	
+	public int inputOrder(String queryId, Map<String, Object> map) {
+		return sqlSession.insert(queryId, map);
+	}
+	
+	public int updateOrder(String queryId, Map<String, Object> map) {
+		return sqlSession.update(queryId, map);
+	}
+	
 	// 게시판 총 게시물 구하기
 	public int totalList(String queryID, Map<String, Object> map) {
 		return sqlSession.selectOne(queryID, map);

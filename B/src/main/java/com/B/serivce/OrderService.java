@@ -11,4 +11,14 @@ public interface OrderService {
 	
 	public Map<String, Object> getOrderProductInfo(int p_no);
 
+	public int inputToOrder_List(Map<String, Object> orderedProduct);
+
+	public int inputToPayment(Map<String, Object> paymentInfo);
+
+	public int downStock(Map<String, Object> orderedProduct);
+
+	public int downPoint(Map<String, Object> paymentInfo);
+
+	public int checkStock(Map<String, Object> orderedProduct);
+
 }

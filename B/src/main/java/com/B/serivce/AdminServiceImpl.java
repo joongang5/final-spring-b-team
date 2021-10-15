@@ -49,4 +49,11 @@ public class AdminServiceImpl implements AdminService {
 	public Map<String, Object> getAdminOrderDetail(Map<String, Object> map) {
 		return adminDAO.getAdminOrderDetail(map);
 	}
+
+	@Override
+	public int updateWayBill(Map<String, Object> map) {
+		
+		return adminDAO.updateWayBill(map);
+		
+	}
 }

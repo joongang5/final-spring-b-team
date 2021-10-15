@@ -37,5 +37,10 @@ public class AdminDAO extends AbstractDAO {
 	public Map<String, Object> getAdminOrderDetail(Map<String, Object> map) {
 		return selectOne("admin2.adminOrderDetail",map);
 	}
+
+	public int updateWayBill(Map<String, Object> map) {
+		return update2("admin2.updateWayBill",map);
+		
+	}
 	
 }

@@ -19,5 +19,7 @@ public interface AdminService {
 	public void modifyState(Map<String, Object> p);
 	
 	public Map<String, Object> getAdminOrderDetail(Map<String, Object> map);
+	
+	public int updateWayBill(Map<String, Object> map);
 
 }

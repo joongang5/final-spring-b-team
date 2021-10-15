@@ -175,7 +175,7 @@ $(document).ready(function(){
           </li>
           <li class="sideMenu__item sideMenu__item--active">
             <div class="sideMenu-container">
-              <div><img src="./resources/images/furniture.png""></div>
+              <div><img src="./resources/images/furniture.png"></div>
               <div><a href="./product.do">상품 관리</a></div>
             </div>
             <div class="sideMenu-sub-container">

@@ -50,7 +50,7 @@ ul.imgs li {
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
-	bottom: 20px;
+	bottom: 5px;
 	z-index: 2;
 }
 
@@ -58,8 +58,8 @@ ul.imgs li {
 	display: inline-block;
 	border-radius: 50%;
 	background-color: rgba(0, 0, 0, 0.55);
-	width: 20px;
-	height: 20px;
+	width: 15px;
+	height: 15px;
 	cursor: pointer;
 }
 /* 현재 선택된 불릿 배경 흰색으로 구분 표시 */
@@ -605,10 +605,10 @@ header, footer, aside, nav, section, article {
 						name="slide" id="slide3"> <input type="radio" name="slide"
 						id="slide4">
 					<ul id="imgholder" class="imgs">
-						<li><img src="./resources/images/slide1.jpg"></li>
-						<li><img src="./resources/images/slide2.jpg"></li>
-						<li><img src="./resources/images/slide3.jpg"></li>
-						<li><img src="./resources/images/slide4.jpg"></li>
+						<li><img src="./resources/images/slide12.jpg"></li>
+						<li><img src="./resources/images/slide13.jpg"></li>
+						<li><img src="./resources/images/slide14.jpg"></li>
+						<li><img src="./resources/images/slide15.jpg"></li>
 
 					</ul>
 					<div class="bullets">

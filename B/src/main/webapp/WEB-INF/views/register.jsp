@@ -170,11 +170,11 @@ function selectSub(c_sub){
           <li class="sideMenu__item">
             <div class="sideMenu-container">
               <div><img src="./resources/images/user.png" ></div>
-              <div><a href="./admin2.do">고객 관리</a></div>
+              <div><a href="./adminMember.do">고객 관리</a></div>
             </div>
             <div class="sideMenu-sub-container">
               <ul class="sideMenu__subItems">
-                <li class="sideMenu__subItem"><a href="./admin2.do">회원 목록</a></li>
+                <li class="sideMenu__subItem"><a href="./adminMember.do">회원 목록</a></li>
               </ul>
             </div>
           </li>
@@ -195,11 +195,11 @@ function selectSub(c_sub){
           <li class="sideMenu__item">
             <div class="sideMenu-container">
               <div><img src="./resources/images/browser.png" ></div>
-              <div><a href="">사이트 관리</a></div>
+              <div><a href="./adminLog.do">사이트 관리</a></div>
             </div>
             <div class="sideMenu-sub-container">
               <ul class="sideMenu__subItems">
-                <li class="sideMenu__subItem"><a href="">로그 조회</a></li>
+                <li class="sideMenu__subItem"><a href="./adminLog.do">로그 조회</a></li>
               </ul>
             </div>
           </li>
