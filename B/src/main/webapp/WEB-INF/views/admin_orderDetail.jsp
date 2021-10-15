@@ -211,17 +211,17 @@
                     <li class="sideMenu__item">
                         <div class="sideMenu-container">
                             <div><img src="./resources/images/setting.png"></div>
-                            <div><a href="">홈으로</a></div>
+                            <div><a href="./index.do">홈으로</a></div>
                         </div>
                     </li>
                     <li class="sideMenu__item sideMenu__item--active">
                         <div class="sideMenu-container">
                             <div><img src="./resources/images/delivery.png"></div>
-                            <div><a href="">주문 관리</a></div>
+                            <div><a href="./admin_orderList.do">주문 관리</a></div>
                         </div>
                         <div class="sideMenu-sub-container">
                             <ul class="sideMenu__subItems sideMenu__subItems--active">
-                                <li class="sideMenu__subItem sideMenu__subItem--active"><a href="">주문 목록</a></li>
+                                <li class="sideMenu__subItem sideMenu__subItem--active"><a href="./admin_orderList.do">주문 목록</a></li>
                                 <li class="sideMenu__subItem"><a href="">교환 관리</a></li>
                                 <li class="sideMenu__subItem"><a href="">환불 관리</a></li>
                             </ul>
@@ -230,12 +230,12 @@
                     <li class="sideMenu__item">
                         <div class="sideMenu-container">
                             <div><img src="./resources/images/furniture.png"></div>
-                            <div><a href="">상품 관리</a></div>
+                            <div><a href="./product.do">상품 관리</a></div>
                         </div>
                         <div class="sideMenu-sub-container">
                             <ul class="sideMenu__subItems">
-                                <li class="sideMenu__subItem"><a href="">상품 목록</a></li>
-                                <li class="sideMenu__subItem"><a href="">상품 등록</a></li>
+                                <li class="sideMenu__subItem"><a href="./product.do">상품 목록</a></li>
+                                <li class="sideMenu__subItem"><a href="./registerProduct.do">상품 등록</a></li>
                                 <li class="sideMenu__subItem"><a href="">쿠폰 등록</a></li>
                             </ul>
                         </div>
@@ -243,11 +243,11 @@
                     <li class="sideMenu__item">
                         <div class="sideMenu-container">
                             <div><img src="./resources/images/user.png"></div>
-                            <div><a href="">고객 관리</a></div>
+                            <div><a href="./adminMember.do">고객 관리</a></div>
                         </div>
                         <div class="sideMenu-sub-container">
                             <ul class="sideMenu__subItems">
-                                <li class="sideMenu__subItem"><a href="">회원 목록</a></li>
+                                <li class="sideMenu__subItem"><a href="./adminMember.do">회원 목록</a></li>
                             </ul>
                         </div>
                     </li>
@@ -268,11 +268,11 @@
                     <li class="sideMenu__item">
                         <div class="sideMenu-container">
                             <div><img src="./resources/images/browser.png"></div>
-                            <div><a href="">사이트 관리</a></div>
+                            <div><a href="./adminLog">사이트 관리</a></div>
                         </div>
                         <div class="sideMenu-sub-container">
                             <ul class="sideMenu__subItems">
-                                <li class="sideMenu__subItem"><a href="">로그 조회</a></li>
+                                <li class="sideMenu__subItem"><a href="./adminLog">로그 조회</a></li>
                             </ul>
                         </div>
                     </li>
