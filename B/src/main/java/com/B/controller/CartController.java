@@ -12,9 +12,6 @@ import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -77,28 +74,29 @@ public class CartController {
 	@SuppressWarnings("unchecked")
 	@PostMapping({ "/cartProductDown.do", "/cartProductUp.do" })
 	@ResponseBody
-	public String cartProductUpDown(String sendData, HttpServletRequest request) throws JsonParseException, JsonMappingException, IOException {
+	public String cartProductUpDown(String sendData, HttpServletRequest request)
+			throws JsonParseException, JsonMappingException, IOException {
 		HttpSession session = request.getSession();
 		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
 			ObjectMapper mapper = new ObjectMapper();
 			Map<String, Object> map = mapper.readValue(sendData, Map.class);
-			
+
 			cartService.cartProductUpDown(map);
-			
+
 			int totalPrice = 0;
-			List<Object> checkValueArr = (List<Object>)map.get("checkValueArr");
+			List<Object> checkValueArr = (List<Object>) map.get("checkValueArr");
 			for (int i = 0; i < checkValueArr.size(); i++) {
 				int caNo = Util.parseInt(checkValueArr.get(i));
 				Map<String, Object> cartViewDTOMap = cartService.getCartViewByCartNo(caNo);
 				int price = Util.parseInt(cartViewDTOMap.get("p_price"));
 				int count = Util.parseInt(cartViewDTOMap.get("cnt"));
 				totalPrice += price * count;
-			}			
+			}
 
 			JSONObject jsonObj = new JSONObject();
-			 jsonObj.put("cnt", map.get("cnt")); 
-			 jsonObj.put("totalPrice", totalPrice);
-			
+			jsonObj.put("cnt", map.get("cnt"));
+			jsonObj.put("totalPrice", totalPrice);
+
 			return jsonObj.toString();
 		} else {
 			return "";
@@ -136,21 +134,21 @@ public class CartController {
 
 		return jsonObj.toString();
 	}
-	
+
 	@PostMapping(value = "/onclickDeleteAllButtonAJAX.do")
 	@ResponseBody
 	public int onclickDeleteAllButtonAJAX(CommandMap map, String[] checkValueArr) throws Exception {
 		int result = 0;
 		for (int i = 0; i < checkValueArr.length; i++) {
 			int caNo = Util.str2Int2(checkValueArr[i]);
-			
+
 			// 카트넘버와 일치하는 데이터를 데이터베이스에서 삭제시킨다.
 			result = cartService.deleteCartByCartNo(caNo);
 		}
 
 		return result;
 	}
-	
+
 	@PostMapping(value = "/onclickDeleteOneButtonAJAX.do")
 	@ResponseBody
 	public int onclickDeleteOneButtonAJAX(CommandMap map) throws Exception {
@@ -159,5 +157,24 @@ public class CartController {
 		int result = cartService.deleteCartByCartNo(caNo);
 
 		return result;
+	}
+
+	@GetMapping("/insertProductInCart.do")
+	public String insertProductInCart(CommandMap map, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
+			map.put("m_id", session.getAttribute("m_id"));
+			map.put("m_name", session.getAttribute("m_name"));
+			map.put("m_no", session.getAttribute("m_no"));
+			System.out.println(map.getMap());
+			String p_no = (String)map.get("p_no");
+			String c_main = (String)map.get("c_main");
+			String c_sub =(String)map.get("c_sub");
+			cartService.insertProductInCart(map.getMap());
+			return "redirect:/detail.do?category="+c_main+"&c_sub="+c_sub+"&product="+p_no+"&msg=ok";
+		} else {
+			return "redirect:/login.do";
+		}
+
 	}
 }
