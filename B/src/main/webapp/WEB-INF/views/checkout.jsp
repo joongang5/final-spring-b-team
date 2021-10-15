@@ -301,8 +301,8 @@
 			}).then(
 			    function (data) {
 			    	$("body").empty();
-			    	$('html > head > title').empty();
 			    	$("body").append(data);
+			    	$('html > head > title').text($("#title").val());
 			    },
 			    function (data) {
 			    	alert("결제는 이루어졌으나 결제 데이터 생성 도중에 실패했습니다. 관리자에게 문의해주세요.");

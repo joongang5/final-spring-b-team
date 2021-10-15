@@ -46,11 +46,11 @@
 	</insert>
 	
 	<select id="checkStock" parameterType="HashMap" resultType="Integer">
-		SELECT p_cnt-#{cnt} FROM product_view WHERE p_no = #{p_no}
+		SELECT (p_cnt-p_sell)-#{cnt} FROM product_view WHERE p_no = #{p_no}
 	</select>
 	
 	<update id="downStock" parameterType="hashMap">
-		UPDATE product SET p_cnt = (p_cnt-#{cnt}) WHERE p_no = #{p_no}
+		UPDATE product SET p_sell = (p_sell-#{cnt}) WHERE p_no = #{p_no}
 	</update>
 	
 	<update id="downPoint" parameterType="HashMap">

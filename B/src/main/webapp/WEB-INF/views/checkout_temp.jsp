@@ -14,8 +14,8 @@
 	<c:redirect url="login.do" />
 </c:if>
 <form action="checkout.do" method="post">
-	<c:forEach var="i" begin="48" end="49">
-		<input type="hidden" id="p_no" name="p_no$cnt" value="${i}$${i-46}">
+	<c:forEach var="i" begin="36" end="37">
+		<input type="hidden" id="p_no" name="p_no$cnt" value="${i}$${i-35}">
 	</c:forEach>
 	<button type="submit">결제하기</button> 
 </form>

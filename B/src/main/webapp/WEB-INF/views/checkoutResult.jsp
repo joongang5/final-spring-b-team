@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>주문 <c:out value="${result == 'success'? '완료':'오류'}"/> | 가구</title>
+  <title></title>
   <!-- 타이틀 문제는 나중에 해결하자 -->
   <meta charset="UTF-8">
   <link rel="stylesheet" href="./resources/css/base.css">
@@ -91,13 +91,14 @@
   <div id="payment-main-container">
     <main>
       <div class="payment-title">
+      	<input type="hidden" id="title" value="주문 <c:out value="${result == 'success'? '완료':'오류'}"/> | 가구">
         <h1>주문 <c:out value="${result == 'success'? '완료':'오류'}"/></h1>
       </div>
       <div class="payment-result-container">
         <div class="payment-result">
           <h2>${result == 'success'? '구매가 정상적으로 완료되었습니다.':'주문 처리에 문제가 발생했습니다.'}</h2>
           <c:if test="${errorMsg ne null}">
-          <h3>${errorMsg}</h3>.
+          <h3>${errorMsg}.</h3>
           </c:if>
         </div>
         <div class="payment-result-detail-container">

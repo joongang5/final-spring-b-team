@@ -117,14 +117,20 @@ $(function(){
 			var c_sub = "${detail.c_sub}";
 			location.href = "./insertProductInCart.do?p_no="+p_no+"&cnt="+cnt+"&c_main="+c_main+"&c_sub="+c_sub;
 		}else{
-			var newFrom = $('<form></form>');
-			newForm.attr("name","newForm"); 
+			/*
+			var newForm = $('<form></form>');
 			newForm.attr("method","post"); 
 			newForm.attr("action","checkout.do");
-			/* newForm.append($('<input/>', {type: 'hidden', name: 'p_no$cnt', value:'p_no$cnt' })); */
-			newForm.append($('<input/>', {type: 'hidden', name: 'p_no$cnt', value:p_no + '$' + cnt}));
+			newForm.append($('<input/>', {type: 'hidden', name: 'p_no$cnt', value:'p_no$cnt' })); 
+			newForm.append($('<input/>', {type: 'hidden', name: 'p_no$cnt', value:p_no + '$' + cnt}));*/
+			var newForm = $('<form></form>');
+			newForm.attr('action', 'checkout.do');
+			newForm.attr('method', 'post');
+			newForm.appendTo('body');
+			newForm.append($('<input type="hidden" value="' + p_no + '$' + cnt + '" name="p_no$cnt">'));
+			newForm.append($('<input type="hidden" value="' + p_no + '$' + cnt + '" name="p_no$cnt">'));
 			newForm.submit();
-
+			
 		}
 	});
 	$("#review li:not(:first)").hide();
