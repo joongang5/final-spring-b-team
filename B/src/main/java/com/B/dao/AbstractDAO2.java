@@ -35,6 +35,11 @@ public class AbstractDAO2 { // 20211005 이현아 새롭게 만듬
 		printQueryId(queryID);
 		return sqlSession.delete(queryID, map);
 	}
+	
+	public void delete2(String queryID, String p_no) {
+		printQueryId(queryID);
+		sqlSession.delete(queryID, p_no);
+	}
 
 	public void update(String queryID, Map<String, Object> map) {
 		printQueryId(queryID);

@@ -12,6 +12,10 @@ public class CartDAO extends AbstractDAO {
 		return (List<Map<String, Object>>) selectList("cart.cartList", map);
 	}
 
+	public Map<String, Object> getCartViewByCartNo(int caNo) {
+		return selectOne("cart.getCartViewByCartNo", caNo);
+	}
+	
 	public void cartOneDelete(Map<String, Object> map) {
 		delete("cart.cartOneDelete", map);
 		
@@ -20,5 +24,21 @@ public class CartDAO extends AbstractDAO {
 	public void cartProductUpDown(Map<String, Object> map) {
 		update("cart.cartProductUpDown", map);
 		
+	}
+	
+	public int deleteCartByCartNo(int caNo) {
+		return delete("cart.deleteCartByCartNo", caNo);
+	}
+
+	public int checkCart(Map<String, Object> map) {
+		return selectOne2("cart.checkCart", map);
+	}
+
+	public void insertProductInCart(Map<String, Object> map) {
+		insert("cart.insertProductInCart", map);
+	}
+
+	public void updateAmountProductInCart(Map<String, Object> map) {
+		update("cart.updateAmountProductInCart", map);
 	}
 }

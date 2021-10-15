@@ -3,10 +3,85 @@
 <head>
   <meta charset="UTF-8">
   <title>관리자 페이지 | 가구</title>
-  <link rel="stylesheet" href="admin.css">
+  <link rel="stylesheet" href="./resources/css/base.css">
+  <link rel="stylesheet" href="./resources/css/admin.css">
   <style>
+    .category-search-box{
+      margin-bottom: 10px;
+    }
 
-  </style>
+    .category-search-box label{
+
+    }
+
+    .category-search-box select{
+      /* background: #eeded5; */
+      width: 200px;
+      padding: 8px 14px;
+    }
+
+    .selects-container{
+
+    }
+
+    .change-displayState-box{
+      margin-bottom: 10px;
+    }
+
+    .change-displayState-box label{
+
+    }
+
+    #change-displayState{
+
+    }
+
+    .change-displayState-box button{
+
+    }
+
+    .productList-container{
+
+    }
+
+    .productList{
+      /* border: 1px solid black; */
+      /* border-collapse: collapse; */
+    }
+
+    .productList th:nth-child(3){
+
+    }
+
+    .productList th:nth-child(7){
+
+    }
+
+    .product-thumbnail-td{
+      width: 50px;
+      height: 50px;
+      overflow: hidden;
+    }
+
+
+    .product-thumbnail-td img{
+      width: 100%;
+      object-fit: cover;
+    }
+
+    #sort__by-saleState{
+
+    }
+
+    .productList td{
+      font-size: 10pt;
+    }
+
+    .productList__paging {
+
+    }
+
+    </style>
 </head>
 <body>
 <!--admin 공통 부분-->
@@ -16,38 +91,73 @@
     <nav id="admin-sideMenu">
       <div class="sideMenu__block-container">
         <ul class="sideMenu__items">
-          <li class="sideMenu__item"><a href=""><img src="">홈으로</a></li>
-          <li class="sideMenu__item"><a href=""><img src="">주문 관리</a>
-            <ul class="sideMenu__subItems">
-              <li class="sideMenu__subItem"><a href="">주문 목록</a></li>
-              <li class="sideMenu__subItem"><a href="">교환 관리</a></li>
-              <li class="sideMenu__subItem"><a href="">환불 관리</a></li>
-            </ul>
+          <li class="sideMenu__item">
+            <div class="sideMenu-container">
+              <div><img src="./resources/images/setting.png"></div>
+              <div><a href="">홈으로</a></div>
+            </div>
           </li>
-          <li class="sideMenu__item sideMenu__item--active"><a href=""><img src="">상품 관리</a>
-            <ul class="sideMenu__subItems sideMenu__subItems--active">
-              <li class="sideMenu__subItem"><a href="">상품 목록</a></li>
-              <li class="sideMenu__subItem"><a href="">상품 등록</a></li>
-              <li class="sideMenu__subItem"><a href="">쿠폰 등록</a></li>
-            </ul>
+          <li class="sideMenu__item">
+            <div class="sideMenu-container">
+              <div><img src="./resources/images/delivery.png"></div>
+              <div><a href="">주문 관리</a></div>
+            </div>
+            <div class="sideMenu-sub-container">
+              <ul class="sideMenu__subItems">
+                <li class="sideMenu__subItem"><a href="">주문 목록</a></li>
+                <li class="sideMenu__subItem"><a href="">교환 관리</a></li>
+                <li class="sideMenu__subItem"><a href="">환불 관리</a></li>
+              </ul>
+            </div>
           </li>
-          <li class="sideMenu__item"><a href=""><img src="">고객 관리</a>
-            <ul class="sideMenu__subItems">
-              <li class="sideMenu__subItem"><a href="">회원 목록</a></li>
-            </ul>
+          <li class="sideMenu__item sideMenu__item--active">
+            <div class="sideMenu-container">
+              <div><img src="./resources/images/furniture.png"></div>
+              <div><a href="">상품 관리</a></div>
+            </div>
+            <div class="sideMenu-sub-container">
+              <ul class="sideMenu__subItems sideMenu__subItems--active">
+                <li class="sideMenu__subItem sideMenu__subItem--active"><a href="">상품 목록</a></li>
+                <li class="sideMenu__subItem"><a href="">상품 등록</a></li>
+                <li class="sideMenu__subItem"><a href="">쿠폰 등록</a></li>
+              </ul>
+            </div>
           </li>
-          <li class="sideMenu__item"><a href=""><img src="">고객 응대</a>
-            <ul class="sideMenu__subItems">
-              <li class="sideMenu__subItem"><a href="">상품 문의 목록</a></li>
-              <li class="sideMenu__subItem"><a href="">1:1 문의 목록</a></li>
-              <li class="sideMenu__subItem"><a href="">자주 묻는 질문 관리</a></li>
-              <li class="sideMenu__subItem"><a href="">리뷰 목록</a></li>
-            </ul>
+          <li class="sideMenu__item">
+            <div class="sideMenu-container">
+              <div><img src="./resources/images/user.png"></div>
+              <div><a href="">고객 관리</a></div>
+            </div>
+            <div class="sideMenu-sub-container">
+              <ul class="sideMenu__subItems">
+                <li class="sideMenu__subItem"><a href="">회원 목록</a></li>
+              </ul>
+            </div>
           </li>
-          <li class="sideMenu__item"><a href=""><img src="">사이트 관리</a>
-            <ul class="sideMenu__subItems">
-              <li class="sideMenu__subItem"><a href="">로그 조회</a></li>
-            </ul>
+          <li class="sideMenu__item">
+            <div class="sideMenu-container">
+              <div><img src="./resources/images/support.png"></div>
+              <div><a href="">고객 응대</a></div>
+            </div>
+            <div class="sideMenu-sub-container">
+              <ul class="sideMenu__subItems">
+                <li class="sideMenu__subItem"><a href="">상품 문의 목록</a></li>
+                <li class="sideMenu__subItem"><a href="">1:1 문의 목록</a></li>
+                <li class="sideMenu__subItem"><a href="">자주 묻는 질문 관리</a></li>
+                <li class="sideMenu__subItem"><a href="">리뷰 목록</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="sideMenu__item">
+            <div class="sideMenu-container">
+              <div><img src="./resources/images/browser.png"></div>
+              <div><a href="">사이트 관리</a></div>
+            </div>
+            <div class="sideMenu-sub-container">
+              <ul class="sideMenu__subItems">
+                <li class="sideMenu__subItem"><a href="">로그 조회</a></li>
+              </ul>
+            </div>
           </li>
         </ul>
       </div>
@@ -59,17 +169,20 @@
       </div>
       <div class="category-search-box">
         <!--선택하면 바로 이동됨-->
-        <label>카테고리로 검색
-          <select>
+        <label>
+          <p>카테고리로 검색</p>
+          <select class="search-select">
             <option>1차 카테고리</option>
           </select>
-          <select>
+          <select class="search-select">
             <option>2차 카테고리</option>
           </select>
         </label>
       </div>
       <div class="keyword-search-box">
-        <label for="keyword-search__word">키워드 검색</label>
+        <label for="keyword-search__word">
+          <p>키워드 검색</p>
+        </label>
         <div class="keyword-search__bar">
           <select id="keyword-search__column">
             <option>상품 번호</option>
@@ -79,17 +192,18 @@
           </select>
           <input type="search" id="keyword-search__word">
         </div>
-        <button>검색</button>
+        <button class="search-button">검색</button>
       </div>
       <div class="selects-container">
         <div class="change-displayState-box">
-          <label>선택한 상품
-            <select id="change-displayState">
+          <label>
+            <p>선택한 상품</p>
+            <select id="change-displayState" class="search-select">
               <option>표시</option>
               <option>비표시</option>
             </select>
           </label>
-          <button>일괄 변경</button>
+          <button class="search-button">일괄 변경</button>
         </div>
         <div class="sort-box">
           <select id="sort__by-column">
@@ -103,7 +217,7 @@
         </div>
       </div>
       <div class="productList-container">
-        <table class="productList">
+        <table class="list-table productList">
           <thead>
           <tr>
             <th scope="col">선택</th>
@@ -126,26 +240,45 @@
           <tbody>
           <!--상품 목록 출력 / 반복문 사용-->
           <tr>
-            <td>
-              <input type="checkbox">
+            <td rowspan="2">
+              <label>
+                <input type="checkbox">
+                <span class="checkMark"></span>
+              </label>
             </td>
-            <td>상품 번호</td>
-            <td>사진</td>
-            <td>상품 내용</td>
-            <td>상품 가격</td>
-            <td>재고</td>
-            <td>등록일자</td>
-            <td>판매 상태</td>
-            <td>표시 상태</td>
+            <td rowspan="2">상품 번호</td>
+            <td rowspan="2" class="product-thumbnail-td">
+              <img src="./resources/images/no-image.png">
+            </td>
+            <td rowspan="1" colspan="1">
+              카테고리
+            </td>
+            <td rowspan="2">상품 가격</td>
+            <td rowspan="2">재고</td>
+            <td rowspan="2">등록일자</td>
+            <td rowspan="2">판매 상태</td>
+            <td rowspan="2">표시 상태</td>
+          </tr>
+          <tr>
+            <td rowspan="1" colspan="1">
+              상품명
+            </td>
           </tr>
           <!--상품 목록 출력 끝-->
           </tbody>
         </table>
-        <div class="productList__paging"></div>
+        <div class="paging productList__paging">
+          <!--페이징 출력-->
+          <a class="page-value">1</a>
+          <a class="page-value">2</a>
+          <a class="page-value">3</a>
+          <a class="page-value">4</a>
+          <a class="page-value">5</a>
+        </div>
       </div>
     </main>
   </div>
-  <footer id="footer-space"></footer>
+  <footer id="admin-footer"></footer>
 </div>
 </body>
 </html>

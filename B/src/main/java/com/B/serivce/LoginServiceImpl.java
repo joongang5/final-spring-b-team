@@ -5,7 +5,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.B.common.CommandMap;
 import com.B.dao.LoginDAO;
 
 @Service("loginService")

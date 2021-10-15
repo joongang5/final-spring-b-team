@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.B.dao.OrderDAO;
-import com.B.dao.TestDAO;
 
 @Service("orderService")
 public class OrderServiceImpl implements OrderService {
@@ -23,6 +22,36 @@ public class OrderServiceImpl implements OrderService {
 	@Override
 	public List<Map<String, Object>> getListByMemberNo(Map<String, Object> map) {
 		return orderDAO.getListByMemberNo(map);
+	}
+
+	@Override
+	public Map<String, Object> getOrderProductInfo(int p_no) {
+		return orderDAO.getOrderProductInfo(p_no);
+	}
+
+	@Override
+	public int inputToOrder_List(Map<String, Object> orderedProduct) {
+		return orderDAO.inputToOrder_List(orderedProduct);
+	}
+
+	@Override
+	public int inputToPayment(Map<String, Object> paymentInfo) {
+		return orderDAO.inputToPayment(paymentInfo);
+	}
+
+	@Override
+	public int downStock(Map<String, Object> orderedProduct) {
+		return orderDAO.downStock(orderedProduct);
+	}
+
+	@Override
+	public int downPoint(Map<String, Object> paymentInfo) {
+		return orderDAO.downPoint(paymentInfo);
+	}
+
+	@Override
+	public int checkStock(Map<String, Object> orderedProduct) {
+		return orderDAO.checkStock(orderedProduct);
 	}
 
 	

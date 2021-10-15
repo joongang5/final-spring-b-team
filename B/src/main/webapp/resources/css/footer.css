@@ -1,0 +1,15 @@
+@charset "UTF-8";
+footer{width:100%;border-top:2px solid;border-image: linear-gradient(to right, #fff, #FFA335, #F2E3D5);border-image-slice: 1;background-color:#F2E3D5;height:200px;}
+	#footer{width:1200px;margin:0 auto;font-size:12px;}
+		#sns{height:40px;padding-top:10px;}
+			#sns p{display:inline-flex;margin-right:8px;}
+				#sns p img{width:24px;cursor:pointer;}
+	
+		#law{height:40px;padding-top:30px;}
+			#law span{margin-right:8px;cursor:pointer;}
+			
+		#view{ width:980px; max-height:90vh; position:fixed; left:50%; top:50%;transform:translate(-50%,-50%);background-color:#fff;overflow:auto;padding:10px;
+			border:3px solid;border-color:Gold PapayaWhip PeachPuff Moccasin;box-shadow:10px 10px 10px rgba(0,0,0,0.5);z-index:100;}
+			#view .userLaw{display:none;}
+			#view .useLaw{display:none;}
+		#full{ position:fixed; width:100%; height:100%; background-color:rgba(0,0,0,0.5); left:0; top:0;z-index:99;}

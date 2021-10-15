@@ -7,12 +7,199 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>구매 내역 조회</title>
+<title>주문배송내역 조회 | 가구</title>
 
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
 
+<!-- <link rel="stylesheet" href="./resources/css/base.css">  -->
+<link rel="stylesheet" href="./resources/css/mypage.css">
+<link rel="stylesheet" href="./resources/css/invoice.css">
+
+
 <style>
+
+/* add 슬라이드 이미지 */
+.slider {
+	width: 1082;
+	height: 200px;
+	position: relative;
+	margin: 0 auto;
+	overflow: hidden; /* 현재 슬라이드 오른쪽에 위치한 나머지 슬라이드 들이 보이지 않도록 가림 */
+}
+
+.slider input[type=radio] {
+	display: none;
+}
+
+ul.imgs {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+ul.imgs li {
+	position: absolute;
+	left: 50px;
+	transition-delay: 1s; /* 새 슬라이드가 이동해 오는 동안 이전 슬라이드 이미지가 배경이 보이도록 지연 */
+	padding: 0;
+	margin: 0;
+}
+
+.bullets {
+	position: absolute;
+	left: 40%;
+	transform: translateX(-50%);
+	bottom: 5px;
+	z-index: 2;
+}
+
+.bullets label {
+	display: inline-block;
+	border-radius: 50%;
+	background-color: rgba(180, 4, 106, 0.5);
+	width: 15px;
+	height: 15px;
+	cursor: pointer;
+}
+/* 현재 선택된 불릿 배경 흰색으로 구분 표시 */
+.slider input[type=radio]:nth-child(1):checked ~.bullets>label:nth-child(1)
+	{
+	background-color: #fff;
+}
+
+.slider input[type=radio]:nth-child(2):checked ~.bullets>label:nth-child(2)
+	{
+	background-color: #fff;
+}
+
+.slider input[type=radio]:nth-child(3):checked ~.bullets>label:nth-child(3)
+	{
+	background-color: #fff;
+}
+
+.slider input[type=radio]:nth-child(4):checked ~.bullets>label:nth-child(4)
+	{
+	background-color: #fff;
+}
+
+.slider input[type=radio]:nth-child(1):checked ~ul.imgs>li:nth-child(1)
+	{
+	left: 0;
+	transition: 0.5s;
+	z-index: 1;
+}
+
+.slider input[type=radio]:nth-child(2):checked ~ul.imgs>li:nth-child(2)
+	{
+	left: 0;
+	transition: 0.5s;
+	z-index: 1;
+}
+
+.slider input[type=radio]:nth-child(3):checked ~ul.imgs>li:nth-child(3)
+	{
+	left: 0;
+	transition: 0.5s;
+	z-index: 1;
+}
+
+.slider input[type=radio]:nth-child(4):checked ~ul.imgs>li:nth-child(4)
+	{
+	left: 0;
+	transition: 0.5s;
+	z-index: 1;
+}
+
+/* add 스크롤 바*/
+::-webkit-scrollbar {
+	width: 16px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: #EEDED5;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #403429;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	
+}
+
+::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment
+	{
+	width: 16px;
+	height: 16px;
+	background: #EEDED5;
+}
+
+/* add 테두리 */
+.orderList-summary {
+	display: flex;
+	border: 10px dashed #EEDED5;
+	margin: 10px 10px 10px 10px;
+	padding: 30px;
+}
+
+/* add 버튼 */
+.snip1535 {
+	background-color: #c47135;
+	border: none;
+	color: #ffffff;
+	cursor: pointer;
+	display: inline-block;
+	font-family: 'BenchNine', Arial, sans-serif;
+	font-size: 1em;
+	font-size: 10px;
+	line-height: 1em;
+	margin: 5px 5px;
+	outline: none;
+	padding: 10px 40px 10px;
+	position: relative;
+	text-transform: uppercase;
+	font-weight: 700;
+}
+
+.snip1535:before, .snip1535:after {
+	border-color: transparent;
+	-webkit-transition: all 0.25s;
+	transition: all 0.25s;
+	border-style: solid;
+	border-width: 0;
+	content: "";
+	height: 24px;
+	position: absolute;
+	width: 24px;
+}
+
+.snip1535:before {
+	border-color: #c47135;
+	border-right-width: 2px;
+	border-top-width: 2px;
+	right: -5px;
+	top: -5px;
+}
+
+.snip1535:after {
+	border-bottom-width: 2px;
+	border-color: #c47135;
+	border-left-width: 2px;
+	bottom: -5px;
+	left: -5px;
+}
+
+.snip1535:hover, .snip1535.hover {
+	background-color: #c47135;
+}
+
+.snip1535:hover:before, .snip1535.hover:before, .snip1535:hover:after,
+	.snip1535.hover:after {
+	height: 100%;
+	width: 100%;
+}
 
 /* Default */
 input[type=text], input[type=password] {
@@ -22,19 +209,22 @@ input[type=text], input[type=password] {
 * {
 	margin: 0;
 	padding: 0;
-	text-align: center;
-	/* 	font-family: "Malgun Gothic", "맑은 고딕", Dotum, "돋움", Arial, sans-serif */
-}
+	text-align: none;
+	/* 	font-family: "Malgun Gothic", "맑은 고딕", Dotum, "돋움", Arial, sans-serif;
+ */
+	font-family: 'Noto Serif KR', serif;
+} 
 
 body {
-	font-size: 12px;
-	color: #555;
-0	background: transparent;
+	font-size: 15px;
+	color: #403429;
+	background: transparent;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-webkit-text-size-adjust: none;
 	-moz-text-size-adjust: none;
-	-ms-text-size-adjust: none
+	-ms-text-size-adjust: none;
+	text-align: center;
 }
 
 ol, ul {
@@ -121,19 +311,35 @@ header, footer, aside, nav, section, article {
 }
 
 .searchBox tbody th {
-	padding: 20px 10px 20px 35px;
+	padding: 35px 10px 10px 30px;
 	font-size: 14px;
 	font-weight: bold;
 	text-align: left;
 	vertical-align: top;
 	border: none;
-	background: #e6e6e6
+	font-size: 14px;
+	font-weight: bold;
+	text-align: left;
+	vertical-align: top;
+	border: none;
+	background: #FFAA28;
+	font-weight: bold;
+	text-align: left;
+	vertical-align: top;
+	border: none;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: left;
+	vertical-align: top;
+	border: none;
+	/* background: #e6e6e6 */
 }
 
 .searchBox tbody td {
 	padding: 12px 10px 12px 25px;
 	border: none;
-	background-color: #efefef
+	background: #FDEBC8;
+	/* 	background-color: #efefef */
 }
 
 .searchDate {
@@ -156,7 +362,7 @@ header, footer, aside, nav, section, article {
 
 .searchDate li .chkbox2 {
 	display: block;
-	text-align: center
+	text-align: center;
 }
 
 .searchDate li .chkbox2 input {
@@ -171,11 +377,13 @@ header, footer, aside, nav, section, article {
 	font-size: 14px;
 	font-weight: bold;
 	color: #fff;
+	/* color: black; */
 	text-align: center;
 	line-height: 25px;
 	text-decoration: none;
 	cursor: pointer;
-	background: #a5b0b6
+	/* background: #a5b0b6; */
+	background: #FFC846;
 }
 
 .searchDate li .chkbox2.on label {
@@ -185,14 +393,15 @@ header, footer, aside, nav, section, article {
 .demi {
 	display: inline-block;
 	margin: 0 1px;
-	vertical-align: middle
+	vertical-align: middle;
 }
 
 .inpType {
 	padding-left: 6px;
 	height: 24px;
 	line-height: 24px;
-	border: 1px solid #dbdbdb
+	border: 1px solid #dbdbdb;
+	text-align: center;
 }
 
 .btncalendar {
@@ -316,137 +525,220 @@ header, footer, aside, nav, section, article {
 
 </head>
 <body>
-	<h1>구매 내역 조회</h1>
-	<br>
 
-	<br>
-	<br>
-	<br>
-
-	<h3>진행상황</h3>
-	<br>
-	<br>
-	<br>
-	<table>
-		<tr>
-			<th>결제 완료</th>
-			<th rowspan="3">▶</th>
-			<th>출고 준비</th>
-			<th rowspan="3">▶</th>
-			<th>출고 완료</th>
-		</tr>
-		<tr>
-			<td>0</td>
-			<td>2</td>
-			<td>0</td>
-		</tr>
-	</table>
-
-	<br>
-	<br>
-	<br>
-	<br>
-
-	<form action="./orderhistory1.do" method="get">
-		<!-- search -->
-		<table class="searchBox">
-			<caption>주문 조회</caption>
-			<colgroup>
-				<col width="123px">
-				<col width="*">
-			</colgroup>
-			<tbody>
-				<tr>
-					<th>조회기간</th>
-					<td>
-						<ul class="searchDate">
-							<li><span class="chkbox2"> <input type="radio"
-									name="dateType" id="dateType1" onclick="setSearchDate('0d')" />
-									<label for="dateType1">당일</label>
-							</span></li>
-							<li><span class="chkbox2"> <input type="radio"
-									name="dateType" id="dateType2" onclick="setSearchDate('3d')" />
-									<label for="dateType2">3일</label>
-							</span></li>
-							<li><span class="chkbox2"> <input type="radio"
-									name="dateType" id="dateType3" onclick="setSearchDate('1w')" />
-									<label for="dateType3">1주</label>
-							</span></li>
-							<li><span class="chkbox2"> <input type="radio"
-									name="dateType" id="dateType4" onclick="setSearchDate('2w')" />
-									<label for="dateType4">2주</label>
-							</span></li>
-							<li><span class="chkbox2"> <input type="radio"
-									name="dateType" id="dateType5" onclick="setSearchDate('1m')" />
-									<label for="dateType5">1개월</label>
-							</span></li>
-							<li><span class="chkbox2"> <input type="radio"
-									name="dateType" id="dateType6" onclick="setSearchDate('3m')" />
-									<label for="dateType6">3개월</label>
-							</span></li>
-							<li><span class="chkbox2"> <input type="radio"
-									name="dateType" id="dateType7" onclick="setSearchDate('6m')" />
-									<label for="dateType7">6개월</label>
-							</span></li>
+	<!--myPage 공통 부분-->
+	<div id="layout-container">
+		<header id="header-space"></header>
+		<div id="myPage-main-container">
+			<nav id="myPage-sideMenu">
+				<div class="sideMenu__block-container">
+					<div class="sideMenu__block">
+						<h3>나의 쇼핑 활동</h3>
+						<ul class="sideMenu__items">
+							<li class="sideMenu__item sideMenu__item--active"><a
+								href="./orderhistory.do">구매 내역 조회</a></li>
+							<li class="sideMenu__item"><a href="">최근 본 상품</a></li>
+							<li class="sideMenu__item"><a href="">쿠폰 / 적립금 조회</a></li>
+							<li class="sideMenu__item"><a href="">상품 문의</a></li>
+							<li class="sideMenu__item"><a href="">1:1 문의</a></li>
 						</ul>
+					</div>
+					<div class="sideMenu__block">
+						<h3>회원 정보</h3>
+						<ul class="sideMenu__items">
+							<li class="sideMenu__item"><a href="./myinfo.do">회원 정보 조회</a></li>
+							<li class="sideMenu__item"><a href="">주소록</a></li>
+							<li class="sideMenu__item"><a href="./myinfoUpdatePW.do">비밀번호 변경</a></li>
+							<li class="sideMenu__item sideMenu__item--active"><a href="./myinfoDelete.do">회원 탈퇴</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<main>
+				<div class="myPage-title">
+					<h1></h1>
+				</div>
+				<!--myPage 공통 부분 끝-->
 
-						<div class="clearfix">
-							<!-- 시작일 -->
-							<span class="dset"> <input type="text"
-								class="datepicker inpType" name="searchStartDate"
-								id="searchStartDate"
-								<c:if test="${startDay ne null }">value=${startDay }</c:if>>
-								<a href="#none" class="btncalendar dateclick">달력</a>
-							</span> <span class="demi">~</span>
-							<!-- 종료일 -->
-							<span class="dset"> <input type="text"
-								class="datepicker inpType" name="searchEndDate"
-								id="searchEndDate"
-								<c:if test="${endDay ne null }">value=${endDay }</c:if>>
-								<a href="#none" class="btncalendar dateclick">달력</a>
-								<button>조회</button>
-							</span>
-						</div>
-					</td>
-				</tr>
-			<tbody>
-		</table>
-	</form>
 
-	<br>
-	<h3>주문 리스트</h3>
-	<br>
-	<table>
-		<tr>
-			<th>no</th>
-			<th>제품명</th>
-			<th>제품 이미지</th>
-			<th>수량</th>
-			<th>가격</th>
-			<th>구매 날짜</th>
-			<th>현재 상태</th>
-		</tr>
-		<c:forEach items="${list }" var="l">
-			<tr>
-				<td>${l.p_no}</td>
-				<td>${l.p_title}</td>
-				<td><img
-					src="https://blogger.googleusercontent.com/img/a/${l.p_img}"
-					style="width: 150px; height: 150px;"></td>
-				<td>${l.cnt}</td>
-				<td>${l.p_price}</td>
-				<td>${l.p_date}</td>
-				<td>출고 준비</td>
-			</tr>
-		</c:forEach>
-	</table>
+				<!-- <img src="http://localhost/img/furniturepic.png"
+	style="width: 150px; height: 150px;"> -->
+				<br> <br> <br> <br>
+				<h1 align="left">주문배송내역</h1>
+				
+				<!-- <h3 align="center">진행상황</h3> -->
+				<br>
 
-	<br>
-	<br>
-	<br>
-	<br>
+				<div class="orderList-summary__column-left">
+					<div class="orderList-summary">
+						<table>
+							<tr>
+								<th style="font-size: 20px;">결제 완료</th>
+								<th rowspan="3"><marquee direction=right>
+										<img src="./resources/images/right-arrow-org.png">
+									</marquee></th>
+								<th style="font-size: 20px;">출고 준비</th>
+								<th rowspan="3"><marquee direction=right>
+										<img src="./resources/images/right-arrow-org.png">
+									</marquee></th>
+								<th style="font-size: 20px;">출고 완료</th>
+							</tr>
+							<tr>
+								<td style="font-size: 30px; color: orange; font-weight: bold;">${stateTotalCountArr[0] }</td>
+								<td style="font-size: 30px; color: orange; font-weight: bold;">${stateTotalCountArr[1] }</td>
+								<td style="font-size: 30px; color: orange; font-weight: bold;">${stateTotalCountArr[2] }</td>
 
-	<button onclick="move()">메인 화면으로 -></button>
+								<%-- <c:forEach items="${stateTotalCountArr }" var="stateTotalCount">
+				<td>${stateTotalCount }</td>
+			</c:forEach> --%>
+							</tr>
+						</table>
+					</div>
+				</div>
 
+				<br>
+
+				<!-- 슬라이드 기능 추가 -->
+				<div class="slider">
+					<input type="radio" name="slide" id="slide1" checked> <input
+						type="radio" name="slide" id="slide2"> <input type="radio"
+						name="slide" id="slide3"> <input type="radio" name="slide"
+						id="slide4">
+					<ul id="imgholder" class="imgs">
+						<li><img src="./resources/images/banner1.jpg"></li>
+						<li><img src="./resources/images/banner2.jpg"></li>
+						<li><img src="./resources/images/banner3.jpg"></li>
+						<li><img src="./resources/images/banner4.jpg"></li>
+
+					</ul>
+					<div class="bullets">
+						<label for="slide1">&nbsp;</label> <label for="slide2">&nbsp;</label>
+						<label for="slide3">&nbsp;</label> <label for="slide4">&nbsp;</label>
+					</div>
+				</div>
+
+				<br> <br> <br>
+				<form action="./orderhistory1.do" method="get">
+					<!-- search -->
+					<table class="searchBox">
+						<caption>주문 조회</caption>
+						<colgroup>
+							<col width="123px">
+							<col width="*">
+						</colgroup>
+						<tbody>
+							<tr>
+								<th style="color: white;">주문일</th>
+								<td>
+									<ul class="searchDate">
+										<li><span class="chkbox2"> <input type="radio"
+												name="dateType" id="dateType1" onclick="setSearchDate('0d')" />
+												<label for="dateType1">당일</label>
+										</span></li>
+										<li><span class="chkbox2"> <input type="radio"
+												name="dateType" id="dateType2" onclick="setSearchDate('3d')" />
+												<label for="dateType2">3일</label>
+										</span></li>
+										<li><span class="chkbox2"> <input type="radio"
+												name="dateType" id="dateType3" onclick="setSearchDate('1w')" />
+												<label for="dateType3">1주</label>
+										</span></li>
+										<li><span class="chkbox2"> <input type="radio"
+												name="dateType" id="dateType4" onclick="setSearchDate('2w')" />
+												<label for="dateType4">2주</label>
+										</span></li>
+										<li><span class="chkbox2"> <input type="radio"
+												name="dateType" id="dateType5" onclick="setSearchDate('1m')" />
+												<label for="dateType5">1개월</label>
+										</span></li>
+										<li><span class="chkbox2"> <input type="radio"
+												name="dateType" id="dateType6" onclick="setSearchDate('3m')" />
+												<label for="dateType6">3개월</label>
+										</span></li>
+										<li><span class="chkbox2"> <input type="radio"
+												name="dateType" id="dateType7" onclick="setSearchDate('6m')" />
+												<label for="dateType7">6개월</label>
+										</span></li>
+									</ul>
+
+									<div class="clearfix">
+										<!-- 시작일 -->
+										<span class="dset"> <input type="text"
+											class="datepicker inpType" name="searchStartDate"
+											id="searchStartDate"
+											<c:if test="${startDay ne null }">value=${startDay }</c:if>>
+											<a href="#none" class="btncalendar dateclick">달력</a>
+										</span> <span class="demi">~</span>
+										<!-- 종료일 -->
+										<span class="dset"> <input type="text"
+											class="datepicker inpType" name="searchEndDate"
+											id="searchEndDate"
+											<c:if test="${endDay ne null }">value=${endDay }</c:if>>
+											<a href="#none" class="btncalendar dateclick">달력</a>
+											<button class="snip1535">조회</button>
+										</span>
+									</div>
+								</td>
+							</tr>
+						<tbody>
+					</table>
+				</form>
+
+				<br>
+				<br>
+				<h3 align="left">주문 리스트</h3>
+				<br>
+				<br>
+				<table>
+					<tr>
+						<th>no</th>
+						<th>제품명</th>
+						<th>제품 이미지</th>
+						<th>수량</th>
+						<th>가격</th>
+						<th>결제 방식</th>
+						<th>주문 날짜</th>
+						<th>현재 상태</th>
+					</tr>
+					<c:forEach items="${list }" var="l">
+						<tr>
+							<td>${l.p_no}</td>
+							<td>${l.p_title}</td>
+							<td><img
+								src="https://blogger.googleusercontent.com/img/a/${l.p_img}"
+								style="width: 110px; height: 110px;"></td>
+							<td>${l.cnt}</td>
+							<td>${l.p_price}원</td>
+							
+							<td><c:if test="${l.pa_plan eq 'kakaopay'}">
+									<img src="./resources/images/kakaopay.png">
+								</c:if> <c:if test="${l.pa_plan eq 'payco'}">
+									<img src="./resources/images/payco.png">
+								</c:if><c:if test="${l.pa_plan eq 'inicis'}">
+									<img src="./resources/images/inicis.png">
+								</c:if></td>
+							
+							<td>${l.p_date}</td>
+
+							<td><c:if test="${l.o_state == 0}">
+									<b style="color: blue;">결제 완료</b>
+								</c:if> <c:if test="${l.o_state == 1}">
+									<b style="color: red;">출고 준비</b>
+								</c:if> <c:if test="${l.o_state == 2}">
+									<b style="color: green;">출고 완료</b>
+								</c:if></td>
+						</tr>
+					</c:forEach>
+				</table>
+
+				<br> <br> <br> <br>
+
+				<button class="snip1535" onclick="location.href='index.do'">메인
+					화면으로</button>
+				<br> <br>
+			</main>
+		</div>
+		<footer id="footer-space"></footer>
+	</div>
 </body>
 </html>

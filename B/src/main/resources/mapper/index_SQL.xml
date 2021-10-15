@@ -31,4 +31,30 @@
 			LIMIT 0, ${listSelect}
 	</select>
 	
+	<select id="cp_productList" parameterType="HashMap" resultType="HashMap">
+			SELECT * FROM product_view <if test="category != null || sub != null">WHERE </if><choose>
+				<when test="category != null and sub == null">c_main=#{category} </when>
+				<when test="category != null and sub != null">c_main=#{category} AND c_sub=#{sub} </when>
+			</choose>
+			ORDER BY <choose>
+				<when test="option2 == 'p_priceUp'">p_price DESC </when>
+				<when test="option2 == 'p_priceDown'">p_price </when>
+				<otherwise>${option2} DESC</otherwise>
+			</choose>
+	</select>
+	
+	<select id="detail" parameterType="HashMap" resultType="HashMap">
+		SELECT * FROM product_view WHERE p_no=#{product}
+	</select>
+	
+	<select id="searchList" parameterType="hashMap" resultType="HashMap">
+		SELECT * FROM product_view 
+		WHERE p_title LIKE CONCAT('%', #{search}, '%') OR c_main LIKE CONCAT('%', #{search}, '%') OR c_sub LIKE CONCAT('%', #{search}, '%') 
+		ORDER BY <choose>
+			<when test="option2 == 'p_priceUp'">p_price DESC </when>
+			<when test="option2 == 'p_priceDown'">p_price </when>
+			<otherwise>${option2} DESC</otherwise>
+		</choose>
+	</select>
+	
 </mapper>

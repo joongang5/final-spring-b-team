@@ -4,7 +4,7 @@
 
 <mapper namespace="product">
 	<insert id="register">
-		INSERT INTO product(p_title,p_price,p_cnt,c_no) VALUES ( #{p_title},#{p_price},#{p_cnt},#{c_no} )
+		INSERT INTO product(p_title,p_img,p_price,p_cnt,c_no) VALUES ( #{p_title},#{p_img},#{p_price},#{p_cnt},#{c_no} )
 	</insert>
 
 	<select id="productList" resultType="HashMap">
@@ -59,4 +59,21 @@
 		SELECT c_no FROM category WHERE c_main = #{c_main} AND c_sub=#{c_sub} 
 	</select>
 	
+	<update id="modifyState" parameterType="HashMap">
+		UPDATE product SET p_state=#{p_state} WHERE p_no=#{p_no}
+	</update>
+	
+	<select id="productDetail" parameterType="HashMap" resultType="HashMap">
+		SELECT * FROM product_view WHERE p_no=#{p_no}
+	</select>
+	
+	<update id="modifyDetail" parameterType="HashMap">
+		UPDATE product SET p_title=#{p_title}, p_price=#{p_price}, p_cnt=#{p_cnt} WHERE p_no=#{p_no}
+	</update>
+	
+	<delete id="deleteProduct">
+		DELETE FROM product WHERE p_no=#{p_no}
+	</delete>
+	
+
 </mapper>

@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>구매 내역 조회 | 가구</title>
-    <link rel="stylesheet" href="mypage.css">
+    <link rel="stylesheet" href="./resources/css/base.css">
+    <link rel="stylesheet" href="./resources/css/mypage.css">
+    <link rel="stylesheet" href="./resources/css/invoice.css">
     <style>
-        .order-content-productContainer, .order-content__delivery{
-
-        }
-
         .order-content{
-
+            margin: auto 10px 50px;
         }
 
         .order-content__header{
-
+            padding: 12px 15px;
+            border-bottom: none;
+            background: #eeded5;
+            font-size: 15pt;
         }
 
         .order-content__orderNo{
-
         }
 
         .order-content__orderDate{
@@ -26,59 +26,8 @@
         }
 
         .order-content__body{
-
-        }
-
-        .order-content-productContainer{
-
-        }
-
-        .order-content__productThumbnail{
-
-        }
-
-        .order-content__productName{
-
-        }
-
-        .order-content__productPrice{
-
-        }
-
-        .order-content__productOption{
-
-        }
-
-        .order-content__productQuantity{
-
-        }
-
-        .order-content__totalAmount{
-
-        }
-
-        .order-content__delivery{
-
-        }
-
-        .personalInfo-content-container{
-
-        }
-
-        .personalInfo-content__header{
-
-        }
-
-        .personalInfo-content__body{
-
-        }
-
-        .personalInfo-content__section{
-
-        }
-
-        .personalInfo-content__value{
-
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e5e5e5;
         }
     </style>
 </head>
@@ -90,7 +39,7 @@
             <nav id="myPage-sideMenu">
                 <div class="sideMenu__block-container">
                     <div class="sideMenu__block">
-                        <h4>나의 쇼핑 활동</h4>
+                        <h3>나의 쇼핑 활동</h3>
                         <ul class="sideMenu__items">
                             <li class="sideMenu__item sideMenu__item--active"><a href="">구매 내역 조회</a></li>
                             <li class="sideMenu__item"><a href="">최근 본 상품</a></li>
@@ -99,8 +48,8 @@
                             <li class="sideMenu__item"><a href="">1:1 문의</a></li>
                         </ul>
                     </div>
-                    <div class="sideMenu-block">
-                        <h4>회원 정보</h4>
+                    <div class="sideMenu__block">
+                        <h3>회원 정보</h3>
                         <ul class="sideMenu__items">
                             <li class="sideMenu__item"><a href="">회원 정보 조회</a></li>
                             <li class="sideMenu__item"><a href="">주소록</a></li>
@@ -115,87 +64,139 @@
                     <h1>구매 내역 조회</h1>
                 </div>
 <!--myPage 공통 부분 끝-->
-                <!--주문서 출력 / orderList와 레이아웃 동일 (클래스명, css는 별개)-->
+                <!--주문서 출력 / order와 레이아웃 동일 (클래스명, css는 별개)-->
                 <div class="order-content">
                     <div class="order-content__header">
-                        <div class="order-content__orderNo"></div>
-                        <div class="order-content__orderDate"></div>
+                        <div class="order-content__orderNo">20211006-1233456</div>
+                        <div class="order-content__orderDate">2021.10.06 15:36</div>
                     </div>
+                    <!--주문서 내 주문한 상품 내용 출력 / 반복문 사용-->
                     <div class="order-content__body">
-                        <!--주문서 내 주문한 상품 내용 출력 / 반복문 사용-->
                         <div class="order-content-productContainer">
                             <div class="order-product-left-block">
-                                <div class="order-content__productThumbnail"></div>
+                                <div class="product-content__productThumbnail">
+                                    <img src="./resources/images/no-image.png">
+                                </div>
                             </div>
                             <div class="order-product-right-block">
-                                <div class="order-content__productName"></div>
-                                <div class="order-content__productPrice"></div>
-                                <div class="order-content__productOption"></div>
-                                <div class="order-content__productQuantity"></div>
+                                <div class="product-content__name">상품명</div>
+                                <div class="product-content__option-container">
+                                    <div class="option-content__name">옵션</div>
+                                    <div class="option-content__price-container">
+                                        <div class="option-content__price">50,000원</div>
+                                        <div class="option-content__quantity">1개</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <!--주문한 상품 내용 출력 끝-->
-                        <div class="order-content__totalAmount"></div>
-                        <div class="order-content__delivery">
+                        <div class="order-content__delivery-container">
+                            <div class="order-content__delivery">
+                                출고 완료
+                            </div>
+                            <!--출고 완료일 경우 출력되는 div-->
+                            <div class="order-content__delivery-tracking">
+                                <a href="">배송 추적</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="personalInfo-container">
-                    <div class="delivery personalInfo-content-container">
-                        <div class="delivery personalInfo-content__header">
-                            배송 정보
+                    <div class="personalInfo-container">
+                        <div class="delivery personalInfo-content-container">
+                            <div class="delivery personalInfo-content__header">
+                                배송 정보
+                            </div>
+                            <div class="delivery personalInfo-content__body">
+                                <div class="delivery personalInfo-content__short-container">
+                                    <div class="delivery personalInfo-content__section">
+                                        받는 사람
+                                    </div>
+                                    <div class="delivery personalInfo-content__value">
+                                        홍길동
+                                    </div>
+                                </div>
+                                <div class="delivery personalInfo-content__short-container">
+                                    <div class="delivery personalInfo-content__section">
+                                        연락처
+                                    </div>
+                                    <div class="delivery personalInfo-content__value">
+                                        010-XXXX-XXXX
+                                    </div>
+                                </div>
+                                <div class="delivery personalInfo-content__long-container">
+                                    <div class="delivery personalInfo-content__section">
+                                        주소
+                                    </div>
+                                    <div class="delivery personalInfo-content__value">
+                                        (06134) 서울특별시 강남구 테헤란로7길 7 에스코빌딩 6층
+                                    </div>
+                                </div>
+                                <div class="delivery personalInfo-content__long-container">
+                                    <div class="delivery personalInfo-content__section">
+                                        배송 메모
+                                    </div>
+                                    <div class="delivery personalInfo-content__value">
+                                        파손 위험이 있으니 안전 배송 부탁드려요~
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="delivery personalInfo-content__body">
-                            <div class="delivery personalInfo-content__section">
-                                받는 사람
+                        <div class="payment personalInfo-content-container">
+                            <div class="payment personalInfo-content__header">
+                                결제 정보
                             </div>
-                            <div class="delivery personalInfo-content__value"></div>
-                            <div class="delivery personalInfo-content__section">
-                                연락처
+                            <div class="payment personalInfo-content__body">
+                                <div class="payment personalInfo-content__short-container">
+                                    <div class="payment personalInfo-content__section">
+                                        합계 금액
+                                    </div>
+                                    <div class="payment personalInfo-content__value">
+                                        50,000원
+                                    </div>
+                                </div>
+                                <div class="payment personalInfo-content__short-container">
+                                    <div class="payment personalInfo-content__section">
+                                        배송료
+                                    </div>
+                                    <div class="payment personalInfo-content__value">
+                                        0원
+                                    </div>
+                                </div>
+                                <div class="payment personalInfo-content__short-container">
+                                    <div class="payment personalInfo-content__section">
+                                        쿠폰 할인
+                                    </div>
+                                    <div class="payment personalInfo-content__value">
+                                        0원
+                                    </div>
+                                </div>
+                                <div class="payment personalInfo-content__short-container">
+                                    <div class="payment personalInfo-content__section">
+                                        적립금 사용
+                                    </div>
+                                    <div class="payment personalInfo-content__value">
+                                        0원
+                                    </div>
+                                </div>
+                                <div class="payment personalInfo-content__short-container">
+                                    <div class="payment personalInfo-content__section">
+                                        결제 금액
+                                    </div>
+                                    <div class="payment personalInfo-content__value">
+                                        50,000원
+                                    </div>
+                                </div>
+                                <div class="payment personalInfo-content__short-container">
+                                    <div class="payment personalInfo-content__section">
+                                        결제 방법
+                                    </div>
+                                    <div class="payment personalInfo-content__value">
+                                        카카오페이
+                                    </div>
+                                </div>
                             </div>
-                            <div class="delivery personalInfo-content__value"></div>
-                            <div class="delivery personalInfo-content__section">
-                                주소
-                            </div>
-                            <div class="delivery personalInfo-content__value"></div>
-                            <div class="delivery personalInfo-content__section">
-                                배송 메모
-                            </div>
-                            <div class="delivery personalInfo-content__value"></div>
                         </div>
                     </div>
-                    <div class="payment personalInfo-content-container">
-                        <div class="payment personalInfo-content__header">
-                            결제 정보
-                        </div>
-                        <div class="payment personalInfo-content__body">
-                            <div class="payment personalInfo-content__section">
-                                합계 금액
-                            </div>
-                            <div class="payment personalInfo-content__value"></div>
-                            <div class="payment personalInfo-content__section">
-                                배송료
-                            </div>
-                            <div class="payment personalInfo-content__value"></div>
-                            <div class="payment personalInfo-content__section">
-                                쿠폰 할인
-                            </div>
-                            <div class="payment personalInfo-content__value"></div>
-                            <div class="payment personalInfo-content__section">
-                                적립금 사용
-                            </div>
-                            <div class="payment personalInfo-content__value"></div>
-                            <div class="payment personalInfo-content__section">
-                                결제 금액
-                            </div>
-                            <div class="payment personalInfo-content__value"></div>
-                            <div class="payment personalInfo-content__section">
-                                결제 방법
-                            </div>
-                            <div class="payment personalInfo-content__value"></div>
-                        </div>
-                    </div>
-                </div>
             </main>
         </div>
     <footer id="footer-space"></footer>

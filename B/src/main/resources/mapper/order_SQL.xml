@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"	
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="order_list">
+<mapper namespace="order">
 	<select id="getListByMemberNo" parameterType="HashMap"
 		resultType="HashMap">
 		<!-- SELECT * FROM order_view WHERE m_no=#{m_no} -->
@@ -28,5 +28,34 @@
 			</when>
 		</choose>
 	</select>
+
+	<select id="getOrderProductInfo" parameterType="Integer" resultType="HashMap">
+		SELECT * FROM product_view WHERE p_no=#{p_no}
+	</select>
+
+
+	<insert id="inputToOrder_List" parameterType="hashMap">
+	INSERT INTO order_list(p_no, cnt, m_no, pa_id, o_state) 
+	VALUES 
+	(#{p_no}, #{cnt}, (SELECT m_no FROM member WHERE m_id=#{m_id}), #{pa_id}, 1)
+	</insert>
+	
+	<insert id="inputToPayment" parameterType="HashMap">
+	INSERT INTO payment(pa_id, pa_amount, pa_plan, pa_date, pa_usePoint, pa_willPoint, m_no) 
+	VALUES (#{pa_id}, #{pa_amount}, #{pa_plan}, #{pa_date}, #{usePoint}, #{finalWillPoint}, (SELECT m_no FROM member WHERE m_id=#{m_id}))
+	</insert>
+	
+	<select id="checkStock" parameterType="HashMap" resultType="Integer">
+		SELECT (p_cnt-p_sell)-#{cnt} FROM product_view WHERE p_no = #{p_no}
+	</select>
+	
+	<update id="downStock" parameterType="hashMap">
+		UPDATE product SET p_sell = (p_sell-#{cnt}) WHERE p_no = #{p_no}
+	</update>
+	
+	<update id="downPoint" parameterType="HashMap">
+		UPDATE member SET m_point = m_point-#{usePoint} WHERE m_no = (SELECT m_no FROM member WHERE m_id=#{m_id})
+	</update>
+	
 </mapper>
 

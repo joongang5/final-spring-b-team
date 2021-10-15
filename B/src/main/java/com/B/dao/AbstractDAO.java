@@ -29,15 +29,27 @@ public class AbstractDAO {
 		printQueryId(queryID);
 		return sqlSession.selectOne(queryID, map);
 	}
+	
+	
 
 	public int delete(String queryID, Map<String, Object> map) {
 		printQueryId(queryID);
 		return sqlSession.delete(queryID, map);
 	}
-
+	
+	public int delete(String queryID, int key) {
+		printQueryId(queryID);
+		return sqlSession.delete(queryID, key);
+	}
+	
 	public void update(String queryID, Map<String, Object> map) {
 		printQueryId(queryID);
 		sqlSession.update(queryID, map);
+	}
+	
+	public int update2(String queryID, Map<String, Object> map) {
+		printQueryId(queryID);
+		return sqlSession.update(queryID, map);
 	}
 
 	// 메시지에서 no로 id불러오기
@@ -58,6 +70,14 @@ public class AbstractDAO {
 		return sqlSession.selectOne(queryID, id);
 	}
 
+	public Map<String, Object> selectOne(String queryID, int key) {
+		return sqlSession.selectOne(queryID, key);
+	}
+	
+	public int selectOne2(String queryID, Map<String, Object> map) {
+		return sqlSession.selectOne(queryID, map);
+	}
+	
 	public int checkId(String queryId, String id) {
 		return sqlSession.selectOne(queryId, id);
 	}
@@ -65,12 +85,24 @@ public class AbstractDAO {
 	public void join(String queryId, Map<String, Object> map) {
 		sqlSession.insert(queryId, map);
 	}
-
+	
+	public int inputOrder(String queryId, Map<String, Object> map) {
+		return sqlSession.insert(queryId, map);
+	}
+	
+	public int updateOrder(String queryId, Map<String, Object> map) {
+		return sqlSession.update(queryId, map);
+	}
+	
 	// 게시판 총 게시물 구하기
 	public int totalList(String queryID, Map<String, Object> map) {
 		return sqlSession.selectOne(queryID, map);
 	}
 	
+	//20211014 정원우 추가 로그남기기
+	public void insertLog(String queryID, Map<String, Object> map) {
+		sqlSession.insert(queryID, map);
+	}
 	//20211005 강재하 추가
 	public List<HashMap<String, Object>> selectList(String queryID) {
 		return sqlSession.selectList(queryID);
@@ -80,5 +112,10 @@ public class AbstractDAO {
 	}
 	public List<HashMap<String, Object>> selectList3(String queryID, Map<String, Object> map) {
 		return sqlSession.selectList(queryID, map);
+	}
+	
+	//20211015 정원우 장바구니 수량 추가
+	public void insert(String queryID, Map<String, Object> map) {
+		sqlSession.insert(queryID, map);
 	}
 }

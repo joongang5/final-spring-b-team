@@ -3,54 +3,823 @@
 <head>
   <meta charset="UTF-8">
   <title>주문/결제 | 가구</title>
+  <link rel="stylesheet" href="./resources/css/base.css">
+  <link rel="stylesheet" href="./resources/css/order-sheet.css">
+  <style>
+    /*장바구니와 공통*/
+    #payment-main-container{
+
+    }
+
+    aside{
+
+    }
+
+    main{
+
+    }
+
+    .payment-sum-container{
+
+    }
+
+    .payment-sum__section{
+
+    }
+
+    .payment-sum__value{
+
+    }
+
+    .payment-sum__value span::after{
+
+    }
+
+    .total-amount{
+
+    }
+
+    .amount__value {
+
+    }
+
+    .amount__sign{
+
+    }
+
+    .payment-sum__short-container{
+
+    }
+
+    .payment-total-amount-container{
+
+    }
+
+    .payment-button-container{
+
+    }
+
+    .payment-button-container button{
+
+    }
+
+    .payment-title{
+
+    }
+
+
+    .payment-product-content{
+      padding-bottom: 10px;
+    }
+
+    .payment-product-left-block, .payment-product-right-block{
+
+    }
+
+    .payment-product-left-block{
+      height: 120px;
+    }
+
+    .product-content__productThumbnail{
+      width: 120px;
+      height: 120px;
+    }
+
+    .product-content__productThumbnail img{
+
+    }
+
+    .payment-product-right-block{
+
+    }
+
+    .product-content__name{
+
+    }
+
+    .product-content__option-container{
+      height: 35%;
+    }
+
+    .option-content__name{
+
+    }
+
+    .option-content__price-container{
+      display: flex;
+    }
+
+    .option-content__price{
+      font-weight: 600;
+    }
+
+
+    /**/
+
+    .total-amount__value{
+
+    }
+
+    label{/* display: grid; */}
+
+    label p{
+      margin-left: 30px;
+    }
+
+    .terms-confirm-container input[type="checkbox"]{
+
+    }
+
+    .terms-confirm-container .checkMark {
+      height: 14px;
+      width: 14px;
+      top: 2px;
+    }
+
+    .terms-confirm-container label .checkMark:after {
+      left: 6px;
+      top: 1px;
+      width: 4px;
+      height: 11px;
+    }
+
+    .payment-sum-subject{
+
+    }
+
+    .payment-sum-subject h3{
+      margin-top: 0px;
+    }
+
+    .total-amount{
+
+    }
+
+    .payment-will-point-container{
+      display: flex;
+      justify-content: flex-end;
+      font-size: 11pt;
+      align-items: center;
+    }
+
+    .will-point__value{
+
+    }
+
+    .will-point__value .amount__value{
+      font-weight: 600;
+    }
+
+    .will-point__section {
+      margin-left: 7px;
+    }
+
+
+    .payment-terms-container{
+      margin-top: 15px;
+      background: #e5e5e5;
+      padding: 20px;
+    }
+
+    .terms-confirm-container{
+      /* display: flex; */
+      /* align-items: center; */
+      padding-bottom: 10px;
+    }
+
+    input[type="checkbox"]{
+
+    }
+
+    .terms-content-container{
+
+    }
+
+    .terms-content-top{
+
+    }
+
+    .terms-content-top__subject{
+      font-size: 11pt;
+      font-weight: 500;
+    }
+
+    .terms-content-top__itemBox{
+      display: flex;
+      font-size: 11pt;
+      position: relative;
+      justify-content: space-between;
+      width: 96%;
+    }
+
+    .terms-content-top__itemBox::before{
+      content: '';
+      width: 3px;
+      height: 3px;
+      position: absolute;
+      background: #403429;
+      top: 10px;
+      left: 5px;
+    }
+
+    .terms-content-top__topic{
+      margin-left: 15px;
+    }
+
+    .terms-content-top__view{
+      position: relative;
+    }
+
+    .terms-content-top__view::after{
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: transparent;
+      /* border: 2px solid; */
+      border-bottom: 2px solid #FF8A00;
+      border-right: 2px solid #FF8A00;
+      transform: rotate(-45deg);
+      top: 8px;
+      -moz-transform: rotate(45deg);
+    }
+
+    .terms-content-top__view button{
+
+    }
+
+    /*여기서부터 약관 팝업*/
+    .first-terms{
+      display: none;
+    }
+
+
+    .second-terms{
+      display: none;
+    }
+
+
+    .terms-detail__background {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 20;
+    }
+
+    .terms-detail__popup{
+      /* height: 100%; */
+      margin: 15% 25%;
+      width: 500px;
+      height: 300px;
+      position: absolute;
+      /* left: 200px; */
+      /* top: 25%; */
+      background: white;
+      padding: 30px;
+      box-shadow: 0px 0px 13px 9px rgba(0,0,0,0.14);
+      animation-fill-mode: forwards;
+      animation-duration: 0.6s;
+      animation-timing-function: ease-in-out;
+      animation-name: appear-popup;
+    }
+    @keyframes appear-popup {
+      from {
+        margin-top: 12%;
+      }
+      to {
+        margin-top: 15%;
+      }
+    }
+
+
+    .terms-detail__container{
+      margin: auto;
+      text-align: center;
+    }
+
+    .terms-detail__topic{
+      font-size: larger;
+      font-weight: 600;
+      padding: 20px 0;
+    }
+
+    .terms-detail__content-container{
+
+    }
+
+    .terms-detail__content{
+      padding: 20px 0;
+    }
+
+    .terms-detail-confirm{
+
+    }
+
+    .terms-detail-confirm button{
+      width: 90px;
+      height: 45px;
+      border-radius: 12px;
+      font-size: large;
+    }
+    /*약관 팝업 끝*/
+
+    .terms-content-bottom{
+      margin-top: 15px;
+      font-size: 11pt;
+      font-weight: 500;
+    }
+
+    .payment-detail-container{
+      /* margin-right: 15px; */
+    }
+
+    
+    .payment-section-header{
+      margin-top: 45px;
+      border-bottom: 1px solid #403429;
+    }
+
+    .payment-section-header h2{
+      margin-bottom: 5px;
+    }
+
+    .payment-section-body {
+      margin: 20px 0 20px 10px;
+    }
+
+    .payment-delivery{
+      margin-bottom: 60px;
+    }
+
+    .payment-delivery__body{
+
+    }
+
+    .payment-delivery__item{
+      display: flex;
+      align-items: center;
+      /* margin-bottom: 5px; */
+      width: 95%;
+    }
+
+    .long-item{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .payment-delivery__section{
+      width: 130px;
+      /* font-weight: 600; */
+      /* margin-right: 10px; */
+      font-size: 13pt;
+    }
+
+    .payment-delivery__form{
+      margin-top: 5px;
+      width: 100%;
+    }
+
+    .receiver input[type="text"]{
+      width: 25%;
+    }
+
+    .tel input[type="tel"]{
+      width: 50%;
+    }
+
+    .address button{
+    width: 110px;
+    height: 37px;
+    /* border-radius: 8px; */
+    font-size: 12pt;
+    }
+
+    .address input[type="text"]{
+      display: block;
+      width: 100%;
+      margin-bottom: 5px;
+    }
+
+    .address input[type="text"]:nth-child(2){
+      width: 12%;
+      display: inline-block;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    .address input[type="text"]:nth-child(3){
+
+    }
+
+    .address input[type="text"]:nth-child(4){
+
+    }
+
+    .memo p{
+     display: block;
+    }
+
+    .memo input[type="text"]{
+      width: 100%;
+    }
+
+    .payment-product{
+
+    }
+
+    .payment-product__body{
+
+    }
+
+    .option-content__quantity{
+      margin-left: 33px;
+    }
+
+    .number__value{
+      font-family: math;
+      margin-right: 5px;
+    }
+
+    .option-content__price .amount__value{
+      position: relative;
+    }
+
+    .option-content__price .amount__value::after{
+      content: '';
+      position: absolute;
+      background: #e5e5e5;
+      left: 85px;
+      top: 1px;
+      height: 21px;
+      width: 2px;
+    }
+
+    .payment-coupon{
+
+    }
+
+    .payment-coupon__body{
+
+    }
+
+    .payment-point{
+
+    }
+
+    .payment-point__body{
+      display: flex;
+    }
+
+    .payment-point__use{
+
+    }
+
+    .payment-point__use label{
+      margin-right: 20px;
+    }
+
+
+    .payment-point__use input[type="text"]{
+      /* border: 1px solid #403429; */
+      width: 100px;
+      /* border-radius: 0px; */
+      height: 20px;
+      font-family: math;
+      /* background: transparent; */
+      /* border-bottom: 2px solid #403429; */
+    }
+
+    .payment-point__use button{
+      height: 36px;
+      width: 95px;
+      /* border-radius: 9px; */
+      font-size: 11pt;
+    }
+
+    .payment-point__usable{
+      display: flex;
+      margin-left: 30px;
+      align-items: center;
+      font-size: 12pt;
+    }
+
+    .payment-point__usable-section{
+
+    }
+
+    .payment-point__usable-value{
+
+    }
+
+    .payment-point__usable-value .amount__value{
+      margin-left: 10px;
+      color: #ff8a00;
+      font-weight: 600;
+    }
+
+    .payment-plan{
+
+    }
+
+    .payment-plan__body{
+
+    }
+
+    .payment-planList{
+
+    }
+
+    .payment-plan-button{
+      width: 150px;
+      height: 50px;
+      font-size: 13pt;
+      background: white;
+      color: #403429;
+      border: 1px solid #403429;
+    }
+
+    .payment-plan-button:hover{
+      background: white;
+    }
+
+    .payment-plan-button--selected{
+      /* background: #eeded5; */
+      font-weight: 600;
+      border: 3px solid;
+    }
+
+  </style>
 </head>
 <body>
+<!--약관 보기 누르면 출력되는 div-->
+<!--실제 약관 내용을 포함한다-->
+<div class="first-terms terms-detail__background">
+  <div class="terms-detail__popup">
+    <div class="terms-detail__container">
+      <div class="terms-detail__topic">
+        개인정보 제 3자 제공
+      </div>
+      <div class="terms-detail__content-container">
+        <div class="terms-detail__content">
+          당신의 개인 정보를 제 3자에게 제공할 거임.
+        </div>
+      </div>
+      <div class="terms-detail-confirm">
+        <button>확인</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--약관 popup 끝-->
+<!--약관 보기 누르면 출력되는 div-->
+<!--실제 약관 내용을 포함한다-->
+<div class="second-terms terms-detail__background">
+  <div class="terms-detail__popup">
+    <div class="terms-detail__container">
+      <div class="terms-detail__topic">
+        개인정보 수집 및 이용
+      </div>
+      <div class="terms-detail__content-container">
+        <div class="terms-detail__content">
+          당신의 개인 정보를 수집 및 이용할 거임.
+        </div>
+      </div>
+      <div class="terms-detail-confirm">
+        <button>확인</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--약관 popup 끝-->
 <div id="layout-container">
   <header id="header-space"></header>
   <div id="payment-main-container">
+    <main>
+      <div class="payment-title">
+        <h1>주문 / 결제</h1>
+      </div>
+      <div class="payment-detail-container">
+        <div class="payment-delivery">
+          <div class="payment-section-header payment-delivery__header">
+            <h2>배송지</h2>
+          </div>
+          <div class="payment-section-body payment-delivery__body">
+            <div class="receiver payment-delivery__item">
+              <div class="receiver payment-delivery__section">
+                받는 사람
+              </div>
+              <div class="receiver payment-delivery__form">
+                <input type="text">
+              </div>
+            </div>
+            <div class="tel payment-delivery__item">
+              <div class="tel payment-delivery__section">
+                연락처
+              </div>
+              <div class="tel payment-delivery__form">
+                <input type="tel">
+              </div>
+            </div>
+            <div class="address long-item payment-delivery__item">
+              <div class="address payment-delivery__section">
+                주소
+              </div>
+                <!--주소 찾기 API 사용-->
+                <!--우편번호, 주소1, 주소2-->
+              <div class="address payment-delivery__form">
+                <button class="small-button">주소 찾기</button>
+                <input type="text">
+                <input type="text">
+                <input type="text">
+              </div>
+            </div>
+            <div class="memo long-item payment-delivery__item">
+              <div class="address payment-delivery__section">
+                배송시 요청사항
+              </div>
+                <div class="memo payment-delivery__form">
+                  <input type="text">
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="payment-product">
+          <div class="payment-section-header payment-product__header">
+            <h2>주문 상품</h2>
+          </div>
+          <div class="payment-section-body payment-product__body">
+            <!--구매할 상품 출력 / 반복문 사용-->
+            <div class="payment-product-content">
+              <div class="payment-product-left-block">
+                <div class="product-content__productThumbnail">
+                  <img src="./resources/images/no-image.png">
+                </div>
+              </div>
+              <div class="payment-product-right-block">
+                <div class="product-content__name">
+                  상품명
+                </div>
+                <div class="product-content__option-container">
+                    <div class="option-content__name">
+                      옵션
+                    </div>
+                    <div class="option-content__price-container">
+                      <div class="option-content__price">
+                        <span class="amount__value">50,000</span>원
+                      </div>
+                      <div class="option-content__quantity">
+                        <span class="number__value">1</span>개
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <!--샘플용 2번째 레이어-->
+            <div class="payment-product-content">
+              <div class="payment-product-left-block">
+                <div class="product-content__productThumbnail">
+                  <img src="./resources/images/no-image.png">
+                </div>
+              </div>
+              <div class="payment-product-right-block">
+                <div class="product-content__name">
+                  상품명
+                </div>
+                <div class="product-content__option-container">
+                  <div class="option-content__name">
+                    옵션
+                  </div>
+                  <div class="option-content__price-container">
+                    <div class="option-content__price">
+                      <span class="amount__value">50,000</span>원
+                    </div>
+                    <div class="option-content__quantity">
+                      <span class="number__value">1</span>개
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--구매할 상품 출력 끝-->
+          </div>
+        </div>
+        <div class="payment-coupon">
+          <div class="payment-section-header payment-coupon__header">
+            <h2>쿠폰</h2>
+          </div>
+          <div class="payment-section-body payment-coupon__body">
+            <!--쿠폰 시스템 도입시 쿠폰 목록 출력 / 반복문 사용-->
+          </div>
+        </div>
+        <div class="payment-point">
+          <div class="payment-section-header payment-point__header">
+            <h2>적립금 사용</h2>
+          </div>
+          <div class="payment-section-body payment-point__body">
+            <div class="payment-point__use">
+              <!--유효성 검사 함수 넣기-->
+              <label>
+              <input type="text">
+              원
+              </label>
+              <button class="small-button">전액 사용</button>
+            </div>
+            <div class="payment-point__usable">
+              <div class="payment-point__usable-section">
+                사용 가능 적립금
+              </div>
+              <div class="payment-point__usable-value">
+                <span class="amount__value">1,000</span>원
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="payment-plan">
+          <div class="payment-section-header payment-plan__header">
+            <h2>결제 수단</h2>
+          </div>
+          <div class="payment-section-body payment-plan__body">
+            <div class="payment-planList">
+              <!--선택 시 클래스명 추가해서 css로 선택된 버튼 나타내기-->
+              <button class="payment-plan-button payment-plan-button--selected">카카오 페이</button>
+              <button class="payment-plan-button">페이코</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
     <aside>
       <!--클래스명이 장바구니 쪽과 동일한 div가 다수 존재하지만 css는 별개로 지정해야 함-->
       <div class="payment-sum-container">
         <div class="payment-sum-subject">
           <h3>결제 금액</h3>
         </div>
-        <div class="payment-sum__section">
-          상품 금액
+        <div class="payment-sum__short-container">
+          <div class="payment-sum__section">
+            상품 금액
+          </div>
+          <div class="payment-sum__value">
+            <span class="amount__value">50,000</span>원
+          </div>
         </div>
-        <div class="payment-sum__value">
+        <div class="payment-sum__short-container">
+          <div class="payment-sum__section">
+            배송료
+          </div>
+          <div class="payment-sum__value">
+            <span class="amount__sign">+</span>
+            <span class="amount__value">0</span>원
+          </div>
         </div>
-        <div class="payment-sum__section">
-          배송료
+        <div class="payment-sum__short-container">
+          <div class="payment-sum__section">
+            쿠폰 할인
+          </div>
+          <div class="payment-sum__value">
+            <span class="amount__sign">-</span>
+            <span class="amount__value">0</span>원
+          </div>
         </div>
-        <div class="payment-sum__value">
+        <div class="payment-sum__short-container">
+          <div class="payment-sum__section">
+            적립금 사용
+          </div>
+          <div class="payment-sum__value">
+            <span class="amount__sign">-</span>
+            <span class="amount__value">0</span>원
+          </div>
         </div>
-        <div class="payment-sum__section">
-          쿠폰 할인
+      </div>
+      <div class="payment-total-amount-container">
+        <div class="payment-sum__short-container">
+          <div class="total-amount payment-sum__section">
+            최종 결제 금액
+          </div>
+          <div class="total-amount payment-sum__value">
+            <span class="total-amount__value amount__value">50,000</span>원
+          </div>
         </div>
-        <div class="payment-sum__value">
-        </div>
-        <div class="payment-sum__section">
-          적립금 사용
-        </div>
-        <div class="payment-sum__value">
-        </div>
-        <div class="total-amount payment-sum__section">
-          최종 결제 금액
-        </div>
-        <div class="total-amount payment-sum__value">
-        </div>
-        <div class="will-point payment-sum__value">
-          * 원
-        </div>
-        <div class="will-point payment-sum__section">
-          적립 예정
+        <div class="payment-will-point-container">
+          <div class="will-point__value">
+            <span class="amount__value">0</span>원
+          </div>
+          <div class="will-point__section">
+            적립 예정
+          </div>
         </div>
       </div>
       <div class="payment-terms-container">
         <div class="terms-confirm-container">
           <label>
-          <input type="checkbox">
-          아래 내용에 모두 동의합니다. (필수)
+            <input type="checkbox">
+            <p>아래 내용에 모두 동의합니다. (필수)</p>
+            <span class="checkMark"></span>
           </label>
         </div>
         <div class="terms-content-container">
@@ -60,51 +829,20 @@
             </div>
             <div class="terms-content-top__itemBox">
               <div class="terms-content-top__topic">
-              개인정보 제 3자 제공
+                개인정보 제 3자 제공
               </div>
               <div class="terms-content-top__view">
-                <button>약관 보기</button>
+                <a href="">약관 보기</a>
               </div>
-              <!--약관 보기 누르면 출력되는 div-->
-              <!--실제 약관 내용을 포함한다-->
-                <div class="terms-detail__background">
-                  <div class="terms-detail__popup">
-                    <div class="terms-detail__container">
-                      <div class="terms-detail__topic"></div>
-                      <div class="terms-detail__content-container">
-                        <div class="terms-detail__content"></div>
-                      </div>
-                      <div class="terms-detail-confirm">
-                        <button>확인</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              <!--약관 popup 끝-->
             </div>
             <div class="terms-content-top__itemBox">
               <div class="terms-content-top__topic">
                 개인정보 수집 및 이용
               </div>
               <div class="terms-content-top__view">
-                <button>약관 보기</button>
+                <a href="">약관 보기</a>
               </div>
-              <!--약관 보기 누르면 출력되는 div-->
-              <!--실제 약관 내용을 포함한다-->
-              <div class="terms-detail__background">
-                <div class="terms-detail__popup">
-                  <div class="terms-detail__container">
-                    <div class="terms-detail__topic"></div>
-                    <div class="terms-detail__content-container">
-                      <div class="terms-detail__content"></div>
-                    </div>
-                    <div class="terms-detail-confirm">
-                      <button>확인</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!--약관 popup 끝-->
+
             </div>
           </div>
           <div class="terms-content-bottom">
@@ -114,114 +852,9 @@
         </div>
       </div>
       <div class="payment-button-container">
-        <button>*원 결제하기</button>
+        <button>50,000원 결제하기</button>
       </div>
     </aside>
-    <main>
-      <div class="payment-title">
-        <h1>주문 / 결제</h1>
-      </div>
-      <div class="payment-detail-container">
-        <div class="payment-delivery">
-          <div class="payment-delivery__header">
-            <h2>배송지</h2>
-          </div>
-          <div class="payment-delivery__body">
-            <div class="payment-delivery__item">
-              <label>받는 사람
-              <input type="text">
-              </label>
-            </div>
-            <div class="payment-delivery__item">
-              <label>연락처
-                <input type="tel">
-              </label>
-            </div>
-            <div class="payment-delivery__item">
-              <label>주소
-                <!--주소 찾기 API 사용-->
-                <!--우편번호, 주소1, 주소2-->
-                <input type="text"><br>
-                <input type="text"><br>
-                <input type="text">
-              </label>
-            </div>
-            <div class="memo payment-delivery__item">
-              <label>배송시 요청사항<br>
-                <input type="text">
-              </label>
-            </div>
-          </div>
-        </div>
-        <div class="payment-product">
-          <div class="payment-product__header">
-            <h2>주문 상품</h2>
-          </div>
-          <div class="payment-product__body">
-            <!--구매할 상품 출력 / 반복문 사용-->
-            <div class="payment-product-content">
-              <div class="payment-product-left-block">
-                <div class="product-content__productThumbnail"></div>
-              </div>
-              <div class="payment-product-right-block">
-                <div class="product-content__name"></div>
-                <div class="product-content__Option-container">
-                    <div class="option-content__name"></div>
-                    <div class="option-content__price-container">
-                      <div class="option-content__price"></div>
-                      <div class="option-content__quantity"></div>
-                    </div>
-                </div>
-              </div>
-            </div>
-            <!--구매할 상품 출력 끝-->
-          </div>
-        </div>
-        <div class="payment-coupon">
-          <div class="payment-coupon__header">
-            <h2>쿠폰</h2>
-          </div>
-          <div class="payment-coupon__body">
-            <!--쿠폰 시스템 도입시 쿠폰 목록 출력 / 반복문 사용-->
-          </div>
-        </div>
-        <div class="payment-point">
-          <div class="payment-point__header">
-            <h2>적립금 사용</h2>
-          </div>
-          <div class="payment-point__body">
-            <div class="payment-point__use">
-              <!--유효성 검사 함수 넣기-->
-              <label>
-              <input type="text">
-              원
-              </label>
-              <button>전액 사용</button>
-            </div>
-            <div class="payment-point__usable">
-              <div class="payment-point__usable-section">
-                사용 가능 적립금
-              </div>
-              <div class="payment-point__usable-value">
-                *원
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="payment-plan">
-          <div class="payment-plan__header">
-            <h2>결제 수단</h2>
-          </div>
-          <div class="payment-plan__body">
-            <div class="payment-planList">
-              <!--선택 시 클래스명 추가해서 css로 선택된 버튼 나타내기-->
-              <button>카카오 페이</button>
-              <button>페이코</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </main>
   </div>
   <footer id="footer-space"></footer>
 </div>

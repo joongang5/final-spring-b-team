@@ -19,12 +19,28 @@ public class AdminDAO extends AbstractDAO {
 	public int memberTotalList(Map<String, Object> map) {
 		return totalList("admin.memberTotalList", map);
 	}
-	
-	public List<Map<String, Object>> logList(Map<String, Object> map) {
-		return (List<Map<String, Object>>) selectList("admin.logList", map);
+
+	//이현아가 추가
+	public List<Map<String, Object>> getAdminOrderList(Map<String, Object> map) {
+		return selectList("admin2.adminOrderList", map);
+	}
+
+	public int getOrderTotalList(Map<String, Object> map) {
+		return totalList("admin2.orderTotalList", map);
+	}
+
+	public void modifyState(Map<String, Object> p) {
+		update("admin2.modifyState",p);
+		
+	}
+
+	public Map<String, Object> getAdminOrderDetail(Map<String, Object> map) {
+		return selectOne("admin2.adminOrderDetail",map);
+	}
+
+	public int updateWayBill(Map<String, Object> map) {
+		return update2("admin2.updateWayBill",map);
+		
 	}
 	
-	public int logTotalList(Map<String, Object> map) {
-		return totalList("admin.logTotalList", map);
-	}
 }
