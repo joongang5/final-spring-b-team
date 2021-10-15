@@ -188,9 +188,9 @@ function down(no){
     		var totalPriceValue = data.cnt * unitPrice;
     		var totalPriceStr = totalPriceValue;
     		
-    		$(totalPriceId).text(totalPriceValue);
+    		$(totalPriceId).text(totalPriceValue.toLocaleString('ko-KR'));
     		
-    		$("#totalPrice").text(data.totalPrice);
+    		$("#totalPrice").text((data.totalPrice).toLocaleString('ko-KR'));
     	}, 
     	error : function(xhr, status, error) {
             alert("error : ", error);
@@ -233,9 +233,9 @@ function up(no, cnt){
     		var totalPriceValue = data.cnt * unitPrice;
     		var totalPriceStr = totalPriceValue;
     		
-    		$(totalPriceId).text(totalPriceValue);
+    		$(totalPriceId).text(totalPriceValue.toLocaleString('ko-KR'));
     		
-    		$("#totalPrice").text(data.totalPrice);
+    		$("#totalPrice").text((data.totalPrice).toLocaleString('ko-KR'));
     	}, 
     	error : function(xhr, status, error) {
             alert("error : ", error);
@@ -300,7 +300,7 @@ function onclickCheckBoxAJAX() {
      	dataType : "json",
     	data : { "checkValueArr" : checkValueArr },
     	success : function(data) {
-    		$("#totalPrice").text(data.totalPrice);
+    		$("#totalPrice").text((data.totalPrice).toLocaleString('ko-KR'));
     	}, 
     	error : function(xhr, status, error) {
             alert("error : ", error);
@@ -451,7 +451,7 @@ function getCheckedCartNoArr(){
 													<div class="option-content__sum">
 														<input id="unitPrice${c.ca_no}" type="hidden"
 															value="${c.p_price}"> <span class="amount__value"
-															id="totalPrice${c.ca_no}">${c.p_price * c.cnt}</span>원
+															id="totalPrice${c.ca_no}"><fmt:formatNumber value="${c.p_price * c.cnt}" pattern="#,###"/></span>원
 													</div>
 												</div>
 											</div>
