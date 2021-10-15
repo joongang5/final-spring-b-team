@@ -62,5 +62,9 @@
 	<select id="adminOrderDetail" parameterType="HashMap" resultType="HashMap">
 		SELECT * FROM order_view WHERE o_no = #{o_no}
 	</select>
+	
+	<update id="updateWayBill" parameterType="HashMap">
+		UPDATE order_list SET o_waybill=#{o_waybill} WHERE o_no=#{o_no}
+	</update>
 
 </mapper>

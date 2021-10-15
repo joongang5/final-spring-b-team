@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.B.common.CommandMap;
@@ -59,7 +60,7 @@ public class Admin2Controller {
 		return mv;
 	}
 	
-	@PostMapping(value="stateModify.do")
+	@PostMapping(value="/stateModify.do")
 	public String modify(CommandMap map) {
 		Map<String, Object> p = new HashMap<String, Object>();
 		if (map.getMap().get("modify") != "") {
@@ -75,16 +76,35 @@ public class Admin2Controller {
 		return "redirect:/admin_orderList.do";
 	}
 	
-	@RequestMapping(value="admin_orderDetail")
+	@RequestMapping(value="/admin_orderDetail.do")
 	public ModelAndView orderDetail(HttpServletRequest req, CommandMap map) {
 		ModelAndView mv = new ModelAndView("admin_orderDetail");
 		
 		map.put("o_no", req.getParameter("o_no"));
 		
 		Map<String, Object> orderDetail = adminService.getAdminOrderDetail(map.getMap()); 
+		
+		
+		String m_addr2 = (String)orderDetail.get("m_addr");
+		String noUni = m_addr2.replace("|", " ");
+		
+		mv.addObject("m_addr2", noUni);
 		mv.addObject("orderDetail", orderDetail); 
 		
 		return mv;
+	}
+	
+	@PostMapping(value="/registerWaybill.do")
+	@ResponseBody
+	public int registerWaybill(HttpServletRequest req,CommandMap map) {
+		
+		map.put("o_waybill", req.getParameter("way"));
+		map.put("o_no", req.getParameter("o_no"));
+		
+		int complete = adminService.updateWayBill(map.getMap());
+		
+		return complete;
+		
 	}
 
 }

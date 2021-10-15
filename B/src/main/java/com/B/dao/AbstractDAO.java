@@ -45,6 +45,11 @@ public class AbstractDAO {
 		printQueryId(queryID);
 		sqlSession.update(queryID, map);
 	}
+	
+	public int update2(String queryID, Map<String, Object> map) {
+		printQueryId(queryID);
+		return sqlSession.update(queryID, map);
+	}
 
 	// 메시지에서 no로 id불러오기
 	public String getName(String queryID, Map<String, Object> map) {
