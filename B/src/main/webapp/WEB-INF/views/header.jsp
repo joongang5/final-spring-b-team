@@ -16,6 +16,29 @@ $(function(){
 			return false;
 		}
 	});
+	
+	$("#search").keydown(function(key) {
+        if (key.keyCode == 13) {
+           location.href="./categoryPage.do?search="+$(this).val();
+           /*  var newForm = document.createElement('form');
+            newForm.name = 'newForm';
+            newForm.method = 'post';
+            newForm.action = "./categoryPage.do";
+            
+            var input1 = document.createElement('input');
+            
+            input1.setAttribute("type","hidden");
+            input1.setAttribute("name","key");
+            input1.setAttribute("value",$(this).val());
+            
+            newForm.appendChild(input1);
+            
+            document.body.appendChild(newForm);
+            
+            newForm.submit(); */
+
+        }
+    });
 });
 </script>
 <header>
@@ -26,13 +49,17 @@ $(function(){
 			</c:if>
 			<c:if test="${sessionScope.m_id ne null}">			
 				<a id="logOut" href="./logout.do" title="로그아웃">${sessionScope.m_name}님, 안녕하세요.</a><br>
-				<a href="./myinfo.do" title="마이페이지">마이페이지</a>			
+				<a href="./myinfo.do" title="마이페이지">마이페이지</a>	
+				<a href="./cart.do" title="장바구니">장바구니</a>
+				<c:if test="${sessionScope.m_grade eq 1 || sessionScope.m_grade eq '1'}">
+					<a href="./admin_orderList.do" title="관리자페이지">관리자페이지</a>
+				</c:if>
 			</c:if>
 		</div>
 	</div>
 	<div id="logoLine" class="header">
 		<h1><a href="./index.do" title="Spring.B"><img alt="Spring.B" src="./resources/images/Logo2.png"></a></h1>
-		<p class="center"><input type="text" placeholder="검색"></p>
+		<p class="center"><input type="text" id="search" placeholder="검색"></p>
 		<p class="right"></p>
 	</div>
 	<nav class="header">

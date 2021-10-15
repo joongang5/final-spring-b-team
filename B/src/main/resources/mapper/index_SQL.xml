@@ -47,4 +47,9 @@
 		SELECT * FROM product_view WHERE p_no=#{product}
 	</select>
 	
+	<select id="searchList" parameterType="hashMap" resultType="HashMap">
+		SELECT * FROM product_view 
+		WHERE p_title LIKE CONCAT('%', #{search}, '%') OR c_main LIKE CONCAT('%', #{search}, '%') OR c_sub LIKE CONCAT('%', #{search}, '%')
+	</select>
+	
 </mapper>

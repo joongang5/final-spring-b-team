@@ -63,6 +63,7 @@ public class IndexController {
 		return jsonList.toJSONString();
 	}
 	
+	@SuppressWarnings("null")
 	@RequestMapping(value = "/categoryPage.do")
 	public ModelAndView categoryPage(CommandMap map) {
 		ModelAndView mv = new ModelAndView("categoryPage");
@@ -93,10 +94,32 @@ public class IndexController {
 		mv.addObject("optionSelect", optionSelect);
 		List<HashMap<String, Object>> cp_productList = indexService.cp_productList(map.getMap());
 		mv.addObject("cp_productList", cp_productList);
-		System.out.println(cp_productList);
-		System.out.println(map.getMap());
+		
+		if(map.get("search") != null &&  map.get("search") != "") {
+			mv.addObject("search", map.get("search"));	
+			List<HashMap<String, Object>> searchList = indexService.searchList(map.getMap());
+			/*String cate[] = null;
+			for (int i = 0; i < searchList.size(); i++) {
+				cate[i] = (String) searchList.get(i).get("c_main");
+				
+			};
+			
+			System.out.println(cate);*/
+			mv.addObject("searchList", searchList);
+		}
 		return mv;
 	}
+	
+	@PostMapping(value="/categoryPage.do")
+	public ModelAndView categoryPageSearch(CommandMap map) {
+		ModelAndView mv = new ModelAndView("categoryPage");
+		System.out.println(map.getMap());
+		mv.addObject("search", map.get("key"));
+		List<HashMap<String, Object>> searchList = indexService.searchList(map.getMap());
+		mv.addObject("searchList", searchList);
+		return mv;
+	}
+	
 	
 	@RequestMapping(value = "/detail.do")
 	public ModelAndView detail(CommandMap map) {

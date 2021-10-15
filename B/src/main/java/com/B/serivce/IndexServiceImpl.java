@@ -35,6 +35,9 @@ public class IndexServiceImpl implements IndexService {
 	public Map<String, Object> detail(Map<String, Object> map) {
 		return indexDAO.detail(map);
 	}
+	public List<HashMap<String, Object>> searchList(Map<String, Object> map) {
+		return indexDAO.searchList(map);
+	}
 
 	
 

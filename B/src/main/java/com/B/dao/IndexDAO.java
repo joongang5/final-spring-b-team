@@ -27,5 +27,8 @@ public class IndexDAO extends AbstractDAO {
 	public Map<String, Object> detail(Map<String, Object> map) {
 		return selectOne("index.detail", map);
 	}
+	public List<HashMap<String, Object>> searchList(Map<String, Object> map) {
+		return selectList3("index.searchList", map);
+	}
 
 }

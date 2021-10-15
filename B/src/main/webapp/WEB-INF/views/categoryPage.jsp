@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html>
@@ -39,7 +40,9 @@
 							#mainContainer .section #productList  .product .scene .detail .title{padding:10px 0 0 10px;font-size:14px;max-height:65px;overflow:hidden;}
 							#mainContainer .section #productList  .product .scene .detail .price{padding:10px 5px 0 10px;font-size:12px;}
 						
+					.noData
 	#container:after{content:"";display:block;clear:both;}
+	footer{position:absolute;bottom:-250px;left:0;}
 </style>
 <script>
 $(function(){
@@ -48,7 +51,9 @@ $(function(){
 		var option = $(this).val();
 		var category = "${param.category}";
 		var sub = "${param.sub}";
-		if(category == "" && sub == ""){
+		if(category == "" && sub == "" && "${search}" != ""){
+			alert("${search}");
+		}else if(category == "" && sub == ""){
 			location.href="./categoryPage.do?option="+option;
 		}else if(category != "" && sub == ""){
 			location.href="./categoryPage.do?category="+category+"&&option="+option;
@@ -69,6 +74,7 @@ $(function(){
 						<h2>#
 							<c:choose>
 								<c:when test="${mainCategory ne null }"><a href="./categoryPage.do?category=${mainCategory }" title="${mainCategory }">${mainCategory }</a></c:when>
+								<c:when test="${search ne null }">"${search }" 검색결과</c:when>
 								<c:otherwise><a href="./categoryPage.do" title="전체가구 보기" >가구</a></c:otherwise>
 							</c:choose>
 							<select name="optionSelect" class="sectorSelecter optionSelect">
@@ -96,6 +102,9 @@ $(function(){
 										</c:if>
 									</c:forEach>
 								</c:when>
+								<c:when test="${mainCategory eq null && subCategory eq null && search ne null }">
+									<p><a href="./categoryPage.do?search=${search }" title="${search }">#${search }</a></p>
+								</c:when>
 								<c:otherwise>
 									<c:forEach items="${categoryMain }" var="cm">
 										<p><a href="./categoryPage.do?category=${cm.c_main }" title="${cm.c_main }">#${cm.c_main }</a></p>
@@ -107,18 +116,37 @@ $(function(){
 					<div id="option" class="sector"></div>
 					<div id="productList" class="sector">
 						<div class="product">
-							<c:forEach items="${cp_productList }" var="l">
-								<figure class="scene" onclick="location.href='./detail.do?category=${l.c_main }&&sub= ${l.c_sub }&&product=${l.p_no }'">
-									<img src="https://blogger.googleusercontent.com/img/a/${l.p_img }" alt="${l.p_title }" class="sceneImg"/>
-									<figcaption class="detail">
-										<p class="title">
-											<span style="color:#999;font-size:12px;">[${l.c_main } > ${l.c_sub }]</span><br/>
-											${l.p_title }
-										</p>
-										<p class="price"><fmt:formatNumber value="${l.p_price }" pattern="#,###"/>원<small <c:if test="${(l.p_cnt - l.p_sell) le 10 }">style="color:red;"</c:if>>(재고 ${l.p_cnt - l.p_sell }개)</small></p>
-									</figcaption>
-								</figure>
-							</c:forEach>
+							<c:choose>
+								<c:when test="${fn:length(searchList) > 0}">
+									<c:forEach items="${searchList }" var="sl">
+										<figure class="scene" onclick="location.href='./detail.do?category=${sl.c_main }&&sub= ${sl.c_sub }&&product=${sl.p_no }'">
+											<img src="https://blogger.googleusercontent.com/img/a/${sl.p_img }" alt="${sl.p_title }" class="sceneImg"/>
+											<figcaption class="detail">
+												<p class="title">
+													<span style="color:#999;font-size:12px;">[${sl.c_main } > ${sl.c_sub }]</span><br/>
+													${sl.p_title }
+												</p>
+												<p class="price"><fmt:formatNumber value="${sl.p_price }" pattern="#,###"/>원<small <c:if test="${(sl.p_cnt - sl.p_sell) le 10 }">style="color:red;"</c:if>>(재고 ${sl.p_cnt - sl.p_sell }개)</small></p>
+											</figcaption>
+										</figure>
+									</c:forEach>
+								</c:when>
+								<c:when test="${fn:length(searchList) == 0 && search eq null}">
+									<c:forEach items="${cp_productList }" var="l">
+										<figure class="scene" onclick="location.href='./detail.do?category=${l.c_main }&&sub= ${l.c_sub }&&product=${l.p_no }'">
+											<img src="https://blogger.googleusercontent.com/img/a/${l.p_img }" alt="${l.p_title }" class="sceneImg"/>
+											<figcaption class="detail">
+												<p class="title">
+													<span style="color:#999;font-size:12px;">[${l.c_main } > ${l.c_sub }]</span><br/>
+													${l.p_title }
+												</p>
+												<p class="price"><fmt:formatNumber value="${l.p_price }" pattern="#,###"/>원<small <c:if test="${(l.p_cnt - l.p_sell) le 10 }">style="color:red;"</c:if>>(재고 ${l.p_cnt - l.p_sell }개)</small></p>
+											</figcaption>
+										</figure>
+									</c:forEach>
+								</c:when>
+								<c:otherwise><p class="noData">출력할 데이터가 없습니다.</p></c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 				</li>
