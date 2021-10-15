@@ -4,7 +4,7 @@
 
 <mapper namespace="login">
 	<select id="login" parameterType="String" resultType="HashMap">
-		SELECT * FROM member WHERE m_id=#{m_id}
+		SELECT * FROM member_view WHERE m_id=#{m_id}
 	</select>
 	
 	<select id="checkId" parameterType="String" resultType="Integer" >

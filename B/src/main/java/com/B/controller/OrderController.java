@@ -1,8 +1,10 @@
 package com.B.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -10,16 +12,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.B.common.CommandMap;
 import com.B.serivce.LoginService;
 import com.B.serivce.OrderService;
 import com.B.util.Util;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
+import com.siot.IamportRestClient.IamportClient;
+import com.siot.IamportRestClient.exception.IamportResponseException;
+import com.siot.IamportRestClient.response.IamportResponse;
+import com.siot.IamportRestClient.response.Payment;
 
 
 @Controller
@@ -29,6 +41,14 @@ public class OrderController {
 	@Resource(name = "loginService")
 	private LoginService loginService;
 
+	
+//	private IamportClient api;
+//	
+//	public OrderController() {
+//		// REST API 키와 REST API secret 를 아래처럼 순서대로 입력한다.
+//		this.api = new IamportClient("5287507517506742","dd927e5ef9f6a131e0c8d247e4b31828fb27d9324758dc336b55ca6dbd4d4bbd8793872445d13135");
+//	}
+//	
 	@RequestMapping(value = "/orderhistory.do")
 	public ModelAndView main1(CommandMap map) {
 
@@ -37,6 +57,7 @@ public class OrderController {
 
 		return mv;
 	}
+	
 	@GetMapping("/orderhistory1.do")
 	public ModelAndView orderhistory1(CommandMap map, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("orderhistory");
@@ -116,27 +137,33 @@ public class OrderController {
 		return mv;
 	}
 	
-	@PostMapping("/checkout.do")
-	public ModelAndView readCheckout(CommandMap map, @RequestParam(value="p_no$cnt",required=true) String[] as, HttpServletRequest request) {
+	
+	@GetMapping("/checkout.do")
+	public ModelAndView cantReadCheckout() {
 		ModelAndView mv = new ModelAndView("checkout");
-		/*
-		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("m_id");
-		*/
-		//임시 멤버, 임시 상품 파라미터 사용
-		System.out.println(map.get("m_id"));
-		String id = (String) map.get("m_id");
+		return mv;
+	}
+	
+	@PostMapping("/checkout.do")
+	public ModelAndView readCheckout(CommandMap map, @RequestParam(value="p_no$cnt", required=false) String[] as, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("checkout");
 		
+		HttpSession session = request.getSession();
+		if((String) session.getAttribute("m_id") == null) {
+			return mv;
+		}
+		String id = (String) session.getAttribute("m_id");
+		int p_no = 0;
+		int cnt = 0;
+
 		if (as != null) {
-			//상품 데이터 가져오기
+			//구매할 상품 데이터 가져오기
 			List<Map<String, Object>> orderProductList = new ArrayList<Map<String, Object>>();
 			for (int i = 0; i < as.length; i++) {
 				Map<String, Object> orderProduct = new HashMap<>();
-			    String[] str = as[i].split(",");
-			    int p_no = Integer.parseInt(str[0]);
-			    int cnt = Integer.parseInt(str[1]);
-			    System.out.println("p_no="+p_no);
-			    System.out.println("cnt="+cnt);
+				    String[] str = as[i].split("\\$");
+				    p_no = Integer.parseInt(str[0]);
+				    cnt = Integer.parseInt(str[1]);
 			    orderProduct = orderService.getOrderProductInfo(p_no);
 			    orderProduct.put("cnt", cnt);
 			    orderProduct.put("amount", (int)orderProduct.get("p_price")*cnt);
@@ -146,18 +173,145 @@ public class OrderController {
 			
 			//멤버 데이터 가져오기
 			Map<String, Object> memberInfo = loginService.login(id);
-			//이름, 연락처, 주소, 적립금만 가져가기
-			//주소는 칼럼 분할 문제 때문에 일단 생략
+			//이름, 연락처, 주소, 이메일, 적립금만 가져가기
 			mv.addObject("m_name", memberInfo.get("m_name"));
-			//mv.addObject("memberInfo", memberInfo.get("m_addr"));
+			mv.addObject("m_email", memberInfo.get("m_email"));
+			mv.addObject("m_addr1", memberInfo.get("m_addr1"));
+			mv.addObject("m_addr2", memberInfo.get("m_addr2"));
+			mv.addObject("m_addr3", memberInfo.get("m_addr3"));
 			mv.addObject("m_phone", memberInfo.get("m_phone"));
 			mv.addObject("m_point", memberInfo.get("m_point"));
 		} else {
 			//가져온 상품 없을 때 처리할 내용
+			mv.addObject("noProduct", "주문할 상품 정보가 존재하지 않습니다. 다시 시도해주세요.");
 		}
 		
 		return mv;
 	}
 	
+	@PostMapping("/checkStock.do")
+	@ResponseBody
+	public int checkStock (@RequestBody Map<String, Object> jsonDTO, HttpServletRequest request) throws IOException {
+		Map<String, Object> orderedProduct = new HashMap<>();
+		JsonParser jsonParser = new JsonParser();
+		JsonArray jsonArray = (JsonArray) jsonParser.parse(jsonDTO.get("productList").toString());
+		String[] strArr = new String[2];
+		int p_no = 0;
+		int cnt = 0;
+		int result = 0;
+		for (int i = 0; i < jsonArray.size(); i++) {
+			strArr = jsonArray.get(i).getAsString().split("\\$");
+		    p_no = Integer.parseInt(strArr[0]);
+		    cnt = Integer.parseInt(strArr[1]);
+		    orderedProduct.put("p_no", p_no);
+		    orderedProduct.put("cnt", cnt);
+		    result = orderService.checkStock(orderedProduct);
+			if(result < 0) {
+				return 0;
+			}
+		}
+		return 1;
+	}
+	
+	@RequestMapping(value="verifyPayment/{imp_uid}.do")
+	@ResponseBody
+	public IamportResponse<Payment> paymentByImpUid(@PathVariable(value="imp_uid") String imp_uid, Model model, Locale locale, HttpSession session) 
+			throws IamportResponseException, IOException{	
+		IamportClient client = new IamportClient("5287507517506742","dd927e5ef9f6a131e0c8d247e4b31828fb27d9324758dc336b55ca6dbd4d4bbd8793872445d13135");
+		return client.paymentByImpUid(imp_uid);
+	}
+	
+	@PostMapping("/checkoutResult.do")
+	@ResponseBody
+	public ModelAndView checkoutResult (@RequestBody Map<String, Object> jsonDTO, HttpServletRequest request) throws IOException {
+		/*
+		 * {
+		 		pa_id : pa_id,
+       			pa_amount : pa_amount,
+       			pa_plan : pa_plan,
+       			pa_date : pa_date,
+       			productList : productArr,
+       			usePoint : usePoint,
+       			finalWillPoint : finalWillPoint
+       			buyer_name : buyer_name,
+           		buyer_addr : buyer_addr,
+           		buyer_postcode : buyer_postcode
+           		errorMsg : errorMsg
+       		}
+		 */
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("m_id");
+		
+		Map<String, Object> paymentInfo = new HashMap<>();
+		paymentInfo.put("pa_id",jsonDTO.get("pa_id"));
+		paymentInfo.put("pa_amount",jsonDTO.get("pa_amount"));
+		paymentInfo.put("pa_plan",jsonDTO.get("pa_plan"));
+		paymentInfo.put("pa_date",jsonDTO.get("pa_date"));
+		paymentInfo.put("usePoint",jsonDTO.get("usePoint"));
+		paymentInfo.put("finalWillPoint",jsonDTO.get("finalWillPoint"));
+		paymentInfo.put("buyer_addr",jsonDTO.get("buyer_addr"));
+		paymentInfo.put("buyer_postcode",jsonDTO.get("buyer_postcode"));
+		paymentInfo.put("m_id",id);
+		mv.addObject("paymentInfo", paymentInfo);
+		
+		if(jsonDTO.get("errorMsg") != null) {
+			mv.addObject("result", "error");
+			mv.addObject("errorMsg", jsonDTO.get("errorMsg"));
+			return mv;
+		}
+		
+		//payment 테이블 다녀오기
+		int result = orderService.inputToPayment(paymentInfo);
+		if(result == 0) {
+			mv.addObject("result", "error");
+			mv.addObject("errorMsg", "결제는 진행되었으나 결제 정보 데이터 생성에 실패했습니다. 관리자에게 문의해주세요.");
+			return mv;
+		}
+		
+		//적립금 차감하기
+		result = orderService.downPoint(paymentInfo);
+		if(result == 0) {
+			mv.addObject("result", "error");
+			mv.addObject("errorMsg", "결제는 진행되었으나 결제 정보 데이터 생성에 실패했습니다. 관리자에게 문의해주세요.");
+			return mv;
+		}
+		//적립금 적립은 상품이 출고 완료되면 실행
+		
+		//order_list 테이블 다녀오기 + 물건 재고 감소시키기
+		Map<String, Object> orderedProduct = new HashMap<>();
+		JsonParser jsonParser = new JsonParser();
+		JsonArray jsonArray = (JsonArray) jsonParser.parse(jsonDTO.get("productList").toString());
+		String[] strArr = new String[2];
+		int p_no = 0;
+		int cnt = 0;
+		for (int i = 0; i < jsonArray.size(); i++) {
+			strArr = jsonArray.get(i).getAsString().split("\\$");
+		    p_no = Integer.parseInt(strArr[0]);
+		    cnt = Integer.parseInt(strArr[1]);
+		    orderedProduct.put("p_no", p_no);
+		    orderedProduct.put("cnt", cnt);
+		    orderedProduct.put("m_id", id);
+		    orderedProduct.put("pa_id", jsonDTO.get("pa_id"));
+			//재고 체크 문제 없으면 재고 내리기
+			result = orderService.downStock(orderedProduct);
+			if(result == 0) {
+				mv.addObject("result", "error");
+				mv.addObject("errorMsg", "결제는 진행되었으나 결제 상품 데이터 반영에 실패했습니다. 관리자에게 문의해주세요.");
+				return mv;
+			}
+		    result = orderService.inputToOrder_List(orderedProduct);
+			if(result == 0) {
+				mv.addObject("result", "error");
+				mv.addObject("errorMsg", "결제는 진행되었으나 주문서 생성중에 문제가 발생했습니다. 관리자에게 문의해주세요.");
+				return mv;
+			}
+		}
+		
+		mv.addObject("result", "success");
+		return mv;
+	}
+	
 	
 }
+	
