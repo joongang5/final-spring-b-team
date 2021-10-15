@@ -6,23 +6,45 @@
 <head>
 <meta charset="UTF-8">
 <title>index</title>
-<link href="./resources/css/header.css" rel="stylesheet"/>
-<link href="./resources/css/reset.css" rel="stylesheet"/>
-<link href="./resources/css/footer.css" rel="stylesheet"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<style type="text/css">
-/* reset.css */
-/* header.css */
-/* footer.css */
-/* container.css */	
-/* ::-webkit-scrollbar {
+<style>
+*{padding:0;margin:0;list-style:none;}
+a{color:black;text-decoration:none;transition:0.3s all;}
+a:link, a:visited{color:black;}
+a:hover, a:focus{text-decoration:underline;}
+::-webkit-scrollbar {
 	width: 0px;
-} */
+}
 html{overflow: hidden;}
 html, body{width: 100%; height: 100%;}
 #wrapper{width:100%;margin:0 auto;}
-	header{background-color:rgba(255,255,255,0);}
-	#container{width:100%;}
+	header{width:100%;height:124px;position:fixed;top:0;left:0;z-index:99;}
+		.header{margin:0 auto;}
+		#nameLine2{width:100%;height:20px;border-bottom:2px solid;border-image: linear-gradient(to right, #FFA335, #F2E3D5, #fff);border-image-slice: 1;
+			background: linear-gradient(to right, #F2E3D5, #F2E3D5, #FFA335);
+		}
+			#nameLine{width:1200px;text-align:right;height:20px;line-height:20px;font-size:13px;}
+		#logoLine{width:1200px;height:65px;line-height:65px;}
+			#logoLine h1{width:100px;height:100%;float:left;color:#FFA335;}
+			#logoLine .center{width:1000px;text-align:center;float:left;}
+				#logoLine .center input{padding:8px 10px;width:400px;vertical-align:top;margin-top:15px;border-radius:15px;border:1px solid gray;}
+				#logoLine .center input:focus{outline:none;}
+			#logoLine .right{width:100px;float:left;}
+		#logoLine:after{content:"";display:block;clear:both;}
+		nav{width:100%;height:37px;line-height:37px;border-top:1px solid;border-bottom:1px solid;border-image: linear-gradient(to right, #F2E3D5, #FFA335);border-image-slice: 1;position:relative;}
+			nav #parent{width:1200px;margin:0 auto;}
+				nav #parent li{width:120px;float:left;text-align:center;line-height:35px;height:35px;}
+					nav #parent li a{display:block;width:80px;height:25px;line-height:25px;border-radius:10px;margin:5px auto 0;font-size:15px;}
+					nav #parent li a.navMain{width:90%;font-size:16.5px;font-weight:400;}
+					
+					nav #parent li a:hover, nav #parent li a:focus{background-color:#FFA335;color:#fff;}
+					.navMain:hover a.navMain{background-color:#FFA335;color:#fff;}
+					nav #parent li .son{width:120px;position:absolute;padding-top:6px;}
+						nav #parent li .son li{width:120px;border-top:1px solid #ccc;background-color:white;}
+						nav #parent li .son li:last-child{border-bottom:1px solid #ccc;}
+			nav:after{content:""; display:block; clear:both;}
+	
+	#container{widht:100%;}
 		.mainContainer{width:100%;}
 			.mainContainer li.section{width:100%;height:100vh;margin:0 auto;}
 			/*광고영역*/
@@ -53,7 +75,7 @@ html, body{width: 100%; height: 100%;}
 						.mainContainer li.section .sector .product .scene{border-radius:5px;width:19%;height:100%;float:left;margin-right:1%;overflow:hidden;position:relative;cursor:pointer;}
 							.mainContainer li.section .sector .product .scene .sceneImg{display:block;width:100%;height:100%;}
 							.mainContainer li.section .sector .product .scene .detail{width:100%;height:100px;background-color:rgba(0,0,0,0.6);position:absolute;bottom:-100px;left:0;color:#fff;transition:0.3s all;}
-						.mainContainer li.section .sector .product .scene:hover .detail{bottom:0;}		
+						.mainContainer li.section .sector .product .scene:hover .detail{bottom:0;}
 								.mainContainer li.section .sector .product .scene .detail .title{padding:10px 0 0 10px;font-size:14px;max-height:65px;overflow:hidden;}
 								.mainContainer li.section .sector .product .scene .detail .price{padding:10px 5px 0 10px;font-size:12px;}
 						
@@ -65,15 +87,32 @@ html, body{width: 100%; height: 100%;}
 						.mainContainer li.section .sector .nextBtn .cross{display:inline-block;width:0px;}
 						.mainContainer li.section .sector .nextBtn:hover .cross{width:16px;}
 					.mainContainer li.section .sector .nextBtn:after{content:"";display:block;clear:both;}
-		.red{color:red;}
+
 	#container:after{content:"";display:block;clear:both;}
+	
+	footer{width:100%;border-top:2px solid;border-image: linear-gradient(to right, #fff, #FFA335, #F2E3D5);border-image-slice: 1;background-color:#F2E3D5;height:200px;}
+		#footer{width:1200px;margin:0 auto;font-size:12px;}
+			#sns{height:40px;padding-top:10px;}
+				#sns p{display:inline-flex;margin-right:8px;}
+					#sns p img{width:24px;cursor:pointer;}
+		
+			#law{height:40px;padding-top:30px;}
+				#law span{margin-right:8px;cursor:pointer;}
 </style>
 <script>
 //one페이징을 위한 휠기능 막기
-/* window.addEventListener("wheel", function(e){
+window.addEventListener("wheel", function(e){
 	e.preventDefault();
-},{passive : false}); */
+},{passive : false});
 $(function(){
+	//헤더 네비게이션
+	$(".son").hide();
+	$("#parent li").on("mouseover focusin",function(){
+		$(this).children(".son").stop().show();
+	}).on("mouseout focusout",function(){
+		$(this).children(".son").stop().hide();
+	});
+	
 	//one페이징
 	var $html = $("html");
 	var page = 1;
@@ -164,11 +203,7 @@ $(function(){
 			success:function(data){
 				var list = data.list;
 				$.each(list, function(index, value){
-					var color ="";
-					if((list[index].p_cnt - list[index].p_sell) <= 10){
-						color = " class='red'";
-					}
-					html += '<li class="scene"><img src="https://blogger.googleusercontent.com/img/a/'+list[index].p_img+'" alt="'+list[index].p_title+'" class="sceneImg"/><div class="detail"><p class="title"><span style="color:#999;font-size:12px;">['+list[index].c_main+' > '+list[index].c_sub+']</span><br/>'+list[index].p_title+'</p><p class="price">'+list[index].p_price+'원<small'+color+'>(재고 '+(list[index].p_cnt - list[index].p_sell)+'개)</small></p></div></li>';
+					html += '<li class="scene"><img src="https://blogger.googleusercontent.com/img/a/'+list[index].p_img+'" alt="'+list[index].p_title+'" class="sceneImg"/><div class="detail"><p class="title"><span style="color:#999;font-size:12px;">['+list[index].c_main+' > '+list[index].c_sub+']</span><br/>'+list[index].p_title+'</p><p class="price">'+list[index].p_price+'원</p></div></li>';
 				});
 				$(".product"+classNum).html(html);
 			}, error : function(request, status, error){
@@ -177,11 +212,45 @@ $(function(){
 		});
 	});
 });
+
 </script>
 </head>
 <body>
 	<div id="wrapper">
-		<c:import url="/header.do"/>
+		<header>
+			<div id="nameLine2" class="header">
+				<div id="nameLine" class="header">
+					<c:if test="${sessionScope.m_id eq null}">
+						<a href="./login.do" title="로그인">로그인해주세요.</a>				
+					</c:if>
+					<c:if test="${sessionScope.m_id ne null}">			
+						<a href="" title="로그아웃">${sessionScope.m_name}님, 안녕하세요.</a><br>
+						<a href="" title="마이페이지">마이페이지</a>			
+					</c:if>
+				</div>
+			</div>
+			<div id="logoLine" class="header">
+				<h1>로고</h1>
+				<p class="center"><input type="text" placeholder="검색"></p>
+				<p class="right"></p>
+			</div>
+			<nav class="header">
+				<ul id="parent">
+					<c:forEach items="${categoryMain }" var="cm">					
+						<li class="navMain">
+							<a href="./categoryPage.do?category=${cm.c_main }" title="${cm.c_main }" class="navMain">${cm.c_main }</a>
+							<ul class="son">
+								<c:forEach items="${category }" var="c">
+									<c:if test="${cm.c_main eq c.c_main}">
+										<li class="navSon"><a href="./categoryPage.do?category=${c.c_no }" title="${cm.c_main } &gt; ${c.c_sub}" class="navSon">${c.c_sub}</a></li>
+									</c:if>
+								</c:forEach>
+							</ul>
+						</li>
+					</c:forEach>
+				</ul>
+			</nav>
+		</header>
 		<div id="container">
 			<ul class="mainContainer">
 				<li class="section">
@@ -215,7 +284,7 @@ $(function(){
 					<li class="section">
 						<div class="sector">
 							<h2>
-								<a href="./categoryPage.do?category=${cM.c_main }" title="${cM.c_main }">#${cM.c_main }</a>
+								<a href="" title="${cM.c_main }">#${cM.c_main }</a>
 								<select name="optionSelect" class="sectorSelecter optionSelect">
 									<option value="p_date" selected>등록순</option>
 									<option value="p_sell">구매순</option>
@@ -231,18 +300,15 @@ $(function(){
 							</h2>
 							<ul class="product product${cM.rnum }">
 								<li class="scene sebu">
-									<img alt="${cM.c_main }페이지로 이동" src="./resources/images/move.png" title="${cM.c_main }페이지로 이동하기" onclick="location.href='./categoryPage.do?category=${cM.c_main }'">
+									<img alt="세부페이지로 이동" src="./resources/images/move.png" title="${cM.c_main }로 이동하기">
 								</li>
 								<c:forEach items="${productList }" var="pl">
 									<c:if test="${pl.c_main eq cM.c_main}">
-										<li class="scene" onclick="location.href='./detail.do?category=${cM.c_main }&&sub= ${pl.c_sub }&&product=${pl.p_no }'">
+										<li class="scene">
 											<img src="https://blogger.googleusercontent.com/img/a/${pl.p_img }" alt="${pl.p_title }" class="sceneImg"/>
 											<div class="detail">
-												<p class="title">
-													<span style="color:#999;font-size:12px;">[${pl.c_main } > ${pl.c_sub }]</span><br/>
-													${pl.p_title }
-												</p>
-												<p class="price">${pl.p_price }원<small <c:if test="${(pl.p_cnt - pl.p_sell) le 10 }">style="color:red;"</c:if>>(재고 ${pl.p_cnt - pl.p_sell }개)</small></p>
+												<p class="title"><span style="color:#999;font-size:12px;">[${pl.c_main } > ${pl.c_sub }]</span><br/>${pl.p_title }</p>
+												<p class="price">${pl.p_price }원</p>
 											</div>
 										</li>									
 									</c:if>
@@ -256,7 +322,17 @@ $(function(){
 				</c:forEach>
 			</ul>
 		</div>
-		<c:import url="./footer.jsp"/>
+		<footer>
+			<div id="footer">
+				<div id="sns">
+					<p><img alt="인스타그램" src="./resources/images/instargram.png" title="인스타그램"></p>
+					<p><img alt="페이스북" src="./resources/images/facebook.png" title="페이스북"></p>
+					<p><img alt="네이버블로그" src="./resources/images/naver.png" title="네이버블로그"></p>
+				</div>
+				<div id="law"><span id="userLaw"><strong>개인정보처리방침</strong></span><span id="useLaw">이용약관</span></div>
+				<div id="copyright">&copy; 2021 Spring.B</div>
+			</div>
+		</footer>
 	</div>
 </body>
 </html>
