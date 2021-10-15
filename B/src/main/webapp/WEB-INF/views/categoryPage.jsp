@@ -52,7 +52,7 @@ $(function(){
 		var category = "${param.category}";
 		var sub = "${param.sub}";
 		if(category == "" && sub == "" && "${search}" != ""){
-			alert("${search}");
+			location.href="./categoryPage.do?option="+option+"&&search=${search}";
 		}else if(category == "" && sub == ""){
 			location.href="./categoryPage.do?option="+option;
 		}else if(category != "" && sub == ""){

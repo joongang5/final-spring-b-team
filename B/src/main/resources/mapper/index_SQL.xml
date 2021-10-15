@@ -49,7 +49,12 @@
 	
 	<select id="searchList" parameterType="hashMap" resultType="HashMap">
 		SELECT * FROM product_view 
-		WHERE p_title LIKE CONCAT('%', #{search}, '%') OR c_main LIKE CONCAT('%', #{search}, '%') OR c_sub LIKE CONCAT('%', #{search}, '%')
+		WHERE p_title LIKE CONCAT('%', #{search}, '%') OR c_main LIKE CONCAT('%', #{search}, '%') OR c_sub LIKE CONCAT('%', #{search}, '%') 
+		ORDER BY <choose>
+			<when test="option2 == 'p_priceUp'">p_price DESC </when>
+			<when test="option2 == 'p_priceDown'">p_price </when>
+			<otherwise>${option2} DESC</otherwise>
+		</choose>
 	</select>
 	
 </mapper>

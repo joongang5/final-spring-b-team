@@ -98,13 +98,8 @@ public class IndexController {
 		if(map.get("search") != null &&  map.get("search") != "") {
 			mv.addObject("search", map.get("search"));	
 			List<HashMap<String, Object>> searchList = indexService.searchList(map.getMap());
-			/*String cate[] = null;
-			for (int i = 0; i < searchList.size(); i++) {
-				cate[i] = (String) searchList.get(i).get("c_main");
-				
-			};
 			
-			System.out.println(cate);*/
+			System.out.println(searchList);
 			mv.addObject("searchList", searchList);
 		}
 		return mv;
