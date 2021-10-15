@@ -253,6 +253,9 @@ public class OrderController {
 		paymentInfo.put("buyer_addr",jsonDTO.get("buyer_addr"));
 		paymentInfo.put("buyer_postcode",jsonDTO.get("buyer_postcode"));
 		paymentInfo.put("m_id",id);
+		if (jsonDTO.get("pa_amount") == null) {
+			paymentInfo.put("pa_amount", 0);
+		}
 		mv.addObject("paymentInfo", paymentInfo);
 		
 		if(jsonDTO.get("errorMsg") != null) {
@@ -273,7 +276,7 @@ public class OrderController {
 		result = orderService.downPoint(paymentInfo);
 		if(result == 0) {
 			mv.addObject("result", "error");
-			mv.addObject("errorMsg", "결제는 진행되었으나 결제 정보 데이터 생성에 실패했습니다. 관리자에게 문의해주세요.");
+			mv.addObject("errorMsg", "결제는 진행되었으나 결제 데이터 반영에 실패했습니다. 관리자에게 문의해주세요.");
 			return mv;
 		}
 		//적립금 적립은 상품이 출고 완료되면 실행
