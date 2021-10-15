@@ -7,7 +7,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>구매 내역 조회 | 가구</title>
+<title>주문배송내역 조회 | 가구</title>
 
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
@@ -18,6 +18,123 @@
 
 
 <style>
+
+/* add 슬라이드 이미지 */
+.slider {
+	width: 800px;
+	height: 150px;
+	position: relative;
+	margin: 0 auto;
+	overflow: hidden; /* 현재 슬라이드 오른쪽에 위치한 나머지 슬라이드 들이 보이지 않도록 가림 */
+}
+
+.slider input[type=radio] {
+	display: none;
+}
+
+ul.imgs {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+ul.imgs li {
+	position: absolute;
+	left: 500px;
+	transition-delay: 1s; /* 새 슬라이드가 이동해 오는 동안 이전 슬라이드 이미지가 배경이 보이도록 지연 */
+	padding: 0;
+	margin: 0;
+}
+
+.bullets {
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 5px;
+	z-index: 2;
+}
+
+.bullets label {
+	display: inline-block;
+	border-radius: 50%;
+	background-color: rgba(0, 0, 0, 0.55);
+	width: 15px;
+	height: 15px;
+	cursor: pointer;
+}
+/* 현재 선택된 불릿 배경 흰색으로 구분 표시 */
+.slider input[type=radio]:nth-child(1):checked ~.bullets>label:nth-child(1)
+	{
+	background-color: #fff;
+}
+
+.slider input[type=radio]:nth-child(2):checked ~.bullets>label:nth-child(2)
+	{
+	background-color: #fff;
+}
+
+.slider input[type=radio]:nth-child(3):checked ~.bullets>label:nth-child(3)
+	{
+	background-color: #fff;
+}
+
+.slider input[type=radio]:nth-child(4):checked ~.bullets>label:nth-child(4)
+	{
+	background-color: #fff;
+}
+
+.slider input[type=radio]:nth-child(1):checked ~ul.imgs>li:nth-child(1)
+	{
+	left: 0;
+	transition: 0.5s;
+	z-index: 1;
+}
+
+.slider input[type=radio]:nth-child(2):checked ~ul.imgs>li:nth-child(2)
+	{
+	left: 0;
+	transition: 0.5s;
+	z-index: 1;
+}
+
+.slider input[type=radio]:nth-child(3):checked ~ul.imgs>li:nth-child(3)
+	{
+	left: 0;
+	transition: 0.5s;
+	z-index: 1;
+}
+
+.slider input[type=radio]:nth-child(4):checked ~ul.imgs>li:nth-child(4)
+	{
+	left: 0;
+	transition: 0.5s;
+	z-index: 1;
+}
+
+/* add 스크롤 바*/
+::-webkit-scrollbar {
+	width: 16px;
+}
+
+::-webkit-scrollbar-track {
+	background-color: #EEDED5;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: #403429;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	
+}
+
+::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment
+	{
+	width: 16px;
+	height: 16px;
+	background: #EEDED5;
+}
 
 /* add 테두리 */
 .orderList-summary {
@@ -93,8 +210,9 @@ input[type=text], input[type=password] {
 	margin: 0;
 	padding: 0;
 	text-align: none;
-	font-family: "Malgun Gothic", "맑은 고딕", Dotum, "돋움", Arial, sans-serif;
-	/* font-family: 'Noto Serif KR', serif; */
+	/* 	font-family: "Malgun Gothic", "맑은 고딕", Dotum, "돋움", Arial, sans-serif;
+ */
+	font-family: 'Noto Serif KR', serif;
 }
 
 body {
@@ -275,14 +393,15 @@ header, footer, aside, nav, section, article {
 .demi {
 	display: inline-block;
 	margin: 0 1px;
-	vertical-align: middle
+	vertical-align: middle;
 }
 
 .inpType {
 	padding-left: 6px;
 	height: 24px;
 	line-height: 24px;
-	border: 1px solid #dbdbdb
+	border: 1px solid #dbdbdb;
+	text-align: center;
 }
 
 .btncalendar {
@@ -416,8 +535,8 @@ header, footer, aside, nav, section, article {
 					<div class="sideMenu__block">
 						<h3>나의 쇼핑 활동</h3>
 						<ul class="sideMenu__items">
-							<li class="sideMenu__item sideMenu__item--active"><a href="">구매
-									내역 조회</a></li>
+							<li class="sideMenu__item sideMenu__item--active"><a
+								href="./orderhistory.do">주문배송내역 조회</a></li>
 							<li class="sideMenu__item"><a href="">최근 본 상품</a></li>
 							<li class="sideMenu__item"><a href="">쿠폰 / 적립금 조회</a></li>
 							<li class="sideMenu__item"><a href="">상품 문의</a></li>
@@ -427,10 +546,10 @@ header, footer, aside, nav, section, article {
 					<div class="sideMenu__block">
 						<h3>회원 정보</h3>
 						<ul class="sideMenu__items">
-							<li class="sideMenu__item"><a href="">회원 정보 조회</a></li>
+							<li class="sideMenu__item"><a href="./myinfo.do">회원 정보 조회</a></li>
 							<li class="sideMenu__item"><a href="">주소록</a></li>
-							<li class="sideMenu__item"><a href="">비밀번호 변경</a></li>
-							<li class="sideMenu__item"><a href="">회원 탈퇴</a></li>
+							<li class="sideMenu__item"><a href="./myinfoUpdatePW.do">비밀번호 변경</a></li>
+							<li class="sideMenu__item sideMenu__item--active"><a href="./myinfoDelete.do">회원 탈퇴</a></li>
 						</ul>
 					</div>
 				</div>
@@ -445,8 +564,8 @@ header, footer, aside, nav, section, article {
 				<!-- <img src="http://localhost/img/furniturepic.png"
 	style="width: 150px; height: 150px;"> -->
 				<br> <br> <br> <br>
-				<h1 align="left">구매 내역 조회</h1>
-				<br> <br>
+				<h1 align="left">주문배송내역 조회</h1>
+				
 				<!-- <h3 align="center">진행상황</h3> -->
 				<br>
 
@@ -455,9 +574,13 @@ header, footer, aside, nav, section, article {
 						<table>
 							<tr>
 								<th style="font-size: 20px;">결제 완료</th>
-								<th rowspan="3"><marquee direction=right><img src="./resources/images/right-arrow-org.png"></marquee></th>
+								<th rowspan="3"><marquee direction=right>
+										<img src="./resources/images/right-arrow-org.png">
+									</marquee></th>
 								<th style="font-size: 20px;">출고 준비</th>
-								<th rowspan="3"><marquee direction=right><img src="./resources/images/right-arrow-org.png"></marquee></th>
+								<th rowspan="3"><marquee direction=right>
+										<img src="./resources/images/right-arrow-org.png">
+									</marquee></th>
 								<th style="font-size: 20px;">출고 완료</th>
 							</tr>
 							<tr>
@@ -473,8 +596,28 @@ header, footer, aside, nav, section, article {
 					</div>
 				</div>
 
-				<br> <br>
+				<br>
 
+				<!-- 슬라이드 기능 추가 -->
+				<div class="slider">
+					<input type="radio" name="slide" id="slide1" checked> <input
+						type="radio" name="slide" id="slide2"> <input type="radio"
+						name="slide" id="slide3"> <input type="radio" name="slide"
+						id="slide4">
+					<ul id="imgholder" class="imgs">
+						<li><img src="./resources/images/slide12.jpg"></li>
+						<li><img src="./resources/images/slide13.jpg"></li>
+						<li><img src="./resources/images/slide14.jpg"></li>
+						<li><img src="./resources/images/slide15.jpg"></li>
+
+					</ul>
+					<div class="bullets">
+						<label for="slide1">&nbsp;</label> <label for="slide2">&nbsp;</label>
+						<label for="slide3">&nbsp;</label> <label for="slide4">&nbsp;</label>
+					</div>
+				</div>
+
+				<br> <br> <br>
 				<form action="./orderhistory1.do" method="get">
 					<!-- search -->
 					<table class="searchBox">
@@ -542,7 +685,9 @@ header, footer, aside, nav, section, article {
 				</form>
 
 				<br>
-				<h3>주문 리스트</h3>
+				<br>
+				<h3 align="left">주문 리스트</h3>
+				<br>
 				<br>
 				<table>
 					<tr>
@@ -551,7 +696,7 @@ header, footer, aside, nav, section, article {
 						<th>제품 이미지</th>
 						<th>수량</th>
 						<th>가격</th>
-						<th>구매 날짜</th>
+						<th>주문 날짜</th>
 						<th>현재 상태</th>
 					</tr>
 					<c:forEach items="${list }" var="l">
@@ -570,7 +715,7 @@ header, footer, aside, nav, section, article {
 								</c:if> <c:if test="${l.o_state == 1}">
 									<b style="color: red;">출고 준비</b>
 								</c:if> <c:if test="${l.o_state == 2}">
-									<b style="color: green; ">출고 완료</b>
+									<b style="color: green;">출고 완료</b>
 								</c:if></td>
 						</tr>
 					</c:forEach>
@@ -578,7 +723,8 @@ header, footer, aside, nav, section, article {
 
 				<br> <br> <br> <br>
 
-				<button class="snip1535" onclick="location.href='index.do'">메인 화면으로</button>
+				<button class="snip1535" onclick="location.href='index.do'">메인
+					화면으로</button>
 				<br> <br>
 			</main>
 		</div>

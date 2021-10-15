@@ -59,7 +59,7 @@ public class IndexController {
 		JSONObject jsonList = new JSONObject();
 		jsonList.put("list", productList);
 		jsonList.put("test", "test");
-		System.out.println(jsonList.toJSONString());
+		//System.out.println(jsonList.toJSONString());
 		return jsonList.toJSONString();
 	}
 	
@@ -95,6 +95,17 @@ public class IndexController {
 		mv.addObject("cp_productList", cp_productList);
 		System.out.println(cp_productList);
 		System.out.println(map.getMap());
+		return mv;
+	}
+	
+	@RequestMapping(value = "/detail.do")
+	public ModelAndView detail(CommandMap map) {
+		ModelAndView mv = new ModelAndView("detail");
+		
+		Map<String, Object> detail = indexService.detail(map.getMap());
+		System.out.println(detail);
+		mv.addObject("detail", detail);
+		
 		return mv;
 	}
 

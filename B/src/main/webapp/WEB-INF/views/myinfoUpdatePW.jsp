@@ -72,7 +72,7 @@
 		} else {
 			$("#checkResult1").css("color", "blue");
 			$("#checkResult1").text("");
-			return true;
+			return false;
 		}
 	}
 
@@ -89,7 +89,7 @@
 			$("#checkResult2").css("color", "blue");
 			$("#checkResult2").text("");
 			$("#updateBtn").attr("disabled", false);
-			return true;
+			return false;
 		}
 	}
 
@@ -109,7 +109,7 @@
                 <div class="sideMenu__block">
                     <h3>나의 쇼핑 활동</h3>
                     <ul class="sideMenu__items">
-                        <li class="sideMenu__item"><a href="">구매 내역 조회</a></li>
+                        <li class="sideMenu__item"><a href="./orderhistory.do">구매 내역 조회</a></li>
                         <li class="sideMenu__item"><a href="">최근 본 상품</a></li>
                         <li class="sideMenu__item"><a href="">쿠폰 / 적립금 조회</a></li>
                         <li class="sideMenu__item"><a href="">상품 문의</a></li>
@@ -140,7 +140,7 @@
                     비밀번호를 변경하려면 다음 정보를 입력하세요.
                 </div>
                 <form action="./myAccountChangePW.do" method="post"
-				onsubmit="submit()">
+				onsubmit="return submit()">
                 <div class="change-password-body">
                     <!--현재 비밀번호, 변경할 비밀번호*2-->
                     <div class="myInfo-content__short-container">

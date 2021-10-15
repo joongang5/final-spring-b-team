@@ -144,6 +144,7 @@ $(document).ready(function(){
 	})
 })
  
+
 </script>
 <body>
 <!--admin 공통 부분-->
@@ -155,18 +156,18 @@ $(document).ready(function(){
         <ul class="sideMenu__items">
           <li class="sideMenu__item">
             <div class="sideMenu-container">
-              <div><img src="./resources/images/setting.png" style="height:30px;width:30px;"></div>
+              <div><img src="./resources/images/setting.png" ></div>
               <div><a href="./index.do">홈으로</a></div>
             </div>
           </li>
           <li class="sideMenu__item">
             <div class="sideMenu-container">
-              <div><img src="./resources/images/delivery.png" style="height:30px;width:30px;"></div>
-              <div><a href="">주문 관리</a></div>
+              <div><img src="./resources/images/delivery.png" ></div>
+              <div><a href="./admin_orderList.do">주문 관리</a></div>
             </div>
             <div class="sideMenu-sub-container">
               <ul class="sideMenu__subItems">
-                <li class="sideMenu__subItem"><a href="">주문 목록</a></li>
+                <li class="sideMenu__subItem"><a href="./admin_orderList.do">주문 목록</a></li>
                 <li class="sideMenu__subItem"><a href="">교환 관리</a></li>
                 <li class="sideMenu__subItem"><a href="">환불 관리</a></li>
               </ul>
@@ -174,7 +175,7 @@ $(document).ready(function(){
           </li>
           <li class="sideMenu__item sideMenu__item--active">
             <div class="sideMenu-container">
-              <div><img src="./resources/images/furniture.png" style="height:30px;width:30px;"></div>
+              <div><img src="./resources/images/furniture.png"></div>
               <div><a href="./product.do">상품 관리</a></div>
             </div>
             <div class="sideMenu-sub-container">
@@ -186,18 +187,19 @@ $(document).ready(function(){
           </li>
           <li class="sideMenu__item">
             <div class="sideMenu-container">
+
               <div><img src="./resources/images/user.png" style="height:30px;width:30px;"></div>
-              <div><a href="">고객 관리</a></div>
+              <div><a href="./adminMember.do">고객 관리</a></div>
             </div>
             <div class="sideMenu-sub-container">
               <ul class="sideMenu__subItems">
-                <li class="sideMenu__subItem"><a href="">회원 목록</a></li>
+                <li class="sideMenu__subItem"><a href="./adminMember.do">회원목록</a></li>
               </ul>
             </div>
           </li>
           <li class="sideMenu__item">
             <div class="sideMenu-container">
-              <div><img src="./resources/images/support.png" style="height:30px;width:30px;"></div>
+              <div><img src="./resources/images/support.png" ></div>
               <div><a href="">고객 응대</a></div>
             </div>
             <div class="sideMenu-sub-container">
@@ -212,11 +214,11 @@ $(document).ready(function(){
           <li class="sideMenu__item">
             <div class="sideMenu-container">
               <div><img src="./resources/images/browser.png" style="height:30px;width:30px;"></div>
-              <div><a href="">사이트 관리</a></div>
+              <div><a href="./adminLog.do">사이트 관리</a></div>
             </div>
             <div class="sideMenu-sub-container">
               <ul class="sideMenu__subItems">
-                <li class="sideMenu__subItem"><a href="">로그 조회</a></li>
+                <li class="sideMenu__subItem"><a href="./adminLog.do">로그 조회</a></li>
               </ul>
             </div>
           </li>
@@ -283,14 +285,7 @@ $(document).ready(function(){
           
           
         <div class="sort-box">
-          <select id="sort__by-column">
-            <option>상품 번호순</option>
-            <option>상품명순</option>
-            <option>상품 가격순</option>
-            <option>재고순</option>
-            <option>등록일순</option>
-            <option>표시 상태순</option>
-          </select>
+          
         </div>
       </div>
       <div class="productList-container">
@@ -306,22 +301,20 @@ $(document).ready(function(){
 			<th scope="col">상위카테고리</th>
 			<th scope="col">하위카테고리</th>
 			<th scope="col">상품이미지</th>
-			<th scope="col">
-              <select id="sort__by-saleState">
-                <option>판매 상태</option>
-                <option>표시</option>
-                <option>판매 중단</option>
-                <option>품절</option>
-              </select>
-            </th>
-            <th scope="col">표시 상태</th>
+			<th scope="col">판매상태</th>
+            <th scope="col">표시상태</th>
 		
 			
 		</tr>
-		<c:if test="${empty categorySearch }">
+		<c:if test="${empty categorySearch}">
 		<c:forEach items="${productList}" var="p">
 		<tr>
-			<td scope="col"><input type="checkbox" class="checkbox" value="${p.p_no}"></td>
+			<td scope="col">
+			<label>
+                <input type="checkbox"  class="checkbox" value="${p.p_no}">
+                <span class="checkMark"></span>
+              </label>
+			</td>
 			<td scope="col">${p.p_no }</td>
 			<td colspan="2"><a href="./productDetail.do?p_no=${p.p_no}"> ${p.p_title} </a></td>
 			<td scope="col">${p.p_price }</td>
@@ -348,7 +341,12 @@ $(document).ready(function(){
 		<c:if test="${!empty categorySearch }">
 		<c:forEach items="${categorySearch }" var="cs">
 		<tr>
-			<td><input type="checkbox" class="checkbox" value="${p_pno}"></td>
+			<td>
+			  <label>
+                <input type="checkbox"  class="checkbox" value="${cs.p_no}">
+                <span class="checkMark"></span>
+              </label>
+            </td>
 			<td>${cs.p_no }</td>
 			<td>${cs.p_date }</td>
 			<td>${cs.c_main }</td>
@@ -356,7 +354,8 @@ $(document).ready(function(){
 			<td>${cs.p_title}</td>
 			<td>${cs.p_price }</td>
 			<td>${cs.p_cnt }</td>
-			<td><img src="https://blogger.googleusercontent.com/img/a/${cs.p_img}" style="width:100px;height:100px;"></td>
+			<td><c:if test="${cs.p_no lt 58 }"><img src="https://blogger.googleusercontent.com/img/a/${cs.p_img}" style="width:100px;height:100px;"></c:if>
+							<c:if test="${cs.p_no ge 58 }"><img src="./resources/uploadFile/${cs.p_img}"style="width:100px;height:100px;"></c:if></td>
 			<td><c:if test="${cs.p_state eq 1}"> 판매중</c:if>
 			 <c:if test="${cs.p_state eq 0 }"> 판매 중단 </c:if></td>
 			<td> <c:if test="${cs.p_state eq 1}"> 판매</c:if>
@@ -373,11 +372,15 @@ $(document).ready(function(){
           <!--상품 목록 출력 끝-->
           </tbody>
         </table>
-        <c:if test="${empty categorySearch }">
+        <c:if test="${empty categorySearch}">
         <div class="paging productList__paging">
           <ui:pagination paginationInfo="${paginationInfo }" type="text" jsFunction="linkPage" />
       </div>
      </c:if>
+     
+     
+     
+     
    
   </div>
   <footer id="admin-footer"></footer>	

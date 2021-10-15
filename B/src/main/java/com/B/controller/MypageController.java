@@ -1,23 +1,33 @@
 package com.B.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.B.common.CommandMap;
+import com.B.serivce.LogServiceImpl;
 import com.B.serivce.MypageServiceImpl;
+import com.B.util.Util;
 
 @Controller
 public class MypageController {
 	@Resource(name = "mypageService")
 	private MypageServiceImpl mypageService;
+	
+	@Resource (name = "logService")
+	private LogServiceImpl logService;
+	
+	@Autowired
+	private Util util;
 
 	@GetMapping("/myinfo.do")
 	public ModelAndView myinfo(CommandMap map, HttpServletRequest request) {
@@ -118,12 +128,25 @@ public class MypageController {
 	@PostMapping("/myAccountDelete.do")
 	public String myAccountDelete(CommandMap map, HttpServletRequest request) {
 		HttpSession session = request.getSession();
+		
+		HashMap<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("l_ip", util.getUserIp(request));
+		map2.put("l_target", "Withdrawal");
+		
 		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
 			map.put("m_id", session.getAttribute("m_id"));
 			map.put("m_name", session.getAttribute("m_name"));
+			
+			map2.put("l_data", "회원탈퇴 성공");
+			map2.put("l_id", session.getAttribute("m_id"));
+			logService.writeLog(map2);
+			
 			mypageService.myAccountDelete(map.getMap());
-			return "redirect:/logout.do";
+			
+			return "redirect:/login.do";
 		} else {
+			map2.put("l_data", "회원탈퇴 실패");
+			logService.writeLog(map2);
 			return "redirect:/login.do";
 		}
 	}
@@ -131,13 +154,29 @@ public class MypageController {
 	@PostMapping("/myAccountChangePW.do")
 	public String myAccountChangePW(CommandMap map, HttpServletRequest request) {
 		HttpSession session = request.getSession();
+		
+		HashMap<String, Object> map2 = new HashMap<String, Object>();
+		map2.put("l_ip", util.getUserIp(request));
+		map2.put("l_target", "ChangePW");
+		
 		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
 			map.put("m_id", session.getAttribute("m_id"));
 			map.put("m_name", session.getAttribute("m_name"));
+			
+			
+			map2.put("l_data", "비밀번호 변경 성공");
+			map2.put("l_id", session.getAttribute("m_id"));
+			logService.writeLog(map2);
+			
 			mypageService.myAccountUpdatePW(map.getMap());
+			
+			
 			return "redirect:myinfoUpdatePW.do?msg=ok";
 
 		} else {
+			map2.put("l_data", "비밀번호 변경 실패");
+			logService.writeLog(map2);
+			
 			return "redirect:/login.do";
 		}
 	}

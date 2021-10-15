@@ -74,4 +74,6 @@
 	<delete id="deleteProduct">
 		DELETE FROM product WHERE p_no=#{p_no}
 	</delete>
+	
+
 </mapper>

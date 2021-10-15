@@ -13,7 +13,7 @@ public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	private AdminDAO adminDAO;
-	
+
 	@Override
 	public List<Map<String, Object>> memberList(Map<String, Object> map) {
 		return adminDAO.memberList(map);
@@ -29,15 +29,24 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.memberTotalList(map);
 	}
 
+	//이현아가 추가
 	@Override
-	public int logTotalList(Map<String, Object> map) {
-		return adminDAO.logTotalList(map);
+	public List<Map<String, Object>> getAdminOrderList(Map<String, Object> map) {
+		return adminDAO.getAdminOrderList(map);
 	}
-
+	
 	@Override
-	public List<Map<String, Object>> logList(Map<String, Object> map) {
-		return adminDAO.logList(map);
+	public int getOrderTotalList(Map<String, Object> map) {
+		return adminDAO.getOrderTotalList(map);
 	}
-
-
+	
+	@Override
+	public void modifyState(Map<String, Object> p) {
+		adminDAO.modifyState(p);
+		
+	}
+	@Override
+	public Map<String, Object> getAdminOrderDetail(Map<String, Object> map) {
+		return adminDAO.getAdminOrderDetail(map);
+	}
 }
