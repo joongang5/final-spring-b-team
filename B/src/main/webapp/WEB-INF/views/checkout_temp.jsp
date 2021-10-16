@@ -15,7 +15,7 @@
 </c:if>
 <form action="checkout.do" method="post">
 	<c:forEach var="i" begin="36" end="37">
-		<input type="hidden" id="p_no" name="p_no$cnt" value="${i}$${i-35}">
+		<input type="hidden" name="p_no$cnt" value="${i}$${i-35}">
 	</c:forEach>
 	<button type="submit">결제하기</button> 
 </form>

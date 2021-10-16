@@ -190,6 +190,7 @@ function down(no){
     		
     		$(totalPriceId).text(totalPriceValue.toLocaleString('ko-KR'));
     		
+    		$("#productPrice").text((data.totalPrice).toLocaleString('ko-KR'));
     		$("#totalPrice").text((data.totalPrice).toLocaleString('ko-KR'));
     	}, 
     	error : function(xhr, status, error) {
@@ -235,6 +236,7 @@ function up(no, cnt){
     		
     		$(totalPriceId).text(totalPriceValue.toLocaleString('ko-KR'));
     		
+    		$("#productPrice").text((data.totalPrice).toLocaleString('ko-KR'));
     		$("#totalPrice").text((data.totalPrice).toLocaleString('ko-KR'));
     	}, 
     	error : function(xhr, status, error) {
@@ -300,6 +302,7 @@ function onclickCheckBoxAJAX() {
      	dataType : "json",
     	data : { "checkValueArr" : checkValueArr },
     	success : function(data) {
+    		$("#productPrice").text((data.totalPrice).toLocaleString('ko-KR'));
     		$("#totalPrice").text((data.totalPrice).toLocaleString('ko-KR'));
     	}, 
     	error : function(xhr, status, error) {
@@ -372,6 +375,30 @@ function getCheckedCartNoArr(){
 	}
 	return checkValueArr;
 }
+
+function goToCheckout() {
+	var checkArr = document.getElementsByClassName("chBox");
+    var form = document.createElement("form");
+    form.setAttribute("id", "form");
+    form.setAttribute("method", "post");
+    form.setAttribute("action", "checkout.do");
+    
+	for(var i = 0; i < checkArr.length; i++){
+		if(checkArr[i].checked){
+			var p_no = document.getElementsByName("p_no")[i].value;
+			var cnt = document.querySelectorAll(".quantity__value")[i].innerText;
+		    var input = document.createElement("input");
+		    input.setAttribute("type", "hidden");
+		    input.setAttribute("name", "p_no$cnt");
+		    input.setAttribute("value", p_no + "$" + cnt);
+		    form.appendChild(input);	
+		}
+	}
+		    document.body.appendChild(form);
+		    form.submit();
+		    document.getElementById("form").remove();
+}
+	
 </script>
 </head>
 <body>
@@ -453,6 +480,7 @@ function getCheckedCartNoArr(){
 															value="${c.p_price}"> <span class="amount__value"
 															id="totalPrice${c.ca_no}"><fmt:formatNumber value="${c.p_price * c.cnt}" pattern="#,###"/></span>원
 													</div>
+													<input type="hidden" name="p_no" value="${c.p_no}">
 												</div>
 											</div>
 										</div>
@@ -527,7 +555,7 @@ function getCheckedCartNoArr(){
 					<div class="payment-sum__short-container">
 						<div class="payment-sum__section">상품 금액</div>
 						<div class="payment-sum__value">
-							<span class="amount__value" id="totalPrice">0</span>원
+							<span class="amount__value" id="productPrice">0</span>원
 						</div>
 					</div>
 					<div class="payment-sum__short-container">
@@ -541,11 +569,11 @@ function getCheckedCartNoArr(){
 					class="payment-total-amount-container payment-sum__short-container">
 					<div class="total-amount payment-sum__section">합계</div>
 					<div class="total-amount payment-sum__value">
-						<span class="amount__value">0</span>원
+						<span class="amount__value" id="totalPrice">0</span>원
 					</div>
 				</div>
 				<div class="payment-button-container">
-					<button>상품 구매하기</button>
+					<button id="payment-button" onclick="goToCheckout()">상품 구매하기</button>
 				</div>
 			</aside>
 		</div>
