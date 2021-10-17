@@ -9,6 +9,13 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 
+/* 회원가입 유효성 체크 */
+
+
+
+
+
+출처: https://yulfsong.tistory.com/67 [Code Writer]
 
  function DaumPostcode() { //다음 우편번호 api
     new daum.Postcode({
@@ -123,75 +130,221 @@ function signUp(){
 	})
 }
 
+
 </script>
 </head>
 
-<body style="background-color:#f0f5f3">
-<h1> 회원 가입</h1>
-		<div class="fieldlabel"><label for="m_addr">*주소</label></div>
+<body>
+
+<div id="wrapper">
+				<a href="./index.do" ><img class="img-logo"  src="./resources/images/Logo.png"/>메인</a> 
+		
+	<br>
+	<div id=h1>
+	<br>
+	
+		<br>
+		
+		 <div id="form8">
+    	<div class="fieldlabel"><label for="m_addr">*주소</label></div>
 			<!--주소 찾기 API 사용-->
 			<!--우편번호, 주소1, 주소2-->
 			<div class="address payment-delivery__form">
-				<button class="small-button" onclick="DaumPostcode()">주소 찾기</button>
+			<button class="small-button" onclick="DaumPostcode()">주소 찾기</button>
 				<input type="text" id="postcode" name="postcode" placeholder="우편 번호"
-					readonly="readonly"> <input type="text" id="address" name="address"
-					placeholder="주소"> <input type="text" id="detailAddress" name="detailAddress"
+					readonly="readonly"><br> <input type="text" id="address" name="address"
+					placeholder="주소"> <br><input type="text" id="detailAddress" name="detailAddress"
 					placeholder="상세 주소">
+					</div>
+					
 			</div>
-			
-<form id="registerform">
-
-		
-        <div class="fieldlabel"><label for="m_id">*아이디</label></div>
-        <div class="formfield"><input type="text" id="m_id" name="m_id" maxlength="20" value=""></div>
-        
-        <div class="fieldlabel"><label for="m_name">*이름</label></div>
-        <div class="formfield"><input type="text" id="m_name" name="m_name" maxlength="20" value=""></div>
+		</div>
+	<br>
 	
+			
+<form id="join">
+		
+	
+		
+		<div id="form1">
+		<h1>회원가입</h1>
+	        <div class="fieldlabel"><label for="m_id">*아이디</label></div>
+	        <div class="formfield"><input type="text" id="m_id" name="m_id" maxlength="20" value=""></div><br>
+		</div>
+		
+        <div id="form2">
+        <div class="fieldlabel"><label for="m_name">*이름</label></div>
+        <div class="formfield"><input type="text" id="m_name" name="m_name" maxlength="20" value=""></div><br>
+	</div>
+	
+		<div id="form3">
         <div class="fieldlabel"><label for="m_phone">*핸드폰번호</label></div>
-        <div class="formfield"><input type="text" id="m_phone" name="m_phone" maxlength="20" value=""></div>
-
-       
-        <input type="hidden" id="postcode2" name="postcode2" placeholder="우편 번호" value=""
-					readonly="readonly"> <input type="hidden" id="address2" name="address2" value=""
-					placeholder="주소"> <input type="hidden" id="detailAddress2" name="detailAddress2"
-					placeholder="상세 주소" value="">
+        <div class="formfield"><input type="text" id="m_phone" name="m_phone" maxlength="20" value=""></div><br>
+	</div>
         
-        
+        <div id="form4">
         <div class="fieldlabel"><label for="m_pw">*패스워드</label></div>
-        <div class="formfield">
-<input type="password" id="m_pw" name="m_pw" maxlength="20" autocomplete="off">
-</div>
-
+			<input type="password" id="m_pw" name="m_pw" maxlength="20" autocomplete="off"></div><br>
+		<div id="form5">
         <div class="fieldlabel"><label for="passwordCheck">패스워드확인</label></div>
-        <div class="formfield">
-        
-<input type="password" id="passwordCheck" name="passwordCheck" maxlength="20" autocomplete="off">
-</div>
+		<input type="password" id="passwordCheck" name="passwordCheck" maxlength="20" autocomplete="off"></div><br>
        
-     <!--     <div class="fieldlabel"><label for="nickname">*닉네임</label></div>
-     //   <div class="formfield"><input type="text" id="nickname" name="nickname" maxlength="20" value=""></div>
--->
+      <div id="form6">
         <div class="fieldlabel"><label for="m_email">*이메일</label></div>
         <div class="formfield">
         <input type="text" id="m_email" name="m_email" size="20" maxlength="20" 
-             value="" autocomplete="off"><span>@</span>
-            <input id="domain" list="domains" name="domain" placeholder="도메인입력/선택">
-            <!--  
-            <datalist id="domains">
+             value="" autocomplete="off">
+            <input id="domain" list="domains" name="domain" placeholder="도메인을 입력하세요.">
+            </div>
+           
+       <div id="form7">
+        <input type="hidden" id="postcode2" name="postcode2" placeholder="우편 번호" value=""
+					readonly="readonly">
+					<input type="hidden" id="address2" name="address2" value=""
+					placeholder="주소"> 
+					 <input type="hidden" id="detailAddress2" name="detailAddress2"
+					placeholder="상세 주소" value="">
+				
+					</div>
+					
+           <!--    <datalist id="domains">
                 <option value="naver.com">
                 <option value="daum.net">
                 <option value="gmail.com">
                 <option value="yahoo.co.kr">-->
-            </datalist>
+         
         </div>
-       
-        <div class="btnfield">
-            <input type="button" onclick="signUpValidation()" value="회원가입">
-        </div>        
+       <div id="joinbt">
+                 <input type="button" class="small-button" onclick="signUpValidation()" value="회원가입">
+        </div>   
+             </div>
     </form>
-    
+    <div id=h1>
+	<br>
+	
+		<br>
+		
+		 <div id="form8">
+    	<div class="fieldlabel"><label for="m_addr">*주소</label></div>
+			<!--주소 찾기 API 사용-->
+			<!--우편번호, 주소1, 주소2-->
+			<div class="address payment-delivery__form">
+			<button class="small-button" onclick="DaumPostcode()">주소 찾기</button>
+				<input type="text" id="postcode" name="postcode" placeholder="우편 번호"
+					readonly="readonly"> <input type="text" id="address" name="address"
+					placeholder="주소"> <input type="text" id="detailAddress" name="detailAddress"
+					placeholder="상세 주소">
+				
+					</div>
+				</div>
+					</div>
+		
+ 
 
+      <style type="text/css">
+      
+  *{padding:0;margin:0;box-sizing:border-box;}
+  
+  #wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #EDEDED;
+  }
+  
+  #h1{
+  display:block;
+  
+  }
+	#join{
+	display:table;
+	width: auto;
+	height: auto;
+	margin:0 auto;
+
+	}
+
+   .registerform{
+  position:absolute;
+  width:400px;
+  height:400px;
+  padding: 30px, 20px;
+  background-color:#FFFFFF;
+  text-align:center;
+  top:40%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  border-radius: 15px;
+   }
+  .fieldlabel{
+   width: 150px;
+   height: 35px;
+   line-height: 35px;
+   margin: 0 10px;
+   padding: 0 15px; 
+   border: 1px solid rgb(255, 138, 0);
+   border-radius: 25px;
+   background-color: white;
+    }
+    input {
+    height: 25px;
+    line-height: 35px;
+    margin: 0 30px;
+    padding: 0 35px;
+    border: 1px solid rgb(255, 138, 0);
+    }
+label{
+display:block;
+text-align:center;
+}
+.joinbtn{
+   width: 110px;
+   border: 1px solid rgb(255, 138, 0);
+   background-color: white;
+   color: rgb(0, 0, 0); 
+   border-radius: 25px;
+   cursor: pointer;
+   text-align: center;
+   float: right;
+   display:block;
+   text-align:center;
+}
+
+li{
+   list-style:none;
+}
+.small-button{
+ width: 110px;
+   border: 1px solid rgb(255, 138, 0);
+   background-color: white;
+   color: rgb(0, 0, 0); 
+   border-radius: 25px;
+   cursor: pointer;
+   text-align: center;
+   display: inline-block;
+   display:block;
+   text-align:center;
+}
+
+
+
+
+}
+#joinbt{
+ 
+    position: absolute;
+    bottom: 200px;
+    left: 30px;
+}
+#form8{
+  display: flex;
+  justify-content: center;
+  background: #EDEDED;
+  
+}
+
+    </style>
   		
 </body>
 </html>

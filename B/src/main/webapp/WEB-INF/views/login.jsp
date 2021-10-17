@@ -145,7 +145,7 @@ function login(m_id, m_pw) {
 
 <body>
    
-   <a href="./index.do" ><img class="img-logo"  src="./resources/images/Logo.png"/>메인</a>
+   <a href="./index.do" ><img class="img-logo"  src="./resources/images/Logo.png"/><!--  메인--></a>
    
 <div class="loginbox">
 <form action="./login" method="post">
