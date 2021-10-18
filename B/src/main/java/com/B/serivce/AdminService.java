@@ -21,5 +21,7 @@ public interface AdminService {
 	public Map<String, Object> getAdminOrderDetail(Map<String, Object> map);
 	
 	public int updateWayBill(Map<String, Object> map);
+	
+	public List<Map<String, Object>> getAdminOrderDetailList(Map<String, Object> map);
 
 }

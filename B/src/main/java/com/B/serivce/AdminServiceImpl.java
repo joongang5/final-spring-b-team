@@ -56,4 +56,8 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.updateWayBill(map);
 		
 	}
+	@Override
+	public List<Map<String, Object>> getAdminOrderDetailList(Map<String, Object> map) {
+		return adminDAO.selectList("admin2.getAdminOrderDetailList",map);
+	}
 }

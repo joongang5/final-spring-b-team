@@ -9,7 +9,7 @@
     <title>관리자 페이지 | 가구</title>
     <link rel="stylesheet" href="./resources/css/base.css">
     <link rel="stylesheet" href="./resources/css/admin.css">
-    <link rel="stylesheet" href="./resources/css/invoice.css">
+    <link rel="stylesheet" href="./resources/css/invoice2.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <style>
@@ -154,17 +154,17 @@
 <script type="text/javascript">
  function registerWaybill(){
 	 var wayBillNum = $("#waybill").val()
-	 var o_no = $("#o_no").val()
+	 var pa_id = $("#pa_id").val()
 	 
 	 
 	   $.ajax({
 			url : "registerWaybill.do",
 			type : "post",
-			data : {"way" : wayBillNum , "o_no" : o_no},
+			data : {"way" : wayBillNum , "pa_id" : pa_id},
 			success : function(data) {
 				
 				
-				if(data == 1){
+				if(data >= 1){
 					
 					$('input[name=waybill]').attr('type',"hidden")
 					$('input[name=result]').attr('type',"text")
@@ -273,33 +273,37 @@
             <!--주문서 출력-->
             <div class="order-content">
                 <div class="order-content__header">
-                    <div class="order-content__orderer">주문자 : ${orderDetail.m_name }</div>
+                    <div class="order-content__orderer">주문자 : ${orderDetail.m_name }(${orderDetail.m_id})</div>
                     <div class="order-content__orderDate">${orderDetail.o_date}</div>
                 </div>
                 <!--주문서 내 주문한 상품 내용 출력 / 반복문 사용-->
+              
+                <c:forEach items="${orderDetailList }" var="odl">
                 <div class="order-content__body">
                     <div class="order-content-productContainer">
                         <div class="order-product-left-block">
                             <div class="product-content__productThumbnail">
-                            	<c:if test="${orderDetail.p_img eq null or orderDetail.p_no ge 58}">
+                            	<c:if test="${odl.p_img eq null or odl.p_no ge 58}">
                                 <img src="./resources/images/no-image.png">
                                 </c:if>
-                                <c:if test="${orderDetail.p_no lt 58 }">
-                                <img src="https://blogger.googleusercontent.com/img/a/${orderDetail.p_img}">
+                                <c:if test="${odl.p_no lt 58 }">
+                                <img src="https://blogger.googleusercontent.com/img/a/${odl.p_img}">
                                 </c:if>
                             </div>
                         </div>
                         <div class="order-product-right-block">
-                            <div class="product-content__name">${orderDetail.p_title }</div>
+                            <div class="product-content__name">${odl.p_title }</div>
                             <div class="product-content__option-container">
                              
                                 <div class="option-content__price-container">
-                                    <div class="option-content__price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${orderDetail.p_price}" /> 원</div>
-                                    <div class="option-content__quantity">${orderDetail.cnt} 개</div>
+                                    <div class="option-content__price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${odl.p_price}" /> 원</div>
+                                    <div class="option-content__quantity">${odl.cnt} 개</div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    </c:forEach><br>
+                    
                     <!--주문한 상품 내용 출력 끝-->
                     <div class="order-content__delivery-container">
                         <div class="order-content__delivery">
@@ -309,7 +313,7 @@
                         </div>
                         <!--출고 완료일 경우 출력되는 div-->
                         <!--'출고 완료' 선택하면 표시됨-->
-                        <c:if test="${orderDetail.o_state eq 2 and orderDetail.o_waybill eq null}">
+                        <c:if test="${orderDetail.o_state eq 2 and orderDetail.o_waybill eq 0}">
                         <div class="order-delivery__released">
                     
                             <div class="order-delivery__courier">
@@ -320,7 +324,7 @@
                                     <p>운송장 번호:</p>
                                     <input type="text" value=""  name="waybill" id="waybill" required >
                                     <input type="hidden" value=""  name="result" id="result"  >                                    
-                                    <input type="hidden" name="o_no" id="o_no" value="${orderDetail.o_no}">
+                                    <input type="hidden" name="pa_id" id="pa_id" value="${orderDetail.pa_id}">
                                 </label>
                             </div>
                             <button type="submit" name="wayButton"  onclick="registerWaybill()">등록</button>
@@ -329,7 +333,7 @@
                         
          		   </c:if>
          		   
-         		   <c:if test="${ orderDetail.o_waybill ne null}">
+         		   <c:if test="${ orderDetail.o_waybill ne 0}">
          		   				${orderDetail.o_waybill }
          		   		
          		   </c:if>
@@ -393,7 +397,7 @@
                                 합계 금액
                             </div>
                             <div class="payment personalInfo-content__value">
-                               <fmt:formatNumber type="number" maxFractionDigits="1" value="${orderDetail.p_price * orderDetail.cnt}" /> 원
+                               <fmt:formatNumber type="number" maxFractionDigits="1" value="${orderDetail.pa_amount}" /> 원
                             </div>
                         </div>
                         <div class="payment personalInfo-content__short-container">
@@ -426,7 +430,7 @@
                                 결제 금액
                             </div>
                             <div class="payment personalInfo-content__value">
-                                <fmt:formatNumber type="number" maxFractionDigits="1" value="${orderDetail.p_price * orderDetail.cnt - orderDetail.pa_usePoint}" />원
+                                <fmt:formatNumber type="number" maxFractionDigits="1" value="${orderDetail.pa_amount - orderDetail.pa_usePoint}" />원
                             </div>
                         </div>
                         <div class="payment personalInfo-content__short-container">

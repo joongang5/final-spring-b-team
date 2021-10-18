@@ -80,9 +80,10 @@ public class Admin2Controller {
 	public ModelAndView orderDetail(HttpServletRequest req, CommandMap map) {
 		ModelAndView mv = new ModelAndView("admin_orderDetail");
 		
-		map.put("o_no", req.getParameter("o_no"));
+		map.put("pa_id", req.getParameter("pa_id"));
 		
 		Map<String, Object> orderDetail = adminService.getAdminOrderDetail(map.getMap()); 
+		List<Map<String, Object>> orderDetailList = adminService.getAdminOrderDetailList(map.getMap()); 
 		
 		
 		String m_addr2 = (String)orderDetail.get("m_addr");
@@ -90,6 +91,7 @@ public class Admin2Controller {
 		
 		mv.addObject("m_addr2", noUni);
 		mv.addObject("orderDetail", orderDetail); 
+		mv.addObject("orderDetailList", orderDetailList); 
 		
 		return mv;
 	}
@@ -99,7 +101,7 @@ public class Admin2Controller {
 	public int registerWaybill(HttpServletRequest req,CommandMap map) {
 		
 		map.put("o_waybill", req.getParameter("way"));
-		map.put("o_no", req.getParameter("o_no"));
+		map.put("pa_id", req.getParameter("pa_id"));
 		
 		int complete = adminService.updateWayBill(map.getMap());
 		
