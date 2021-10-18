@@ -11,13 +11,7 @@
 
 /* 회원가입 유효성 체크 */
 
-
-
-
-
-출처: https://yulfsong.tistory.com/67 [Code Writer]
-
- function DaumPostcode() { //다음 우편번호 api
+function DaumPostcode() { //다음 우편번호 api
     new daum.Postcode({
         oncomplete: function(data) {
             // 각 주소의 노출 규칙에 따라 주소를 조합한다.
@@ -162,14 +156,19 @@ function signUp(){
 	<br>
 	
 			
-<form id="join">
+<form id="registerform">
+
+
 		
-	
 		
 		<div id="form1">
 		<h1>회원가입</h1>
 	        <div class="fieldlabel"><label for="m_id">*아이디</label></div>
-	        <div class="formfield"><input type="text" id="m_id" name="m_id" maxlength="20" value=""></div><br>
+	        <div class="formfield"><input type="text" id="m_id" name="m_id" maxlength="20" value=""></div>
+	        
+	        <td class="center">
+				<button id="duplicate_check" type="button" onclick=" function signUp()">중복체크</button>
+				</td><br>
 		</div>
 		
         <div id="form2">
@@ -257,7 +256,7 @@ function signUp(){
   display:block;
   
   }
-	#join{
+	#registerform{
 	display:table;
 	width: auto;
 	height: auto;
