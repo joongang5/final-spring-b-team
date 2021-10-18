@@ -258,8 +258,8 @@ $(".checkbox").click(function(){
          <form action="./admin_orderList.do" method="get">
         <div class="keyword-search__bar">
           <select id="keyword-search__column" name="searchName">
-            <option value="o_no"><c:if test="${searchName eq 'o_no'}">selected="selected"</c:if>주문 번호</option>
-            <option value="m_id"><c:if test="${searchName eq 'm_id'}">selected="selected"</c:if>주문자</option>
+            <option value="pa_id"><c:if test="${searchName eq 'pa_id'}">selected="selected"</c:if>주문 번호</option>
+            <option value="m_id"><c:if test="${searchName eq 'm_id'}">selected="selected"</c:if>주문자id</option>
             <option value="p_no"><c:if test="${searchName eq 'p_no'}">selected="selected"</c:if>상품 번호</option>
             <option value="p_title"><c:if test="${searchName eq 'p_title'}">selected="selected"</c:if>상품명</option>
           </select>
@@ -295,6 +295,7 @@ $(".checkbox").click(function(){
           <thead>
             <tr>
               <th scope="col">선택</th>
+              <th scope="col">대표상품번호</th>
               <th scope="col">주문 번호</th>
               <th scope="col">주문자</th>
               <th scope="col">주문일</th>
@@ -310,15 +311,17 @@ $(".checkbox").click(function(){
             <tr>
               <td>
                 <label>
-                <input type="checkbox"  class="checkbox" value="${ao.o_no}">
+                <input type="checkbox"  class="checkbox" value="${ao.pa_id}">
                 <span class="checkMark"></span>
                 </label>
               </td>
               <td>${ao.o_no}</td>
-              <td>${ao.m_id}</td>
+              <td>${ao.pa_id}</td>
+              <td>${ao.m_name}(${ao.m_id})</td>
               <td>${ao.DAT}</td>
               <!--여기서 주문 내역은 간결하게 출력한다. ex) 상품 ooo 외 *개-->
-              <td><a href="./admin_orderDetail.do?o_no=${ao.o_no }" >${ao.p_title} 외 ${ao.cnt} 개</a></td>
+              <td><a href="./admin_orderDetail.do?o_no=${ao.o_no }" ><c:if test="${ao.total_cnt gt 1}">${ao.p_title} 외 ${ao.total_cnt -1} 개</c:if>
+              <c:if test="${ao.total_cnt eq 1}">${ao.p_title}</c:if></a></td>
               <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${ao.pa_amount }" />원</td>      
               <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${ ao.pa_amount - ao.pa_usePoint }" />원</td>
               <td><c:if test="${ao.o_state eq 2 }">출고 완료✔</c:if><c:if test="${ao.o_state eq 1 }">출고 준비📦</c:if> <c:if test="${ao.o_state eq 0 }">결제 완료💸</c:if></td>

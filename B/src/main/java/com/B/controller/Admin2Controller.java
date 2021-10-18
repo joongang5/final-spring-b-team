@@ -68,7 +68,7 @@ public class Admin2Controller {
 			System.out.println(e);
 			String[] ee = e.split(",");
 			for (int i = 0; i < ee.length; i++) {
-				p.put("o_no", Integer.parseInt(ee[i]));
+				p.put("pa_id", ee[i]);
 				p.put("o_state", map.getMap().get("o_state"));
 				adminService.modifyState(p);
 			}

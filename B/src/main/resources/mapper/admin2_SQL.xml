@@ -6,10 +6,10 @@
 <mapper namespace="admin2">
 
 	<select id="adminOrderList" parameterType="HashMap" resultType="HashMap">
-		SELECT * FROM order_view
+		SELECT * FROM payment_view
 		<choose>
-			<when test="searchName == 'o_no'">
-				WHERE o_no LIKE CONCAT('%', #{search}, '%') ORDER BY
+			<when test="searchName == 'pa_id'">
+				WHERE pa_id LIKE CONCAT('%', #{search}, '%') ORDER BY
 				o_no DESC LIMIT #{startPage}, #{lastPage}
 			</when>
 			<when test="searchName == 'm_id'">
@@ -35,10 +35,10 @@
 	</select>
 
 	<select id="orderTotalList" parameterType="HashMap"  resultType="Integer">
-		SELECT COUNT(*) FROM order_view
+		SELECT COUNT(*) FROM payment_view
 		<choose>
-			<when test="searchName == 'o_no'">
-				WHERE o_no LIKE CONCAT('%', #{search}, '%')
+			<when test="searchName == 'pa_id'">
+				WHERE pa_id LIKE CONCAT('%', #{search}, '%')
 			</when>
 			<when test="searchName == 'm_id'">
 				WHERE m_id LIKE CONCAT('%', #{search}, '%')
@@ -56,7 +56,7 @@
 	</select>
 
 	<update id="modifyState" parameterType="HashMap">
-		UPDATE order_list SET o_state=#{o_state} WHERE o_no=#{o_no}
+		UPDATE order_list SET o_state=#{o_state} WHERE pa_id=#{pa_id}
 	</update>
 	
 	<select id="adminOrderDetail" parameterType="HashMap" resultType="HashMap">
