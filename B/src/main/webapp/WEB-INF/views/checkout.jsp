@@ -554,6 +554,11 @@
       margin: 20px 0 20px 10px;
     }
 
+	.payment-product__body{
+	  margin: 0;
+	}
+
+
     .payment-delivery{
       margin-bottom: 60px;
     }

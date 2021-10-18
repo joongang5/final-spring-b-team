@@ -62,11 +62,10 @@ label p {
 }
 
 .payment-product-container {
-	margin: 10px 0;
 }
 
 .product-select-box {
-	width: 4%;
+	width: 5%;
 	text-align: center;
 }
 
@@ -75,15 +74,31 @@ label p {
 	left: -11px;
 }
 
+.product-content__cancel {
+}
+
+.product-content__cancel button {
+	background: transparent;
+}
+
+.product-content__cancel img {
+	vertical-align: middle;
+}
+
 .option-content__cancel {
 	/* align-self: flex-end; */
 	display: flex;
 	align-items: flex-end;
 }
 
+.option-content__cancel button {
+	background: transparent;
+}
+
 .option-content__cancel img {
 	width: 20px;
 	height: 20px;
+	vertical-align: middle;
 }
 
 .option-content__quantity-container {
@@ -146,6 +161,25 @@ label p {
 .product-select-box input[type="checkbox"] {
 	
 }
+
+.payment-empty-cart{
+    text-align: center;
+    margin-top: 40px;
+}
+
+.payment-empty-cart img {
+	width: 150px;
+    height: 150px;
+}
+
+.payment-empty-cart button {
+    width: 240px;
+    height: 60px;
+    font-size: 16pt;
+    border-radius: 11px;
+
+}
+
 </style>
 <script type="text/javascript">
 function cartOneDelete(no){
@@ -455,8 +489,7 @@ function goToCheckout() {
 												<div class="option-content__name-container">
 													<div class="option-content__name">옵션</div>
 													<div class="option-content__cancel">
-														<button type="button" name="btn${c.ca_no }"
-															class="delete_btn" value="${c.ca_no }">
+														<button type="button" name="btn${c.ca_no }" class="delete_btn" value="${c.ca_no }">
 															<img src="./resources/images/close.png">
 														</button>
 													</div>
@@ -543,10 +576,12 @@ function goToCheckout() {
 						</div>
 					</c:when>
 					<c:otherwise>
+					<div class="payment-empty-cart">
+					<img src="./resources/images/cart_empty.png">
 						<h2>장바구니에 상품이 없습니다.</h2>
-						<h3>
-							<a href="./index.do">상품 담으러가기</a>
-						</h3>
+						<h3>지금 상품을 담아보세요!</h3>
+							 <button type="button" onclick="location.href='./index.do'">상품 담으러 가기</button>
+					</div>
 					</c:otherwise>
 				</c:choose>
 			</main>

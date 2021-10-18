@@ -89,7 +89,7 @@ label p{
 .payment-product-content{
     display: flex;
     align-items: center;
-    padding: 0 5px 25px;
+    padding: 15px 0px 15px 0px;
     /* font-size: small; */
 }
 

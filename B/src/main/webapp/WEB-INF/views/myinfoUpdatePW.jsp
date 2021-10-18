@@ -122,9 +122,9 @@
                         <li class="sideMenu__item"><a href="./myinfo.do">회원 정보
 									조회</a></li>
 							<li class="sideMenu__item"><a href="">주소록</a></li>
-							<li class="sideMenu__item"><a href="./myinfoUpdatePW.do">비밀번호
+							<li class="sideMenu__item sideMenu__item--active"><a href="./myinfoUpdatePW.do">비밀번호
 									변경</a></li>
-							<li class="sideMenu__item sideMenu__item--active"><a
+							<li class="sideMenu__item"><a
 								href="./myinfoDelete.do">회원 탈퇴</a></li>
                     </ul>
                 </div>

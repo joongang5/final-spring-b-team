@@ -6,7 +6,7 @@
 <mapper namespace="mypage">
 
 	<select id="myinfo" parameterType="HashMap" resultType="HashMap">
-		SELECT * FROM member WHERE m_id=#{m_id}
+		SELECT * FROM member_view WHERE m_id=#{m_id}
 	</select>
 
 	<delete id="myAccountDelete" parameterType="HashMap">
