@@ -266,7 +266,7 @@ $(".checkbox").click(function(){
           
 
           <input type="search" id="keyword-search__word" name="search">
-          	<c:if test="${search ne null }">value=${search }</c:if>>
+          	<c:if test="${search ne null }">value=${search }</c:if>
         </div>
           <button class="search-button">검색</button>
           </form>

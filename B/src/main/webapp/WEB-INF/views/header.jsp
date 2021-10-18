@@ -49,7 +49,7 @@ $(function(){
 			</c:if>
 			<c:if test="${sessionScope.m_id ne null}">			
 				<a id="logOut" href="./logout.do" title="로그아웃">${sessionScope.m_name}님, 안녕하세요.</a>
-				<a href="./myinfo.do" title="마이페이지"><b>마이페이지</b></a>&nbsp;|&nbsp;	
+				<a href="./mypage_iframe.do" title="마이페이지"><b>마이페이지</b></a>&nbsp;|&nbsp;	
 				<a href="./cart.do" title="장바구니"><b>장바구니</b></a>
 				<c:if test="${sessionScope.m_grade eq 1 || sessionScope.m_grade eq '1'}">
 					&nbsp;|&nbsp;<a href="./admin_orderList.do" title="관리자페이지"><b>관리자페이지</b></a>

@@ -180,4 +180,10 @@ public class MypageController {
 			return "redirect:/login.do";
 		}
 	}
+	
+	@GetMapping("/mypage_iframe.do")
+	public ModelAndView tempCheckout() {
+		ModelAndView mv = new ModelAndView("mypage_iframe");
+		return mv;
+	}
 }

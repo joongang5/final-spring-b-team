@@ -9,82 +9,90 @@
 <link rel="stylesheet" href="./resources/css/base.css">
 <link rel="stylesheet" href="./resources/css/admin.css">
 <style>
-    .category-search-box{
-      margin-bottom: 10px;
+	.productRegister {
+	}
+	
+	.productRegister tr{
+		height: 60px;
+	}
+	
+	.productRegister th{
+        width: 50px;
+	}
+	
+	.productRegister td{
+		text-align: left;
+        padding-left: 10px;
+	}
+	
+	.productRegister tr:first-child{
+	}
+	
+	.productRegister tr:first-child th{
+	}
+	
+	.productRegister tr:first-child td{
+	    width: 300px;
+    	height: 300px;
+    	overflow: hidden;
+	}
+	
+	.thumbnailRegister {
+		width: 80px;
+		height: 35px;
+		font-size: 12pt;
+		border-radius: 8px;
+	}
+
+	.thumbnaildelete {
+		width: 111px;
+		height: 35px;
+		font-size: 12pt;
+		border-radius: 8px;
+		background: white;
+		border: 1px solid #FF8A00;
+		color: #FF8A00;
+		transiton:0;
+	}
+
+	.thumbnaildelete:hover {
+		background: white;
+		border: 2px solid #FF8A00;
+	}
+	
+	.productRegister select {
+      background-color: #eeded5;
+	  width: 240px;
+	 padding: 11px 14px;
+	 border-radius: 9px;
+    }
+    
+    input[type="file"] {
+    margin: 15px 15px 15px 0;
+    }
+   
+	
+	.productRegister input[type="text"] {
+        width: 94%;
+	}
+    
+    .productRegister tr:nth-child(6) input[type="text"] {
+    	width: 21%;
+    }
+    
+    .productRegister-buttons-container{
+		margin-top: 15px;
+		text-align: center;
     }
 
-    .category-search-box label{
-
-    }
-
-    .category-search-box select{
-      /* background: #eeded5; */
-      width: 200px;
-      padding: 8px 14px;
-    }
-
-    .selects-container{
-
-    }
-
-    .change-displayState-box{
-      margin-bottom: 10px;
-    }
-
-    .change-displayState-box label{
-
-    }
-
-    #change-displayState{
-
-    }
-
-    .change-displayState-box button{
-
-    }
-
-    .productList-container{
-
-    }
-
-    .productList{
-      /* border: 1px solid black; */
-      /* border-collapse: collapse; */
-    }
-
-    .productList th:nth-child(3){
-
-    }
-
-    .productList th:nth-child(7){
-
-    }
-
-    .product-thumbnail-td{
-      width: 50px;
-      height: 50px;
-      overflow: hidden;
-    }
-
-
-    .product-thumbnail-td img{
-      width: 100%;
-      object-fit: cover;
-    }
-
-    #sort__by-saleState{
-
-    }
-
-    .productList td{
-      font-size: 10pt;
-    }
-
-    .productList__paging {
-
-    }
-
-    </style>
+	.productRegister-buttons-container button{
+		width: 120px;
+        height: 50px;
+        font-size: 14pt;
+        border-radius: 12px;
+        margin: 0 10px;
+	}
+</style>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -209,49 +217,66 @@ function selectSub(c_sub){
     <main>
       <!--admin 공통 부분 끝-->
       
-<h1>상품 등록</h1>
-<form action="fileUpload.do" method ="post" enctype="multipart/form-data" id="uploadForm">	
-<label>상품대표사진 <br>
-<input id="p_img" name= "p_img"  type="file" accept="image/*"  >
-</label>
-<button type="submit">업로드</button> 
-</form> 
+      <div class="admin-title">
+					<h1>상품 등록</h1>
+				</div>
 
-<c:if test="${sessionScope.p_img ne null }">
-<label>미리보기</label> <br>
-<img alt="미리보기" src="./resources/uploadFile/${sessionScope.p_img }" style="width:200px;height:200px;">
- <button onclick="location.href='./removeImgSession.do'">이미지 삭제</button> <br>
-</c:if>
-
-<form action="registerProduct.do" method="post">
-<div class="register"> 
-
-<label> 상품명 <br>
-<input type="text" id="p_title" name="p_title" required></label>
-<br><br>
-<label>가격 <br>
-<input type="text" id="p_price" name="p_price" required></label>
-<br><br>
-<label>재고량 <br>
-<input type="text" id="p_cnt" name="p_cnt" required></label>
- <br><br>
-<label> 상품 카테고리 선택 <br>
-<select id="cMainSelected" name="cMainSelected" onchange="selectMain(this)" required>
-            <option>1차 카테고리</option> 
-            <c:forEach items="${categoryMain}" var="ca">
-            <option value="${ca.c_main}">${ca.c_main }</option>            
-            </c:forEach>
-          </select>
-          <select id="cSubSelected" name="cSubSelected" onchange="selectSub(this)" required>
-            <option>2차 카테고리</option>
-          </select>
-          <input type="hidden" id="c_no" name="c_no" value=""> 
-        </label>
-        
- <br><br>       
- <button type="submit">등록</button>    
-</div> 
-</form>       
+				<div class="productRegister-container">
+						<table class="productRegister">
+							<form action="fileUpload.do" method="post" enctype="multipart/form-data" id="uploadForm">	
+							<tr>
+								<th>썸네일</th>
+								<td>
+									<input id="p_img" name= "p_img" type="file" accept="image/*"><button type="submit" class="thumbnailRegister">업로드</button>
+							</form> 
+									<c:if test="${sessionScope.p_img ne null }">
+									<br>
+									<img alt="미리보기" src="./resources/uploadFile/${sessionScope.p_img }" style="width:300px;height:300px;">
+									 <button onclick="location.href='./removeImgSession.do'" class="thumbnaildelete">이미지 삭제</button> <br>
+									</c:if>
+								</td>
+							</tr>
+							<form action="registerProduct.do" method="post">
+							<tr>
+								<th>1차 카테고리 선택</th>
+								<td>
+								<select id="cMainSelected" name="cMainSelected" onchange="selectMain(this)" required>
+						            <option>1차 카테고리</option> 
+						            <c:forEach items="${categoryMain}" var="ca">
+						            <option value="${ca.c_main}">${ca.c_main }</option>            
+						            </c:forEach>
+					          </select>
+								</td>
+							</tr>
+							<tr>
+								<th>2차 카테고리 선택</th>
+								<td>
+								 <select id="cSubSelected" name="cSubSelected" onchange="selectSub(this)" required>
+            					 <option>2차 카테고리</option>
+          						</select>
+          						<input type="hidden" id="c_no" name="c_no" value=""> 
+								</td>
+							</tr>
+							<tr>
+								<th>상품명</th>
+								<td><input type="text" id="p_title" name="p_title" required></td>
+							</tr>
+							<tr>
+								<th>상품 가격</th>
+								<td><input type="text" id="p_price" name="p_price" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" required></td>
+							</tr>
+							<tr>
+								<th>재고량</th>
+								<td><input type="number" id="p_cnt" name="p_cnt" required></td>
+							</tr>
+						</table>
+						<div class="productRegister-buttons-container">
+							 <button type="submit">등록</button>  
+						</div>
+					</form>
+					<footer id="admin-footer"></footer>
+				</div>
+      
 </body>
 
 </html>

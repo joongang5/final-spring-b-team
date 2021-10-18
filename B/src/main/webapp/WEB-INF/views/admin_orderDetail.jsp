@@ -20,8 +20,12 @@
 
         .order-content__header{border-bottom: none;background: #eeded5;}
 
-        .order-content__body{
+		.order-content_body{
 
+        }
+        
+        .order-content__container{
+			display: flex;
         }
 
         .order-product-right-block{
@@ -77,9 +81,15 @@
             margin-top: 5px;
             height: 30px;
         }
+        
+        .order-content__container+.order-content__container{
+        	margin-top: 20px;
+   			padding-top: 20px;
+    		border-top: 1px solid #e5e5e5;
+        }
 
         .personalInfo-container{
-
+            margin-top: 30px;
         }
 
         .personalInfo-content-container{
@@ -107,8 +117,8 @@
 
         }
 
-        .delivery input[type="text"]{
-
+        .personalInfo-name, .personalInfo-tel{
+			width: 90%;
         }
 
         .personalInfo-name{
@@ -118,19 +128,13 @@
         .personalInfo-tel{
         }
 
-        .personalInfo-address{
-            width: 93%;
+        .personalInfo-address, .personalInfo-memo{
+            width: 95%;
             margin-bottom: 5px;
         }
 
 
         .post-code {width: 30%;}
-
-
-        .personalInfo-memo{
-            width: 93%;
-            margin-bottom: 5px;
-        }
 
         .payment{
 }
@@ -152,23 +156,25 @@
     
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
- function registerWaybill(){
-	 var wayBillNum = $("#waybill").val()
-	 var pa_id = $("#pa_id").val()
-	 
+ function registerWaybill(waybillId, o_noID){
+	 var wayBillNum = $('#' + waybillId).val()
+	 var o_no = $('#' + o_noID).val()
+	 console.log(o_no)
 	 
 	   $.ajax({
 			url : "registerWaybill.do",
 			type : "post",
-			data : {"way" : wayBillNum , "pa_id" : pa_id},
+			data : {"way" : wayBillNum , "o_no" : o_no},
 			success : function(data) {
 				
 				
 				if(data >= 1){
-					
+					/*
 					$('input[name=waybill]').attr('type',"hidden")
 					$('input[name=result]').attr('type',"text")
 					$('input[name=result]').attr('value',"운송장 번호 등록 완료")
+					*/
+					$('#reflectWayBill'+o_no).text(wayBillNum)
 					
 				}else{
 					alert("운송장 번호 등록 불가")
@@ -276,10 +282,10 @@
                     <div class="order-content__orderer">주문자 : ${orderDetail.m_name }(${orderDetail.m_id})</div>
                     <div class="order-content__orderDate">${orderDetail.o_date}</div>
                 </div>
+              <div class="order-content__body">
                 <!--주문서 내 주문한 상품 내용 출력 / 반복문 사용-->
-              
                 <c:forEach items="${orderDetailList }" var="odl">
-                <div class="order-content__body">
+                <div class="order-content__container">
                     <div class="order-content-productContainer">
                         <div class="order-product-left-block">
                             <div class="product-content__productThumbnail">
@@ -302,44 +308,34 @@
                             </div>
                         </div>
                     </div>
-                    </c:forEach><br>
-                    
                     <!--주문한 상품 내용 출력 끝-->
-                    <div class="order-content__delivery-container">
-                        <div class="order-content__delivery">
-                            <c:if test="${orderDetail.o_state eq 0 }"> 결제완료 </c:if>
-                            <c:if test="${orderDetail.o_state eq 1 }"> 출고준비 </c:if>
-                            <c:if test="${orderDetail.o_state eq 2 }"> 출고완료 </c:if>
-                        </div>
-                        <!--출고 완료일 경우 출력되는 div-->
-                        <!--'출고 완료' 선택하면 표시됨-->
-                        <c:if test="${orderDetail.o_state eq 2 and orderDetail.o_waybill eq 0}">
-                        <div class="order-delivery__released">
-                    
-                            <div class="order-delivery__courier">
-                                택배사: CJ대한통운
-                            </div>
-                            <div class="order-delivery__tracking">
-                                <label>
-                                    <p>운송장 번호:</p>
-                                    <input type="text" value=""  name="waybill" id="waybill" required >
-                                    <input type="hidden" value=""  name="result" id="result"  >                                    
-                                    <input type="hidden" name="pa_id" id="pa_id" value="${orderDetail.pa_id}">
-                                </label>
-                            </div>
-                            <button type="submit" name="wayButton"  onclick="registerWaybill()">등록</button>
-                            
-                        </div>
-                        
-         		   </c:if>
-         		   
-         		   <c:if test="${ orderDetail.o_waybill ne 0}">
-         		   				${orderDetail.o_waybill }
-         		   		
-         		   </c:if>
+	                    <div class="order-content__delivery-container">
+	                        <div class="order-content__delivery">
+	                            <c:if test="${odl.o_state eq 0 }"> 결제완료 </c:if>
+	                            <c:if test="${odl.o_state eq 1 }"> 출고준비 </c:if>
+	                            <c:if test="${odl.o_state eq 2 }"> 출고완료 </c:if>
+	                        </div>
+	                        <!--출고 완료일 경우 출력되는 div-->
+	                        <!--'출고 완료' 선택하면 표시됨-->
+	                        <c:if test="${odl.o_state eq 2}">
+		                        <div class="order-delivery__released">
+		                            <div class="order-delivery__courier">
+		                                택배사: CJ대한통운
+		                            </div>
+		                            <div class="order-delivery__tracking">
+		                                <label>
+		                                    <p>운송장 번호:<p id="reflectWayBill${odl.o_no}"><c:if test="${odl.o_waybill ne '0'}">${odl.o_waybill}</c:if></p></p>
+		                                    <input type="text" value=""  name="waybill" id="waybill${odl.o_no}" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" required>
+		                                    <input type="hidden" value=""  name="result" id="result">                                    
+		                                    <input type="hidden" id="o_no${odl.o_no}" name="o_no" value="${odl.o_no}">
+		                                </label>         		   
+		                            </div>
+		                            <button type="submit" name="wayButton"  onclick="registerWaybill('waybill${odl.o_no}', 'o_no${odl.o_no}')">등록</button>
+		                        </div>
+	         		   		</c:if>
+	                    </div></div>
+                    </c:forEach>
                     </div>
-                </div>
-            </div>
             <div class="personalInfo-container">
                 <div class="delivery personalInfo-content-container">
                     <div class="delivery personalInfo-content__header">
@@ -372,7 +368,7 @@
                                 <!--주소 찾기 API 사용-->
 								<!--우편번호, 주소1, 주소2-->
 									<div class="address payment-delivery__form">
-										<input type="text" value="${m_addr2 }">
+										<input type="text" class="personalInfo-address" value="${m_addr2 }">
 									</div>
 
 								</div>

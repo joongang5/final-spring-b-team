@@ -7,10 +7,17 @@
 <html lang="en">
 <head>
   <title></title>
-  <!-- 타이틀 문제는 나중에 해결하자 -->
   <meta charset="UTF-8">
+  <link href="./resources/css/header.css" rel="stylesheet"/>
+<link href="./resources/css/footer.css" rel="stylesheet"/>
   <link rel="stylesheet" href="./resources/css/base.css">
+  
   <style>
+header *, footer * {padding: 0;margin: 0;list-style: none;}
+header a, footer a{color:black;text-decoration:none;transition:0.3s all;}
+header a:link, header a:visited, footer a:link, footer a:visited {color:black;}
+header a:hover, header a:focus, footer a:hover, footer a:focus{text-decoration:underline;}
+header a:after, footer a:after{height:0;}
     main{
       width: 100%;
     }
@@ -86,8 +93,10 @@
   </style>
 </head>
 <body>
+<div id="header-space">
+	<c:import url="/header.do"/>
+</div>
 <div id="layout-container">
-  <header id="header-space"></header>
   <div id="payment-main-container">
     <main>
       <div class="payment-title">
@@ -145,7 +154,9 @@
       </div>
     </main>
   </div>
-  <footer id="footer-space"></footer>
 </div>
+ <div id="footer-space">
+  <c:import url="./footer.jsp"/>
+ </div>
 </body>
 </html>

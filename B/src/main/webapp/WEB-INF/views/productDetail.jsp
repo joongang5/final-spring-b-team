@@ -9,80 +9,60 @@
 <link rel="stylesheet" href="./resources/css/base.css">
 <link rel="stylesheet" href="./resources/css/admin2.css">
 <style>
-.category-search-box {
-	margin-bottom: 10px;
-}
-
-.category-search-box label {
+	.productDetail {
+	}
 	
-}
-
-.category-search-box select {
-	/* background: #eeded5; */
-	width: 200px;
-	padding: 8px 14px;
-}
-
-.selects-container {
+	.productDetail tr{
+		height: 60px;
+	}
 	
-}
-
-.change-displayState-box {
-	margin-bottom: 10px;
-}
-
-.change-displayState-box label {
+	.productDetail th{
+        width: 50px;
+	}
 	
-}
-
-#change-displayState {
+	.productDetail td{
+		text-align: left;
+        padding-left: 10px;
+	}
 	
-}
-
-.change-displayState-box button {
+	.productDetail tr:nth-child(10){
+	}
 	
-}
-
-.productList-container {
+	.productDetail tr:nth-child(10) th{
+	}
 	
-}
-
-.productList {
-	/* border: 1px solid black; */
-	/* border-collapse: collapse; */
+	.productDetail tr:nth-child(10) td{
+	    width: 300px;
+    	height: 300px;
+    	overflow: hidden;
+	}
 	
-}
-
-.productList th:nth-child(3) {
+	.productDetail tr:nth-child(10) img{
+	 	width: 300px;
+    	height: 300px;
+    	object-fit: cover;
+    }
 	
-}
+	.productDetail input[type="text"] {
+        width: 94%;
+	}
 
-.productList th:nth-child(7) {
-	
-}
+    .productDetail tr:first-child input[type="text"] {
+    	width: 10%;
+    }
+    
+    .productDetail-buttons-container{
+		margin-top: 15px;
+		text-align: center;
+    }
 
-.product-thumbnail-td {
-	width: 50px;
-	height: 50px;
-	overflow: hidden;
-}
-
-.product-thumbnail-td img {
-	width: 100%;
-	object-fit: cover;
-}
-
-#sort__by-saleState {
-	
-}
-
-.productList td {
-	font-size: 10pt;
-}
-
-.productList__paging {
-	
-}
+	.productDetail-buttons-container button{
+		width: 120px;
+        height: 50px;
+        font-size: 14pt;
+        border-radius: 12px;
+        margin: 0 10px;
+	}
 </style>
 </head>
 <script
@@ -125,8 +105,7 @@
 						<li class="sideMenu__item">
 							<div class="sideMenu-container">
 								<div>
-									<img src="./resources/images/setting.png"
-										style="height: 30px; width: 30px;">
+									<img src="./resources/images/setting.png">
 								</div>
 								<div>
 									<a href="./index.do">홈으로</a>
@@ -136,8 +115,7 @@
 						<li class="sideMenu__item">
 							<div class="sideMenu-container">
 								<div>
-									<img src="./resources/images/delivery.png"
-										style="height: 30px; width: 30px;">
+									<img src="./resources/images/delivery.png">
 								</div>
 								<div>
 									<a href="">주문 관리</a>
@@ -154,8 +132,7 @@
 						<li class="sideMenu__item sideMenu__item--active">
 							<div class="sideMenu-container">
 								<div>
-									<img src="./resources/images/furniture.png"
-										style="height: 30px; width: 30px;">
+									<img src="./resources/images/furniture.png">
 								</div>
 								<div>
 									<a href="./product.do">상품 관리</a>
@@ -173,8 +150,7 @@
 						<li class="sideMenu__item">
 							<div class="sideMenu-container">
 								<div>
-									<img src="./resources/images/user.png"
-										style="height: 30px; width: 30px;">
+									<img src="./resources/images/user.png">
 								</div>
 								<div>
 									<a href="./adminMember.do">고객 관리</a>
@@ -189,8 +165,7 @@
 						<li class="sideMenu__item">
 							<div class="sideMenu-container">
 								<div>
-									<img src="./resources/images/support.png"
-										style="height: 30px; width: 30px;">
+									<img src="./resources/images/support.png">
 								</div>
 								<div>
 									<a href="">고객 응대</a>
@@ -208,8 +183,7 @@
 						<li class="sideMenu__item">
 							<div class="sideMenu-container">
 								<div>
-									<img src="./resources/images/browser.png"
-										style="height: 30px; width: 30px;">
+									<img src="./resources/images/browser.png">
 								</div>
 								<div>
 									<a href="./adminLog.do">사이트 관리</a>
@@ -235,10 +209,9 @@
 					<form action="productDetail.do" method="post">
 						<table class="productDetail">
 
-							<tr >
-								<th>상품 번호 <br>
-								</th>
-								<td><input type="text" id="p_no" name="p_no"
+							<tr>
+								<th>상품 번호</th>
+								<td><input type="number" id="p_no" name="p_no"
 									value="${detail.p_no}"></td>
 							</tr>
 
@@ -261,12 +234,11 @@
 							</tr>
 							<tr>
 								<th>상품 가격</th>
-								<td><input type="text" name="p_price"
-									value="${detail.p_price}"></td>
+								<td><input type="text" name="p_price" value="${detail.p_price}" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
 							</tr>
 							<tr>
 								<th>총 재고 수</th>
-								<td><input type="text" name="p_cnt" value="${detail.p_cnt}"></td>
+								<td><input type="number" name="p_cnt" value="${detail.p_cnt}"></td>
 							</tr>
 							<tr>
 								<th>판매 상태</th>
@@ -281,10 +253,9 @@
 							<tr>
 								<th>썸네일</th>
 								<td> <c:if test="${detail.p_no lt 58 }">
-								<img src="https://blogger.googleusercontent.com/img/a/${detail.p_img}"
-									style="width: 200px; height: 200px;"></c:if>
+								<img src="https://blogger.googleusercontent.com/img/a/${detail.p_img}"></c:if>
 								<c:if test="${detail.p_no ge 58 }">
-								 <img src="./resources/uploadFile/${detail.p_img}"style="width: 200px; height: 200px;">
+								 <img src="./resources/uploadFile/${detail.p_img}">
 								</c:if>	
 								
 									

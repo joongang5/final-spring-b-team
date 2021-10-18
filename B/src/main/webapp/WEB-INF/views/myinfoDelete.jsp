@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,7 @@
 <title>회원 탈퇴 | 가구</title>
 <link rel="stylesheet" href="./resources/css/base.css">
 <link rel="stylesheet" href="./resources/css/mypage.css">
+<link href="./resources/css/footer.css" rel="stylesheet"/>
 <style>
 .quit-confirm-container {
 	border: 3px solid #eeded5;
@@ -54,9 +56,11 @@
 </script>
 </head>
 <body>
+<c:if test="${sessionScope.m_id eq null }">
+	<c:redirect url="login.do" />
+</c:if>
 	<!--myPage 공통 부분-->
 	<div id="layout-container">
-		<header id="header-space"></header>
 		<div id="myPage-main-container">
 			<nav id="myPage-sideMenu">
 				<div class="sideMenu__block-container">
@@ -104,6 +108,8 @@
 			</main>
 		</div>
 	</div>
-	<footer id="footer-space"></footer>
+<footer id="footer-space">
+	<c:import url="./footer.jsp"/>
+</footer>
 </body>
 </html>

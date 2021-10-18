@@ -8,6 +8,7 @@
 <title>비밀번호 변경 | 가구</title>
 <link rel="stylesheet" href="./resources/css/base.css">
 <link rel="stylesheet" href="./resources/css/mypage.css">
+<link href="./resources/css/footer.css" rel="stylesheet"/>
 <style>
         .change-password-container{
             border: 5px solid #eeded5;
@@ -100,9 +101,11 @@
 <title>비밀번호수정</title>
 </head>
 <body>
+<c:if test="${sessionScope.m_id eq null }">
+	<c:redirect url="login.do" />
+</c:if>
 <!--myPage 공통 부분-->
 <div id="layout-container">
-    <header id="header-space"></header>
     <div id="myPage-main-container">
         <nav id="myPage-sideMenu">
             <div class="sideMenu__block-container">
@@ -156,9 +159,15 @@
                         변경할 비밀번호
                     </div>
                     <div class="change-password__value">
-                        <input type="password" name="pw1" id="pw1"
-							required="required" onchange="return pw1Check()" class="password">
-						<p id="checkResult1"></p>
+                        <input type="password" name="pw1" id="pw1" required="required" onchange="return pw1Check()" class="password">
+                    </div>
+                    </div>
+                    <div class="myInfo-content__short-container">
+                    <div class="change-password__section">
+                        
+                    </div>
+                    <div class="change-password__value">
+						<span id="checkResult1"></span>
                     </div>
                     </div>
                     <div class="myInfo-content__short-container">
@@ -168,7 +177,15 @@
                     <div class="change-password__value">
                         <input type="password" name="pw2" id="pw2"
 							required="required" onchange="return pw2Check()" class="password">
-						<p id="checkResult2"></p>
+						<span id="checkResult2"></span>
+                    </div>
+                    </div>
+                     <div class="myInfo-content__short-container">
+                    <div class="change-password__section">
+                        
+                    </div>
+                    <div class="change-password__value">
+						<span id="checkResult2"></span>
                     </div>
                     </div>
                 </div>
@@ -184,7 +201,9 @@
             </div>
         </main>
     </div>
-    <footer id="footer-space"></footer>
 </div>
+<footer id="footer-space">
+	<c:import url="./footer.jsp"/>
+</footer>
 </body>
 </html>

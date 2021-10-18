@@ -349,3 +349,14 @@ label .checkMark:after {
     transform: rotate(45deg);
     -moz-transform: rotate(45deg);
 }
+
+ input[type="number"] {
+    background-color: #eeded5;
+    border-radius: 9px;
+    border: none;
+    padding: 7px 16px;
+    width: 8%;
+    font-size: 12pt;
+    color: #403429;
+    font-family: 'Noto Serif KR';
+    }

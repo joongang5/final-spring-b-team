@@ -188,7 +188,7 @@ $(document).ready(function(){
           <li class="sideMenu__item">
             <div class="sideMenu-container">
 
-              <div><img src="./resources/images/user.png" style="height:30px;width:30px;"></div>
+              <div><img src="./resources/images/user.png"></div>
               <div><a href="./adminMember.do">고객 관리</a></div>
             </div>
             <div class="sideMenu-sub-container">
@@ -213,7 +213,7 @@ $(document).ready(function(){
           </li>
           <li class="sideMenu__item">
             <div class="sideMenu-container">
-              <div><img src="./resources/images/browser.png" style="height:30px;width:30px;"></div>
+              <div><img src="./resources/images/browser.png"></div>
               <div><a href="./adminLog.do">사이트 관리</a></div>
             </div>
             <div class="sideMenu-sub-container">
@@ -247,7 +247,7 @@ $(document).ready(function(){
             <option>2차 카테고리</option>
           </select>
         </label>
-        <button type="submit">검색</button>  <button onclick="location.href='./product.do'">초기화</button>
+        <button class="search-button" type="submit">검색</button>  <button class="search-button" onclick="location.href='./product.do'">초기화</button>
       </div>
       </form>
       
@@ -261,8 +261,8 @@ $(document).ready(function(){
             <option value="p_no"<c:if test="${searchName eq 'p_no'}">selected="selected"</c:if>>상품 번호</option>
             <option value="p_title"<c:if test="${searchName eq 'p_title'}">selected="selected"</c:if>>상품명</option>
           </select>  <input type="text" id="keyword-search__word" name="search"<c:if test="${search ne null }">value=${search }</c:if>>
-        	<button type="submit" class="search-button">검색</button>
         </div>
+        	<button type="submit" class="search-button">검색</button>
         </form>
       </div>
       

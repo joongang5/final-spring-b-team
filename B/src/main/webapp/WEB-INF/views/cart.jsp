@@ -10,9 +10,17 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta charset="UTF-8">
 <title>장바구니 | 가구</title>
+<link href="./resources/css/header.css" rel="stylesheet"/>
+<link href="./resources/css/footer.css" rel="stylesheet"/>
 <link rel="stylesheet" href="./resources/css/base.css">
 <link rel="stylesheet" href="./resources/css/order-sheet.css">
 <style>
+header *, footer * {padding: 0;margin: 0;list-style: none;}
+header a, footer a{color:black;text-decoration:none;transition:0.3s all;}
+header a:link, header a:visited, footer a:link, footer a:visited {color:black;}
+header a:hover, header a:focus, footer a:hover, footer a:focus{text-decoration:underline;}
+header a:after, footer a:after{height:0;}
+
 label {
 	
 }
@@ -436,8 +444,10 @@ function goToCheckout() {
 </script>
 </head>
 <body>
+	<div id="header-space">
+		<c:import url="/header.do"/>
+	</div>
 	<div id="layout-container">
-		<header id="header-space"></header>
 		<div id="payment-main-container">
 			<main>
 				<div class="payment-title">
@@ -612,7 +622,9 @@ function goToCheckout() {
 				</div>
 			</aside>
 		</div>
-		<footer id="footer-space"></footer>
 	</div>
+<div id="footer-space">
+	<c:import url="./footer.jsp"/>
+</div>
 </body>
 </html>

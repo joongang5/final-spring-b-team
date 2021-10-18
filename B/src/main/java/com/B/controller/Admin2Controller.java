@@ -101,7 +101,7 @@ public class Admin2Controller {
 	public int registerWaybill(HttpServletRequest req,CommandMap map) {
 		
 		map.put("o_waybill", req.getParameter("way"));
-		map.put("pa_id", req.getParameter("pa_id"));
+		map.put("o_no", req.getParameter("o_no"));
 		
 		int complete = adminService.updateWayBill(map.getMap());
 		
