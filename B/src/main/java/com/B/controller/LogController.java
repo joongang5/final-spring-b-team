@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,22 +24,27 @@ public class LogController {
 
 	@GetMapping("/adminLog.do")
 	public ModelAndView adminLog(CommandMap map, HttpServletRequest request) {
-		System.out.println(map.getMap());
+		HttpSession session = request.getSession();
+		
+		//System.out.println(map.getMap());
 		ModelAndView mv = new ModelAndView("adminLog");
-		map.put("m_id", "admin");
+		map.put("m_id", session.getAttribute("m_id"));
+		map.put("m_name", session.getAttribute("m_name"));
+		map.put("m_no", session.getAttribute("m_no"));
+		map.put("m_grade", session.getAttribute("m_grade"));
 
 		// 해당 값들이 map에 포함하고 있다면 mv로 넘기기
 		if (map.containsKey("searchName")) {
 			mv.addObject("search", map.get("search"));
 			mv.addObject("searchName", map.get("searchName"));
 		}
-		
-		if(map.containsKey("startDay") && map.containsKey("endDay")) {
+
+		if (map.containsKey("startDay") && map.containsKey("endDay")) {
 			mv.addObject("startDay", map.get("startDay"));
 			mv.addObject("endDay", map.get("endDay"));
 		}
-		
-		if(map.containsKey("order")) {
+
+		if (map.containsKey("order")) {
 			mv.addObject("order", map.get("order"));
 		}
 
@@ -50,7 +56,7 @@ public class LogController {
 		if (request.getParameter("pageNo") != null) {
 			pageNo = Util.str2Int2(request.getParameter("pageNo"));
 		}
-		
+
 		System.out.println(pageNo);
 
 		paginationInfo.setCurrentPageNo(pageNo);

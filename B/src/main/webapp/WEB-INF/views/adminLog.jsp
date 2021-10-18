@@ -5,6 +5,9 @@
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <!DOCTYPE html>
 <html>
+<c:if test="${sessionScope.m_grade ne 1 || sessionScope.m_grade ne '1'}">
+<c:redirect url="./login.do" />
+</c:if>
 <head>
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

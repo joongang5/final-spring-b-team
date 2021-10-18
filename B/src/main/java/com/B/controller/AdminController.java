@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,8 +25,13 @@ public class AdminController {
 
 	@GetMapping("/adminMember.do")
 	public ModelAndView adminMember(CommandMap map, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		
 		ModelAndView mv = new ModelAndView("adminMember");
-		map.put("m_id", "admin");
+		map.put("m_id", session.getAttribute("m_id"));
+		map.put("m_name", session.getAttribute("m_name"));
+		map.put("m_no", session.getAttribute("m_no"));
+		map.put("m_grade", session.getAttribute("m_grade"));
 		
 		// 해당 값들이 map에 포함하고 있다면 mv로 넘기기
 		if (map.containsKey("searchName")) {
@@ -78,6 +84,7 @@ public class AdminController {
 		mv.addObject("totalCount", totalCount); // 전체 글 수
 
 		return mv;
+
 	}
 
 	@PostMapping("/adminDeleteMember.do")

@@ -6,6 +6,9 @@
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <!DOCTYPE html>
 <html>
+<c:if test="${sessionScope.m_grade ne 1 || sessionScope.m_grade ne '1'}">
+<c:redirect url="./login.do" />
+</c:if>
 <head>
 <meta charset="UTF-8">
 <title>관리자 페이지 | 가구</title>
