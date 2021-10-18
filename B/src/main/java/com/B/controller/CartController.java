@@ -42,21 +42,6 @@ public class CartController {
 		}
 	}
 
-	@GetMapping("/cart2.do")
-	public ModelAndView cart2(CommandMap map, HttpServletRequest request) {
-		HttpSession session = request.getSession();
-		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
-			map.put("m_id", session.getAttribute("m_id"));
-			map.put("m_name", session.getAttribute("m_name"));
-			ModelAndView mv = new ModelAndView("cart2");
-			List<Map<String, Object>> cartList = cartService.cartList(map.getMap());
-			mv.addObject("cart2", cartList);
-			return mv;
-		} else {
-			return new ModelAndView("login");
-		}
-	}
-
 	@GetMapping("/cartOneDelete.do")
 	public String cartOneDelete(CommandMap map, HttpServletRequest request) {
 		HttpSession session = request.getSession();

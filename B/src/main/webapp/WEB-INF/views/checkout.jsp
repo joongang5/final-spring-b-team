@@ -111,7 +111,7 @@
 		date += today.getMonth()+1  + '월 '; 
 		date += today.getDate()  + '일 ';
 		date += today.getHours() + '시 '; 
-		date += today.getMinutes() + '초';
+		date += today.getMinutes() + '분';
 		return date;
 	 }
 	
