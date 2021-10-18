@@ -48,11 +48,11 @@ $(function(){
 				<a href="./login.do" title="로그인">로그인해주세요.</a>				
 			</c:if>
 			<c:if test="${sessionScope.m_id ne null}">			
-				<a id="logOut" href="./logout.do" title="로그아웃">${sessionScope.m_name}님, 안녕하세요.</a><br>
-				<a href="./myinfo.do" title="마이페이지">마이페이지</a>	
-				<a href="./cart.do" title="장바구니">장바구니</a>
+				<a id="logOut" href="./logout.do" title="로그아웃">${sessionScope.m_name}님, 안녕하세요.</a>
+				<a href="./myinfo.do" title="마이페이지"><b>마이페이지</b></a>&nbsp;|&nbsp;	
+				<a href="./cart.do" title="장바구니"><b>장바구니</b></a>
 				<c:if test="${sessionScope.m_grade eq 1 || sessionScope.m_grade eq '1'}">
-					<a href="./admin_orderList.do" title="관리자페이지">관리자페이지</a>
+					&nbsp;|&nbsp;<a href="./admin_orderList.do" title="관리자페이지"><b>관리자페이지</b></a>
 				</c:if>
 			</c:if>
 		</div>
