@@ -59,12 +59,14 @@
 		Array.from(document.getElementsByClassName(divName)).forEach(function(val) {
 	    	val.style.display = "block";
 	    })
+	    document.getElementById('before_'+divName).style.display = "none";
 	 }
 	 
 	 function closeChange(divName) {
 		 Array.from(document.getElementsByClassName(divName)).forEach(function(val) {
 		    	val.style.display = "none";
 		    })
+		 document.getElementById('before_'+divName).style.display = "inline-block";
 	 }
 	 
 		function myAddressUpdate() {
@@ -282,7 +284,7 @@
 									<span>${myinfo.m_phone }</span>
 								</div>
 								<div class="phoneNo myInfo-content__change">
-									<button onclick="openChange('changePhoneNo')">변경</button>
+									<button id="before_changePhoneNo" onclick="openChange('changePhoneNo')">변경</button>
 								</div>
 						</div>
 						<!--변경 버튼 누르면 .myInfo-content__value, .myInfo-content__change 대신 출력됨-->
@@ -305,7 +307,7 @@
 									<span>${myinfo.m_email}</span>
 								</div>
 								<div class="email-address myInfo-content__change">
-									<button onclick="openChange('changeEmail')">변경</button>
+									<button id="before_changeEmail" onclick="openChange('changeEmail')">변경</button>
 								</div>
 						</div>
 						<!--변경 버튼 누르면 .myInfo-content__value, .myInfo-content__change 대신 출력됨-->
@@ -328,7 +330,7 @@
 									<span>(${myinfo.m_addr1}) ${myinfo.m_addr2} ${myinfo.m_addr3}</span>
 								</div>
 								<div class="address myInfo-content__change">
-									<button onclick="openChange('changeAddress')">변경</button>
+									<button id="before_changeAddress" onclick="openChange('changeAddress')">변경</button>
 								</div>
 						</div>
 						<!--변경 버튼 누르면 .myInfo-content__value, .myInfo-content__change 대신 출력됨-->
