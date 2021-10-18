@@ -234,15 +234,16 @@
 				<div class="period-search-box">
 					<form action="./adminLog.do" method="get">
 						<label>
-							<p>입력 기간</p> <input type="text" id="datepicker_start"
+							<p>입력 기간</p> <input type="date" id="datepicker_start"
 							readonly="readonly" name="startDay"
 							<c:if test="${startDay ne null }">value=${startDay }</c:if>>
-							~ <input type="text" id="datepicker_end" readonly="readonly"
+							~ <input type="date" id="datepicker_end" readonly="readonly"
 							name="endDay"
 							<c:if test="${endDay ne null }">value=${endDay }</c:if>>
 						</label>
 						<button class="search-button" type="submit">조회</button>
 					</form>
+					<button class="search-button" onclick="location.href='./adminLog.do'"> 초기화 </button>
 				</div>
 				<div class="selects-container">
 					<form action="./adminLog.do" method="get">
