@@ -139,8 +139,8 @@
           </div>
         </div>
         <div class="payment-afterAction">
-          <button>구매 내역 확인하기</button>
-          <button>쇼핑 계속 하기</button>
+          <button type="button" onclick="location.href='./orderhistory.do'">구매 내역 확인하기</button>
+          <button type="button" onclick="location.href='./index.do'">쇼핑 계속 하기</button>
         </div>
       </div>
     </main>
