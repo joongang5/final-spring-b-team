@@ -263,15 +263,16 @@ td button:hover {
 				<div class="period-search-box">
 					<form action="./adminMember.do" method="get">
 						<label>
-							<p>가입 기간</p> <input type="text" id="datepicker_start"
-							name="startDay"
+							<p>가입 기간</p> <input type="date" id="datepicker_start"
+							readonly="readonly" name="startDay"
 							<c:if test="${startDay ne null }">value=${startDay }</c:if>>
-							~ <input type="text" id="datepicker_end" readonly="readonly"
+							~ <input type="date" id="datepicker_end" readonly="readonly"
 							name="endDay"
 							<c:if test="${endDay ne null }">value=${endDay }</c:if>>
 						</label>
 						<button class="search-button" type="submit">조회</button>
 					</form>
+					<button class="search-button" onclick="location.href='./adminMember.do'"> 초기화 </button>
 				</div>
 				<div class="selects-container">
 					<div class="keyword-search-box">
