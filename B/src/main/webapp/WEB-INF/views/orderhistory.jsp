@@ -536,7 +536,7 @@ header, footer, aside, nav, section, article {
 						<h3>나의 쇼핑 활동</h3>
 						<ul class="sideMenu__items">
 							<li class="sideMenu__item sideMenu__item--active"><a
-								href="./orderhistory.do">구매 내역 조회</a></li>
+								href="./orderhistory1.do">구매 내역 조회</a></li>
 							<li class="sideMenu__item"><a href="">최근 본 상품</a></li>
 							<li class="sideMenu__item"><a href="">쿠폰 / 적립금 조회</a></li>
 							<li class="sideMenu__item"><a href="">상품 문의</a></li>
@@ -718,7 +718,7 @@ header, footer, aside, nav, section, article {
 									<img src="./resources/images/inicis.png">
 								</c:if></td>
 							
-							<td>${l.p_date}</td>
+							<td>${l.o_date}</td>
 
 							<td><c:if test="${l.o_state == 0}">
 									<b style="color: blue;">결제 완료</b>

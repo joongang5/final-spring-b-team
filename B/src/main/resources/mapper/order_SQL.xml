@@ -9,7 +9,7 @@
 		SELECT * FROM order_view
 		<choose>
 			<when test="startDay != null and endDay != null">
-				WHERE m_no=#{m_no} AND (p_date BETWEEN #{startDay} AND #{endDay})
+				WHERE m_no=#{m_no} AND (DAT BETWEEN #{startDay} AND #{endDay})
 			</when>
 			<otherwise>
 				WHERE m_no=#{m_no}
