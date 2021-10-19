@@ -177,7 +177,6 @@
                     <div class="change-password__value">
                         <input type="password" name="pw2" id="pw2"
 							required="required" onchange="return pw2Check()" class="password">
-						<span id="checkResult2"></span>
                     </div>
                     </div>
                      <div class="myInfo-content__short-container">
