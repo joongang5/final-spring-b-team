@@ -322,7 +322,7 @@ function registerWaybill(){
 
 					<br>
 					<!--주문서 내 주문한 상품 내용 출력 / 반복문 사용-->
-					<div class="so" style="width:60%;">
+					<div class="so" style="width:65%;">
 					<div class="sosad1">
 					<c:forEach items="${orderDetailList }" var="odl">
 							<div class="order-content-productContainer">
@@ -338,7 +338,11 @@ function registerWaybill(){
 									</div>
 								</div>
 								<div class="order-product-right-block">
-									<div class="product-content__name">${odl.p_title }</div>
+									<div class="product-content__name">${odl.p_title } </div>
+									<c:if test="${odl.o_state eq 3 }"><span style="width:35px;height:25px;background-color:#FF8A00;font-size:15px;">교환</span></c:if>
+											<c:if test="${odl.o_state eq 2 }"><span style="width:35px;height:25px;background-color:#EEDED5;font-size:15px;">출고</span><c:if test="${odl.o_waybill ne '0'}">운송장 번호: ${odl.o_waybill} </c:if></c:if>
+											<c:if test="${odl.o_state eq 1 }"><span style="width:55px;height:25px;background-color:#EEDED5;font-size:13px;">출고준비</span></c:if>
+											<c:if test="${odl.o_state eq 0 }"><span style="width:55px;height:25px;background-color:#EEDED5;font-size:13px;">결제완료</span></c:if>
 									<div class="product-content__option-container">
 
 										<div class="option-content__price-container">
@@ -349,6 +353,7 @@ function registerWaybill(){
 											</div>
 											<div class="option-content__quantity">${odl.cnt}개</div>
 										</div>
+																			
 									</div>
 								</div>
 							</div>
@@ -361,12 +366,7 @@ function registerWaybill(){
 					
 					<div class="soSad2" style="position:absolute;left:67%;top:30%;;width:20%;height:30%;" >	
 					
-					<p style="text-align:center"><c:if test="${orderDetail.o_state eq 0 }"> 결제완료 </c:if>
-					<c:if test="${orderDetail.o_state eq 1 }"> 출고준비 </c:if>
-					<c:if test="${orderDetail.o_state eq 2 }"> 출고완료 </c:if>
-					<c:if test="${orderDetail.o_state eq 3 }"> 교환접수 </c:if>
-					<c:if test="${orderDetail.o_state eq 4 }"> 교환완료 </c:if>
-					</p>
+					
 				    
 				    <c:if test="${orderDetail.o_state eq 2 and orderDetail.o_waybill eq '0' }">
 		                    <p style="text-align:center">택배사: CJ대한통운 </p>
@@ -382,7 +382,7 @@ function registerWaybill(){
 					<button type="submit" name="wayButton" onclick="registerWaybill()">등록</button>
 
 				</c:if>				
-				<p style="text-align:center"> <c:if test="${orderDetail.o_waybill ne '0'}">${orderDetail.o_waybill}</c:if></p>
+				
 				</div>
 				</div>
 					</div>
