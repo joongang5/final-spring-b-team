@@ -148,8 +148,10 @@ $(document).ready(function(){
 </script>
 <body>
 <!--admin 공통 부분-->
+<header id="admin-header">
+  <c:import url="/adminHeader.do"/>
+</header>
 <div id="layout-container">
-  <header id="admin-header"></header>
   <div id="admin-main-container">
     <nav id="admin-sideMenu">
       <div class="sideMenu__block-container">

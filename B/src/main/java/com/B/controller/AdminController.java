@@ -93,6 +93,10 @@ public class AdminController {
 		return "redirect:/adminMember.do";
 	}
 	
-	
+	@GetMapping("/adminHeader.do")
+	public ModelAndView adminHeader() {
+		ModelAndView mv = new ModelAndView("adminHeader");
+		return mv;
+	}
 
 }

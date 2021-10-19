@@ -182,7 +182,7 @@ public class MypageController {
 	}
 	
 	@GetMapping("/mypage_iframe.do")
-	public ModelAndView tempCheckout() {
+	public ModelAndView mypageIframe() {
 		ModelAndView mv = new ModelAndView("mypage_iframe");
 		return mv;
 	}
