@@ -571,6 +571,7 @@ header, footer, aside, nav, section, article {
 
 				<div class="orderList-summary__column-left">
 					<div class="orderList-summary">
+				
 						<table>
 							<tr>
 								<th style="font-size: 20px;">결제 완료</th>
@@ -593,6 +594,7 @@ header, footer, aside, nav, section, article {
 			</c:forEach> --%>
 							</tr>
 						</table>
+						
 					</div>
 				</div>
 
@@ -699,10 +701,12 @@ header, footer, aside, nav, section, article {
 						<th>결제 방식</th>
 						<th>주문 날짜</th>
 						<th>현재 상태</th>
+						<th>교환신청</th>
+						<th>환불신청</th>
 					</tr>
 					<c:forEach items="${list }" var="l">
 						<tr>
-							<td>${l.p_no}</td>
+							<td>${l.o_no}</td>
 							<td>${l.p_title}</td>
 							<td><img
 								src="https://blogger.googleusercontent.com/img/a/${l.p_img}"
@@ -726,7 +730,12 @@ header, footer, aside, nav, section, article {
 									<b style="color: red;">출고 준비</b>
 								</c:if> <c:if test="${l.o_state == 2}">
 									<b style="color: green;">출고 완료</b>
-								</c:if></td>
+								</c:if><c:if test="${l.o_state == 3}">
+									<b style="color: green;">교환 접수</b>
+								</c:if>
+								</td>
+							<td><c:if test="${l.o_state eq 2 }"><button onclick="location.href='./AskExchange.do?o_no=${l.o_no}'">교환신청</button></c:if></td>	
+							<td><button onclick="location.href='./AskRefund.do?o_no=${l.o_no}'">환불신청</button></td>	
 						</tr>
 					</c:forEach>
 				</table>

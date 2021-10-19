@@ -93,7 +93,7 @@ public class OrderController {
 		//상태에 대한 번호 0,0,0 세팅
 		//state가 인덱스 번호를 의미
 		//
-		int[] stateTotalCountArr = new int[3];
+		int[] stateTotalCountArr = new int[6];
 		for (int i = 0; i < list.size(); i++) {
 			Map<String, Object> orderViewDTO = list.get(i);
 			int state = Util.parseInt(orderViewDTO.get("o_state"));
