@@ -194,148 +194,207 @@ function registerWaybill(){
 <c:import url="/adminHeader.do"/>
 </header>
 <div id="layout-container">
-    <div id="admin-main-container">
-        <nav id="admin-sideMenu">
-            <div class="sideMenu__block-container">
-                <ul class="sideMenu__items">
-                    <li class="sideMenu__item">
-                        <div class="sideMenu-container">
-                            <div><img src="./resources/images/setting.png"></div>
-                            <div><a href="./index.do">홈으로</a></div>
-                        </div>
-                    </li>
-                    <li class="sideMenu__item sideMenu__item--active">
-                        <div class="sideMenu-container">
-                            <div><img src="./resources/images/delivery.png"></div>
-                            <div><a href="./admin_orderList.do">주문 관리</a></div>
-                        </div>
-                        <div class="sideMenu-sub-container">
-                            <ul class="sideMenu__subItems sideMenu__subItems--active">
-                                <li class="sideMenu__subItem sideMenu__subItem--active"><a href="./admin_orderList.do">주문 목록</a></li>
-                                <li class="sideMenu__subItem"><a href="">교환 관리</a></li>
-                                <li class="sideMenu__subItem"><a href="">환불 관리</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="sideMenu__item">
-                        <div class="sideMenu-container">
-                            <div><img src="./resources/images/furniture.png"></div>
-                            <div><a href="./product.do">상품 관리</a></div>
-                        </div>
-                        <div class="sideMenu-sub-container">
-                            <ul class="sideMenu__subItems">
-                                <li class="sideMenu__subItem"><a href="./product.do">상품 목록</a></li>
-                                <li class="sideMenu__subItem"><a href="./registerProduct.do">상품 등록</a></li>
-                                <li class="sideMenu__subItem"><a href="">쿠폰 등록</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="sideMenu__item">
-                        <div class="sideMenu-container">
-                            <div><img src="./resources/images/user.png"></div>
-                            <div><a href="./adminMember.do">고객 관리</a></div>
-                        </div>
-                        <div class="sideMenu-sub-container">
-                            <ul class="sideMenu__subItems">
-                                <li class="sideMenu__subItem"><a href="./adminMember.do">회원 목록</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="sideMenu__item">
-                        <div class="sideMenu-container">
-                            <div><img src="./resources/images/support.png"></div>
-                            <div><a href="">고객 응대</a></div>
-                        </div>
-                        <div class="sideMenu-sub-container">
-                            <ul class="sideMenu__subItems">
-                                <li class="sideMenu__subItem"><a href="">상품 문의 목록</a></li>
-                                <li class="sideMenu__subItem"><a href="">1:1 문의 목록</a></li>
-                                <li class="sideMenu__subItem"><a href="">자주 묻는 질문 관리</a></li>
-                                <li class="sideMenu__subItem"><a href="">리뷰 목록</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li class="sideMenu__item">
-                        <div class="sideMenu-container">
-                            <div><img src="./resources/images/browser.png"></div>
-                            <div><a href="./adminLog">사이트 관리</a></div>
-                        </div>
-                        <div class="sideMenu-sub-container">
-                            <ul class="sideMenu__subItems">
-                                <li class="sideMenu__subItem"><a href="./adminLog">로그 조회</a></li>
-                            </ul>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <main>
-<!--admin 공통 부분 끝-->
-            <div class="admin-title">
-                <!--(주문 번호)에 주문 번호 출력-->
-                <h1>주문 상세 (${orderDetail.pa_id })</h1>
-            </div>
-            <!--주문서 출력-->
-            <div class="order-content">
-                <div class="order-content__header">
-                    <div class="order-content__orderer">주문자 : ${orderDetail.m_name }(${orderDetail.m_id})</div>
-                    <div class="order-content__orderDate">${orderDetail.o_date}</div>
-                </div>
-              <div class="order-content__body">
-                <!--주문서 내 주문한 상품 내용 출력 / 반복문 사용-->
-                <c:forEach items="${orderDetailList }" var="odl">
-                <div class="order-content__container">
-                    <div class="order-content-productContainer">
-                        <div class="order-product-left-block">
-                            <div class="product-content__productThumbnail">
-                            	<c:if test="${odl.p_img eq null or odl.p_no ge 58}">
-                                <img src="./resources/images/no-image.png">
-                                </c:if>
-                                <c:if test="${odl.p_no lt 58 }">
-                                <img src="https://blogger.googleusercontent.com/img/a/${odl.p_img}">
-                                </c:if>
-                            </div>
-                        </div>
-                        <div class="order-product-right-block">
-                            <div class="product-content__name">${odl.p_title }</div>
-                            <div class="product-content__option-container">
-                             
-                                <div class="option-content__price-container">
-                                    <div class="option-content__price"><fmt:formatNumber type="number" maxFractionDigits="3" value="${odl.p_price}" /> 원</div>
-                                    <div class="option-content__quantity">${odl.cnt} 개</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--주문한 상품 내용 출력 끝-->
-	                    <div class="order-content__delivery-container">
-	                        <div class="order-content__delivery">
-	                            <c:if test="${odl.o_state eq 0 }"> 결제완료 </c:if>
-	                            <c:if test="${odl.o_state eq 1 }"> 출고준비 </c:if>
-	                            <c:if test="${odl.o_state eq 2 }"> 출고완료 </c:if>
-	                        </div>
-	                        <!--출고 완료일 경우 출력되는 div-->
-	                        <!--'출고 완료' 선택하면 표시됨-->
-	                        <c:if test="${odl.o_state eq 2}">
-		                        <div class="order-delivery__released">
-		                            <div class="order-delivery__courier">
-		                                택배사: CJ대한통운
-		                            </div>
-		                            <div class="order-delivery__tracking">
-		                                <label>
-		                                    <p>운송장 번호:<p id="reflectWayBill"><c:if test="${odl.o_waybill ne '0'}">${odl.o_waybill}</c:if></p></p>
-		                                    <input type="text" value=""  name="waybill" id="waybill" required >
-                                    		<input type="hidden" value=""  name="result" id="result"  >                                    
-                                   			<input type="hidden" name="pa_id" id="pa_id" value="${orderDetail.pa_id}">
-		                                </label>         		   
-		                            </div>
-		                            <button type="submit" name="wayButton"  onclick="registerWaybill()">등록</button>
-		                        </div>
-	         		   		</c:if>
-	                    </div></div>
-                    </c:forEach>
-                    </div>
-            <div class="personalInfo-container">
+		<div id="admin-main-container">
+			<nav id="admin-sideMenu">
+				<div class="sideMenu__block-container">
+					<ul class="sideMenu__items">
+						<li class="sideMenu__item">
+							<div class="sideMenu-container">
+								<div>
+									<img src="./resources/images/setting.png">
+								</div>
+								<div>
+									<a href="./index.do">홈으로</a>
+								</div>
+							</div>
+						</li>
+						<li class="sideMenu__item sideMenu__item--active">
+							<div class="sideMenu-container">
+								<div>
+									<img src="./resources/images/delivery.png">
+								</div>
+								<div>
+									<a href="./admin_orderList.do">주문 관리</a>
+								</div>
+							</div>
+							<div class="sideMenu-sub-container">
+								<ul class="sideMenu__subItems sideMenu__subItems--active">
+									<li class="sideMenu__subItem sideMenu__subItem--active"><a
+										href="./admin_orderList.do">주문 목록</a></li>
+									<li class="sideMenu__subItem"><a href="">교환 관리</a></li>
+									<li class="sideMenu__subItem"><a href="">환불 관리</a></li>
+								</ul>
+							</div>
+						</li>
+						<li class="sideMenu__item">
+							<div class="sideMenu-container">
+								<div>
+									<img src="./resources/images/furniture.png">
+								</div>
+								<div>
+									<a href="./product.do">상품 관리</a>
+								</div>
+							</div>
+							<div class="sideMenu-sub-container">
+								<ul class="sideMenu__subItems">
+									<li class="sideMenu__subItem"><a href="./product.do">상품
+											목록</a></li>
+									<li class="sideMenu__subItem"><a
+										href="./registerProduct.do">상품 등록</a></li>
+									<li class="sideMenu__subItem"><a href="">쿠폰 등록</a></li>
+								</ul>
+							</div>
+						</li>
+						<li class="sideMenu__item">
+							<div class="sideMenu-container">
+								<div>
+									<img src="./resources/images/user.png">
+								</div>
+								<div>
+									<a href="./adminMember.do">고객 관리</a>
+								</div>
+							</div>
+							<div class="sideMenu-sub-container">
+								<ul class="sideMenu__subItems">
+									<li class="sideMenu__subItem"><a href="./adminMember.do">회원
+											목록</a></li>
+								</ul>
+							</div>
+						</li>
+						<li class="sideMenu__item">
+							<div class="sideMenu-container">
+								<div>
+									<img src="./resources/images/support.png">
+								</div>
+								<div>
+									<a href="">고객 응대</a>
+								</div>
+							</div>
+							<div class="sideMenu-sub-container">
+								<ul class="sideMenu__subItems">
+									<li class="sideMenu__subItem"><a href="">상품 문의 목록</a></li>
+									<li class="sideMenu__subItem"><a href="">1:1 문의 목록</a></li>
+									<li class="sideMenu__subItem"><a href="">자주 묻는 질문 관리</a></li>
+									<li class="sideMenu__subItem"><a href="">리뷰 목록</a></li>
+								</ul>
+							</div>
+						</li>
+						<li class="sideMenu__item">
+							<div class="sideMenu-container">
+								<div>
+									<img src="./resources/images/browser.png">
+								</div>
+								<div>
+									<a href="./adminLog">사이트 관리</a>
+								</div>
+							</div>
+							<div class="sideMenu-sub-container">
+								<ul class="sideMenu__subItems">
+									<li class="sideMenu__subItem"><a href="./adminLog">로그
+											조회</a></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<main>
+			
+			
+			
+			
+				<!--admin 공통 부분 끝-->
+				<div class="admin-title">
+					<!--(주문 번호)에 주문 번호 출력-->
+					<h1>주문 상세 (${orderDetail.pa_id })</h1>
+					<div>
+					
+					
+				
+				
+				
+				<!--주문서 출력-->
+				<div class="order-content">
+					<div class="order-content__header">
+						<div class="order-content__orderer">주문자 :
+							${orderDetail.m_name }(${orderDetail.m_id})</div>
+						<div class="order-content__orderDate">${orderDetail.o_date}</div>
+					</div>
+
+					<br>
+					<!--주문서 내 주문한 상품 내용 출력 / 반복문 사용-->
+					<div class="so" style="width:60%;">
+					<div class="sosad1">
+					<c:forEach items="${orderDetailList }" var="odl">
+							<div class="order-content-productContainer">
+								<div class="order-product-left-block">
+									<div class="product-content__productThumbnail">
+										<c:if test="${odl.p_img eq null or odl.p_no ge 58}">
+											<img src="./resources/images/no-image.png">
+										</c:if>
+										<c:if test="${odl.p_no lt 58 }">
+											<img
+												src="https://blogger.googleusercontent.com/img/a/${odl.p_img}">
+										</c:if>
+									</div>
+								</div>
+								<div class="order-product-right-block">
+									<div class="product-content__name">${odl.p_title }</div>
+									<div class="product-content__option-container">
+
+										<div class="option-content__price-container">
+											<div class="option-content__price">
+												<fmt:formatNumber type="number" maxFractionDigits="3"
+													value="${odl.p_price}" />
+												원
+											</div>
+											<div class="option-content__quantity">${odl.cnt}개</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--주문한 상품 내용 출력 끝-->
+							<br>
+							
+							
+					</c:forEach>
+					</div>
+					
+					<div class="soSad2" style="float:right;position:absolute;left:67%;top:30%;;width:20%;height:30%;" >	
+					
+					<p style="text-align:center"><c:if test="${orderDetail.o_state eq 0 }"> 결제완료 </c:if>
+					<c:if test="${orderDetail.o_state eq 1 }"> 출고준비 </c:if>
+					<c:if test="${orderDetail.o_state eq 2 }"> 출고완료 </c:if></p>
+				    
+				    <c:if test="${orderDetail.o_state eq 2}">
+		                    <p style="text-align:center">택배사: CJ대한통운 </p>
+		                     <p style="text-align:center">운송장 번호:</p>       
+		                           
+		       
+						
+						<c:if test="${orderDetail.o_waybill ne '0'}">${orderDetail.o_waybill}</c:if>
+					      <input type="text" value="" name="waybill" id="waybill" required>
+						<input type="hidden" value="" name="result" id="result">
+						<input type="hidden" name="pa_id" id="pa_id" value="${orderDetail.pa_id}">
+					    
+
+					<button type="submit" name="wayButton" onclick="registerWaybill()">등록</button>
+
+				</c:if>
+				
+				</div>
+				</div>
+					</div>
+				</div>
+				
+				
+				
+				
+		</div>
+		
+		
+		
+		<div class="personalInfo-container">
                 <div class="delivery personalInfo-content-container">
                     <div class="delivery personalInfo-content__header">
                         배송 정보
