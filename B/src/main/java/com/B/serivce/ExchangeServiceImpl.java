@@ -23,13 +23,18 @@ public class ExchangeServiceImpl implements ExchangeService {
 		return exchangeDAO.update2("admin2.updateEstate", map);
 	}
 	@Override
-	public void insertInfo(String parameter) {
-		exchangeDAO.register2("admin2.insertInfo", parameter);
+	public void insertInfo(Map<String, Object> map) {
+		exchangeDAO.register("admin2.insertInfo", map);
 		
 	}
 	@Override
-	public void getInfo(Map<String, Object> map) {
-		 exchangeDAO.update("admin2.getInfo", map);
+	public void updateInfo(Map<String, Object> map) {
+		 exchangeDAO.update("admin2.updateInfo", map);
+	}
+	@Override
+	public Map<String, Object> getInfo(Map<String, Object> map) {
+		return exchangeDAO.selectOne("admin2.getInfo", map);
+		
 	}
 
 }

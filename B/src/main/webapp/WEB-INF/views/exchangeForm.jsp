@@ -13,8 +13,10 @@
 function whyExchange(reason){
 	var e_reason = reason.value
 	if(e_reason == 1){
+		 $('input[name=e_reason]').attr("value",e_reason);
 		 jQuery('#onlyOne').show(); 
 	}else{
+		$('input[name=e_reason]').attr("value",e_reason);
 		 jQuery('#onlyOne').hide(); 
 	}
 }
@@ -37,7 +39,12 @@ function iamport(){
 	}, function (rsp) {
 		  if(rsp.success){
 			var o_no = $('#o_no1').val()  
-			registerExchange(o_no);
+			var pa_id = $('#pa_id').val()  
+			var p_no = $('#p_no').val()  
+			var p_title = $('#p_title').val()
+			var e_reason = $('#e_reason').val()
+			
+			registerExchange(o_no,pa_id,p_no,p_title,e_reason);
 			alert("접수가 완료되었습니다.")  
 		  }else{
 			  alert("결제 실패")
@@ -47,13 +54,13 @@ function iamport(){
        
 }
 
-function registerExchange(o_no){
+function registerExchange(o_no,pa_id,p_no,p_title,e_reason){
 	 $.ajax({
 			url : "registerExchange.do",
 			type : "post",
-			data : {"o_no" : o_no},
+			data : {"o_no" : o_no,"pa_id" : pa_id,"p_no" : p_no,"p_title" : p_title,"e_reason" : e_reason},
 			success : function(data) {
-				
+				location.href="./orderhistory1.do"
 			},
 
 		})
@@ -73,9 +80,22 @@ function registerExchange(o_no){
 	<option value="0">불량</option>
 	<option value="1">단순변심</option>
 </select>
+
+ <input type="hidden" id="e_reason" name="e_reason" value="" readonly="readonly">
+ 
 </div>
 
 <div id="onlyOne" style="display:none;">
+
+<h2>교환 상품 내역</h2>
+
+<label>주문 번호</label>
+<input name="pa_id" id="pa_id" value="${getInfo.pa_id}" readonly="readonly">
+<label>상품명</label>
+<input name="p_title" id="p_title"  value="${getInfo.p_title}" style="width:300px;"readonly="readonly">
+<input type="hidden" name="p_no" id="p_no" value="${getInfo.p_no}" readonly="readonly">
+
+
 <h2> 왕복 배송 비용 5000원을 결제 </h2>
  <h2>결제 수단</h2>
   <label class="payment-plan-button">

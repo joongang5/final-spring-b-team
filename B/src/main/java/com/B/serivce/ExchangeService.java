@@ -9,7 +9,9 @@ public interface ExchangeService {
 
 	public int updateEState(Map<String, Object> map);
 	
-	public void insertInfo(String parameter);
+	public void insertInfo(Map<String, Object> map);
 	
-	public void getInfo(Map<String, Object> map) ;
+	public void updateInfo(Map<String, Object> map) ;
+	
+	public Map<String, Object> getInfo(Map<String, Object> map);
 }

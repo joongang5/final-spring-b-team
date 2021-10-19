@@ -135,9 +135,12 @@ public class Admin2Controller {
 	}
 	
 	@RequestMapping(value="AskExchange.do")
-	public ModelAndView askExchange(HttpServletRequest req) {
+	public ModelAndView askExchange(HttpServletRequest req,CommandMap map) {
 		ModelAndView mv = new ModelAndView("exchangeForm");
-		mv.addObject("o_no", req.getParameter("o_no"));
+		map.put("o_no", req.getParameter("o_no"));
+		Map<String, Object> getInfo =   exchangeService.getInfo(map.getMap());
+		mv.addObject("getInfo", getInfo); //교환접수 된 상품 정보 저장
+		mv.addObject("o_no",req.getParameter("o_no"));
 		return mv;
 	}
 	
@@ -145,8 +148,13 @@ public class Admin2Controller {
 	@ResponseBody
 	public void registerExchange(HttpServletRequest req, CommandMap map) {
 		map.put("o_no", req.getParameter("o_no"));
-		exchangeService.getInfo(map.getMap());
-		//exchangeService.insertInfo( req.getParameter("o_no"));
+		map.put("pa_id", req.getParameter("pa_id"));
+		map.put("p_no", req.getParameter("p_no"));
+		map.put("p_title", req.getParameter("p_title"));
+		map.put("e_reason", req.getParameter("e_reason"));
+		exchangeService.updateInfo(map.getMap());
+		System.out.println(map.getMap());
+		exchangeService.insertInfo( map.getMap());
 	}
 	
 	
