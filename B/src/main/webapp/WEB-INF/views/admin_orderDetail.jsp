@@ -167,7 +167,6 @@ function registerWaybill(){
 			data : {"way" : wayBillNum , "pa_id" : pa_id},
 			success : function(data) {
 				
-				
 				if(data >= 1){
 					
 					$('input[name=waybill]').attr('type',"hidden")
@@ -360,28 +359,27 @@ function registerWaybill(){
 					</c:forEach>
 					</div>
 					
-					<div class="soSad2" style="float:right;position:absolute;left:67%;top:30%;;width:20%;height:30%;" >	
+					<div class="soSad2" style="position:absolute;left:67%;top:30%;;width:20%;height:30%;" >	
 					
 					<p style="text-align:center"><c:if test="${orderDetail.o_state eq 0 }"> 결제완료 </c:if>
 					<c:if test="${orderDetail.o_state eq 1 }"> 출고준비 </c:if>
 					<c:if test="${orderDetail.o_state eq 2 }"> 출고완료 </c:if></p>
 				    
-				    <c:if test="${orderDetail.o_state eq 2}">
+				    <c:if test="${orderDetail.o_state eq 2 and orderDetail.o_waybill eq '0' }">
 		                    <p style="text-align:center">택배사: CJ대한통운 </p>
 		                     <p style="text-align:center">운송장 번호:</p>       
 		                           
 		       
 						
-						<c:if test="${orderDetail.o_waybill ne '0'}">${orderDetail.o_waybill}</c:if>
-					      <input type="text" value="" name="waybill" id="waybill" required>
+					     <input type="text" value="" name="waybill" id="waybill" required>
 						<input type="hidden" value="" name="result" id="result">
 						<input type="hidden" name="pa_id" id="pa_id" value="${orderDetail.pa_id}">
 					    
 
 					<button type="submit" name="wayButton" onclick="registerWaybill()">등록</button>
 
-				</c:if>
-				
+				</c:if>				
+				<p style="text-align:center"> <c:if test="${orderDetail.o_waybill ne '0'}">${orderDetail.o_waybill}</c:if></p>
 				</div>
 				</div>
 					</div>
