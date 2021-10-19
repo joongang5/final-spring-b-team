@@ -363,7 +363,10 @@ function registerWaybill(){
 					
 					<p style="text-align:center"><c:if test="${orderDetail.o_state eq 0 }"> 결제완료 </c:if>
 					<c:if test="${orderDetail.o_state eq 1 }"> 출고준비 </c:if>
-					<c:if test="${orderDetail.o_state eq 2 }"> 출고완료 </c:if></p>
+					<c:if test="${orderDetail.o_state eq 2 }"> 출고완료 </c:if>
+					<c:if test="${orderDetail.o_state eq 3 }"> 교환접수 </c:if>
+					<c:if test="${orderDetail.o_state eq 4 }"> 교환완료 </c:if>
+					</p>
 				    
 				    <c:if test="${orderDetail.o_state eq 2 and orderDetail.o_waybill eq '0' }">
 		                    <p style="text-align:center">택배사: CJ대한통운 </p>
