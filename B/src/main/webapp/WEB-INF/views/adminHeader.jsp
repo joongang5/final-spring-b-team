@@ -9,6 +9,7 @@
     position: fixed;
     height: 61px;
     width: 100%;
+    background: rgba(255, 255, 255, 0.8);
 }
 }
 
