@@ -64,7 +64,7 @@
 	</select>
 	
 	<update id="updateWayBill" parameterType="HashMap">
-		UPDATE order_list SET o_waybill=#{o_waybill} WHERE o_no=#{o_no}
+		UPDATE order_list SET o_waybill=#{o_waybill} WHERE pa_id=#{pa_id}
 	</update>
 	
 	<select id="getAdminOrderDetailList" parameterType="HashMap" resultType="HashMap">

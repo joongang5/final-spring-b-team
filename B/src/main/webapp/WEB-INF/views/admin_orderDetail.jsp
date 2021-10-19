@@ -156,25 +156,23 @@
     
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
- function registerWaybill(waybillId, o_noID){
-	 var wayBillNum = $('#' + waybillId).val()
-	 var o_no = $('#' + o_noID).val()
-	 console.log(o_no)
+function registerWaybill(){
+	 var wayBillNum = $("#waybill").val()
+	 var pa_id = $("#pa_id").val()
+	 
 	 
 	   $.ajax({
 			url : "registerWaybill.do",
 			type : "post",
-			data : {"way" : wayBillNum , "o_no" : o_no},
+			data : {"way" : wayBillNum , "pa_id" : pa_id},
 			success : function(data) {
 				
 				
 				if(data >= 1){
-					/*
+					
 					$('input[name=waybill]').attr('type',"hidden")
 					$('input[name=result]').attr('type',"text")
 					$('input[name=result]').attr('value',"운송장 번호 등록 완료")
-					*/
-					$('#reflectWayBill'+o_no).text(wayBillNum)
 					
 				}else{
 					alert("운송장 번호 등록 불가")
@@ -185,9 +183,8 @@
 				//	alert("운송장 번호 등록 불가")
 				
 			},
-
 		})
- }	
+}		
 
 </script>
 </head>
@@ -326,13 +323,13 @@
 		                            </div>
 		                            <div class="order-delivery__tracking">
 		                                <label>
-		                                    <p>운송장 번호:<p id="reflectWayBill${odl.o_no}"><c:if test="${odl.o_waybill ne '0'}">${odl.o_waybill}</c:if></p></p>
-		                                    <input type="text" value=""  name="waybill" id="waybill${odl.o_no}" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" required>
-		                                    <input type="hidden" value=""  name="result" id="result">                                    
-		                                    <input type="hidden" id="o_no${odl.o_no}" name="o_no" value="${odl.o_no}">
+		                                    <p>운송장 번호:<p id="reflectWayBill"><c:if test="${odl.o_waybill ne '0'}">${odl.o_waybill}</c:if></p></p>
+		                                    <input type="text" value=""  name="waybill" id="waybill" required >
+                                    		<input type="hidden" value=""  name="result" id="result"  >                                    
+                                   			<input type="hidden" name="pa_id" id="pa_id" value="${orderDetail.pa_id}">
 		                                </label>         		   
 		                            </div>
-		                            <button type="submit" name="wayButton"  onclick="registerWaybill('waybill${odl.o_no}', 'o_no${odl.o_no}')">등록</button>
+		                            <button type="submit" name="wayButton"  onclick="registerWaybill()">등록</button>
 		                        </div>
 	         		   		</c:if>
 	                    </div></div>
