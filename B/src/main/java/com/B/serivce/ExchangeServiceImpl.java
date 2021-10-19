@@ -15,8 +15,8 @@ public class ExchangeServiceImpl implements ExchangeService {
 	private ExchangeDAO exchangeDAO;
 	
 	@Override
-	public List<Map<String, Object>> exchangeList() {
-		return exchangeDAO.productList("admin2.getExchangeList"); //map없이 queryid만으로 리스트 가져오기
+	public List<Map<String, Object>> exchangeList(Map<String, Object> map) {
+		return exchangeDAO.selectList("admin2.getExchangeList",map); //map없이 queryid만으로 리스트 가져오기
 	}
 	@Override
 	public int updateEState(Map<String, Object> map) {
@@ -35,6 +35,9 @@ public class ExchangeServiceImpl implements ExchangeService {
 	public Map<String, Object> getInfo(Map<String, Object> map) {
 		return exchangeDAO.selectOne("admin2.getInfo", map);
 		
+	}
+	public int getTotalList(Map<String, Object> map) {
+		return exchangeDAO.totalList("admin2.getToTalList", map);
 	}
 
 }
