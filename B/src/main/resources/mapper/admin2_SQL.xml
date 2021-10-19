@@ -71,4 +71,17 @@
 		SELECT * FROM order_view WHERE pa_id=#{pa_id}
 	</select>
 
+	<select id="getExchangeList" resultType="HashMap">
+		SELECT * FROM exchange_management
+	</select>
+	
+	<update id="updateEstate" parameterType="HashMap" >
+		UPDATE exchange_list set e_state=#{e_state} WHERE o_no =#{o_no}
+	</update>
+	
+	<update id="getInfo" parameterType="HashMap">
+		UPDATE order_list SET o_state=3 WHERE o_no = #{o_no}
+	</update>
+	
+
 </mapper>

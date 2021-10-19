@@ -70,7 +70,7 @@ function check(){
 		location.href = './cart.do';
 		return true;
 	} else {
-		alert("취소되었습니다.");
+		//alert("취소되었습니다.");
 		return false;
 	}
 }

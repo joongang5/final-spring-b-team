@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.B.common.CommandMap;
 import com.B.serivce.AdminServiceImpl;
+import com.B.serivce.ExchangeServiceImpl;
 import com.B.serivce.PaginationService;
 import com.B.util.Util;
 
@@ -27,6 +28,9 @@ public class Admin2Controller {
 	
 	@Resource(name = "paginationService")
 	private PaginationService paginationService; //페이징 관련 서비스
+	
+	@Resource(name ="exchangeService")
+	private ExchangeServiceImpl exchangeService;
 	
 	@RequestMapping(value="/admin2.do")
 	public ModelAndView admin2() {
@@ -109,4 +113,46 @@ public class Admin2Controller {
 		
 	}
 
+	@RequestMapping(value="/admin_exchange.do")
+	public ModelAndView exchange() {
+		ModelAndView mv = new ModelAndView("admin_exchangeList");
+			List<Map<String, Object>> exchangeList  =   exchangeService.exchangeList();	
+			mv.addObject("exchange", exchangeList);
+			return mv;		
+	}
+	
+	@PostMapping(value="/exchanging.do") //관리자 페이지에서 신청 사유가 '불량'일 경우만
+	@ResponseBody
+	public int exchanging(HttpServletRequest req, CommandMap map) {
+		
+		map.put("o_no", req.getParameter("o_no"));
+		map.put("e_state",1 );
+		
+		int complete =  exchangeService.updateEState(map.getMap()); //접수 대기 => 진행 중 으로 상태 변경
+		
+		
+		return complete;
+	}
+	
+	@RequestMapping(value="AskExchange.do")
+	public ModelAndView askExchange(HttpServletRequest req) {
+		ModelAndView mv = new ModelAndView("exchangeForm");
+		mv.addObject("o_no", req.getParameter("o_no"));
+		return mv;
+	}
+	
+	@PostMapping(value="registerExchange.do")
+	@ResponseBody
+	public void registerExchange(HttpServletRequest req, CommandMap map) {
+		map.put("o_no", req.getParameter("o_no"));
+		exchangeService.getInfo(map.getMap());
+		//exchangeService.insertInfo( req.getParameter("o_no"));
+	}
+	
+	
+	@RequestMapping(value="AskRefund.do")
+	public ModelAndView askRefund() {
+		ModelAndView mv = new ModelAndView("refundForm");
+		return mv;
+	}
 }
