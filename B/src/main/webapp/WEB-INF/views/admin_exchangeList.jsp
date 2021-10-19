@@ -2,9 +2,12 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <meta charset="UTF-8">
   <title>관리자 페이지 | 가구</title>
   <link rel="stylesheet" href="./resources/css/base.css">
@@ -56,6 +59,13 @@
     }
 
   </style>
+  <script type="text/javascript">
+  function linkPage(pageNo) {
+		location.href = "./admin_exchangeList.do?pageNo="
+				+ pageNo;
+	}
+  
+  </script>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -79,8 +89,10 @@
 </script>
 <body>
 <!--admin 공통 부분-->
+ <header id="admin-header">
+  <c:import url="/adminHeader.do"/>
+  </header>
 <div id="layout-container">
-  <header id="admin-header"></header>
   <div id="admin-main-container">
     <nav id="admin-sideMenu">
       <div class="sideMenu__block-container">
@@ -88,18 +100,18 @@
           <li class="sideMenu__item">
             <div class="sideMenu-container">
               <div><img src="./resources/images/setting.png"></div>
-              <div><a href="">홈으로</a></div>
+              <div><a href="./index.do">홈으로</a></div>
             </div>
           </li>
           <li class="sideMenu__item sideMenu__item--active">
             <div class="sideMenu-container">
               <div><img src="./resources/images/delivery.png"></div>
-              <div><a href="">주문 관리</a></div>
+              <div><a href="./admin_orderList.do">주문 관리</a></div>
             </div>
             <div class="sideMenu-sub-container">
-              <ul class="sideMenu__subItem">
-                <li class="sideMenu__subItem"><a href="">주문 목록</a></li>
-                <li class="sideMenu__subItems sideMenu__subItems--active"><a href="">교환 관리</a></li>
+              <ul class="sideMenu__subItems sideMenu__subItems--active">
+                <li class="sideMenu__subItem"><a href="./admin_orderList.do">주문 목록</a></li>
+                <li class="sideMenu__subItem sideMenu__subItem--active"><a href="./admin_exchange.do">교환 관리</a></li>
                 <li class="sideMenu__subItem"><a href="">환불 관리</a></li>
               </ul>
             </div>
@@ -107,12 +119,12 @@
           <li class="sideMenu__item">
             <div class="sideMenu-container">
               <div><img src="./resources/images/furniture.png"></div>
-              <div><a href="">상품 관리</a></div>
+              <div><a href="./product.do">상품 관리</a></div>
             </div>
             <div class="sideMenu-sub-container">
               <ul class="sideMenu__subItems">
-                <li class="sideMenu__subItem"><a href="">상품 목록</a></li>
-                <li class="sideMenu__subItem"><a href="">상품 등록</a></li>
+                <li class="sideMenu__subItem"><a href="./product.do">상품 목록</a></li>
+                <li class="sideMenu__subItem"><a href="./registerProduct.do">상품 등록</a></li>
                 <li class="sideMenu__subItem"><a href="">쿠폰 등록</a></li>
               </ul>
             </div>
@@ -120,11 +132,11 @@
           <li class="sideMenu__item">
             <div class="sideMenu-container">
               <div><img src="./resources/images/user.png"></div>
-              <div><a href="">고객 관리</a></div>
+              <div><a href="./adminMember.do">고객 관리</a></div>
             </div>
             <div class="sideMenu-sub-container">
               <ul class="sideMenu__subItems">
-                <li class="sideMenu__subItem"><a href="">회원 목록</a></li>
+                <li class="sideMenu__subItem"><a href="./adminMember.do">회원 목록</a></li>
               </ul>
             </div>
           </li>
@@ -145,11 +157,11 @@
           <li class="sideMenu__item">
             <div class="sideMenu-container">
               <div><img src="./resources/images/browser.png"></div>
-              <div><a href="">사이트 관리</a></div>
+              <div><a href="./adminLog.do">사이트 관리</a></div>
             </div>
             <div class="sideMenu-sub-container">
               <ul class="sideMenu__subItems">
-                <li class="sideMenu__subItem"><a href="">로그 조회</a></li>
+                <li class="sideMenu__subItem"><a href="./adminLog.do">로그 조회</a></li>
               </ul>
             </div>
           </li>
@@ -161,36 +173,11 @@
       <div class="admin-title">
         <h1>교환 신청 내역</h1>
       </div>
-      <div class="keyword-search-box">
-        <label for="keyword-search__word">
-          <p>키워드 검색</p>
-        </label>
-        <div class="keyword-search__bar">
-          <select id="keyword-search__column">
-            <option>주문 번호</option>
-            <option>주문자</option>
-            <option>상품 번호</option>
-            <option>상품명</option>
-          </select>
-          <input type="search" id="keyword-search__word">
-        </div>
-          <button class="search-button">검색</button>
-      </div>
-      <div class="change-orderState-box">
-        <label>
-          <p>선택한 주문</p>
-          <select id="change-orderState" class="search-select">
-            <option>결제 완료</option>
-            <option>출고 준비</option>
-          </select>
-        </label>
-        <button class="search-button">일괄 변경</button>
-      </div>
+   
       <div class="orderList-container">
         <table class="list-table orderList">
           <thead>
             <tr>
-              <th scope="col">선택</th>
               <th scope="col">주문 번호</th>
               <th scope="col">주문자</th>
               <th scope="col">주문일</th>
@@ -213,12 +200,6 @@
           <!--주문 목록 출력 / 반복문 사용-->
           <c:forEach items="${exchange}" var="e">
             <tr>
-              <td>
-                <label>
-                  <input type="checkbox">
-                  <span class="checkMark"></span>
-                </label>
-              </td>
               <td>${e.pa_id }</td>
               <td>${e.m_name}(${e.m_id })</td>
               <td>${e.o_date}</td>
@@ -241,14 +222,12 @@
           <!--주문 목록 출력 끝-->
           </tbody>
         </table>
-        <div class="paging orderList__paging">
+       
+          <div class="paging orderList__paging">
           <!--페이징 출력-->
-          <a class="page-value">1</a>
-          <a class="page-value">2</a>
-          <a class="page-value">3</a>
-          <a class="page-value">4</a>
-          <a class="page-value">5</a>
+			<ui:pagination paginationInfo="${paginationInfo}" type="text" jsFunction="linkPage" />
         </div>
+        
       </div>
     </main>
   </div>

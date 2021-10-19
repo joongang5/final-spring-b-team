@@ -114,10 +114,33 @@ public class Admin2Controller {
 	}
 
 	@RequestMapping(value="/admin_exchange.do")
-	public ModelAndView exchange() {
+	public ModelAndView exchange(HttpServletRequest req,CommandMap map) {
 		ModelAndView mv = new ModelAndView("admin_exchangeList");
-			List<Map<String, Object>> exchangeList  =   exchangeService.exchangeList();	
-			mv.addObject("exchange", exchangeList);
+			
+			
+			PaginationInfo initial = paginationService.initialSetting(req); // 현재 페이지 정보 및 미리 설정한 page scale 설정 얻기
+			
+			map.put("startPage",initial.getFirstRecordIndex()); // 시작 페이지 맵에 저장
+			map.put("lastPage", initial.getRecordCountPerPage());  // 끝 페이지 맵에 저장
+			
+			
+			int totalCount = exchangeService.getTotalList(map.getMap());
+			
+		
+			initial.setTotalRecordCount(totalCount); 
+	
+			List<Map<String, Object>> exchangeList  =   exchangeService.exchangeList(map.getMap());	
+			
+		
+			
+			mv.addObject("paginationInfo", initial);
+			mv.addObject("pageNo", paginationService.getPageNo(req));
+			mv.addObject("exchange", exchangeList); // 현 페이지 번호
+			mv.addObject("totalCount", totalCount); // 전체 글 수
+			
+			
+			
+			
 			return mv;		
 	}
 	
@@ -126,7 +149,7 @@ public class Admin2Controller {
 	public int exchanging(HttpServletRequest req, CommandMap map) {
 		
 		map.put("o_no", req.getParameter("o_no"));
-		map.put("e_state",1 );
+		map.put("e_state",2 );
 		
 		int complete =  exchangeService.updateEState(map.getMap()); //접수 대기 => 진행 중 으로 상태 변경
 		

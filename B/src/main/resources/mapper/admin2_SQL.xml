@@ -71,12 +71,17 @@
 		SELECT * FROM order_view WHERE pa_id=#{pa_id}
 	</select>
 
-	<select id="getExchangeList" resultType="HashMap">
+	<select id="getExchangeList" resultType="HashMap" parameterType="HashMap">
 		SELECT * FROM exchange_management
+		ORDER BY e_no DESC LIMIT #{startPage}, #{lastPage}
+	</select>
+	
+	<select id="getToTalList" parameterType="HashMap"  resultType="Integer">
+		SELECT COUNT(*) FROM exchange_management
 	</select>
 	
 	<update id="updateEstate" parameterType="HashMap" >
-		UPDATE exchange_list set e_state=#{e_state} WHERE o_no =#{o_no}
+		UPDATE exchange_list set e_state=#{e_state},e_waybill=DATE_FORMAT(NOW(),'%Y%m%d%S%i') WHERE o_no =#{o_no}
 	</update>
 	
 	<update id="updateInfo" parameterType="HashMap">

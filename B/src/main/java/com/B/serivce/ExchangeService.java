@@ -5,7 +5,7 @@ import java.util.Map;
 
 public interface ExchangeService {
 
-	public List<Map<String, Object>> exchangeList();
+	public List<Map<String, Object>> exchangeList(Map<String, Object> map);
 
 	public int updateEState(Map<String, Object> map);
 	
