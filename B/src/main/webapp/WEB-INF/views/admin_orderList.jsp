@@ -44,8 +44,8 @@
 
     .orderList{margin: auto;}
 
-    .orderList th:nth-child(5){
-
+    .orderList th:nth-child(2){
+        width: 55px;
     }
 
     .orderList th:nth-child(8){

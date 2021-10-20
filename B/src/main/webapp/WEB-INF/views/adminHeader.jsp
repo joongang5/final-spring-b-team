@@ -7,7 +7,7 @@
     align-items: center;
     border-bottom: 1px solid #403429;
     position: fixed;
-    height: 61px;
+    height: 60px;
     width: 100%;
     background: rgba(255, 255, 255, 0.8);
 }
