@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -810,7 +813,8 @@ header, footer, aside, nav, section, article {
 								src="https://blogger.googleusercontent.com/img/a/${l.p_img}"
 								style="width: 110px; height: 110px;"></td>
 							<td>${l.cnt}</td>
-							<td>${l.p_price}원</td>
+							<!-- <td>${l.p_price}원</td>-->
+							<td><fmt:formatNumber value="${l.p_price}" pattern="#,###"/>원</td>
 
 							<td><c:if test="${l.pa_plan eq 'kakaopay'}">
 									<img src="./resources/images/kakaopay.png">
