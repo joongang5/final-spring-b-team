@@ -51,15 +51,16 @@
 	</insert>
 	
 	<select id="getPointLogList" parameterType="HashMap" resultType="HashMap">
-		SELECT * FROM pointLog 
+		SELECT * FROM pointLog WHERE 
 				<choose>
 					<when test='category == "gain"'>
-					WHERE po_vary = '+' 
+					po_vary = '+' AND 
 					</when>
 					<when test='category == "use"'>
-					WHERE po_vary = '-' 
+					po_vary = '-' AND 
 					</when>
 				</choose>
+		m_no = (SELECT m_no FROM member WHERE m_id=#{m_id}) 
 		ORDER BY po_date DESC LIMIT #{startPage}, #{lastPage}
 	</select>
 	

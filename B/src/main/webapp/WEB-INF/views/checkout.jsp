@@ -1003,8 +1003,7 @@ header a:after, footer a:after{height:0;}
 	        </div>
 	        <div class="payment-will-point-container">
 	          <div class="will-point__value">
-	           <c:set var="willPoint" value="${totalAmount * 0.05}"/>
-	            <span id="willPoint" class="amount__value"><fmt:formatNumber value="${willPoint}" pattern="#,###"/></span>원
+	            <span id="willPoint" class="amount__value"></span>원
 	          </div>
 	          <div class="will-point__section">
 	            적립 예정
