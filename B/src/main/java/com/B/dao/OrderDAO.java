@@ -22,19 +22,19 @@ public class OrderDAO extends AbstractDAO{
 	}
 
 	public int inputToOrder_List(Map<String, Object> orderedProductList) {
-		return inputOrder("order.inputToOrder_List", orderedProductList);
+		return input("order.inputToOrder_List", orderedProductList);
 	}
 
 	public int inputToPayment(Map<String, Object> paymentInfo) {
-		return inputOrder("order.inputToPayment", paymentInfo);
+		return input("order.inputToPayment", paymentInfo);
 	}
 
 	public int downStock(Map<String, Object> orderedProductList) {
-		return updateOrder("order.downStock", orderedProductList);
+		return update2("order.downStock", orderedProductList);
 	}
 
 	public int calcPoint(Map<String, Object> paymentInfo) {
-		return updateOrder("order.calcPoint", paymentInfo);
+		return update2("order.calcPoint", paymentInfo);
 	}
 
 	public int checkStock(Map<String, Object> orderedProduct) {

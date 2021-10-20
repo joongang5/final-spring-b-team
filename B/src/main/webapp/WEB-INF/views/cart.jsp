@@ -9,7 +9,7 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta charset="UTF-8">
-<title>장바구니 | 가구</title>
+<title>장바구니 | Spring.B</title>
 <link href="./resources/css/header.css" rel="stylesheet"/>
 <link href="./resources/css/footer.css" rel="stylesheet"/>
 <link rel="stylesheet" href="./resources/css/base.css">

@@ -23,4 +23,12 @@ public interface MypageService {
 	public List<Map<String, Object>> getPointLogList(Map<String, Object> map);
 
 	public int getPointLogTotalList(Map<String, Object> map);
+	
+	public void inputRecentLog(Map<String, Object> map);
+	
+	public void deleteRecentLog(Map<String, Object> map);
+
+	public int countRecentLog(Map<String, Object> map);
+	
+	public List<Map<String, Object>> getRecentLogList(Map<String, Object> map);
 }

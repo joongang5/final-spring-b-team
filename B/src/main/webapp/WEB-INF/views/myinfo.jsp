@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>내 정보 | 가구</title>
+<title>내 정보 | Spring.B</title>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 	function DaumPostcode() {
@@ -237,7 +237,7 @@
 						<h3>나의 쇼핑 활동</h3>
 						<ul class="sideMenu__items">
 							<li class="sideMenu__item"><a href="./orderhistory1.do">구매 내역 조회</a></li>
-							<li class="sideMenu__item"><a href="">최근 본 상품</a></li>
+							<li class="sideMenu__item"><a href="./mypage_recent.do">최근 본 상품</a></li>
 							<li class="sideMenu__item"><a href="./mypage_point.do">적립금 조회</a></li>
 							<li class="sideMenu__item"><a href="">상품 문의</a></li>
 							<li class="sideMenu__item"><a href="">1:1 문의</a></li>

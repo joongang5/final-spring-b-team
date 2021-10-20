@@ -78,4 +78,21 @@
 			</if>
 	</select>
 	
+	<insert id="inputRecentLog" parameterType="hashMap">
+		INSERT INTO recentLog(m_no, p_no) 
+		VALUES((SELECT m_no FROM member WHERE m_id=#{m_id}), #{p_no})
+	</insert>
+	
+	<select id ="countRecentLog" parameterType="HashMap" resultType="Integer">
+		SELECT COUNT(*) FROM recentLog WHERE m_no = (SELECT m_no FROM member WHERE m_id=#{m_id})
+	</select>
+	
+	<delete id="deleteRecentLog" parameterType="HashMap">
+		DELETE FROM recentLog WHERE re_no = (SELECT re_no FROM recentLog WHERE m_no = (SELECT m_no FROM member WHERE m_id=#{m_id}) ORDER BY re_no LIMIT 1) 
+	</delete>
+	
+	<select id ="getRecentLogList" parameterType="HashMap" resultType="HashMap">
+		SELECT * FROM recentLog_view WHERE m_no = (SELECT m_no FROM member WHERE m_id=#{m_id})
+	</select>
+	
 </mapper>

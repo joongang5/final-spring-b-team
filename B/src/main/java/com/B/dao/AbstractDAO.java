@@ -30,8 +30,6 @@ public class AbstractDAO {
 		return sqlSession.selectOne(queryID, map);
 	}
 	
-	
-
 	public int delete(String queryID, Map<String, Object> map) {
 		printQueryId(queryID);
 		return sqlSession.delete(queryID, map);
@@ -86,16 +84,8 @@ public class AbstractDAO {
 		sqlSession.insert(queryId, map);
 	}
 	
-	public int inputOrder(String queryId, Map<String, Object> map) {
+	public int input(String queryId, Map<String, Object> map) {
 		return sqlSession.insert(queryId, map);
-	}
-	
-	public int inputPointLog(String queryId, Map<String, Object> map) {
-		return sqlSession.insert(queryId, map);
-	}
-	
-	public int updateOrder(String queryId, Map<String, Object> map) {
-		return sqlSession.update(queryId, map);
 	}
 	
 	// 게시판 총 게시물 구하기

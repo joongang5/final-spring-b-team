@@ -8,8 +8,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>적립금 조회 | 가구</title>
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js">
+    <title>적립금 조회 | Spring.B</title>
     <script>
 	function linkPage(pageNo) {
 		location.href = "mypage_point.do?pageNo="
@@ -207,7 +206,7 @@
                    <h3>나의 쇼핑 활동</h3>
 						<ul class="sideMenu__items">
 							<li class="sideMenu__item"><a href="./orderhistory1.do">구매 내역 조회</a></li>
-							<li class="sideMenu__item"><a href="">최근 본 상품</a></li>
+							<li class="sideMenu__item"><a href="./mypage_recent.do">최근 본 상품</a></li>
 							<li class="sideMenu__item sideMenu__item--active"><a href="./mypage_point.do">적립금 조회</a></li>
 							<li class="sideMenu__item"><a href="">상품 문의</a></li>
 							<li class="sideMenu__item"><a href="">1:1 문의</a></li>

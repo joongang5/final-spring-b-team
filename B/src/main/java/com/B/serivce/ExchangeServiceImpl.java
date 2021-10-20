@@ -36,8 +36,19 @@ public class ExchangeServiceImpl implements ExchangeService {
 		return exchangeDAO.selectOne("admin2.getInfo", map);
 		
 	}
+	@Override
 	public int getTotalList(Map<String, Object> map) {
 		return exchangeDAO.totalList("admin2.getToTalList", map);
+	}
+	@Override
+	public void insertInfo2(Map<String, Object> map) {
+		exchangeDAO.register("admin2.insertInfo2", map);
+		
+	}
+	@Override
+	public void updateOState(Map<String, Object> map) {
+		exchangeDAO.update("admin2.updateOstate", map);
+		
 	}
 
 }

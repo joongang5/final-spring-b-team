@@ -7,7 +7,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>주문배송내역 조회 | 가구</title>
+<title>주문배송내역 조회 | Spring.B</title>
 
 <link rel="stylesheet"
 	href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
@@ -636,8 +636,8 @@ header, footer, aside, nav, section, article {
 						<ul class="sideMenu__items">
 							<li class="sideMenu__item sideMenu__item--active"><a
 								href="./orderhistory.do">구매 내역 조회</a></li>
-							<li class="sideMenu__item"><a href="">최근 본 상품</a></li>
-							<li class="sideMenu__item"><a href="./mypage_point.do"">적립금 조회</a></li>
+							<li class="sideMenu__item"><a href="./mypage_recent.do">최근 본 상품</a></li>
+							<li class="sideMenu__item"><a href="./mypage_point.do">적립금 조회</a></li>
 							<li class="sideMenu__item"><a href="">상품 문의</a></li>
 							<li class="sideMenu__item"><a href="">1:1 문의</a></li>
 						</ul>

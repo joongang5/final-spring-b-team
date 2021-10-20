@@ -65,4 +65,26 @@ public class MypageServiceImpl implements MypageService {
 	public int getPointLogTotalList(Map<String, Object> map) {
 		return mypageDAO.getPointLogTotalList(map);
 	}
+
+	@Override
+	public void inputRecentLog(Map<String, Object> map) {
+		mypageDAO.inputRecentLog(map);
+	}
+
+	@Override
+	public void deleteRecentLog(Map<String, Object> map) {
+		mypageDAO.deleteRecentLog(map);
+	}
+
+	@Override
+	public int countRecentLog(Map<String, Object> map) {
+		return mypageDAO.countRecentLog(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> getRecentLogList(Map<String, Object> map) {
+		return mypageDAO.getRecentLogList(map);
+	}
+
+
 }
