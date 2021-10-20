@@ -190,6 +190,19 @@ function login(m_id, m_pw) {
    text-align: center;
    float: right;
 }
+
+.findIdPW input { /* 아이디 비번 찾기 버튼 */
+   width: 150px;
+   border: 1px solid rgb(255, 138, 0);
+   background-color: white;
+   color: rgb(0, 0, 0); 
+   padding: 5px;
+   border-radius: 25px;
+   cursor: pointer;
+   text-align: center;
+   
+}
+
 .img-logo
 
 
@@ -231,9 +244,12 @@ function login(m_id, m_pw) {
   <div class="joinbt"> 
    
 <br>
-
    <input type="button" value="회원가입"  onclick="location.href='join.do'" >
    </div>
+   <div class="findIdPW">
+   <input type="button" value="아이디/비밀번호 찾기"  onclick="location.href='findID.do'" >
+   </div>
+  
    
 </form>
 </div>
