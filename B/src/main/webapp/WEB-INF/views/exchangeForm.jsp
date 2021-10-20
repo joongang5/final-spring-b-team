@@ -165,7 +165,7 @@ function registerExchange(o_no,pa_id,p_no,p_title,e_reason){
 <input name="p_title1" id="p_title1"  value="${getInfo.p_title}" style="width:300px;"readonly="readonly">
 <input type="hidden" name="p_no1" id="p_no1" value="${getInfo.p_no}" readonly="readonly">
 <input type="hidden" id="o_no1" value="${o_no}">
-<button onclick="exchangeService()" > 교환 접수하기 </button>
+<button onclick="exchangeService()" style="height: 37px; width: 150px;border-radius: 8px;font-size: 11pt;background-color:#ff8a00;"> 교환 접수하기 </button>
 
 
 </div>
