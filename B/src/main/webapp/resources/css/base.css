@@ -204,3 +204,24 @@ label .checkMark:after {
 }
 
 /*체크박스 디자인 끝*/
+
+select{
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: transparent;
+    background-image: url('../images/down.png');
+    background-size: 16px;
+    background-repeat: no-repeat;
+    background-position-y: 60%;
+    background-position-x: 94%;
+    width: 100px;
+    color: #403429;
+    font-family: 'Noto Serif KR';
+    font-weight: 500;
+    font-size: 11pt;
+}
+
+select:focus-visible{
+    outline: 2px solid #ff8a00;
+}

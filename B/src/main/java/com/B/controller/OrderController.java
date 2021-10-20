@@ -263,14 +263,21 @@ public class OrderController {
 		}
 		mv.addObject("paymentInfo", paymentInfo);
 		
-		if(jsonDTO.get("errorMsg") != null) {
-			mv.addObject("result", "error");
-			mv.addObject("errorMsg", jsonDTO.get("errorMsg"));
-			return mv;
-		}
 		
 		Map<String, Object> paymentErrorInfo = null;
 		//int result = 0; 그 전 코드에서는 밑에서 서비스 실행하고 리턴으로 받아왔지만 로직을 교체했으므로 일단 주석 처리
+		
+		if(jsonDTO.get("errorMsg") != null) {
+			mv.addObject("result", "error");
+			mv.addObject("errorMsg", jsonDTO.get("errorMsg"));
+			paymentErrorInfo = new HashMap<>();
+			paymentErrorInfo.put("l_ip", ""); //ip 입력은 일단 미루자
+			paymentErrorInfo.put("l_target", "Checkout");
+			paymentErrorInfo.put("l_data", "[결제 오류]" + jsonDTO.get("errorMsg"));
+			paymentErrorInfo.put("l_id", id);
+			logService.writeLog(paymentErrorInfo); 
+			return mv;
+		}
 		
 		//payment 테이블 다녀오기
 		try {

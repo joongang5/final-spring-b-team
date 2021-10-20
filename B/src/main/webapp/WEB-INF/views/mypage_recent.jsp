@@ -29,7 +29,7 @@
 
     .recent-content__body{
       display: flex;
-      margin: 10px 0;
+      /* margin: 10px 0; */
     }
 
     .recent-content__body+.recent-content__body{
@@ -120,7 +120,7 @@
     </nav>
     <main>
       <div class="myPage-title">
-        <h1>최근 본 상품 조회</h1>
+        <h1>최근 본 상품</h1>
       </div>
       <!--myPage 공통 부분 끝-->
       <div class="recent-notice">
