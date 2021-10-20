@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Map.Entry;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -48,14 +46,8 @@ public class OrderController {
 	@Resource (name = "logService")
 	private LogServiceImpl logService;
 
+
 	
-//	private IamportClient api;
-//	
-//	public OrderController() {
-//		// REST API 키와 REST API secret 를 아래처럼 순서대로 입력한다.
-//		this.api = new IamportClient("5287507517506742","dd927e5ef9f6a131e0c8d247e4b31828fb27d9324758dc336b55ca6dbd4d4bbd8793872445d13135");
-//	}
-//	
 	@RequestMapping(value = "/orderhistory.do")
 	public ModelAndView main1(CommandMap map) {
 

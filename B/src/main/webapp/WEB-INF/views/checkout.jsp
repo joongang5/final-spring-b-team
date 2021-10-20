@@ -120,6 +120,11 @@
 	finalWillPoint = Math.floor(finalWillPoint / 10) * 10;
 	let usePoint = 0;
 	
+	//적립금 처음부터 10원 단위로 절사하기 위한 처리
+	window.addEventListener('DOMContentLoaded', (willPointEvent) => {
+		document.getElementById("willPoint").innerHTML = finalWillPoint.toLocaleString('ko-KR');
+	});
+	
 	 function reflectPoint(totalAmount, usablePoint, maxPoint=0) {
 		usePoint = document.getElementById("usePoint").value;
 		
@@ -312,7 +317,6 @@
 			    },
 			    function (data) {
 			    	alert("결제는 이루어졌으나 결제 데이터 생성 도중에 실패했습니다. 관리자에게 문의해주세요.");
-			    	<%//로그 적는 코드%>
 			    	document.getElementById("loading").style.display = "none";
 			});
 			
@@ -999,8 +1003,7 @@ header a:after, footer a:after{height:0;}
 	        </div>
 	        <div class="payment-will-point-container">
 	          <div class="will-point__value">
-	          <!-- 포인트 10원 단위로 만들어야 함 -->
-	           <fmt:parseNumber var="willPoint" value="${totalAmount * 0.05 / 10}" integerOnly="false" />
+	           <c:set var="willPoint" value="${totalAmount * 0.05}"/>
 	            <span id="willPoint" class="amount__value"><fmt:formatNumber value="${willPoint}" pattern="#,###"/></span>원
 	          </div>
 	          <div class="will-point__section">
