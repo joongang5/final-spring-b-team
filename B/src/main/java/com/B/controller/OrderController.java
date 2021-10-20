@@ -265,7 +265,6 @@ public class OrderController {
 		
 		
 		Map<String, Object> paymentErrorInfo = null;
-		//int result = 0; 그 전 코드에서는 밑에서 서비스 실행하고 리턴으로 받아왔지만 로직을 교체했으므로 일단 주석 처리
 		
 		if(jsonDTO.get("errorMsg") != null) {
 			mv.addObject("result", "error");
@@ -283,6 +282,7 @@ public class OrderController {
 		try {
 			orderService.inputToPayment(paymentInfo);
 		} catch (Exception e) {
+			e.printStackTrace();
 			mv.addObject("result", "error");
 			mv.addObject("errorMsg", "결제는 진행되었으나 결제 정보 데이터 생성에 실패했습니다. 관리자에게 문의해주세요.");
 			//결제 데이터 생성 중 에러 발생하면 관리자도 알 수 있게 로그 등록
@@ -315,6 +315,7 @@ public class OrderController {
 			try {
 				orderService.downStock(orderedProduct);
 			} catch (Exception e) {
+				e.printStackTrace();
 				mv.addObject("result", "error");
 				mv.addObject("errorMsg", "결제는 진행되었으나 결제 상품 데이터 반영에 실패했습니다. 관리자에게 문의해주세요.");
 				paymentErrorInfo = new HashMap<>();
@@ -329,6 +330,7 @@ public class OrderController {
 			try {
 				orderService.inputToOrder_List(orderedProduct);
 			} catch (Exception e) {
+				e.printStackTrace();
 				mv.addObject("result", "error");
 				mv.addObject("errorMsg", "결제는 진행되었으나 주문서 생성중에 문제가 발생했습니다. 관리자에게 문의해주세요.");
 				paymentErrorInfo = new HashMap<>();
@@ -346,6 +348,7 @@ public class OrderController {
 		try {
 			orderService.calcPoint(paymentInfo);
 		} catch (Exception e) {
+			e.printStackTrace();
 			mv.addObject("result", "error");
 			mv.addObject("errorMsg", "결제와 주문서 작성은 진행되었으나 결제 데이터 반영에 실패했습니다. 관리자에게 문의해주세요.");
 			paymentErrorInfo = new HashMap<>();
@@ -367,6 +370,7 @@ public class OrderController {
 		try {
 			mypageService.inputPointLog(pointInfo);
 		} catch (Exception e) {
+			e.printStackTrace();
 			mv.addObject("result", "error");
 			mv.addObject("errorMsg", "결제와 주문서 작성은 진행되었으나 결제 데이터 반영에 실패했습니다. 관리자에게 문의해주세요.");
 			paymentErrorInfo = new HashMap<>();
@@ -385,6 +389,7 @@ public class OrderController {
 				mypageService.inputPointLog(pointInfo);
 			}
 		} catch (Exception e) {
+				e.printStackTrace();
 				mv.addObject("result", "error");
 				mv.addObject("errorMsg", "결제와 주문서 작성은 진행되었으나 결제 데이터 반영에 실패했습니다. 관리자에게 문의해주세요.");
 				paymentErrorInfo = new HashMap<>();

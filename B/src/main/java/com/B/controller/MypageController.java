@@ -187,8 +187,13 @@ public class MypageController {
 	}
 	
 	@GetMapping("/mypage_iframe.do")
-	public ModelAndView mypageIframe() {
+	public ModelAndView mypageIframe(CommandMap map, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("mypage_iframe");
+		
+		if (map.containsKey("to")) {
+			mv.addObject("to", map.get("to"));
+		}
+		
 		return mv;
 	}
 	

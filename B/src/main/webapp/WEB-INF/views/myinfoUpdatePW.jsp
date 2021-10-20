@@ -55,9 +55,10 @@
         }
 
     </style>
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js">
-</script>
+<script src="./resources/js/inParentWindow.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
 <script type="text/javascript">
+
 	$(document).ready(function() {
 		//alert("정상 작동확인");
 	});
@@ -102,7 +103,7 @@
 </head>
 <body>
 <c:if test="${sessionScope.m_id eq null }">
-	<c:redirect url="login.do" />
+	<script> inParentWindow(); </script>
 </c:if>
 <!--myPage 공통 부분-->
 <div id="layout-container">

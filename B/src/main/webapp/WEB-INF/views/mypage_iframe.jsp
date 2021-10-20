@@ -50,8 +50,25 @@ body {
 <c:import url="/header.do"/>
 </div>
 <div id="iframe-content">
-	<object data="./myinfo.do" width="1920px" height="813px">
-	    <embed src="./myinfo.do" width="1920px" height="813px"> </embed>
+	<object data="./
+		<c:choose>
+			<c:when test="${to == 'orderhistory'}">
+			orderhistory.do
+			</c:when>
+			<c:otherwise>
+			myinfo.do
+			</c:otherwise>
+		</c:choose>
+		" width="1920px" height="813px">
+	    <embed src="./
+			<c:choose>
+			<c:when test="${to == 'orderhistory'}">
+			orderhistory.do
+			</c:when>
+			<c:otherwise>
+			myinfo.do
+			</c:otherwise>
+		</c:choose>" width="1920px" height="813px"> </embed>
 	    Error: 마이페이지를 정상적으로 불러오지 못했습니다.
 	</object>
 </div>

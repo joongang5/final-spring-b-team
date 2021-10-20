@@ -9,6 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <title>적립금 조회 | Spring.B</title>
+    <script src="./resources/js/inParentWindow.js"></script>
     <script>
 	function linkPage(pageNo) {
 		location.href = "mypage_point.do?pageNo="
@@ -125,15 +126,11 @@
         }
 
         th:nth-child(2){
-            width: 15%;
+            width: 16%;
         }
 
         th:nth-child(3){
-            width: 35%;
-        }
-
-        td:nth-child(3){
-            width: 35%;
+            width: 34%;
         }
 
         .pointLogList__paging{
@@ -197,6 +194,9 @@
     </style>
 </head>
 <body>
+<c:if test="${sessionScope.m_id eq null }">
+	<script> inParentWindow(); </script>
+</c:if>
 <!--myPage 공통 부분-->
 <div id="layout-container">
     <div id="myPage-main-container">

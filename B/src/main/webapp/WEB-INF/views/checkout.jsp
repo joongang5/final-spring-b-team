@@ -128,6 +128,9 @@
 	 function reflectPoint(totalAmount, usablePoint, maxPoint=0) {
 		usePoint = document.getElementById("usePoint").value;
 		
+		if (usePoint == '') {
+			usePoint = 0;
+		}
 		if (usePoint % 10 != 0) {
 			alert("적립금은 10원 단위로만 사용 가능합니다.");
 			usePoint = Math.floor(usePoint / 10) * 10;
@@ -314,11 +317,15 @@
 			    	$("body").empty();
 			    	$("body").append(data);
 			    	$('html > head > title').text($("#title").val());
-			    },
+			    }/*,
 			    function (data) {
+			    	$("body").empty();
+			    	$("body").append(data);
+			    	$('html > head > title').text($("#title").val());
 			    	alert("결제는 이루어졌으나 결제 데이터 생성 도중에 실패했습니다. 관리자에게 문의해주세요.");
 			    	document.getElementById("loading").style.display = "none";
-			});
+			    	
+			}*/);
 			
 			//참고: 수령지 바꿀 수 있게 되면 order_list 테이블에 칼럼 추가해야 한다.
 		}

@@ -3,7 +3,6 @@ package com.B.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -140,19 +139,16 @@ public class IndexController {
 			List<Map<String, Object>> recentLogList = mypageService.getRecentLogList(map.getMap());
 			int result = 0;
 			 for(int i = 0; i < recentLogList.size(); i++){
-				 for (int j = 0; j < recentLogList.get(i).size(); j++) {
-					 if(map.get("p_no") == recentLogList.get(i).get("p_no")) {
+					 if(map.get("p_no").toString().equals(recentLogList.get(i).get("p_no").toString())) {
 						 result = 1;
 					 }
-				}
 			  }
 			if(result == 0) mypageService.inputRecentLog(map.getMap());
 
 			//최근 본 상품은 10개까지 저장하도록 처리
 			result = mypageService.countRecentLog(map.getMap());
-			if (result > 10) {
-				mypageService.deleteRecentLog(map.getMap());
-			}
+			if (result > 10) mypageService.deleteRecentLog(map.getMap());
+
 		}
 		
 		return mv;

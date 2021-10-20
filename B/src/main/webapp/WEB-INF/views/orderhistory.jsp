@@ -293,7 +293,7 @@ input[type=text], input[type=password] {
 	text-align: none;
 	/* 	font-family: "Malgun Gothic", "맑은 고딕", Dotum, "돋움", Arial, sans-serif;
  */
-	font-family: 'Noto Serif KR', serif;
+	font-family: 'IBM Plex Sans KR', sans-serif;
 }
 
 body {
@@ -493,7 +493,7 @@ header, footer, aside, nav, section, article {
 	text-indent: -999em
 }
 </style>
-
+<script src="./resources/js/inParentWindow.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 <!-- datepicker 한국어로 -->
@@ -625,9 +625,9 @@ header, footer, aside, nav, section, article {
 
 </head>
 <body>
-
-
-
+<c:if test="${sessionScope.m_id eq null }">
+	<script> inParentWindow(); </script>
+</c:if>
 	<!--myPage 공통 부분-->
 	<div id="layout-container">
 		<header id="header-space"></header>

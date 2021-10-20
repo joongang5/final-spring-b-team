@@ -8,6 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <title>최근 본 상품 | Spring.B</title>
+  <script src="./resources/js/inParentWindow.js"></script>
   <link rel="stylesheet" href="./resources/css/base.css">
   <link rel="stylesheet" href="./resources/css/mypage.css">
   <link href="./resources/css/footer.css" rel="stylesheet"/>
@@ -19,12 +20,11 @@
     }
 
     .recentList-contents-container{
-      /* margin-top: 30px; */
+      margin-top: 30px;
       border-top: 4px solid #eeded5;
     }
 
     .recent-content{
-      margin-top: 20px;
     }
 
     .recent-content__body{
@@ -145,7 +145,7 @@
 	                </div>
 	                <div class="product-content__tag-container">
 	                <div class="product-content__name">
-	                    <a href="./detail.do?category=${list.c_main}&&sub=${list.c_sub}&&product=${list.p_no}">${list.p_title}</a>
+	                    <a href="javascript:void(0);" onclick="inParentWindow('./detail.do?category=${list.c_main}&&sub=${list.c_sub}&&product=${list.p_no}');">${list.p_title}</a>
 	                </div>
 	                <div class="product-content__price">
 	                  <span class="amount__value"><fmt:formatNumber value="${list.p_price}" pattern="#,###"/></span>원

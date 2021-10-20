@@ -203,7 +203,7 @@ input[type="date"] {
     color: #403429;
     height: 33px;
     font-size: 11pt;
-    font-family: 'Noto Serif KR';
+    font-family: 'IBM Plex Sans KR';
 }
 
 .keyword-search__bar select{
@@ -343,5 +343,5 @@ label .checkMark:after {
     width: 8%;
     font-size: 12pt;
     color: #403429;
-    font-family: 'Noto Serif KR';
+    font-family: 'IBM Plex Sans KR';
     }

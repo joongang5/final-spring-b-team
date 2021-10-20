@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>내 정보 | Spring.B</title>
+<script src="./resources/js/inParentWindow.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 	function DaumPostcode() {
@@ -226,7 +227,7 @@
 </head>
 <body>
 <c:if test="${sessionScope.m_id eq null }">
-	<c:redirect url="login.do" />
+	<script> inParentWindow(); </script>
 </c:if>
 	<!--myPage 공통 부분-->
 	<div id="layout-container">

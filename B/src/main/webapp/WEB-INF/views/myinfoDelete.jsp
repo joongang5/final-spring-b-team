@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 탈퇴 | Spring.B</title>
+<script src="./resources/js/inParentWindow.js"></script>
 <link rel="stylesheet" href="./resources/css/base.css">
 <link rel="stylesheet" href="./resources/css/mypage.css">
 <link href="./resources/css/footer.css" rel="stylesheet"/>
@@ -57,7 +58,7 @@
 </head>
 <body>
 <c:if test="${sessionScope.m_id eq null }">
-	<c:redirect url="login.do" />
+	<script> inParentWindow(); </script>
 </c:if>
 	<!--myPage 공통 부분-->
 	<div id="layout-container">
