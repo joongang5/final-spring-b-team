@@ -112,4 +112,10 @@ public class AbstractDAO {
 	public void insert(String queryID, Map<String, Object> map) {
 		sqlSession.insert(queryID, map);
 	}
+	
+	//20211020 정원우 게시판 글 작성 추가
+	public int insertNotice(String queryID, Map<String, Object> map) {
+		return sqlSession.insert(queryID, map);
+	}
+	
 }

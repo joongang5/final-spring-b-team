@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="notice">
+
+	<select id ="noticeList_important" parameterType="HashMap" resultType="HashMap">
+		SELECT * FROM notice_view WHERE n_important=1 ORDER BY n_no DESC
+	</select>
+	
+	<select id ="noticeList_normal" parameterType="HashMap" resultType="HashMap">
+		SELECT * FROM notice_view WHERE n_important=0 ORDER BY n_no DESC
+	</select>
+	
+	<select id="noticeDetail" parameterType="HashMap"  resultType="HashMap">
+		SELECT * FROM notice_view WHERE n_no=#{n_no}
+	</select>
+	
+	<insert id = "noticeWrite" parameterType="HashMap">
+		INSERT INTO notice(n_title, n_important, n_content, m_no) VALUES(#{n_title}, #{n_important}, #{n_content}, #{m_no})
+	</insert>
+	
+	<delete id = "noticeDelete" parameterType="HashMap">
+		DELETE FROM notice WHERE n_no=#{n_no}
+	</delete>
+	
+	<update id ="noticeUpdate" parameterType="HashMap">
+		UPDATE notice SET n_title=#{n_title}, n_content=#{n_content}, n_important=#{n_important} WHERE n_no=#{n_no}
+		</update>
+	
+</mapper>
