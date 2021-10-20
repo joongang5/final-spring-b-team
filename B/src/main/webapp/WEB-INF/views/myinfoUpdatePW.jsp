@@ -6,6 +6,46 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 변경 | Spring.B</title>
+<script src="./resources/js/inParentWindow.js"></script>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+
+	function pw1Check() {
+		var pw1 = $("#pw1").val();
+		if (pw1 == "" || pw1.length < 5) {
+			$("#checkResult1").css("color", "red");
+			$("#checkResult1").text("비밀번호는 최소 다섯 글자 이상이어야 합니다.");
+			$("#pw1").focus();
+			$("#updateBtn").attr("disabled", true);
+			return false;
+		} else {
+			$("#checkResult1").css("color", "blue");
+			$("#checkResult1").text("");
+			return false;
+		}
+	}
+
+	function pw2Check() {
+		var pw1 = $("#pw1").val();
+		var pw2 = $("#pw2").val();
+		if (pw1 != pw2) {
+			$("#checkResult2").css("color", "red");
+			$("#checkResult2").text("비밀번호가 일치하지 않습니다.");
+			$("#pw1").focus();
+			$("#updateBtn").attr("disabled", true);
+			return false;
+		} else {
+			$("#checkResult2").css("color", "blue");
+			$("#checkResult2").text("");
+			$("#updateBtn").attr("disabled", false);
+			return false;
+		}
+	}
+
+	function submit() {
+		alert("비밀번호가 수정되었습니다.");
+	}
+</script>
 <link rel="stylesheet" href="./resources/css/base.css">
 <link rel="stylesheet" href="./resources/css/mypage.css">
 <link href="./resources/css/footer.css" rel="stylesheet"/>
@@ -55,51 +95,6 @@
         }
 
     </style>
-<script src="./resources/js/inParentWindow.js"></script>
-<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
-<script type="text/javascript">
-
-	$(document).ready(function() {
-		//alert("정상 작동확인");
-	});
-
-	function pw1Check() {
-		var pw1 = $("#pw1").val();
-		if (pw1 == "" || pw1.length < 5) {
-			$("#checkResult1").css("color", "red");
-			$("#checkResult1").text("비밀번호는 최소 다섯 글자 이상이어야 합니다.");
-			$("#pw1").focus();
-			$("#updateBtn").attr("disabled", true);
-			return false;
-		} else {
-			$("#checkResult1").css("color", "blue");
-			$("#checkResult1").text("");
-			return false;
-		}
-	}
-
-	function pw2Check() {
-		var pw1 = $("#pw1").val();
-		var pw2 = $("#pw2").val();
-		if (pw1 != pw2) {
-			$("#checkResult2").css("color", "red");
-			$("#checkResult2").text("비밀번호가 일치하지 않습니다.");
-			$("#pw1").focus();
-			$("#updateBtn").attr("disabled", true);
-			return false;
-		} else {
-			$("#checkResult2").css("color", "blue");
-			$("#checkResult2").text("");
-			$("#updateBtn").attr("disabled", false);
-			return false;
-		}
-	}
-
-	function submit() {
-		alert("비밀번호가 수정되었습니다.");
-	}
-</script>
-<title>비밀번호수정</title>
 </head>
 <body>
 <c:if test="${sessionScope.m_id eq null }">

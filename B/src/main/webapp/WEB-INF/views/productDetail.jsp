@@ -95,6 +95,9 @@
 	}
 </script>
 <body>
+<c:if test="${sessionScope.m_grade ne 1 }">
+	<c:redirect url="login.do" />
+</c:if>
 	<!--admin 공통 부분-->
 <header id="admin-header">
   <c:import url="/adminHeader.do"/>

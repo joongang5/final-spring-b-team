@@ -10,7 +10,7 @@
 <script type="text/javascript">
   function logout(){
 	  sessionStorage.clear();
-	  window.location.replace("http://localhost:8080/B/index.do")
+	  window.location.replace("index.do")
   }
 </script>
 <body>

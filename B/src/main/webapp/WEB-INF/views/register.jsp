@@ -138,6 +138,9 @@ function selectSub(c_sub){
 </script>
 <body>
 <!--admin 공통 부분-->
+<c:if test="${sessionScope.m_grade ne 1 }">
+	<c:redirect url="login.do" />
+</c:if>
 <header id="admin-header">
   <c:import url="/adminHeader.do"/>
 </header>

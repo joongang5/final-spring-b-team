@@ -92,7 +92,7 @@
 	</delete>
 	
 	<select id ="getRecentLogList" parameterType="HashMap" resultType="HashMap">
-		SELECT * FROM recentLog_view WHERE m_no = (SELECT m_no FROM member WHERE m_id=#{m_id})
+		SELECT * FROM recentLog_view WHERE m_no = (SELECT m_no FROM member WHERE m_id=#{m_id}) AND p_state = 1;
 	</select>
 	
 </mapper>

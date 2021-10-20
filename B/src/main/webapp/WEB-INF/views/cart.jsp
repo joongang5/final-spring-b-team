@@ -444,6 +444,9 @@ function goToCheckout() {
 </script>
 </head>
 <body>
+<c:if test="${sessionScope.m_id eq null }">
+	<c:redirect url="login.do" />
+</c:if>
 	<div id="header-space">
 		<c:import url="/header.do"/>
 	</div>

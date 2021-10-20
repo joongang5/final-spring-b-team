@@ -136,6 +136,7 @@
         .pointLogList__paging{
             text-align: center;
             margin-top: 15px;
+            font-size: 17pt;
         }
 
         .pointLogList__paging a:after{
@@ -308,7 +309,13 @@
                 </table>
                 <div class="pointLogList__paging">
                     <!--페이징 출력-->
-                    <ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="linkPage"/>
+                    <c:choose>
+                    	<c:when test="${fn:length(pointLogList) > 0}">
+                    		<ui:pagination paginationInfo="${paginationInfo}" type="image" jsFunction="linkPage"/>
+                    	</c:when>
+                    	<c:otherwise>
+                    	</c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </main>

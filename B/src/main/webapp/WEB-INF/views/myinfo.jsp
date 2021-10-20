@@ -227,7 +227,8 @@
 </head>
 <body>
 <c:if test="${sessionScope.m_id eq null }">
-	<script> inParentWindow(); </script>
+	<script> alert("?");
+	inParentWindow(); </script>
 </c:if>
 	<!--myPage 공통 부분-->
 	<div id="layout-container">

@@ -37,16 +37,17 @@ public class MypageController {
 	@GetMapping("/myinfo.do")
 	public ModelAndView myinfo(CommandMap map, HttpServletRequest request) {
 		HttpSession session = request.getSession();
+		ModelAndView mv = new ModelAndView("myinfo");
 		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
 			map.put("m_id", session.getAttribute("m_id"));
 			map.put("m_name", session.getAttribute("m_name"));
-			ModelAndView mv = new ModelAndView("myinfo");
 			Map<String, Object> myinfo = mypageService.myinfo(map.getMap());
 			mv.addObject("myinfo", myinfo);
-			return mv;
-		} else {
-			return new ModelAndView("login");
 		}
+		return mv;
+//		else {
+//			return new ModelAndView("login");
+//		}
 	}
 
 	@PostMapping("/myinfoUpdatePhone.do")
@@ -56,10 +57,13 @@ public class MypageController {
 			map.put("m_id", session.getAttribute("m_id"));
 			map.put("m_name", session.getAttribute("m_name"));
 			mypageService.myinfoUpdatePhone(map.getMap());
-			return "redirect:/myinfo.do";
-		} else {
-			return "redirect:/login.do";
 		}
+		return "redirect:/myinfo.do";
+//			return "redirect:/myinfo.do";
+//		} 
+//		else {
+//			return "redirect:/login.do";
+//		}
 	}
 
 	@PostMapping("/myinfoUpdateEmail.do")
@@ -69,10 +73,10 @@ public class MypageController {
 			map.put("m_id", session.getAttribute("m_id"));
 			map.put("m_name", session.getAttribute("m_name"));
 			mypageService.myinfoUpdateEmail(map.getMap());
-			return "redirect:/myinfo.do";
-		} else {
-			return "redirect:/login.do";
-		}
+		} return "redirect:/myinfo.do";
+//		} else {
+//			return "redirect:/login.do";
+//		}
 	}
 
 	@PostMapping("/myinfoUpdateAddr.do")
@@ -82,10 +86,10 @@ public class MypageController {
 			map.put("m_id", session.getAttribute("m_id"));
 			map.put("m_name", session.getAttribute("m_name"));
 			mypageService.myinfoUpdateAddr(map.getMap());
-			return "redirect:/myinfo.do";
-		} else {
-			return "redirect:/login.do";
-		}
+		} return "redirect:/myinfo.do";
+//		} else {
+//			return "redirect:/login.do";
+//		}
 	}
 	
 	@PostMapping("/myinfoUpdateAddr2.do")
@@ -99,10 +103,10 @@ public class MypageController {
 			map.put("m_addr", m_addr);
 			
 			mypageService.myinfoUpdateAddr(map.getMap());
-			return "redirect:/myinfo.do";
-		} else {
-			return "redirect:/login.do";
-		}
+		}	return "redirect:/myinfo.do";
+//		} else {
+//			return "redirect:/login.do";
+//		}
 	}
 	
 
@@ -112,10 +116,10 @@ public class MypageController {
 		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
 			map.put("m_id", session.getAttribute("m_id"));
 			map.put("m_name", session.getAttribute("m_name"));
-			return "myinfoDelete";
-		} else {
-			return "login";
-		}
+		}	return "myinfoDelete";
+//		} else {
+//			return "login";
+//		}
 	}
 
 	@GetMapping("/myinfoUpdatePW.do")
@@ -124,10 +128,10 @@ public class MypageController {
 		if (session.getAttribute("m_id") != null && session.getAttribute("m_name") != null) {
 			map.put("m_id", session.getAttribute("m_id"));
 			map.put("m_name", session.getAttribute("m_name"));
-			return "myinfoUpdatePW";
-		} else {
-			return "login";
-		}
+		}	return "myinfoUpdatePW";
+//		} else {
+//			return "login";
+//		}
 	}
 
 	@PostMapping("/myAccountDelete.do")
@@ -148,11 +152,13 @@ public class MypageController {
 			
 			mypageService.myAccountDelete(map.getMap());
 			
-			return "redirect:/login.do";
+		return "redirect:/myinfoDelete.do";
+//			return "redirect:/login.do";
 		} else {
 			map2.put("l_data", "회원탈퇴 실패");
 			logService.writeLog(map2);
-			return "redirect:/login.do";
+//			return "redirect:/login.do";
+			return "redirect:/myinfoDelete.do";
 		}
 	}
 
@@ -182,7 +188,8 @@ public class MypageController {
 			map2.put("l_data", "비밀번호 변경 실패");
 			logService.writeLog(map2);
 			
-			return "redirect:/login.do";
+			return "redirect:/myinfoUpdatePW.do";
+//			return "redirect:/login.do";
 		}
 	}
 	
@@ -202,45 +209,47 @@ public class MypageController {
 		ModelAndView mv = new ModelAndView("mypage_point");
 		
 		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("m_id");
-		map.put("m_id", id);
-		
-		Map<String, Object> memberInfo = loginService.login(id);
-		mv.addObject("m_point", memberInfo.get("m_point"));
-
-		if (map.containsKey("category")) {
-			if (!"gain".equals(map.get("category"))
-					&& !"use".equals(map.get("category")) ) {
-				map.remove("category");
+		if(session.getAttribute("m_id") != null) {
+			String id = (String) session.getAttribute("m_id");
+			map.put("m_id", id);
+			
+			Map<String, Object> memberInfo = loginService.login(id);
+			mv.addObject("m_point", memberInfo.get("m_point"));
+	
+			if (map.containsKey("category")) {
+				if (!"gain".equals(map.get("category"))
+						&& !"use".equals(map.get("category")) ) {
+					map.remove("category");
+				}
 			}
+	
+			PaginationInfo paginationInfo = new PaginationInfo();
+			int pageNo = 1;
+			int listScale = 10;
+			int pageScale = 5;
+	
+			if (request.getParameter("pageNo") != null) {
+				pageNo = Util.str2Int2(request.getParameter("pageNo"));
+			}
+	
+			paginationInfo.setCurrentPageNo(pageNo);
+			paginationInfo.setRecordCountPerPage(listScale);
+			paginationInfo.setPageSize(pageScale);
+	
+			int startPage = paginationInfo.getFirstRecordIndex();
+			int lastPage = paginationInfo.getRecordCountPerPage();
+	
+			map.put("startPage", startPage);
+			map.put("lastPage", lastPage);
+			
+			List<Map<String, Object>> pointLogList = mypageService.getPointLogList(map.getMap());
+			int totalRecords = mypageService.getPointLogTotalList(map.getMap());
+			paginationInfo.setTotalRecordCount(totalRecords);
+			mv.addObject("paginationInfo", paginationInfo);
+			mv.addObject("pageNo", pageNo);
+			mv.addObject("totalRecords", totalRecords);
+			mv.addObject("pointLogList", pointLogList);
 		}
-
-		PaginationInfo paginationInfo = new PaginationInfo();
-		int pageNo = 1;
-		int listScale = 10;
-		int pageScale = 5;
-
-		if (request.getParameter("pageNo") != null) {
-			pageNo = Util.str2Int2(request.getParameter("pageNo"));
-		}
-
-		paginationInfo.setCurrentPageNo(pageNo);
-		paginationInfo.setRecordCountPerPage(listScale);
-		paginationInfo.setPageSize(pageScale);
-
-		int startPage = paginationInfo.getFirstRecordIndex();
-		int lastPage = paginationInfo.getRecordCountPerPage();
-
-		map.put("startPage", startPage);
-		map.put("lastPage", lastPage);
-		
-		List<Map<String, Object>> pointLogList = mypageService.getPointLogList(map.getMap());
-		int totalRecords = mypageService.getPointLogTotalList(map.getMap());
-		paginationInfo.setTotalRecordCount(totalRecords);
-		mv.addObject("paginationInfo", paginationInfo);
-		mv.addObject("pageNo", pageNo);
-		mv.addObject("totalRecords", totalRecords);
-		mv.addObject("pointLogList", pointLogList);
 
 		return mv;
 	}
@@ -250,11 +259,13 @@ public class MypageController {
 		ModelAndView mv = new ModelAndView("mypage_recent");
 		
 		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("m_id");
-		map.put("m_id", id);
-		
-		List<Map<String, Object>> recentLogList = mypageService.getRecentLogList(map.getMap());
-		mv.addObject("recentLogList", recentLogList);
+		if(session.getAttribute("m_id") != null) {
+			String id = (String) session.getAttribute("m_id");
+			map.put("m_id", id);
+			
+			List<Map<String, Object>> recentLogList = mypageService.getRecentLogList(map.getMap());
+			mv.addObject("recentLogList", recentLogList);
+		}
 		
 		return mv;
 	}
