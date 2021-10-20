@@ -10,7 +10,7 @@
 	</select>
 	
 	<select id ="noticeList_normal" parameterType="HashMap" resultType="HashMap">
-		SELECT * FROM notice_view WHERE n_important=0 ORDER BY n_no DESC
+		SELECT * FROM notice_view WHERE n_important=0 ORDER BY n_no DESC LIMIT #{startPage}, #{lastPage}
 	</select>
 	
 	<select id="noticeDetail" parameterType="HashMap"  resultType="HashMap">
@@ -28,5 +28,10 @@
 	<update id ="noticeUpdate" parameterType="HashMap">
 		UPDATE notice SET n_title=#{n_title}, n_content=#{n_content}, n_important=#{n_important} WHERE n_no=#{n_no}
 		</update>
+		
+	<select id="noticeList_normal_Total" resultType="Integer"
+		parameterType="HashMap">
+		SELECT COUNT(*) FROM notice_view WHERE n_important=0 ORDER BY n_no DESC
+		</select>
 	
 </mapper>

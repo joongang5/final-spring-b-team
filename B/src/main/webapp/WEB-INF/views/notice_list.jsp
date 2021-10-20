@@ -9,6 +9,8 @@
     <meta charset="UTF-8">
     <title>공지사항 | Spring.B</title>
 <link rel="stylesheet" href="./resources/css/base.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <style>
     .board-container{
         margin-top: 50px;
@@ -102,6 +104,11 @@
     }
 
 </style>
+<script type="text/javascript">
+function linkPage(pageNo) {
+location.href = "./notice_list.do?pageNo="+pageNo;
+}
+</script>
 </head>
 <body>
 <div id="layout-container">
@@ -148,7 +155,7 @@
                 </table>
                 <div class="boardList__paging">
                     <!--페이징 출력-->
-                    1 2 3 4 5
+                    <ui:pagination paginationInfo="${paginationInfo }" type="text" jsFunction="linkPage" />
                 </div>
             </div>
         </main>

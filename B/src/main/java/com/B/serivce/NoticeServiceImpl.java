@@ -44,4 +44,9 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeDAO.noticeList_normal(map);
 	}
 
+	@Override
+	public int noticeList_normal_Total(Map<String, Object> map) {
+		return noticeDAO.noticeList_normal_Total(map);
+	}
+
 }
