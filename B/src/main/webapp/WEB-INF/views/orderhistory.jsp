@@ -126,9 +126,9 @@ ul.imgs li {
 
 .bullets {
 	position: absolute;
-	left: 40%;
+	left: 50%;
 	transform: translateX(-50%);
-	bottom: 5px;
+	bottom: 3px;
 	z-index: 2;
 }
 
