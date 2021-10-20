@@ -65,6 +65,62 @@ function login(m_id, m_pw) {
          
          
       }
+
+   
+   
+   $(document).ready(function() {
+		var id = getCookie("id");
+		$("input[name='m_id']").val(id);
+		
+		if ($("input[name='m_id']").val() != "") {
+			$("#saveId").attr("checked", true);
+		}
+		$("#saveId").change(function() {
+			if ($("#saveId").is(":checked")) {
+				var id = $("input[name='m_id']").val();
+				setCookie("id", id, 7);
+			} else {
+				deleteCookie("id");
+			}
+		});
+		$("input[name='m_id']").keyup(function() {
+			if ($("#saveId").is(":checked")) {
+				var id = $("input[name='m_id']").val();
+				setCookie("id", id, 7);
+			}
+		});
+	});
+
+   
+   function setCookie(cookieName, value, exdays) {
+		var exdate = new Date();
+		exdate.setDate(exdate.getDate() + exdays);
+		var cookieValue = escape(value)
+				+ ((exdays == null) ? "" : "; expires=" + exdate.toGMTString());
+		document.cookie = cookieName + "=" + cookieValue;
+	}
+	function deleteCookie(cookieName) {
+		var expireDate = new Date();
+		expireDate.setDate(expireDate.getDate() - 1);
+		document.cookie = cookieName + "= " + "; expires="
+				+ expireDate.toGMTString();
+	}
+	function getCookie(cookieName) {
+		cookieName = cookieName + '=';
+		var cookieData = document.cookie;
+		var start = cookieData.indexOf(cookieName);
+		var cookieValue = '';
+		if (start != -1) {
+			start += cookieName.length;
+			var end = cookieData.indexOf(';', start);
+			if (end == -1)
+				end = cookieData.length;
+			cookieValue = cookieData.substring(start, end);
+		}
+		return unescape(cookieValue);
+	}   
+	
+	
 </script>
 <style type="text/css">
 
@@ -162,8 +218,8 @@ function login(m_id, m_pw) {
    <input type="password" id="m_pw"  name="m_pw" placeholder="비밀번호를 입력하세요" required="required" >
   </div>
    
- 
    <br>
+   <input type="checkbox" id="saveId"> 아이디 기억하기
    <br>
    
    <div class="loginbt"> 
@@ -187,43 +243,6 @@ function login(m_id, m_pw) {
 <br>
 <br>
 <br>
-<!-- 네이버아이디로로그인 버튼 노출 영역 
-<div id="naverIdLogin"></div>-->
-<!-- //네이버아이디로로그인 버튼 노출 영역 -->
-
-<!-- 네이버아디디로로그인 초기화 Script -->
-<!--  
-<script type="text/javascript">
-   var naverLogin = new naver.LoginWithNaverId(
-      {
-         clientId: "HZHfCuzMD7Ns_uzbjC6R",
-         callbackUrl: "http://localhost:8080/B/naverCallback.do",
-         isPopup: false, 
-         loginButton: {color: "green", type: 3, height: 40} 
-      }
-   );
-   
-
-   naverLogin.init();
-   
-
-window.addEventListener('load', function () {
-         naverLogin.getLoginStatus(function (status) {
-            if (status) {
-               /* (5) 필수적으로 받아야하는 프로필 정보가 있다면 callback처리 시점에 체크 */
-               sessionStorage.setItem("userInfo",naverLogin.user.id);
-               sessionStorage.setItem("userEmail",naverLogin.user.getEmail());
-               sessionStorage.setItem("userName",naverLogin.user.getName());
-                    
-
-               window.location.replace("http://" + window.location.hostname + ( (location.port==""||location.port==undefined)?"":":" + location.port) + "/B/index.do");
-            } else {
-               console.log("callback 처리에 실패하였습니다.");
-            }
-         });
-      });
-</script>
--->
 
 
 
