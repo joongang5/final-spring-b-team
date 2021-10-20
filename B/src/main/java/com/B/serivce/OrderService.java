@@ -17,8 +17,9 @@ public interface OrderService {
 
 	public int downStock(Map<String, Object> orderedProduct);
 
-	public int downPoint(Map<String, Object> paymentInfo);
+	public int calcPoint(Map<String, Object> paymentInfo);
 
 	public int checkStock(Map<String, Object> orderedProduct);
+
 
 }

@@ -32,4 +32,49 @@
 	<select id ="cartList" parameterType="HashMap" resultType="HashMap">
 		SELECT * FROM cart_view WHERE m_id=#{m_id}
 	</select>
+	
+	<insert id="inputPointLog" parameterType="hashMap">
+		INSERT INTO pointLog(m_no, po_source, po_vary, po_value) 
+		VALUES(
+			(SELECT m_no FROM member WHERE m_id=#{m_id}), 
+			<choose>
+				<when test="pa_id != null">
+				CONCAT('결제(', #{pa_id}, ')'),
+				</when>
+				<otherwise>
+				'내용 불명',
+				</otherwise>
+			</choose>
+			#{po_vary},
+			#{po_value}
+		)
+	</insert>
+	
+	<select id="getPointLogList" parameterType="HashMap" resultType="HashMap">
+		SELECT * FROM pointLog 
+				<choose>
+					<when test='category == "gain"'>
+					WHERE po_vary = '+' 
+					</when>
+					<when test='category == "use"'>
+					WHERE po_vary = '-' 
+					</when>
+				</choose>
+		ORDER BY po_date DESC LIMIT #{startPage}, #{lastPage}
+	</select>
+	
+	<select id="getPointLogTotalList" parameterType="HashMap" resultType="Integer">
+		SELECT COUNT(*) FROM pointLog 
+			<if test="category != null">
+				<choose>
+					<when test='category == "gain"'>
+					WHERE po_vary = '+' 
+					</when>
+					<when test='category == "gain"'>
+					WHERE po_vary = '-' 
+					</when>
+				</choose>
+			</if>
+	</select>
+	
 </mapper>

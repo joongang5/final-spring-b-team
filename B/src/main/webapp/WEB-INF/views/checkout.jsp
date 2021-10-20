@@ -117,14 +117,16 @@
 	
 	let finalTotalAmount = ${totalAmount};
 	let finalWillPoint = Math.round(finalTotalAmount * 0.05);
+	finalWillPoint = Math.floor(finalWillPoint / 10) * 10;
 	let usePoint = 0;
 	
 	 function reflectPoint(totalAmount, usablePoint, maxPoint=0) {
 		usePoint = document.getElementById("usePoint").value;
-		if (usePoint % 100 != 0) {
-			alert("적립금은 100원 단위로만 사용 가능합니다.");
-			usePoint = 0;
-			document.getElementById("usePoint").value = '';
+		
+		if (usePoint % 10 != 0) {
+			alert("적립금은 10원 단위로만 사용 가능합니다.");
+			usePoint = Math.floor(usePoint / 10) * 10;
+			document.getElementById("usePoint").value = usePoint;
 		}
 		if (usePoint > usablePoint) {
 			alert("사용 가능 적립금을 초과했습니다.");
@@ -135,9 +137,14 @@
 			usePoint = maxPoint;
 			document.getElementById("usePoint").value = maxPoint;
 		}
+		if (totalAmount < usePoint) {
+			usePoint = Math.floor(totalAmount / 10) * 10; //적립금은 10원 단위로만 사용 가능하므로 결제금액이 10 단위가 아닐 때를 위한 처리
+			document.getElementById("usePoint").value = usePoint;
+		}
 		
 		finalTotalAmount = totalAmount - usePoint;
 		finalWillPoint = Math.round(finalTotalAmount * 0.05);
+		finalWillPoint = Math.floor(finalWillPoint / 10) * 10;
 		
 		document.getElementById("reflectedPoint").innerHTML = usePoint;
 		document.getElementById("totalAmount").innerHTML = finalTotalAmount.toLocaleString('ko-KR');
@@ -305,6 +312,7 @@
 			    },
 			    function (data) {
 			    	alert("결제는 이루어졌으나 결제 데이터 생성 도중에 실패했습니다. 관리자에게 문의해주세요.");
+			    	<%//로그 적는 코드%>
 			    	document.getElementById("loading").style.display = "none";
 			});
 			
@@ -991,7 +999,8 @@ header a:after, footer a:after{height:0;}
 	        </div>
 	        <div class="payment-will-point-container">
 	          <div class="will-point__value">
-	           <c:set var="willPoint" value="${totalAmount * 0.05}"/>
+	          <!-- 포인트 10원 단위로 만들어야 함 -->
+	           <fmt:parseNumber var="willPoint" value="${totalAmount * 0.05 / 10}" integerOnly="false" />
 	            <span id="willPoint" class="amount__value"><fmt:formatNumber value="${willPoint}" pattern="#,###"/></span>원
 	          </div>
 	          <div class="will-point__section">

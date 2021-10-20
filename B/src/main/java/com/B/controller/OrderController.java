@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -23,7 +24,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.B.common.CommandMap;
+import com.B.serivce.LogServiceImpl;
 import com.B.serivce.LoginService;
+import com.B.serivce.MypageService;
 import com.B.serivce.OrderService;
 import com.B.util.Util;
 import com.google.gson.JsonArray;
@@ -40,6 +43,10 @@ public class OrderController {
 	private OrderService orderService;
 	@Resource(name = "loginService")
 	private LoginService loginService;
+	@Resource(name = "mypageService")
+	private MypageService mypageService;
+	@Resource (name = "logService")
+	private LogServiceImpl logService;
 
 	
 //	private IamportClient api;
@@ -240,10 +247,12 @@ public class OrderController {
        		}
 		 */
 		ModelAndView mv = new ModelAndView();
+		Map<String, Object> paymentInfo = new HashMap<>();
+		
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("m_id");
+		paymentInfo.put("m_id",id);
 		
-		Map<String, Object> paymentInfo = new HashMap<>();
 		paymentInfo.put("pa_id",jsonDTO.get("pa_id"));
 		paymentInfo.put("pa_amount",jsonDTO.get("pa_amount"));
 		paymentInfo.put("pa_plan",jsonDTO.get("pa_plan"));
@@ -252,7 +261,11 @@ public class OrderController {
 		paymentInfo.put("finalWillPoint",jsonDTO.get("finalWillPoint"));
 		paymentInfo.put("buyer_addr",jsonDTO.get("buyer_addr"));
 		paymentInfo.put("buyer_postcode",jsonDTO.get("buyer_postcode"));
-		paymentInfo.put("m_id",id);
+		/*
+		for(Entry<String, Object> elem : jsonDTO.entrySet()){ 
+			paymentInfo.put(elem.getKey(), elem.getValue()); 
+		}
+		*/
 		if (jsonDTO.get("pa_amount") == null) {
 			paymentInfo.put("pa_amount", 0);
 		}
@@ -264,22 +277,25 @@ public class OrderController {
 			return mv;
 		}
 		
+		Map<String, Object> paymentErrorInfo = null;
+		//int result = 0; 그 전 코드에서는 밑에서 서비스 실행하고 리턴으로 받아왔지만 로직을 교체했으므로 일단 주석 처리
+		
 		//payment 테이블 다녀오기
-		int result = orderService.inputToPayment(paymentInfo);
-		if(result == 0) {
+		try {
+			orderService.inputToPayment(paymentInfo);
+		} catch (Exception e) {
 			mv.addObject("result", "error");
 			mv.addObject("errorMsg", "결제는 진행되었으나 결제 정보 데이터 생성에 실패했습니다. 관리자에게 문의해주세요.");
+			//결제 데이터 생성 중 에러 발생하면 관리자도 알 수 있게 로그 등록
+			//결제 진행중에 발생한 오류는 아임포트에서 확인 가능하지만, 결제 데이터 생성 중에 발생한 오류는 여기서 처리해야 한다.
+			paymentErrorInfo = new HashMap<>();
+			paymentErrorInfo.put("l_ip", ""); //ip 입력은 일단 미루자
+			paymentErrorInfo.put("l_target", "Checkout");
+			paymentErrorInfo.put("l_data", "[결제 오류] payment 테이블에 결제 정보 생성 실패");
+			paymentErrorInfo.put("l_id", id);
+			logService.writeLog(paymentErrorInfo); 
 			return mv;
 		}
-		
-		//적립금 차감하기
-		result = orderService.downPoint(paymentInfo);
-		if(result == 0) {
-			mv.addObject("result", "error");
-			mv.addObject("errorMsg", "결제는 진행되었으나 결제 데이터 반영에 실패했습니다. 관리자에게 문의해주세요.");
-			return mv;
-		}
-		//적립금 적립은 상품이 출고 완료되면 실행
 		
 		//order_list 테이블 다녀오기 + 물건 재고 감소시키기
 		Map<String, Object> orderedProduct = new HashMap<>();
@@ -290,25 +306,95 @@ public class OrderController {
 		int cnt = 0;
 		for (int i = 0; i < jsonArray.size(); i++) {
 			strArr = jsonArray.get(i).getAsString().split("\\$");
-		    p_no = Integer.parseInt(strArr[0]);
-		    cnt = Integer.parseInt(strArr[1]);
-		    orderedProduct.put("p_no", p_no);
-		    orderedProduct.put("cnt", cnt);
-		    orderedProduct.put("m_id", id);
-		    orderedProduct.put("pa_id", jsonDTO.get("pa_id"));
-			//재고 체크 문제 없으면 재고 내리기
-			result = orderService.downStock(orderedProduct);
-			if(result == 0) {
+			p_no = Integer.parseInt(strArr[0]);
+			cnt = Integer.parseInt(strArr[1]);
+			orderedProduct.put("p_no", p_no);
+			orderedProduct.put("cnt", cnt);
+			orderedProduct.put("m_id", id);
+			orderedProduct.put("pa_id", jsonDTO.get("pa_id"));
+			//재고 체크 문제 없으므로(이미 통과) 재고 내리기
+			try {
+				orderService.downStock(orderedProduct);
+			} catch (Exception e) {
 				mv.addObject("result", "error");
 				mv.addObject("errorMsg", "결제는 진행되었으나 결제 상품 데이터 반영에 실패했습니다. 관리자에게 문의해주세요.");
+				paymentErrorInfo = new HashMap<>();
+				paymentErrorInfo.put("l_ip", ""); //ip 입력은 일단 미루자
+				paymentErrorInfo.put("l_target", "Checkout");
+				paymentErrorInfo.put("l_data", "[결제 오류] 상품 재고 반영 실패");
+				paymentErrorInfo.put("l_id", id);
+				logService.writeLog(paymentErrorInfo); 
 				return mv;
 			}
-		    result = orderService.inputToOrder_List(orderedProduct);
-			if(result == 0) {
+			//주문서 생성
+			try {
+				orderService.inputToOrder_List(orderedProduct);
+			} catch (Exception e) {
 				mv.addObject("result", "error");
 				mv.addObject("errorMsg", "결제는 진행되었으나 주문서 생성중에 문제가 발생했습니다. 관리자에게 문의해주세요.");
+				paymentErrorInfo = new HashMap<>();
+				paymentErrorInfo.put("l_ip", ""); //ip 입력은 일단 미루자
+				paymentErrorInfo.put("l_target", "Checkout");
+				paymentErrorInfo.put("l_data", "[결제 오류] order_list 테이블에 주문서 생성 실패");
+				paymentErrorInfo.put("l_id", id);
+				logService.writeLog(paymentErrorInfo); 
 				return mv;
 			}
+		}
+		
+		//적립금 차감 및 적립하기
+		//적립금 적립은 상품이 구매 확정 되고 나서 하는 게 베스트지만 이번 프로젝트에는 그런 개념이 없으므로 임시적으로 구매시 적립하는 로직으로 처리
+		try {
+			orderService.calcPoint(paymentInfo);
+		} catch (Exception e) {
+			mv.addObject("result", "error");
+			mv.addObject("errorMsg", "결제와 주문서 작성은 진행되었으나 결제 데이터 반영에 실패했습니다. 관리자에게 문의해주세요.");
+			paymentErrorInfo = new HashMap<>();
+			paymentErrorInfo.put("l_ip", ""); //ip 입력은 일단 미루자
+			paymentErrorInfo.put("l_target", "Checkout");
+			paymentErrorInfo.put("l_data", "[결제 오류] 적립금 차감 및 적립 실패");
+			paymentErrorInfo.put("l_id", id);
+			logService.writeLog(paymentErrorInfo); 
+			return mv;
+		}
+				
+		//적립금 로그 쓰기
+		Map<String, Object> pointInfo = new HashMap<>();
+		pointInfo.put("m_id", id);
+		pointInfo.put("pa_id", jsonDTO.get("pa_id"));
+		pointInfo.put("po_vary", "+");
+		pointInfo.put("po_value", jsonDTO.get("finalWillPoint"));
+		
+		try {
+			mypageService.inputPointLog(pointInfo);
+		} catch (Exception e) {
+			mv.addObject("result", "error");
+			mv.addObject("errorMsg", "결제와 주문서 작성은 진행되었으나 결제 데이터 반영에 실패했습니다. 관리자에게 문의해주세요.");
+			paymentErrorInfo = new HashMap<>();
+			paymentErrorInfo.put("l_ip", ""); //ip 입력은 일단 미루자
+			paymentErrorInfo.put("l_target", "Checkout");
+			paymentErrorInfo.put("l_data", "[결제 오류] pointLog 테이블에 적립금 로그 생성 실패");
+			paymentErrorInfo.put("l_id", id);
+			logService.writeLog(paymentErrorInfo); 
+			return mv;
+		}
+		
+		try {
+			if( Integer.parseInt(jsonDTO.get("usePoint").toString()) != 0 ) {
+				pointInfo.put("po_vary", "-");
+				pointInfo.put("po_value", jsonDTO.get("usePoint"));
+				mypageService.inputPointLog(pointInfo);
+			}
+		} catch (Exception e) {
+				mv.addObject("result", "error");
+				mv.addObject("errorMsg", "결제와 주문서 작성은 진행되었으나 결제 데이터 반영에 실패했습니다. 관리자에게 문의해주세요.");
+				paymentErrorInfo = new HashMap<>();
+				paymentErrorInfo.put("l_ip", ""); //ip 입력은 일단 미루자
+				paymentErrorInfo.put("l_target", "Checkout");
+				paymentErrorInfo.put("l_data", "[결제 오류] pointLog 테이블에 적립금 로그 생성 실패");
+				paymentErrorInfo.put("l_id", id);
+				logService.writeLog(paymentErrorInfo); 
+				return mv;
 		}
 		
 		mv.addObject("result", "success");

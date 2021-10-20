@@ -90,6 +90,10 @@ public class AbstractDAO {
 		return sqlSession.insert(queryId, map);
 	}
 	
+	public int inputPointLog(String queryId, Map<String, Object> map) {
+		return sqlSession.insert(queryId, map);
+	}
+	
 	public int updateOrder(String queryId, Map<String, Object> map) {
 		return sqlSession.update(queryId, map);
 	}

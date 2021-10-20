@@ -45,14 +45,15 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public int downPoint(Map<String, Object> paymentInfo) {
-		return orderDAO.downPoint(paymentInfo);
+	public int calcPoint(Map<String, Object> paymentInfo) {
+		return orderDAO.calcPoint(paymentInfo);
 	}
 
 	@Override
 	public int checkStock(Map<String, Object> orderedProduct) {
 		return orderDAO.checkStock(orderedProduct);
 	}
+
 
 	
 }

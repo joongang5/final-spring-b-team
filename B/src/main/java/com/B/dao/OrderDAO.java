@@ -33,8 +33,8 @@ public class OrderDAO extends AbstractDAO{
 		return updateOrder("order.downStock", orderedProductList);
 	}
 
-	public int downPoint(Map<String, Object> paymentInfo) {
-		return updateOrder("order.downPoint", paymentInfo);
+	public int calcPoint(Map<String, Object> paymentInfo) {
+		return updateOrder("order.calcPoint", paymentInfo);
 	}
 
 	public int checkStock(Map<String, Object> orderedProduct) {

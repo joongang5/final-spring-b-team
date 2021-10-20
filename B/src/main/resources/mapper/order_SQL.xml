@@ -53,8 +53,8 @@
 		UPDATE product SET p_sell = (p_sell-#{cnt}) WHERE p_no = #{p_no}
 	</update>
 	
-	<update id="downPoint" parameterType="HashMap">
-		UPDATE member SET m_point = m_point-#{usePoint} WHERE m_no = (SELECT m_no FROM member WHERE m_id=#{m_id})
+	<update id="calcPoint" parameterType="HashMap">
+		UPDATE member SET m_point = m_point-#{usePoint}+#{finalWillPoint} WHERE m_no = (SELECT m_no FROM member WHERE m_id=#{m_id})
 	</update>
 	
 </mapper>

@@ -50,4 +50,19 @@ public class MypageServiceImpl implements MypageService {
 	public void myinfoUpdateAddr(Map<String, Object> map) {
 		mypageDAO.myinfoUpdateAddr(map);
 	}
+
+	@Override
+	public int inputPointLog(Map<String, Object> map) {
+		return mypageDAO.inputPointLog(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> getPointLogList(Map<String, Object> map) {
+		return mypageDAO.getPointLogList(map);
+	}
+
+	@Override
+	public int getPointLogTotalList(Map<String, Object> map) {
+		return mypageDAO.getPointLogTotalList(map);
+	}
 }

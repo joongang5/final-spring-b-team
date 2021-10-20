@@ -17,4 +17,10 @@ public interface MypageService {
 	public void myAccountUpdatePW(Map<String, Object> map);
 	
 	public List<Map<String, Object>> cartList(Map<String, Object> map);
+
+	public int inputPointLog(Map<String, Object> map);
+	
+	public List<Map<String, Object>> getPointLogList(Map<String, Object> map);
+
+	public int getPointLogTotalList(Map<String, Object> map);
 }

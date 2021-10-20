@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>마이 페이지 | 가구</title>
 <link href="./resources/css/header.css" rel="stylesheet"/>
 <link href="./resources/css/reset.css" rel="stylesheet"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

@@ -1,6 +1,7 @@
 package com.B.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -15,14 +16,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.B.common.CommandMap;
 import com.B.serivce.LogServiceImpl;
+import com.B.serivce.LoginService;
 import com.B.serivce.MypageServiceImpl;
 import com.B.util.Util;
+
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller
 public class MypageController {
 	@Resource(name = "mypageService")
 	private MypageServiceImpl mypageService;
-	
+	@Resource(name = "loginService")
+	private LoginService loginService;
 	@Resource (name = "logService")
 	private LogServiceImpl logService;
 	
@@ -184,6 +189,55 @@ public class MypageController {
 	@GetMapping("/mypage_iframe.do")
 	public ModelAndView mypageIframe() {
 		ModelAndView mv = new ModelAndView("mypage_iframe");
+		return mv;
+	}
+	
+	@GetMapping("/mypage_point.do")
+	public ModelAndView adminMember(CommandMap map, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("mypage_point");
+		
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("m_id");
+		map.put("m_id", id);
+		
+		Map<String, Object> memberInfo = loginService.login(id);
+		mv.addObject("m_point", memberInfo.get("m_point"));
+
+		if (map.containsKey("category")) {
+			if (!"gain".equals(map.get("category"))
+					&& !"use".equals(map.get("category")) ) {
+				map.remove("category");
+			}
+		}
+
+		PaginationInfo paginationInfo = new PaginationInfo();
+		int pageNo = 1;
+		int listScale = 10;
+		int pageScale = 5;
+
+		if (request.getParameter("pageNo") != null) {
+			pageNo = Util.str2Int2(request.getParameter("pageNo"));
+		}
+
+		paginationInfo.setCurrentPageNo(pageNo);
+		paginationInfo.setRecordCountPerPage(listScale);
+		paginationInfo.setPageSize(pageScale);
+
+		int startPage = paginationInfo.getFirstRecordIndex();
+		int lastPage = paginationInfo.getRecordCountPerPage();
+
+		map.put("startPage", startPage);
+		map.put("lastPage", lastPage);
+		
+		List<Map<String, Object>> pointLogList = mypageService.getPointLogList(map.getMap());
+		int totalRecords = mypageService.getPointLogTotalList(map.getMap());
+		paginationInfo.setTotalRecordCount(totalRecords);
+		mv.addObject("paginationInfo", paginationInfo);
+		mv.addObject("pageNo", pageNo);
+		mv.addObject("totalRecords", totalRecords);
+		mv.addObject("pointLogList", pointLogList); // 게시판 데이터 저장
+		
+
 		return mv;
 	}
 }

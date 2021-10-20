@@ -38,4 +38,16 @@ public class MypageDAO extends AbstractDAO {
 	public List<Map<String, Object>> cartList(Map<String, Object> map) {
 		return (List<Map<String, Object>>) selectList("mypage.cartList", map);
 	}
+	
+	public int inputPointLog(Map<String, Object> paymentInfo) {
+		return inputPointLog("mypage.inputPointLog", paymentInfo);
+	}
+
+	public List<Map<String, Object>> getPointLogList(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("mypage.getPointLogList", map);
+	}
+
+	public int getPointLogTotalList(Map<String, Object> map) {
+		return totalList("mypage.getPointLogTotalList", map);
+	}
 }
