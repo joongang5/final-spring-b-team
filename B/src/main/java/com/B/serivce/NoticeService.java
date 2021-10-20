@@ -8,6 +8,8 @@ public interface NoticeService {
 	
 	public List<Map<String, Object>> noticeList_normal(Map<String, Object> map);
 	
+	public int noticeList_normal_Total(Map<String, Object> map);
+	
 	public Map<String, Object> noticeDetail(Map<String, Object> map);
 	
 	public void noticeWrite(Map<String, Object> map);

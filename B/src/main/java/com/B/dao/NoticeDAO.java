@@ -33,4 +33,8 @@ public class NoticeDAO extends AbstractDAO {
 		return selectOne("notice.noticeDetail", map);
 	}
 
+	public int noticeList_normal_Total(Map<String, Object> map) {
+		return totalList("notice.noticeList_normal_Total", map);
+	}
+
 }
