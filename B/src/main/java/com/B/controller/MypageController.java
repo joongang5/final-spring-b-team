@@ -193,7 +193,7 @@ public class MypageController {
 	}
 	
 	@GetMapping("/mypage_point.do")
-	public ModelAndView adminMember(CommandMap map, HttpServletRequest request) {
+	public ModelAndView myPagePoint(CommandMap map, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("mypage_point");
 		
 		HttpSession session = request.getSession();
@@ -235,9 +235,23 @@ public class MypageController {
 		mv.addObject("paginationInfo", paginationInfo);
 		mv.addObject("pageNo", pageNo);
 		mv.addObject("totalRecords", totalRecords);
-		mv.addObject("pointLogList", pointLogList); // 게시판 데이터 저장
-		
+		mv.addObject("pointLogList", pointLogList);
 
 		return mv;
 	}
+	
+	@GetMapping("/mypage_recent.do")
+	public ModelAndView myPageRecent(CommandMap map, HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("mypage_recent");
+		
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("m_id");
+		map.put("m_id", id);
+		
+		List<Map<String, Object>> recentLogList = mypageService.getRecentLogList(map.getMap());
+		mv.addObject("recentLogList", recentLogList);
+		
+		return mv;
+	}
+	
 }

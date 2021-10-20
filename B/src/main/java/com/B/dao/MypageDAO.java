@@ -40,7 +40,7 @@ public class MypageDAO extends AbstractDAO {
 	}
 	
 	public int inputPointLog(Map<String, Object> paymentInfo) {
-		return inputPointLog("mypage.inputPointLog", paymentInfo);
+		return input("mypage.inputPointLog", paymentInfo);
 	}
 
 	public List<Map<String, Object>> getPointLogList(Map<String, Object> map) {
@@ -49,5 +49,21 @@ public class MypageDAO extends AbstractDAO {
 
 	public int getPointLogTotalList(Map<String, Object> map) {
 		return totalList("mypage.getPointLogTotalList", map);
+	}
+
+	public int inputRecentLog(Map<String, Object> map) {
+		return input("mypage.inputRecentLog", map);
+	}
+
+	public int deleteRecentLog(Map<String, Object> map) {
+		return delete("mypage.deleteRecentLog", map);
+	}
+
+	public int countRecentLog(Map<String, Object> map) {
+		return selectOne2("mypage.countRecentLog", map);
+	}
+
+	public List<Map<String, Object>> getRecentLogList(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("mypage.getRecentLogList", map);
 	}
 }

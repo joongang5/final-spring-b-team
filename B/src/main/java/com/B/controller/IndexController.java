@@ -3,8 +3,11 @@ package com.B.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.springframework.stereotype.Controller;
@@ -15,11 +18,14 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.B.common.CommandMap;
 import com.B.serivce.IndexServiceImpl;
+import com.B.serivce.MypageServiceImpl;
 
 @Controller
 public class IndexController {
 	@Resource(name = "indexService")
 	private IndexServiceImpl indexService;
+	@Resource(name = "mypageService")
+	private MypageServiceImpl mypageService;
 
 	@RequestMapping(value = "/header.do")
 	public ModelAndView header(CommandMap map) {
@@ -117,12 +123,37 @@ public class IndexController {
 	
 	
 	@RequestMapping(value = "/detail.do")
-	public ModelAndView detail(CommandMap map) {
+	public ModelAndView detail(CommandMap map, HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("detail");
-		
 		Map<String, Object> detail = indexService.detail(map.getMap());
 		System.out.println(detail);
 		mv.addObject("detail", detail);
+		
+		//최근 본 상품에 추가
+		HttpSession session = request.getSession();
+		if(session.getAttribute("m_id") != null) {
+			String id = (String) session.getAttribute("m_id");
+			map.put("m_id", id);
+			map.put("p_no", map.get("product"));
+			
+			//이미 기록에 있는 상품은 또 기록하지 않기 위한 처리
+			List<Map<String, Object>> recentLogList = mypageService.getRecentLogList(map.getMap());
+			int result = 0;
+			 for(int i = 0; i < recentLogList.size(); i++){
+				 for (int j = 0; j < recentLogList.get(i).size(); j++) {
+					 if(map.get("p_no") == recentLogList.get(i).get("p_no")) {
+						 result = 1;
+					 }
+				}
+			  }
+			 if(result == 0) mypageService.inputRecentLog(map.getMap());
+
+			//최근 본 상품은 10개까지 저장하도록 처리
+			result = mypageService.countRecentLog(map.getMap());
+			if (result > 10) {
+				mypageService.deleteRecentLog(map.getMap());
+			}
+		}
 		
 		return mv;
 	}
