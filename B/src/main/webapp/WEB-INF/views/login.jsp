@@ -69,24 +69,24 @@ function login(m_id, m_pw) {
    
    
    $(document).ready(function() {
-		var id = getCookie("id");
+		var id = getCookie("id"); //저장된 쿠키를 가져오는데 없으면 공백이 들어간다고 하는데 이상한 localhost뭐시껭이 들어감
 		$("input[name='m_id']").val(id);
 		
 		if ($("input[name='m_id']").val() != "") {
 			$("#saveId").attr("checked", true);
 		}
-		$("#saveId").change(function() {
+		$("#saveId").change(function() {   //체크박스 변화 있으면 아이디 저장 누르면 3일동안 보관
 			if ($("#saveId").is(":checked")) {
 				var id = $("input[name='m_id']").val();
-				setCookie("id", id, 7);
+				setCookie("id", id, 3);
 			} else {
 				deleteCookie("id");
 			}
 		});
-		$("input[name='m_id']").keyup(function() {
+		$("input[name='m_id']").keyup(function() { //체크박스 선택 한담 아이디 넣어도 3일동안 보관 
 			if ($("#saveId").is(":checked")) {
 				var id = $("input[name='m_id']").val();
-				setCookie("id", id, 7);
+				setCookie("id", id, 3);
 			}
 		});
 	});
