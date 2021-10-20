@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>적립금 조회 | 가구</title>
+    <title>적립금 조회 | Spring.B</title>
     <script>
 	function linkPage(pageNo) {
 		location.href = "mypage_point.do?pageNo="

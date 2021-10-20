@@ -146,7 +146,7 @@ public class IndexController {
 					 }
 				}
 			  }
-			 if(result == 0) mypageService.inputRecentLog(map.getMap());
+			if(result == 0) mypageService.inputRecentLog(map.getMap());
 
 			//최근 본 상품은 10개까지 저장하도록 처리
 			result = mypageService.countRecentLog(map.getMap());

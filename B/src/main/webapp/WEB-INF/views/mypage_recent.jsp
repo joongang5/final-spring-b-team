@@ -7,7 +7,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>최근 본 상품 | 가구</title>
+  <title>최근 본 상품 | Spring.B</title>
   <link rel="stylesheet" href="./resources/css/base.css">
   <link rel="stylesheet" href="./resources/css/mypage.css">
   <link href="./resources/css/footer.css" rel="stylesheet"/>
@@ -93,7 +93,6 @@
 </head>
 <body>
 <!--myPage 공통 부분-->
-<div id="header-space"></div>
 <div id="layout-container">
   <div id="myPage-main-container">
     <nav id="myPage-sideMenu">

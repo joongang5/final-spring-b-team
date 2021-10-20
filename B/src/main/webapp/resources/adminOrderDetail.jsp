@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>관리자 페이지 | 가구</title>
+    <title>관리자 페이지 | Spring.B</title>
     <link rel="stylesheet" href="./resources/css/base.css">
     <link rel="stylesheet" href="./resources/css/admin.css">
     <link rel="stylesheet" href="./resources/css/invoice.css">

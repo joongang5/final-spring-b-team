@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 탈퇴 | 가구</title>
+<title>회원 탈퇴 | Spring.B</title>
 <link rel="stylesheet" href="./resources/css/base.css">
 <link rel="stylesheet" href="./resources/css/mypage.css">
 <link href="./resources/css/footer.css" rel="stylesheet"/>

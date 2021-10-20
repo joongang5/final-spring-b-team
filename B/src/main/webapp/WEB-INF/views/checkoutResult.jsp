@@ -100,7 +100,7 @@ header a:after, footer a:after{height:0;}
   <div id="payment-main-container">
     <main>
       <div class="payment-title">
-      	<input type="hidden" id="title" value="주문 <c:out value="${result == 'success'? '완료':'오류'}"/> | 가구">
+      	<input type="hidden" id="title" value="주문 <c:out value="${result == 'success'? '완료':'오류'}"/> | Spring.B">
         <h1>주문 <c:out value="${result == 'success'? '완료':'오류'}"/></h1>
       </div>
       <div class="payment-result-container">
