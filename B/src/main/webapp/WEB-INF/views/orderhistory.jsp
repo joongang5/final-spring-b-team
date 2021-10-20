@@ -15,7 +15,8 @@
 <!-- <link rel="stylesheet" href="./resources/css/base.css">  -->
 <link rel="stylesheet" href="./resources/css/mypage.css">
 <link rel="stylesheet" href="./resources/css/invoice.css">
-<link href="./resources/css/footer.css" rel="stylesheet"/>
+
+
 <style>
 
 /* add 슬라이드 이미지 */
@@ -524,11 +525,12 @@ header, footer, aside, nav, section, article {
 
 </head>
 <body>
-<c:if test="${sessionScope.m_id eq null }">
-	<c:redirect url="login.do" />
-</c:if>
+
+
+
 	<!--myPage 공통 부분-->
 	<div id="layout-container">
+		<header id="header-space"></header>
 		<div id="myPage-main-container">
 			<nav id="myPage-sideMenu">
 				<div class="sideMenu__block-container">
@@ -536,9 +538,9 @@ header, footer, aside, nav, section, article {
 						<h3>나의 쇼핑 활동</h3>
 						<ul class="sideMenu__items">
 							<li class="sideMenu__item sideMenu__item--active"><a
-								href="./orderhistory1.do">구매 내역 조회</a></li>
+								href="./orderhistory.do">구매 내역 조회</a></li>
 							<li class="sideMenu__item"><a href="">최근 본 상품</a></li>
-							<li class="sideMenu__item"><a href="./mypage_point.do">적립금 조회</a></li>
+							<li class="sideMenu__item"><a href="">쿠폰 / 적립금 조회</a></li>
 							<li class="sideMenu__item"><a href="">상품 문의</a></li>
 							<li class="sideMenu__item"><a href="">1:1 문의</a></li>
 						</ul>
@@ -549,7 +551,7 @@ header, footer, aside, nav, section, article {
 							<li class="sideMenu__item"><a href="./myinfo.do">회원 정보 조회</a></li>
 							<li class="sideMenu__item"><a href="">주소록</a></li>
 							<li class="sideMenu__item"><a href="./myinfoUpdatePW.do">비밀번호 변경</a></li>
-							<li class="sideMenu__item"><a href="./myinfoDelete.do">회원 탈퇴</a></li>
+							<li class="sideMenu__item sideMenu__item--active"><a href="./myinfoDelete.do">회원 탈퇴</a></li>
 						</ul>
 					</div>
 				</div>
@@ -571,7 +573,6 @@ header, footer, aside, nav, section, article {
 
 				<div class="orderList-summary__column-left">
 					<div class="orderList-summary">
-				
 						<table>
 							<tr>
 								<th style="font-size: 20px;">결제 완료</th>
@@ -594,7 +595,6 @@ header, footer, aside, nav, section, article {
 			</c:forEach> --%>
 							</tr>
 						</table>
-						
 					</div>
 				</div>
 
@@ -701,12 +701,12 @@ header, footer, aside, nav, section, article {
 						<th>결제 방식</th>
 						<th>주문 날짜</th>
 						<th>현재 상태</th>
-						<th>교환신청</th>
-						<th>환불신청</th>
+						<th>교환 신청</th>
+						
 					</tr>
 					<c:forEach items="${list }" var="l">
 						<tr>
-							<td>${l.o_no}</td>
+							<td>${l.p_no}</td>
 							<td>${l.p_title}</td>
 							<td><img
 								src="https://blogger.googleusercontent.com/img/a/${l.p_img}"
@@ -725,18 +725,17 @@ header, footer, aside, nav, section, article {
 							<td>${l.o_date}</td>
 
 							<td><c:if test="${l.o_state == 0}">
-									<b style="color: blue;">결제 완료</b>
-								</c:if> <c:if test="${l.o_state == 1}">
-									<b style="color: red;">출고 준비</b>
-								</c:if> <c:if test="${l.o_state == 2}">
-									<b style="color: green;">출고 완료</b>
-								</c:if><c:if test="${l.o_state == 3}">
-									<b style="color: green;">교환 접수</b>
-								</c:if>
-								</td>
-							<td><c:if test="${l.o_state eq 2 }"><button onclick="location.href='./AskExchange.do?o_no=${l.o_no}'">교환신청</button></c:if></td>	
-							<td><button onclick="location.href='./AskRefund.do?o_no=${l.o_no}'">환불신청</button></td>	
-						</tr>
+                           <b style="color: blue;">결제 완료</b>
+                        </c:if> <c:if test="${l.o_state == 1}">
+                           <b style="color: red;">출고 준비</b>
+                        </c:if> <c:if test="${l.o_state == 2}">
+                           <b style="color: green;">출고 완료</b>
+                        </c:if><c:if test="${l.o_state == 3}">
+                           <b style="color: green;">교환 접수</b>
+                        </c:if>
+                        </td>
+                     <td><c:if test="${l.o_state eq 2 }"><button onclick="location.href='./AskExchange.do?o_no=${l.o_no}'">교환신청</button></c:if></td>   
+                  </tr>
 					</c:forEach>
 				</table>
 
@@ -747,9 +746,8 @@ header, footer, aside, nav, section, article {
 				<br> <br>
 			</main>
 		</div>
+		<footer id="footer-space"></footer>
 	</div>
-<footer id="footer-space">
-	<c:import url="./footer.jsp"/>
-</footer>
 </body>
 </html>
+

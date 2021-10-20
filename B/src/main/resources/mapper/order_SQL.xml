@@ -9,10 +9,10 @@
 		SELECT * FROM order_view
 		<choose>
 			<when test="startDay != null and endDay != null">
-				WHERE m_no=#{m_no} AND (DAT BETWEEN #{startDay} AND #{endDay})
+				WHERE m_no=#{m_no} AND (DAT BETWEEN #{startDay} AND #{endDay}) ORDER BY o_no DESC
 			</when>
 			<otherwise>
-				WHERE m_no=#{m_no}
+				WHERE m_no=#{m_no} ORDER BY o_no DESC
 			</otherwise>
 		</choose>
 	</select>
