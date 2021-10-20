@@ -158,7 +158,7 @@ function login(m_id, m_pw) {
       <div class="pwin">
    <input type="password" id="m_pw"  name="m_pw" placeholder="비밀번호를 입력하세요" required="required" >
   </div>
-   <div class="save_id"><input type ="checkbox" id ="save_id"/><label for ="save_id">아이디저장</lavel></div>
+   
  
    <br>
    <br>
