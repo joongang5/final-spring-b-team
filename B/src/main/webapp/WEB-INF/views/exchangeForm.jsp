@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
+<link rel="stylesheet" href="./resources/css/mypage.css">
+<link rel="stylesheet" href="./resources/css/invoice.css">
+<link rel="stylesheet" href="./resources/css/reset.css">
 <title>교환폼</title>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -95,6 +98,47 @@ function registerExchange(o_no,pa_id,p_no,p_title,e_reason){
 
 </script>
 <body>
+
+<!--myPage 공통 부분-->
+	<div id="layout-container">
+		<header id="header-space"></header>
+		<div id="myPage-main-container">
+			<nav id="myPage-sideMenu">
+				<div class="sideMenu__block-container">
+					<div class="sideMenu__block">
+						<h3>나의 쇼핑 활동</h3>
+						<ul class="sideMenu__items">
+							<li class="sideMenu__item sideMenu__item--active"><a
+								href="./orderhistory.do">구매 내역 조회</a></li>
+							<li class="sideMenu__item"><a href="./mypage_recent.do">최근 본 상품</a></li>
+							<li class="sideMenu__item"><a href="./mypage_point.do">적립금 조회</a></li>
+							<li class="sideMenu__item"><a href="">상품 문의</a></li>
+							<li class="sideMenu__item"><a href="">1:1 문의</a></li>
+						</ul>
+					</div>
+					<div class="sideMenu__block">
+						<h3>회원 정보</h3>
+						<ul class="sideMenu__items">
+							<li class="sideMenu__item"><a href="./myinfo.do">회원 정보
+									조회</a></li>
+							<li class="sideMenu__item"><a href="">주소록</a></li>
+							<li class="sideMenu__item"><a href="./myinfoUpdatePW.do">비밀번호
+									변경</a></li>
+							<li class="sideMenu__item"><a
+								href="./myinfoDelete.do">회원 탈퇴</a></li>
+						</ul>
+					</div>
+				</div>
+			</nav>
+			<main>
+				<div class="myPage-title">
+					<h1></h1>
+				</div>
+				<!--myPage 공통 부분 끝-->
+
+
+
+<div  style="margin-top: 10%;">
 <h1>교환 신청하기</h1>
 <p> 🔺 교환 사유가 '단순 변심' 일 경우, 왕복배송비용 5,000원을 고객님께서 부담하셔야 합니다</p>
 <p> 🔺 교환 접수가 완료되면 자동으로 택배사에 회수 접수가 됩니다. </p>
@@ -110,7 +154,9 @@ function registerExchange(o_no,pa_id,p_no,p_title,e_reason){
  
 </div>
 
+<br>
 <div id="onlyZero" style="display:none;">
+
 <h2>교환 상품 내역</h2>
 
 <label>주문 번호</label>
@@ -123,20 +169,20 @@ function registerExchange(o_no,pa_id,p_no,p_title,e_reason){
 
 
 </div>
-
+<br>
 <div id="onlyOne" style="display:none;">
 
-<h2>교환 상품 내역</h2>
+<h2>교환 상품 내역</h2><br>
 
-<label>주문 번호</label>
+<label>주문 번호</label><br>
 <input name="pa_id" id="pa_id" value="${getInfo.pa_id}" readonly="readonly">
-<label>상품명</label>
+<label>상품명</label><br>
 <input name="p_title" id="p_title"  value="${getInfo.p_title}" style="width:300px;"readonly="readonly">
-<input type="hidden" name="p_no" id="p_no" value="${getInfo.p_no}" readonly="readonly">
+<input type="hidden" name="p_no" id="p_no" value="${getInfo.p_no}" readonly="readonly"> 
 
 
-<h2> 왕복 배송 비용 5000원을 결제 </h2>
- <h2>결제 수단</h2>
+<h2 style="margin-top:10px;"> 왕복 배송 비용 5000원을 결제 </h2><br>
+ <h2>결제 수단</h2><br>
   <label class="payment-plan-button">
   <input type="radio" id="kakao" name="payplan" value="kakaopay" class="payment-plan-button">
   <span><img src="resources/images/kakaopay.png">카카오 페이</span>
@@ -151,8 +197,8 @@ function registerExchange(o_no,pa_id,p_no,p_title,e_reason){
   </label>
   <input type="hidden" id="o_no1" value="${o_no }">
   <br>
- <button onclick="iamport()">5000원 결제하기</button>
+ <button onclick="iamport()" style="margin-top:10px; height: 37px; width: 150px;border-radius: 8px;font-size: 11pt;background-color:#ff8a00;">5000원 결제하기</button>
 </div>
-
+</div>
 </body>
 </html>
