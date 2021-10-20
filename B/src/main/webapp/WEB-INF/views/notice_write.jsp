@@ -102,6 +102,24 @@
       	  	focus: true                  // set focus to editable area after initializing summernote
     	  });
     	});
+    
+    function check() {
+		//alert("!");
+		var title = document.getElementById("title");
+		var content = document.getElementById("summernote");
+		//alert(title.value + " : " + content.value);
+
+		if (title.value.length < 5 || title.value == "") {
+			alert("제목을 5글자 이상 적어주세요.");
+			title.focus();
+			return false;
+		}
+		if (content.value == "" || content.value.length < 10) {
+			alert("내용을 10자 이상 적어주세요.");
+			content.focus();
+			return false;
+		}
+	}
     </script>
 </head>
 <body>
@@ -111,14 +129,14 @@
             <div class="board-title">
                 <h1>공지사항 등록</h1>
             </div>
-            <form action="./notice_write.do" method="post">
+            <form action="./notice_write.do" method="post" onsubmit="return check();">
             <div class="board-container">
               <div class="boardWrite-shortContainer">
                   <div class="boardWrite-shortContainer__section">
                       제목
                   </div>
                   <div class="boardWrite-shortContainer__content">
-                      <input type="text" name="n_title" />
+                      <input type="text" name="n_title" id="title" />
                   </div>
               </div>
               <div class="boardWrite-shortContainer">
@@ -138,7 +156,7 @@
                     </div>
                </div>
                 <div class="boardWrite-buttonContainer">
-                    <button type="submit" >작성하기</button>
+                    <button type="submit">작성하기</button>
                 </div>
             </div>
             </form>

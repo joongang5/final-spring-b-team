@@ -108,6 +108,7 @@
 function linkPage(pageNo) {
 location.href = "./notice_list.do?pageNo="+pageNo;
 }
+
 </script>
 </head>
 <body>
