@@ -130,18 +130,18 @@ location.href = "./notice_list.do?pageNo="+pageNo;
                     <tbody>
                     <!--중요 공지 출력 / 반복문 사용-->
                     <c:forEach items="${list_important }" var="li">
-                    <tr class="boardList__important">
+                    <tr class="boardList__important" onClick="location.href='./notice_detail.do?n_no=${li.n_no }'">
                         <td>${li.n_no }</td>
-                        <td class="boardList__title"><a href="./notice_detail.do?n_no=${li.n_no }">${li.n_title }</a></td>
+                        <td class="boardList__title">${li.n_title }</td>
                         <td>${li.n_date }</td>
                     </tr>
                     </c:forEach>
                     <!--중요 공지 출력 끝-->
                     <!--그냥 공지 출력 / 반복문 사용-->
                     <c:forEach items="${list_normal }" var="ln">
-                    <tr class="boardList__normal">
+                    <tr class="boardList__normal" onClick="location.href='./notice_detail.do?n_no=${ln.n_no }'">
                         <td>${ln.n_no }</td>
-                        <td class="boardList__title"><a href="./notice_detail.do?n_no=${ln.n_no }">${ln.n_title }</a></td>
+                        <td class="boardList__title">${ln.n_title }</td>
                         <td>${ln.n_date }</td>
                     </tr>
                     </c:forEach>
