@@ -14,4 +14,10 @@ public interface ExchangeService {
 	public void updateInfo(Map<String, Object> map) ;
 	
 	public Map<String, Object> getInfo(Map<String, Object> map);
+	
+	public int getTotalList(Map<String, Object> map);
+	
+	public void insertInfo2(Map<String, Object> map);
+	
+	public void updateOState(Map<String, Object> map);
 }

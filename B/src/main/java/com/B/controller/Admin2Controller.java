@@ -151,11 +151,30 @@ public class Admin2Controller {
 		map.put("o_no", req.getParameter("o_no"));
 		map.put("e_state",2 );
 		
+		exchangeService.updateOState(map.getMap());
 		int complete =  exchangeService.updateEState(map.getMap()); //접수 대기 => 진행 중 으로 상태 변경
 		
 		
 		return complete;
 	}
+	
+	
+	@PostMapping(value="/exchanging2.do") //관리자 페이지에서 신청 사유가 '불량'일 경우만
+	@ResponseBody
+	public void exchanging2(HttpServletRequest req, CommandMap map) {
+		
+		map.put("o_no", req.getParameter("o_no"));
+		map.put("pa_id1", req.getParameter("pa_id1"));
+		map.put("p_no1", req.getParameter("p_no1"));
+		map.put("e_reason", req.getParameter("e_reason"));
+		
+		exchangeService.updateInfo(map.getMap());
+		exchangeService.insertInfo2( map.getMap());
+		
+		
+	}
+	
+	
 	
 	@RequestMapping(value="AskExchange.do")
 	public ModelAndView askExchange(HttpServletRequest req,CommandMap map) {
@@ -176,7 +195,6 @@ public class Admin2Controller {
 		map.put("p_title", req.getParameter("p_title"));
 		map.put("e_reason", req.getParameter("e_reason"));
 		exchangeService.updateInfo(map.getMap());
-		System.out.println(map.getMap());
 		exchangeService.insertInfo( map.getMap());
 	}
 	

@@ -84,6 +84,10 @@
 		UPDATE exchange_list set e_state=#{e_state},e_waybill=DATE_FORMAT(NOW(),'%Y%m%d%S%i') WHERE o_no =#{o_no}
 	</update>
 	
+	<update id="updateOstate" parameterType="HashMap" >
+		UPDATE order_list set o_state=3 WHERE o_no =#{o_no}
+	</update>
+	
 	<update id="updateInfo" parameterType="HashMap">
 		UPDATE order_list SET o_state=3 WHERE o_no = #{o_no}
 	</update>
@@ -94,6 +98,10 @@
 	
 	<insert id="insertInfo" parameterType="HashMap">
 		INSERT INTO exchange_list(pa_id,o_no,p_no,e_reason,e_state,e_waybill) VALUES(#{pa_id},#{o_no},#{p_no},#{e_reason},2,DATE_FORMAT(NOW(),'%Y%m%d%S%i'))
+	</insert>
+	
+	<insert id="insertInfo2" parameterType="HashMap">
+		INSERT INTO exchange_list(pa_id,o_no,p_no,e_reason,e_state) VALUES(#{pa_id1},#{o_no},#{p_no1},#{e_reason},0)
 	</insert>
 
 </mapper>

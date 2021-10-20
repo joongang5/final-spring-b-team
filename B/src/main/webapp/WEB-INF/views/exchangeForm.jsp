@@ -14,11 +14,36 @@ function whyExchange(reason){
 	var e_reason = reason.value
 	if(e_reason == 1){
 		 $('input[name=e_reason]').attr("value",e_reason);
+		 jQuery('#onlyZero').hide(); 
 		 jQuery('#onlyOne').show(); 
-	}else{
+		 
+		 
+	}if(e_reason == 0){
 		$('input[name=e_reason]').attr("value",e_reason);
 		 jQuery('#onlyOne').hide(); 
+		 jQuery('#onlyZero').show(); 
+	}if(e_reason == 2){
+		 jQuery('#onlyOne').hide();
+		 jQuery('#onlyZero').hide(); 
 	}
+}
+
+function exchangeService(){
+	var o_no = $('#o_no1').val() 
+	var p_no1 = $('#p_no1').val()
+	var pa_id1 = $('#pa_id1').val()  
+	var e_reason = $('#e_reason').val()
+	
+	 $.ajax({
+			url : "exchanging2.do",
+			type : "post",
+			data : {"o_no" : o_no,"pa_id1" : pa_id1,"p_no1" : p_no1,"e_reason" : e_reason},
+			success : function(data) {
+				alert("접수가 완료되었습니다")
+				location.href="./orderhistory1.do"
+			},
+
+		})
 }
 
 
@@ -76,13 +101,27 @@ function registerExchange(o_no,pa_id,p_no,p_title,e_reason){
  <div>
  - 교환 사유
  <select onchange="whyExchange(this)">
-	<option>교환하시는 이유를 선택해주세요</option>
+	<option value="2">교환하시는 이유를 선택해주세요</option>
 	<option value="0">불량</option>
 	<option value="1">단순변심</option>
 </select>
 
  <input type="hidden" id="e_reason" name="e_reason" value="" readonly="readonly">
  
+</div>
+
+<div id="onlyZero" style="display:none;">
+<h2>교환 상품 내역</h2>
+
+<label>주문 번호</label>
+<input name="pa_id1" id="pa_id1" value="${getInfo.pa_id}" readonly="readonly">
+<label>상품명</label>
+<input name="p_title1" id="p_title1"  value="${getInfo.p_title}" style="width:300px;"readonly="readonly">
+<input type="hidden" name="p_no1" id="p_no1" value="${getInfo.p_no}" readonly="readonly">
+<input type="hidden" id="o_no1" value="${o_no}">
+<button onclick="exchangeService()" > 교환 접수하기 </button>
+
+
 </div>
 
 <div id="onlyOne" style="display:none;">
