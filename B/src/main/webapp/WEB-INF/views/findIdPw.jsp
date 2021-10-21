@@ -28,13 +28,9 @@ function select(idpw){
 
 function fwith(method){
 	var method = method.value
-	if(method == "phone"){
-		jQuery('#valid').hide();
-		jQuery('#withEmail').hide(); 	
-		 jQuery('#withPhone').show(); 	 
-} if(method == "email"){
-	jQuery('#valid').hide();
-	jQuery('#withPhone').hide(); 
+	
+if(method == "email"){
+	jQuery('#valid').hide(); 
 	jQuery('#withEmail').show(); 	
 }if(method == "n"){
 	jQuery('#valid').hide();
@@ -134,10 +130,29 @@ function validKey2(){
 }
 
 </script>
+<style type="text/css">
+
+*{padding:0;margin:0;box-sizing:border-box;}
+   body{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh;
+   background: #EDEDED; 
+   background-size: cover;
+   text-align: center;
+    }
+
+   
+
+
+
+</style>
 <body>
 
 <div >
-<h1>아이디/비밀번호 찾기</h1>
+<h1>아이디/비밀번호 찾기</h1> <br>
+<div><a href="./index.do" >메인으로 가기</a></div>
 
 <select onchange="select(this)">
 	<option value="nn">선택해주세요</option>
@@ -150,7 +165,6 @@ function validKey2(){
 <input type="text" name="m_name" id="m_name" placeholder="ex)홍길동">
 <select onchange="fwith(this)">
 	<option value="n">인증 수단을 선택해주세요</option>
-	<option value="phone">휴대폰으로 본인 인증하기</option>	
 	<option value="email">이메일로 본인 인증하기</option>	
 </select>
 
@@ -175,9 +189,9 @@ function validKey2(){
 
 <div id="findPw" style="display:none;" >
   이름
-<input type="text" name="m_name1" id="m_name1" placeholder="ex)홍길동">
+<input type="text" name="m_name1" id="m_name1" placeholder="ex)홍길동"> <br>
   아이디
-<input type="text" name="m_id1" id="m_id1">  
+<input type="text" name="m_id1" id="m_id1">  <br>
   이메일 인증
 <input type="text" name="m_email1" id="m_email1" placeholder="ex)0000@0000"> <button onclick="sendEmail2()">인증번호 보내기</button>  	
 </div>
@@ -189,7 +203,6 @@ function validKey2(){
 <input name="userKey2" id="userKey2" type="hidden" style="width:300px;border:none;" value="">
 
 </div>
-
 
 
 </body>
