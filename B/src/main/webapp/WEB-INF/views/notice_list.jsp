@@ -31,6 +31,10 @@
         height: 55px;
         border-bottom: 1px solid #4034295e;
     }
+    
+    tr:not(thead tr) {
+   		cursor: pointer;
+    }
 
     .boardList__normal:hover{
         background: #f9f9f9;
