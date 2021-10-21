@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>내 정보 | Spring.B</title>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <script src="./resources/js/inParentWindow.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>

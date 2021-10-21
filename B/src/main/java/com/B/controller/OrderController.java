@@ -130,13 +130,6 @@ public class OrderController {
 	}
 	
 	
-	@GetMapping("/checkout_temp.do")
-	public ModelAndView tempCheckout() {
-		ModelAndView mv = new ModelAndView("checkout_temp");
-		return mv;
-	}
-	
-	
 	@GetMapping("/checkout.do")
 	public ModelAndView cantReadCheckout() {
 		ModelAndView mv = new ModelAndView("checkout");

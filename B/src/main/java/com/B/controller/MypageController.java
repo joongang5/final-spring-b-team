@@ -182,7 +182,7 @@ public class MypageController {
 			mypageService.myAccountUpdatePW(map.getMap());
 			
 			
-			return "redirect:myinfoUpdatePW.do?msg=ok";
+			return "redirect:/myinfoUpdatePW.do?msg=ok";
 
 		} else {
 			map2.put("l_data", "비밀번호 변경 실패");

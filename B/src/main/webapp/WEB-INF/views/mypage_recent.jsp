@@ -8,6 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <title>최근 본 상품 | Spring.B</title>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
   <script src="./resources/js/inParentWindow.js"></script>
   <link rel="stylesheet" href="./resources/css/base.css">
   <link rel="stylesheet" href="./resources/css/mypage.css">
