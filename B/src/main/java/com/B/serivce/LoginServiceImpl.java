@@ -34,6 +34,12 @@ public class LoginServiceImpl implements LoginService {
 		return loginDAO.getId("login.getId",map);
 	}
 
+	@Override
+	public String getPw(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return loginDAO.getId("login.getPw",map);
+	}
+
 	
 
 	

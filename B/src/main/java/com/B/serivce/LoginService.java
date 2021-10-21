@@ -11,4 +11,6 @@ public interface LoginService {
 	public void join(Map<String, Object> map);
 	
 	public String getId(Map<String, Object> map);
+	
+	public String getPw(Map<String, Object> map);
 }

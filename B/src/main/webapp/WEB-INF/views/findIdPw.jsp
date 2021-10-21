@@ -14,13 +14,15 @@
 function select(idpw){
 	var idpw = idpw.value
 	if(idpw == "id"){
+		jQuery('#findPw').hide();
 		jQuery('#findId').show();
 } if(idpw == "pw"){
-	
+	jQuery('#findPw').show(); 
 	jQuery('#findId').hide(); 
 		
 }if(method == "nn"){
 	jQuery('#findId').hide(); 
+	jQuery('#findPw').hide();
 }
 }
 
@@ -57,6 +59,26 @@ $.ajax({
 	 
 }
 
+function sendEmail2(){
+	var m_name = $('#m_name1').val()
+	var m_id = $('#m_id1').val()
+	var m_email = $('#m_email1').val()
+
+$.ajax({
+			url : "findIdwithEmailPW.do",
+			type : "post",
+			data : {"m_name" : m_name, "m_email" : m_email, "m_id" : m_id},
+			success : function(data) {
+				alert("입력하신 메일로 인증 번호를 보냈사오니, 확인 하신 후 다음 란에 입력하여 주세요.")
+				jQuery('#valid2').show();
+			},
+
+		})
+	
+	 
+}
+
+
 function validKey(){
 	var inputByUser = $('#valid1').val()
 	var m_name = $('#m_name').val()
@@ -78,6 +100,36 @@ $.ajax({
 			},
 
 		})
+	
+}
+
+
+function validKey2(){
+	var inputByUser = $("#valid3").val()
+	var m_name = $('#m_name1').val()
+	var m_id = $('#m_id1').val()
+	var m_email = $('#m_email1').val()
+	
+	$.ajax({
+			url : "validKey2.do",
+			type : "post",
+			data : {"userKey1" : inputByUser,"m_name1" : m_name, "m_email1" : m_email, "m_id1": m_id},
+			success : function(data) {
+				if(data != "1"){
+					
+					 $('input[name=userKey2]').attr("value", "당신의 비밀번호는 "  + data + " 입니다.")
+					 $('input[name=userKey2]').attr("type","text");
+					 
+				}else{
+					 $('input[name=userKey2]').attr("type","hidden");
+				     alert("인증번호가 틀립니다.")
+				}
+				
+			},
+
+		})
+	
+	
 	
 }
 
@@ -121,6 +173,20 @@ $.ajax({
 </div>
 
 
+<div id="findPw" style="display:none;" >
+  이름
+<input type="text" name="m_name1" id="m_name1" placeholder="ex)홍길동">
+  아이디
+<input type="text" name="m_id1" id="m_id1">  
+  이메일 인증
+<input type="text" name="m_email1" id="m_email1" placeholder="ex)0000@0000"> <button onclick="sendEmail2()">인증번호 보내기</button>  	
+</div>
+
+<div id="valid2" style="display:none;">
+<input name="valid3" id="valid3" type="text" placeholder="인증번호를 입력하세요">  <button onclick="validKey2()">확인</button>
+</div>
+
+<input name="userKey2" id="userKey2" type="hidden" style="width:300px;border:none;" value="">
 
 </div>
 

@@ -18,5 +18,9 @@
 	<select id="getId" parameterType="HashMap" resultType="String">
 		SELECT m_id FROM member WHERE m_name=#{m_name} AND m_email=#{m_email}
 	</select>
+	
+	<select id="getPw" parameterType="HashMap" resultType="String">
+		SELECT m_pw FROM member WHERE m_name=#{m_name1} AND m_email=#{m_email1} AND m_id=#{m_id1}
+	</select>
 </mapper>
 

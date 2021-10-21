@@ -215,6 +215,61 @@ public class LoginController {
 		
 	}
 	
+	@PostMapping(value ="/findIdwithEmailPW.do")
+	@ResponseBody
+	public void sendEmail2(HttpServletRequest req,CommandMap map) {
+		
+		
+		map.put("m_name1", req.getParameter("m_name"));
+		map.put("m_id1", req.getParameter("m_id"));
+		map.put("m_email1", req.getParameter("m_email"));
+		
+		
+		//인증 번호 생성기
+		StringBuffer temp = new StringBuffer();
+		Random random = new Random();
+		for (int i = 0; i < 10; i++) {
+			int randomIndex = random.nextInt(3);
+			switch(randomIndex) {
+			case 0:
+				temp.append((char) ((int) (random.nextInt(26))+97));
+				 break;
+            case 1:
+                // A-Z
+                temp.append((char) ((int) (random.nextInt(26)) + 65));
+                break;
+            case 2:
+                // 0-9
+                temp.append((random.nextInt(10)));
+                break;
+			}
+		}
+         String key = temp.toString();  //인증키
+         
+		HttpSession session = req.getSession();
+		session.setAttribute("key2", key);
+		
+		
+		 try {
+             MimeMessage message = mailSender.createMimeMessage();
+             MimeMessageHelper messageHelper = new MimeMessageHelper(message,
+                     true, "UTF-8");
+
+             messageHelper.setFrom("hyuna960229@gmail.com"); // 보내는사람 생략하면 정상작동을 안함
+             messageHelper.setTo((String) map.getMap().get("m_email1")); // 받는사람 이메일
+             messageHelper.setSubject("Spring B 인증메일 입니다."); 
+             messageHelper.setText("인증 번호는: " + temp + " 입니다."); // 메일 내용
+             
+             mailSender.send(message);
+         } catch (Exception e) {
+             System.out.println(e);
+         }
+		
+		
+	}
+	
+	
+	
 	@PostMapping(value ="/validKey.do")
 	@ResponseBody
 	public String validKey(HttpServletRequest req,CommandMap map) {
@@ -226,6 +281,27 @@ public class LoginController {
 		if(userKey.equals(session.getAttribute("key"))) {
 			String userId = loginService.getId(map.getMap());
 			return userId;
+		}else {
+			return "1";
+		}
+		
+		
+	}
+	
+	@PostMapping(value ="/validKey2.do")
+	@ResponseBody
+	public String validKey2(HttpServletRequest req,CommandMap map) {
+		map.put("m_email1", req.getParameter("m_email1"));
+		map.put("m_name1", req.getParameter("m_name1"));
+		map.put("m_id1", req.getParameter("m_id1"));
+		String userKey = req.getParameter("userKey1");
+		
+		System.out.println(map.getMap());
+		HttpSession session = req.getSession();
+		if(userKey.equals(session.getAttribute("key2"))) {
+			String userPw = loginService.getPw(map.getMap());
+			
+			return userPw;
 		}else {
 			return "1";
 		}
