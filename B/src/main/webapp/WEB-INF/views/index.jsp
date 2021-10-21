@@ -245,7 +245,8 @@ s0.parentNode.insertBefore(s1,s0);
 								<c:forEach items="${productList }" var="pl">
 									<c:if test="${pl.c_main eq cM.c_main}">
 										<li class="scene" onclick="location.href='./detail.do?category=${cM.c_main }&&sub= ${pl.c_sub }&&product=${pl.p_no }'">
-											<img src="https://blogger.googleusercontent.com/img/a/${pl.p_img }" alt="${pl.p_title }" class="sceneImg"/>
+											<c:if test="${pl.p_no lt 58 }"><img src="https://blogger.googleusercontent.com/img/a/${pl.p_img}"  alt="${pl.p_title }" class="sceneImg"></c:if>
+											<c:if test="${pl.p_no ge 58 }"><img src="./resources/uploadFile/${pl.p_img}"  alt="${pl.p_title }" class="sceneImg"></c:if>
 											<div class="detail">
 												<p class="title">
 													<span style="color:#999;font-size:12px;">[${pl.c_main } > ${pl.c_sub }]</span><br/>

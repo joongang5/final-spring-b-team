@@ -159,7 +159,8 @@ $(function(){
 			<div id="mainContainer">
 				<div id="productDetail">
 					<div id="productImg" class="pdSon">
-						<img src="https://blogger.googleusercontent.com/img/a/${detail.p_img }" alt="${detail.p_title }" class="img"/>
+						<c:if test="${detail.p_no lt 58 }"><img src="https://blogger.googleusercontent.com/img/a/${detail.p_img}"  alt="${detail.p_title }" class="img"></c:if>
+						<c:if test="${detail.p_no ge 58 }"><img src="./resources/uploadFile/${detail.p_img}"  alt="${detail.p_title }" class="img"></c:if>
 					</div>
 					<div id="productContent" class="pdSon">
 						<h4><span style="color:#666;font-size:14px;">[${detail.c_main } > ${detail.c_sub }]</span></h4>

@@ -120,7 +120,8 @@ $(function(){
 								<c:when test="${fn:length(searchList) > 0}">
 									<c:forEach items="${searchList }" var="sl">
 										<figure class="scene" onclick="location.href='./detail.do?category=${sl.c_main }&&sub= ${sl.c_sub }&&product=${sl.p_no }'">
-											<img src="https://blogger.googleusercontent.com/img/a/${sl.p_img }" alt="${sl.p_title }" class="sceneImg"/>
+											<c:if test="${sl.p_no lt 58 }"><img src="https://blogger.googleusercontent.com/img/a/${sl.p_img}"  alt="${sl.p_title }" class="sceneImg"></c:if>
+											<c:if test="${sl.p_no ge 58 }"><img src="./resources/uploadFile/${sl.p_img}"  alt="${sl.p_title }" class="sceneImg"></c:if>
 											<figcaption class="detail">
 												<p class="title">
 													<span style="color:#999;font-size:12px;">[${sl.c_main } > ${sl.c_sub }]</span><br/>
@@ -134,7 +135,8 @@ $(function(){
 								<c:when test="${fn:length(searchList) == 0 && search eq null}">
 									<c:forEach items="${cp_productList }" var="l">
 										<figure class="scene" onclick="location.href='./detail.do?category=${l.c_main }&&sub= ${l.c_sub }&&product=${l.p_no }'">
-											<img src="https://blogger.googleusercontent.com/img/a/${l.p_img }" alt="${l.p_title }" class="sceneImg"/>
+											<c:if test="${l.p_no lt 58 }"><img src="https://blogger.googleusercontent.com/img/a/${l.p_img}"  alt="${l.p_title }" class="sceneImg"></c:if>
+											<c:if test="${l.p_no ge 58 }"><img src="./resources/uploadFile/${l.p_img}"  alt="${l.p_title }" class="sceneImg"></c:if>
 											<figcaption class="detail">
 												<p class="title">
 													<span style="color:#999;font-size:12px;">[${l.c_main } > ${l.c_sub }]</span><br/>
