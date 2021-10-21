@@ -186,7 +186,7 @@
                     </div>
                 </div>
                 <div class="change-password-footer">
-                    <button type="submit" id="updateBtn" disabled="disabled">비밀번호 변경하기</button>
+                    <button type="submit" id="updateBtn">비밀번호 변경하기</button>
                 </div>
             </form>
             <c:if test="${param.msg eq 'ok'}">
