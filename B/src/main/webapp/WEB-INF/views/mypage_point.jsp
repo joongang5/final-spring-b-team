@@ -211,6 +211,7 @@
 							<li class="sideMenu__item sideMenu__item--active"><a href="./mypage_point.do">적립금 조회</a></li>
 							<li class="sideMenu__item"><a href="">상품 문의</a></li>
 							<li class="sideMenu__item"><a href="">1:1 문의</a></li>
+							<li class="sideMenu__item"><a href="./notice_list.do">공지사항</a></li>
 						</ul>
 					</div>
 					<div class="sideMenu__block">
