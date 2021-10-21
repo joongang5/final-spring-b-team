@@ -152,7 +152,7 @@ function validKey2(){
 
 <div >
 <h1>아이디/비밀번호 찾기</h1> <br>
-<div><a href="./index.do" >메인으로 가기</a></div>
+<div><a href="./index.do" >메인으로 가기</a> &nbsp; <a href="./login.do" >로그인하러 가기</a></div>
 
 <select onchange="select(this)">
 	<option value="nn">선택해주세요</option>
