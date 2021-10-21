@@ -21,5 +21,7 @@ public interface OrderService {
 
 	public int checkStock(Map<String, Object> orderedProduct);
 
+	public int deleteFromCart(Map<String, Object> orderedProduct);
+
 
 }

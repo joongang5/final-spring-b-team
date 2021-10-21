@@ -118,7 +118,7 @@ label p {
 
 .option-content__quantity {
 	display: flex;
-	align-items: center;
+	align-items: baseline;
 }
 
 .option-content__quantity button {
@@ -144,26 +144,35 @@ label p {
 }
 
 .quantity__value {
-	margin: 0 10px;
+	margin: 0 5px;
+}
+
+.quantity__value span{
+
 }
 
 .quantity__value input[type="text"] {
-	width: 38px;
-	border-radius: 0px;
-	border: none;
-	border-bottom: 2px solid #403429;
-	text-align: center;
-	/* margin: 0 5px; */
-	height: 15px;
-	padding-bottom: 10px;
-	font-size: 14pt;
-	background: transparent;
-	font-family: math;
+	width: 35px;
+    border-radius: 12px;
+    /* border-radius: 0; */
+    /* border-bottom: 2px solid #403429; */
+    text-align: center;
+    /* margin: 0 5px; */
+    height: 15px;
+    /* padding-bottom: 10px; */
+    padding: 11px 12px;
+    font-size: 14pt;
+    /* background: transparent; */
+    /* background: #eeded5; */
+    font-family: math;
 }
 
 .option-content__sum {
 	font-size: 14pt;
 	font-weight: 800;
+	align-self: center;
+    line-height: 10px;
+    margin-right: 5px;
 }
 
 .product-select-box input[type="checkbox"] {
@@ -200,7 +209,7 @@ function down(no){
 	//alert("down" + no);
 	
 	var cntSpanId = "#cnt" + no;
-    var strCnt = $(cntSpanId).text();
+    var strCnt = $(cntSpanId).val();
 	var checkValueArr = getCheckedCartNoArr();
 	var cnt = parseInt(strCnt) - 1; //숫자로 변경해서 -1
 	
@@ -221,7 +230,7 @@ function down(no){
     	data : { "sendData" : sendData },
     	success : function(data) {
     		// 수량받기
-    		$(cntSpanId).text(data.cnt);
+    		$(cntSpanId).val(data.cnt);
     		
     		var unitPriceId = "#unitPrice" + no;
     		var unitPrice = $(unitPriceId).val();
@@ -246,7 +255,7 @@ function up(no, cnt){
 	//var cnt = parseInt(cnt) + 1; //숫자로 변경해서 +1
 	//location.href="./cartProductUp.do?ca_no="+no+"&cnt="+cnt;
 	var cntSpanId = "#cnt" + no;
-    var strCnt = $(cntSpanId).text();
+    var strCnt = $(cntSpanId).val();
 	var checkValueArr = getCheckedCartNoArr();
 	var cnt = parseInt(strCnt) + 1; //숫자로 변경해서 -1
 	
@@ -267,7 +276,7 @@ function up(no, cnt){
     	data : { "sendData" : sendData },
     	success : function(data) {
     		// 수량받기
-    		$(cntSpanId).text(data.cnt);
+    		$(cntSpanId).val(data.cnt);
     		
     		var unitPriceId = "#unitPrice" + no;
     		var unitPrice = $(unitPriceId).val();
@@ -428,7 +437,7 @@ function goToCheckout() {
 	for(var i = 0; i < checkArr.length; i++){
 		if(checkArr[i].checked){
 			var p_no = document.getElementsByName("p_no")[i].value;
-			var cnt = document.querySelectorAll(".quantity__value")[i].innerText;
+			var cnt = document.querySelectorAll(".quantity__value input[type='text']")[i].value;
 		    var input = document.createElement("input");
 		    input.setAttribute("type", "hidden");
 		    input.setAttribute("name", "p_no$cnt");
@@ -490,7 +499,9 @@ function goToCheckout() {
 										</div>
 										<div class="payment-product-right-block">
 											<div class="product-content__name-container">
-												<div class="product-content__name">${c.p_title}</div>
+												<div class="product-content__name">
+												 <a href="./detail.do?category=${c.c_main}&&sub=${c.c_sub}&&product=${c.p_no}">${c.p_title}</a>
+												</div>
 												<div class="product-content__cancel">
 													<button type="button" name="btn${c.ca_no }"
 														class="delete_btn" value="${c.ca_no }">
@@ -514,8 +525,8 @@ function goToCheckout() {
 														</div>
 														<div class="quantity__value">
 															<!--유효성 검사 함수 넣기-->
-															<!-- <input type="text" value="1" readonly="readonly"> -->
-															<span id="cnt${c.ca_no}">${c.cnt}</span>
+															<input type="text" id="cnt${c.ca_no}" value="${c.cnt}" readonly="readonly">
+															<!-- <span id="cnt${c.ca_no}">${c.cnt}</span>-->
 														</div>
 														<div class="quantity__plus">
 															<button onclick="up(${c.ca_no })"></button>

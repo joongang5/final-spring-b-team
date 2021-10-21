@@ -57,5 +57,9 @@
 		UPDATE member SET m_point = m_point-#{usePoint}+#{finalWillPoint} WHERE m_no = (SELECT m_no FROM member WHERE m_id=#{m_id})
 	</update>
 	
+	<delete id="deleteFromCart" parameterType="HashMap">
+		DELETE FROM cart WHERE p_no = #{p_no}
+	</delete>
+	
 </mapper>
 

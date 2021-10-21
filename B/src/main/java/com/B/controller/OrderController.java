@@ -334,10 +334,25 @@ public class OrderController {
 				logService.writeLog(paymentErrorInfo); 
 				return mv;
 			}
+			
+			//장바구니에서 구매한 상품 삭제
+			try {
+					orderService.deleteFromCart(orderedProduct);
+			} catch (Exception e) {
+					e.printStackTrace();
+					mv.addObject("result", "error");
+					mv.addObject("errorMsg", "결제는 진행되었으나 주문 데이터 반영에 문제가 발생했습니다. 관리자에게 문의해주세요.");
+					paymentErrorInfo = new HashMap<>();
+					paymentErrorInfo.put("l_ip", ""); //ip 입력은 일단 미루자
+					paymentErrorInfo.put("l_target", "Checkout");
+					paymentErrorInfo.put("l_data", "[결제 오류] 장바구니에서 구매한 물품 삭제 실패");
+					paymentErrorInfo.put("l_id", id);
+					logService.writeLog(paymentErrorInfo); 
+					return mv;
+			}
 		}
 		
 		//적립금 차감 및 적립하기
-		//적립금 적립은 상품이 구매 확정 되고 나서 하는 게 베스트지만 이번 프로젝트에는 그런 개념이 없으므로 임시적으로 구매시 적립하는 로직으로 처리
 		try {
 			orderService.calcPoint(paymentInfo);
 		} catch (Exception e) {
@@ -375,23 +390,23 @@ public class OrderController {
 			return mv;
 		}
 		
-		try {
-			if( Integer.parseInt(jsonDTO.get("usePoint").toString()) != 0 ) {
+		if( Integer.parseInt(jsonDTO.get("usePoint").toString()) != 0 ) {
+			try {
 				pointInfo.put("po_vary", "-");
 				pointInfo.put("po_value", jsonDTO.get("usePoint"));
 				mypageService.inputPointLog(pointInfo);
+			} catch (Exception e) {
+					e.printStackTrace();
+					mv.addObject("result", "error");
+					mv.addObject("errorMsg", "결제와 주문서 작성은 진행되었으나 결제 데이터 반영에 실패했습니다. 관리자에게 문의해주세요.");
+					paymentErrorInfo = new HashMap<>();
+					paymentErrorInfo.put("l_ip", ""); //ip 입력은 일단 미루자
+					paymentErrorInfo.put("l_target", "Checkout");
+					paymentErrorInfo.put("l_data", "[결제 오류] pointLog 테이블에 적립금 로그 생성 실패");
+					paymentErrorInfo.put("l_id", id);
+					logService.writeLog(paymentErrorInfo); 
+					return mv;
 			}
-		} catch (Exception e) {
-				e.printStackTrace();
-				mv.addObject("result", "error");
-				mv.addObject("errorMsg", "결제와 주문서 작성은 진행되었으나 결제 데이터 반영에 실패했습니다. 관리자에게 문의해주세요.");
-				paymentErrorInfo = new HashMap<>();
-				paymentErrorInfo.put("l_ip", ""); //ip 입력은 일단 미루자
-				paymentErrorInfo.put("l_target", "Checkout");
-				paymentErrorInfo.put("l_data", "[결제 오류] pointLog 테이블에 적립금 로그 생성 실패");
-				paymentErrorInfo.put("l_id", id);
-				logService.writeLog(paymentErrorInfo); 
-				return mv;
 		}
 		
 		mv.addObject("result", "success");

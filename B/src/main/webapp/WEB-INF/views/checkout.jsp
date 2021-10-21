@@ -470,7 +470,7 @@ header a:after, footer a:after{height:0;}
       width: 100%;
       height: 100%;
       background: rgba(0,0,0,0.5);
-      z-index: 20;
+      z-index: 99;
     }
 
     .loading__popup{
@@ -500,7 +500,7 @@ header a:after, footer a:after{height:0;}
       width: 100%;
       height: 100%;
       background: rgba(0,0,0,0.5);
-      z-index: 20;
+      z-index: 99;
     }
 
     .terms-detail__popup{

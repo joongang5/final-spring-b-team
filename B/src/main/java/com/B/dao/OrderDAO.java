@@ -41,5 +41,9 @@ public class OrderDAO extends AbstractDAO{
 		return selectOne2("order.checkStock", orderedProduct);
 	}
 
+	public int deleteFromCart(Map<String, Object> orderedProduct) {
+		return delete("order.deleteFromCart", orderedProduct);
+	}
+
 
 }

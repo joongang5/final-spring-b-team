@@ -54,6 +54,11 @@ public class OrderServiceImpl implements OrderService {
 		return orderDAO.checkStock(orderedProduct);
 	}
 
+	@Override
+	public int deleteFromCart(Map<String, Object> orderedProduct) {
+		return orderDAO.deleteFromCart(orderedProduct);
+	}
+
 
 	
 }
