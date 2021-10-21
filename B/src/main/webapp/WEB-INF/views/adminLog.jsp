@@ -197,24 +197,6 @@
 								</ul>
 							</div>
 						</li>
-						<li class="sideMenu__item">
-							<div class="sideMenu-container">
-								<div>
-									<img src="./resources/images/support.png">
-								</div>
-								<div>
-									<a href="">고객 응대</a>
-								</div>
-							</div>
-							<div class="sideMenu-sub-container">
-								<ul class="sideMenu__subItems">
-									<li class="sideMenu__subItem"><a href="">상품 문의 목록</a></li>
-									<li class="sideMenu__subItem"><a href="">1:1 문의 목록</a></li>
-									<li class="sideMenu__subItem"><a href="">자주 묻는 질문 관리</a></li>
-									<li class="sideMenu__subItem"><a href="">리뷰 목록</a></li>
-								</ul>
-							</div>
-						</li>
 						<li class="sideMenu__item sideMenu__item--active">
 							<div class="sideMenu-container">
 								<div>

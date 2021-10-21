@@ -112,8 +112,6 @@ function registerExchange(o_no,pa_id,p_no,p_title,e_reason){
 								href="./orderhistory.do">구매 내역 조회</a></li>
 							<li class="sideMenu__item"><a href="./mypage_recent.do">최근 본 상품</a></li>
 							<li class="sideMenu__item"><a href="./mypage_point.do">적립금 조회</a></li>
-							<li class="sideMenu__item"><a href="">상품 문의</a></li>
-							<li class="sideMenu__item"><a href="">1:1 문의</a></li>
 						</ul>
 					</div>
 					<div class="sideMenu__block">
@@ -121,7 +119,6 @@ function registerExchange(o_no,pa_id,p_no,p_title,e_reason){
 						<ul class="sideMenu__items">
 							<li class="sideMenu__item"><a href="./myinfo.do">회원 정보
 									조회</a></li>
-							<li class="sideMenu__item"><a href="">주소록</a></li>
 							<li class="sideMenu__item"><a href="./myinfoUpdatePW.do">비밀번호
 									변경</a></li>
 							<li class="sideMenu__item"><a
