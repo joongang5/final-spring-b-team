@@ -50,7 +50,7 @@
 	</select>
 	
 	<update id="downStock" parameterType="hashMap">
-		UPDATE product SET p_sell = (p_sell-#{cnt}) WHERE p_no = #{p_no}
+		UPDATE product SET p_sell = (p_sell+#{cnt}) WHERE p_no = #{p_no}
 	</update>
 	
 	<update id="calcPoint" parameterType="HashMap">

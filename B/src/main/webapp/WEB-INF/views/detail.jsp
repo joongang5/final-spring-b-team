@@ -46,7 +46,9 @@
 						#buyBtn p:first-child{background-color:#fff;color:#FF8A00;}
 						#buyBtn p:last-child{background-color:#FF8A00;color:#fff;}
 						#buyBtn p:hover{background-color:#403429;color:#fff;}
-			
+					
+					#cantBuyBtn{width:100%;column-count: 2;column-gap: 20px;padding-top:15px;}
+					#cantBuyBtn p{width:100%;height:40px;line-height:40px;text-align:center;border:none;background-color:#e5e5e5;color:#fff;}
 			#reviewArea{width:100%;padding-top:30px;}
 				#reviewBar{width:100%;border-top:1px solid #ddd;border-bottom:1px solid #ddd;padding:5px 0;background-color:#fff;}
 					#reviewNav{width:1200px;margin:0 auto;overflow:hidden;display:flex;justify-content: space-evenly;}
@@ -186,9 +188,18 @@ $(function(){
 								<input type="hidden" id="totalVal" value="${detail.p_price }"/>
 							</div>
 						</div>
-						<div id="buyBtn">
-							<p>장바구니</p><p>구매하기</p>
-						</div>
+						<c:choose>
+							<c:when test="${(detail.p_cnt - detail.p_sell) == 0 }">
+								<div id="cantBuyBtn">
+									<p>장바구니</p><p>구매하기</p>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div id="buyBtn">
+									<p>장바구니</p><p>구매하기</p>
+								</div>
+							</c:otherwise>
+						</c:choose>
 						<c:if test="${param.msg eq 'ok'}">
 						<script type="text/javascript">
 							check();
