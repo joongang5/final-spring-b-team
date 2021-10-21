@@ -128,7 +128,6 @@
               <ul class="sideMenu__subItems">
                 <li class="sideMenu__subItem"><a href="./product.do">상품 목록</a></li>
                 <li class="sideMenu__subItem"><a href="./registerProduct.do">상품 등록</a></li>
-                <li class="sideMenu__subItem"><a href="">쿠폰 등록</a></li>
               </ul>
             </div>
           </li>
