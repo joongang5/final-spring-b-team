@@ -114,6 +114,9 @@
 </style>
 </head>
 <body>
+<c:if test="${sessionScope.m_id eq null }">
+	<c:redirect url="login.do" />
+</c:if>
 <div id="layout-container">
     <div id="board-main-container">
         <main>
@@ -121,10 +124,12 @@
                 <h1>공지사항</h1>
             </div>
             <div class="board-container">
+            	<c:if test="${sessionScope.m_grade eq 1 }">
                 <div class="boardDetail-buttonContainer-top">
                     <button onclick="update( ${detail.n_no})">수정</button>
                     <button onclick="del( ${detail.n_no})">삭제</button>
                 </div>
+                </c:if>
                 <table class="boardDetail">
                     <tr>
                         <th class="boardDetail-title__value" colspan="2">${detail.n_title}</th>

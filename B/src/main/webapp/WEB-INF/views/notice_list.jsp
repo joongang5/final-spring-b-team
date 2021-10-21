@@ -112,6 +112,9 @@ location.href = "./notice_list.do?pageNo="+pageNo;
 </script>
 </head>
 <body>
+<c:if test="${sessionScope.m_id eq null }">
+	<c:redirect url="login.do" />
+</c:if> 
 <div id="layout-container">
     <div id="board-main-container">
         <main>
@@ -147,11 +150,13 @@ location.href = "./notice_list.do?pageNo="+pageNo;
                     </tr>
                     </c:forEach>
                     <!--그냥 공지 출력 끝-->
+                    <c:if test="${sessionScope.m_grade eq 1 }">
                     <tr class="boardList__buttonContainer">
                         <td colspan="3">
                             <button onclick="location.href='./notice_write.do'">등록하기</button>
                         </td>
                     </tr>
+                    </c:if> 
                     </tbody>
                 </table>
                 <div class="boardList__paging">

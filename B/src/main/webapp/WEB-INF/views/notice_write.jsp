@@ -123,6 +123,9 @@
     </script>
 </head>
 <body>
+<c:if test="${sessionScope.m_grade ne 1 }">
+	<c:redirect url="login.do" />
+</c:if>
 <div id="layout-container">
     <div id="board-main-container">
         <main>
