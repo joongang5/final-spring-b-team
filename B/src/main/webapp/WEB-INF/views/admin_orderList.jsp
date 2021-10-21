@@ -176,7 +176,6 @@ $(".checkbox").click(function(){
               <ul class="sideMenu__subItems sideMenu__subItems--active">
                 <li class="sideMenu__subItem sideMenu__subItem--active"><a href="./admin_orderList.do">주문 목록</a></li>
                 <li class="sideMenu__subItem"><a href="./admin_exchange.do">교환 관리</a></li>
-                <li class="sideMenu__subItem"><a href="">환불 관리</a></li>
               </ul>
             </div>
           </li>
@@ -189,7 +188,6 @@ $(".checkbox").click(function(){
               <ul class="sideMenu__subItems">
                 <li class="sideMenu__subItem"><a href="./product.do">상품 목록</a></li>
                 <li class="sideMenu__subItem"><a href="./registerProduct.do">상품 등록</a></li>
-                <li class="sideMenu__subItem"><a href="">쿠폰 등록</a></li>
               </ul>
             </div>
           </li>

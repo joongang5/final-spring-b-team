@@ -173,8 +173,7 @@ $(document).ready(function(){
             <div class="sideMenu-sub-container">
               <ul class="sideMenu__subItems">
                 <li class="sideMenu__subItem"><a href="./admin_orderList.do">주문 목록</a></li>
-                <li class="sideMenu__subItem"><a href="">교환 관리</a></li>
-                <li class="sideMenu__subItem"><a href="">환불 관리</a></li>
+                <li class="sideMenu__subItem"><a href="./admin_exchange.do">교환 관리</a></li>
               </ul>
             </div>
           </li>

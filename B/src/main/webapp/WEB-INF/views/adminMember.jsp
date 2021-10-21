@@ -187,8 +187,7 @@ td button:hover {
 							<div class="sideMenu-sub-container">
 								<ul class="sideMenu__subItems">
 									<li class="sideMenu__subItem"><a href="./admin_orderList.do">주문 목록</a></li>
-									<li class="sideMenu__subItem"><a href="">교환 관리</a></li>
-									<li class="sideMenu__subItem"><a href="">환불 관리</a></li>
+									<li class="sideMenu__subItem"><a href="./admin_exchange.do">교환 관리</a></li>
 								</ul>
 							</div>
 						</li>
@@ -205,7 +204,6 @@ td button:hover {
 								<ul class="sideMenu__subItems">
 									<li class="sideMenu__subItem"><a href="./product.do">상품 목록</a></li>
 									<li class="sideMenu__subItem"><a href="./registerProduct.do">상품 등록</a></li>
-									<li class="sideMenu__subItem"><a href="">쿠폰 등록</a></li>
 								</ul>
 							</div>
 						</li>
