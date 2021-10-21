@@ -493,9 +493,9 @@ header, footer, aside, nav, section, article {
 	text-indent: -999em
 }
 </style>
-<script src="./resources/js/inParentWindow.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<script src="./resources/js/inParentWindow.js"></script>
 <!-- datepicker 한국어로 -->
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>

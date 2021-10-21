@@ -8,6 +8,8 @@
 <head>
     <meta charset="UTF-8">
     <title>공지사항 | Spring.B</title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+    <script src="./resources/js/inParentWindow.js"></script>
     <script type="text/javascript">
 		function del(no){
 			if(confirm("해당 게시글을 삭제하시겠습니까?")){

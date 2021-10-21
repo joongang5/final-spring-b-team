@@ -20,6 +20,7 @@
 	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 	<script src="./resources/summernote/summernote-ko-KR.js"></script>
+	<script src="./resources/js/inParentWindow.js"></script>
     <style>
         .board-container{
             margin-top: 50px;

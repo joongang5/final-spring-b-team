@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>비밀번호 변경 | Spring.B</title>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
 <script src="./resources/js/inParentWindow.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
 <script type="text/javascript">
@@ -139,8 +140,7 @@
                 <div class="change-password-header">
                     비밀번호를 변경하려면 다음 정보를 입력하세요.
                 </div>
-                <form action="./myAccountChangePW.do" method="post"
-				onsubmit="return submit()">
+                <form action="./myAccountChangePW.do" method="post" onsubmit="return submit()">
                 <div class="change-password-body">
                     <!--현재 비밀번호, 변경할 비밀번호*2-->
                     <div class="myInfo-content__short-container">
