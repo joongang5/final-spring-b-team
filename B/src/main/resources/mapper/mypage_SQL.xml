@@ -76,6 +76,7 @@
 					</when>
 				</choose>
 			</if>
+		WHERE m_no = (SELECT m_no FROM member WHERE m_id=#{m_id})
 	</select>
 	
 	<insert id="inputRecentLog" parameterType="hashMap">
