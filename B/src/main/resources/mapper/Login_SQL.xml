@@ -14,5 +14,9 @@
 	<select id="join" parameterType="HashMap" >
 		INSERT INTO member(m_name,m_id,m_pw,m_email,m_addr,m_phone) VALUES(#{m_name},#{m_id},#{m_pw},#{m_email},#{m_addr},#{m_phone})
 	</select>
+	
+	<select id="getId" parameterType="HashMap" resultType="String">
+		SELECT m_id FROM member WHERE m_name=#{m_name} AND m_email=#{m_email}
+	</select>
 </mapper>
 

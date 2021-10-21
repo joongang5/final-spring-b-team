@@ -1,17 +1,24 @@
 package com.B.controller;
 
 import java.util.Map;
+import java.util.Random;
 
 import javax.annotation.Resource;
+import javax.inject.Inject;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.B.common.CommandMap;
 import com.B.serivce.LogServiceImpl;
@@ -25,6 +32,10 @@ public class LoginController {
 	
 	@Resource (name = "logService")
 	private LogServiceImpl logService;
+	
+	@Autowired
+	private JavaMailSender mailSender;
+	
 	
 	@GetMapping(value = "/login.do")
 	public String login() {
@@ -107,7 +118,7 @@ public class LoginController {
 	    	return 0;
 	    	
 	    }else {
-	    	loginService.join(ma.getMap());
+	    	
 	    	map.put("l_data", "회원가입 실패");
 	    	map.put("l_id", ma.get("m_id"));
 	    	logService.writeLog(map);
@@ -143,4 +154,84 @@ public class LoginController {
 			return "redirect:/login.do";
 		}
 	}
+	
+	
+	@GetMapping(value="/findID.do")
+	public ModelAndView findId() {
+		ModelAndView mv = new ModelAndView("findIdPw");
+		
+		return mv;
+	}
+	
+	@PostMapping(value ="/findIdwithEmail.do")
+	@ResponseBody
+	public void sendEmail(HttpServletRequest req,CommandMap map) {
+		
+		
+		map.put("m_name", req.getParameter("m_name"));
+		map.put("m_email", req.getParameter("m_email"));
+		
+		
+		//인증 번호 생성기
+		StringBuffer temp = new StringBuffer();
+		Random random = new Random();
+		for (int i = 0; i < 10; i++) {
+			int randomIndex = random.nextInt(3);
+			switch(randomIndex) {
+			case 0:
+				temp.append((char) ((int) (random.nextInt(26))+97));
+				 break;
+            case 1:
+                // A-Z
+                temp.append((char) ((int) (random.nextInt(26)) + 65));
+                break;
+            case 2:
+                // 0-9
+                temp.append((random.nextInt(10)));
+                break;
+			}
+		}
+         String key = temp.toString();  //인증키
+         
+		HttpSession session = req.getSession();
+		session.setAttribute("key", key);
+		
+		
+		 try {
+             MimeMessage message = mailSender.createMimeMessage();
+             MimeMessageHelper messageHelper = new MimeMessageHelper(message,
+                     true, "UTF-8");
+
+             messageHelper.setFrom("hyuna960229@gmail.com"); // 보내는사람 생략하면 정상작동을 안함
+             messageHelper.setTo((String) map.getMap().get("m_email")); // 받는사람 이메일
+             messageHelper.setSubject("Spring B 인증메일 입니다."); 
+             messageHelper.setText("인증 번호는: " + temp + " 입니다."); // 메일 내용
+             
+             mailSender.send(message);
+         } catch (Exception e) {
+             System.out.println(e);
+         }
+		
+		
+	}
+	
+	@PostMapping(value ="/validKey.do")
+	@ResponseBody
+	public String validKey(HttpServletRequest req,CommandMap map) {
+		map.put("m_email", req.getParameter("m_email"));
+		map.put("m_name", req.getParameter("m_name"));
+		String userKey = req.getParameter("userKey");
+		
+		HttpSession session = req.getSession();
+		if(userKey.equals(session.getAttribute("key"))) {
+			String userId = loginService.getId(map.getMap());
+			return userId;
+		}else {
+			return "1";
+		}
+		
+		
+	}
+	
+	
 }

@@ -28,6 +28,11 @@ public class LoginServiceImpl implements LoginService {
 		loginDAO.join(map);
 		
 	}
+	
+	@Override
+	public String getId(Map<String, Object> map) {
+		return loginDAO.getId("login.getId",map);
+	}
 
 	
 

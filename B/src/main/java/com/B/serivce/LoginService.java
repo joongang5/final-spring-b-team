@@ -9,4 +9,6 @@ public interface LoginService {
 	public int checkId(String id);
 	
 	public void join(Map<String, Object> map);
+	
+	public String getId(Map<String, Object> map);
 }

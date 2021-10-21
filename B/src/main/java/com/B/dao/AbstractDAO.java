@@ -117,5 +117,9 @@ public class AbstractDAO {
 	public int insertNotice(String queryID, Map<String, Object> map) {
 		return sqlSession.insert(queryID, map);
 	}
+	//아이디 찾기 관련
+	public String getId(String queryID, Map<String, Object> map) {
+		return sqlSession.selectOne(queryID,map);
+	}
 	
 }
