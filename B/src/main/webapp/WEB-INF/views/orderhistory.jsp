@@ -638,7 +638,7 @@ header, footer, aside, nav, section, article {
 						<h3>나의 쇼핑 활동</h3>
 						<ul class="sideMenu__items">
 							<li class="sideMenu__item sideMenu__item--active"><a
-								href="./orderhistory.do">구매 내역 조회</a></li>
+								href="./orderhistory1.do">구매 내역 조회</a></li>
 							<li class="sideMenu__item"><a href="./mypage_recent.do">최근 본 상품</a></li>
 							<li class="sideMenu__item"><a href="./mypage_point.do">적립금 조회</a></li>
 							<li class="sideMenu__item"><a href="./notice_list.do">공지사항</a></li>
