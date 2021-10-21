@@ -115,7 +115,6 @@
               <ul class="sideMenu__subItems sideMenu__subItems--active">
                 <li class="sideMenu__subItem"><a href="./admin_orderList.do">주문 목록</a></li>
                 <li class="sideMenu__subItem sideMenu__subItem--active"><a href="./admin_exchange.do">교환 관리</a></li>
-                <li class="sideMenu__subItem"><a href="">환불 관리</a></li>
               </ul>
             </div>
           </li>
