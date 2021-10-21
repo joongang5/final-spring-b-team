@@ -37,7 +37,7 @@
     }
 
     .boardList__important{
-        background: #eeded5;
+        background: #eeded580; /*#eeded5에서 불투명도 0.5인 색*/
     }
 
     .boardList__normal{
@@ -130,13 +130,13 @@ location.href = "./notice_list.do?pageNo="+pageNo;
 							<li class="sideMenu__item"><a href="./mypage_point.do">적립금 조회</a></li>
 							<li class="sideMenu__item"><a href="">상품 문의</a></li>
 							<li class="sideMenu__item"><a href="">1:1 문의</a></li>
-							<li class="sideMenu__item"><a href="./notice_list.do">공지사항</a></li>
+							<li class="sideMenu__item sideMenu__item--active"><a href="./notice_list.do">공지사항</a></li>
 						</ul>
 					</div>
 					<div class="sideMenu__block">
 						<h3>회원 정보</h3>
 						<ul class="sideMenu__items">
-							<li class="sideMenu__item sideMenu__item--active"><a href="./myinfo.do">회원 정보 조회</a></li>
+							<li class="sideMenu__item"><a href="./myinfo.do">회원 정보 조회</a></li>
 							<li class="sideMenu__item"><a href="">주소록</a></li>
 							<li class="sideMenu__item"><a href="./myinfoUpdatePW.do">비밀번호 변경</a></li>
 							<li class="sideMenu__item"><a href="./myinfoDelete.do">회원 탈퇴</a></li>

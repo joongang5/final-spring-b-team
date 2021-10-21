@@ -8,20 +8,62 @@
 <head>
     <meta charset="UTF-8">
     <title>공지사항 | Spring.B</title>
+	<!-- include libraries(jQuery, bootstrap) -->
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+	<!-- include summernote css/js-->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.css" rel="stylesheet">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.11/summernote-bs4.js"></script>
+	<!-- include summernote-ko-KR -->
+	<script src="./resources/js/summernote-ko-KR.js"></script>
+	<script src="./resources/js/inParentWindow.js"></script>
+	<script>
+	    $(document).ready(function() {
+	  	  $('#summernote').summernote({
+	   	    	placeholder: 'content',
+	  	        minHeight: 580,
+	  	        maxHeight: 580,
+	  	        focus: true, 
+	  	        lang : 'ko-KR'
+	  	  });
+	  	});
+    
+    function check() {
+		//alert("!");
+		var title = document.getElementById("title");
+		var content = document.getElementById("summernote");
+		//alert(title.value + " : " + content.value);
+
+		if (title.value.length < 5 || title.value == "") {
+			alert("제목을 5글자 이상 적어주세요.");
+			title.focus();
+			return false;
+		}
+		if (content.value == "" || content.value.length < 10) {
+			alert("내용을 10자 이상 적어주세요.");
+			content.focus();
+			return false;
+		}
+	}
+    </script>
     <link rel="stylesheet" href="./resources/css/base.css">
 	<link rel="stylesheet" href="./resources/css/mypage.css">
 	<link href="./resources/css/footer.css" rel="stylesheet"/>
-    <!-- include libraries(jQuery, bootstrap) -->
-	<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-	<!-- include summernote css/js -->
-	<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-	<script src="./resources/summernote/summernote-ko-KR.js"></script>
-	<script src="./resources/js/inParentWindow.js"></script>
     <style>
+	    html {
+	    font-family: 'IBM Plex Sans KR', sans-serif;
+	    color: #403429;
+		}
+		
+		h1, h2, h3, ul, li{
+		font-family: 'IBM Plex Sans KR', sans-serif;
+		}
+		
+		ul, li{
+		font-size : medium; 
+		}
+		
         .board-container{
             margin-top: 50px;
             width: 100%;
@@ -45,7 +87,7 @@
 
         .boardWrite-shortContainer__content input[type="text"]{
             width: 90%;
-            padding: 9px 14px;
+            padding: 21px 14px;
             border-radius: 12px;
         }
 
@@ -75,6 +117,7 @@
             color: #403429;
             font-family: 'IBM Plex Sans KR';
             font-size: 13pt;
+            resize: none;
         }
 
         textarea:focus-visible{
@@ -94,18 +137,7 @@
         }
 
     </style>
-     <script type="text/javascript">
-    $(document).ready(function() {
-    	  $('#summernote').summernote({
-    	    lang: 'ko-KR', // default: 'en-US'
-    	    height: 580,                 // set editor height
-      	  	minHeight: 580,             // set minimum height of editor
-      	  	maxHeight: 580,             // set maximum height of editor
-      	  	focus: true                  // set focus to editable area after initializing summernote
-    	  });
-    	});
-    </script>
-</head>
+ </head>
 <body>
 <c:if test="${sessionScope.m_grade ne 1 }">
 	<c:redirect url="login.do" />
@@ -122,13 +154,13 @@
 							<li class="sideMenu__item"><a href="./mypage_point.do">적립금 조회</a></li>
 							<li class="sideMenu__item"><a href="">상품 문의</a></li>
 							<li class="sideMenu__item"><a href="">1:1 문의</a></li>
-							<li class="sideMenu__item"><a href="./notice_list.do">공지사항</a></li>
+							<li class="sideMenu__item sideMenu__item--active"><a href="./notice_list.do">공지사항</a></li>
 						</ul>
 					</div>
 					<div class="sideMenu__block">
 						<h3>회원 정보</h3>
 						<ul class="sideMenu__items">
-							<li class="sideMenu__item sideMenu__item--active"><a href="./myinfo.do">회원 정보 조회</a></li>
+							<li class="sideMenu__item"><a href="./myinfo.do">회원 정보 조회</a></li>
 							<li class="sideMenu__item"><a href="">주소록</a></li>
 							<li class="sideMenu__item"><a href="./myinfoUpdatePW.do">비밀번호 변경</a></li>
 							<li class="sideMenu__item"><a href="./myinfoDelete.do">회원 탈퇴</a></li>
