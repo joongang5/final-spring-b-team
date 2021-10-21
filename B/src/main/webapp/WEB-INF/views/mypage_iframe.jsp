@@ -53,7 +53,7 @@ body {
 	<object data="./
 		<c:choose>
 			<c:when test="${to == 'orderhistory'}">
-			orderhistory.do
+			orderhistory1.do
 			</c:when>
 			<c:otherwise>
 			myinfo.do
