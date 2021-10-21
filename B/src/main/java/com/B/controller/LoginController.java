@@ -106,6 +106,8 @@ public class LoginController {
 		System.out.println(m_addr);
 		ma.put("m_addr", m_addr);
 		
+		ma.put("m_email", request.getParameter("email") + "@" + request.getParameter("domain"));
+		
 	    int checkId = loginService.checkId((String)ma.getMap().get("m_id"));
 	    
 	    System.out.println(checkId);

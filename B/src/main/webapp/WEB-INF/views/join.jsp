@@ -124,6 +124,11 @@ function signUp(){
    })
    
 }
+function domain2(domain){
+	var domain = domain.value
+	
+	$('input[name=domain]').attr("value",domain)
+}
 
 
 </script>
@@ -190,10 +195,15 @@ function signUp(){
       <div id="form6">
         <div class="fieldlabel"><label for="m_email">*이메일</label></div>
         <div class="formfield">
-        <input type="text" id="m_email" name="m_email" size="20" maxlength="20" 
+        <input type="text" id="m_email" name="email" size="20" maxlength="20" 
              value="" autocomplete="off"placeholder="아이디만입력해주세요."><span>@</span>
-            <input id="domain" list="domains" name="domain" placeholder="ex)gmail.com">
-            </div>
+            <input type="text" id="domain" list="domains" name="domain" value="" placeholder="ex)gmail.com">
+            <select onchange="domain2(this)">
+            	<option>도메인을 선택해주세요</option>
+            	<option value="gmail.com">gmail.com </option>
+            	<option value="naver.com">naver.com</option>
+            	<option value="hanmail.net">hanmail.net</option>
+            </select>
            
        <div id="form7">
         <input type="hidden" id="postcode2" name="postcode2" placeholder="우편 번호" value=""
