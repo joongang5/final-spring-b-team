@@ -314,8 +314,8 @@
 			    function (data) {
 			    	$("body").empty();
 			    	$("body").append(data);
-			    	$('html').scrollTop(0);
-			    	$('html > head > title').text($("#title").val());
+			    	$("html").scrollTop(0);
+			    	$("html > head > title").text($("#title").val());
 			    });
 			
 			//참고: 수령지 바꿀 수 있게 되면 order_list 테이블에 칼럼 추가해야 한다.
@@ -504,10 +504,11 @@ header a:after, footer a:after{height:0;}
 
     .terms-detail__popup{
       /* height: 100%; */
-      margin: 15% 25%;
-      width: 500px;
-      height: 300px;
+      margin: 8% 25%;
+      width: 555px;
+      height: 470px;
       position: absolute;
+      overflow: auto;
       /* left: 200px; */
       /* top: 25%; */
       background: white;
@@ -520,10 +521,10 @@ header a:after, footer a:after{height:0;}
     }
     @keyframes appear-popup {
       from {
-        margin-top: 12%;
+        margin-top: 4%;
       }
       to {
-        margin-top: 15%;
+        margin-top: 8%;
       }
     }
 
@@ -540,9 +541,45 @@ header a:after, footer a:after{height:0;}
     }
 
     .terms-detail__content{
-      padding: 20px 0;
+      padding: 30px;
+      border: 1px solid #e5e5e5;
+      text-align: left;
     }
 
+	.termsTable{
+      border: 1px solid #403429;
+      border-collapse: collapse;
+      margin: 15px 0;
+ }
+	
+	.termsTable th{
+      background: #eeded5;
+      height: 45px;
+      text-align: center;
+      border: 1px solid #403429;
+ }
+	
+	.termsTable th:first-child{
+	width: 30%;
+	}
+	
+	.termsTable th:nth-child(2){
+	width: 30%;
+	/* text-align: center; */
+	}
+	
+	.termsTable th:nth-child(3){
+	}
+	
+	.termsTable td{
+	padding: 10px;
+	border: 1px solid #403429;
+	}
+	
+	.terms-detail-confirm{
+      margin-top: 20px;
+	}
+	
     .terms-detail-confirm button{
       width: 90px;
       height: 45px;
@@ -766,7 +803,36 @@ header a:after, footer a:after{height:0;}
 	      </div>
 	      <div class="terms-detail__content-container">
 	        <div class="terms-detail__content">
-	          당신의 개인 정보를 수집 및 이용할 거임.
+	        Spring.B는 원활한 서비스제공을 위해 최소한의 범위내에서 아래와 같이 개인정보를 수집, 이용합니다.
+	          <table class="termsTable">
+                    <thead>
+                    <tr>
+                        <th scope="col">수집 항목</th>
+                        <th scope="col">이용 목적</th>
+                        <th scope="col">보유 기간</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td scope="row">
+                        주문자 정보 (이름, 연락처, 이메일)
+                        </td>
+                        <td scope="row" rowspan="2">
+                        주문상품의 결제, 배송 및 서비스 제공을 위한 사용자 정보 확인
+                        </td>
+                        <td scope="row" rowspan="2">
+                        회원탈퇴 및 목적달성 후 지체없이 삭제합니다. 단, 전자상거래 등에서의 소비자보호에 관한 법률 등 관련 법령의 규정에 따라 거래 관계 확인을 위해 개인정보를 일정기간 보유 할 수 있습니다. 또한 부정이용 방지를 위하여 회원 탈퇴 후에도 구매 인증 시 입력한 정보는 6개월 동안 보관합니다.
+                        </td>
+                    </tr>
+                    <tr>
+                    	<td scope="row">
+                        배송 정보 (성명, 주소, 휴대전화)
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                개인정보 제공에 동의하지 않으실 수 있으며, 동의하지 않으실 경우 서비스 이용이 제한될 수 있습니다.
+				<br>그 밖의 사항은 Spring.B 개인정보처리방침에 따릅니다.
 	        </div>
 	      </div>
 	      <div class="terms-detail-confirm">
@@ -782,11 +848,65 @@ header a:after, footer a:after{height:0;}
 	  <div class="terms-detail__popup">
 	    <div class="terms-detail__container">
 	      <div class="terms-detail__topic">
-	        개인정보 위탁
+	        수집한 개인정보의 위탁
 	      </div>
 	      <div class="terms-detail__content-container">
 	        <div class="terms-detail__content">
-	          당신의 개인 정보를 위탁할 거임.
+	        Spring.B는 고객서비스 관리 및 민원사항에 대한 등 원활한 업무 수행을 위하여 아래와 같이 개인정보 처리 업무를 위탁하여 운영하고 있습니다.
+			<br>또한 위탁계약 시 개인정보보호의 안전을 기하기 위하여 개인정보보호 관련 법규의 준수, 개인정보에 관한 제3자 공급 금지, 사고시의 책임부담 등을 명확히 규정하고 있습니다.
+			<br>동 업체가 변경될 경우, 변경된 업체 명을 공지사항 내지 개인정보처리방침 화면을 통해 고지하겠습니다.
+	            <table class="termsTable">
+                    <thead>
+                    <tr>
+                        <th scope="col">수탁 업체</th>
+                        <th scope="col">위탁 업무 내용</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                     <tr>
+                        <td scope="row">
+                        (주)아임포트
+                        </td>
+                        <td scope="row">
+                        결제 관리 시스템 제공
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row">
+                        CJ대한통운(주)
+                        </td>
+                        <td scope="row">
+                        주문상품 배송 업무
+                        </td>
+                    </tr>
+                    <tr>
+                        <td scope="row">
+                        (주)카카오페이
+                        </td>
+                        <td scope="row">
+                        간편결제
+                        </td>
+                    </tr>
+                     <tr>
+                        <td scope="row">
+                        엔에이치엔페이코(주)
+                        </td>
+                        <td scope="row">
+                        간편결제
+                        </td>
+                    </tr>
+                     <tr>
+                        <td scope="row">
+                        (주)케이지이니시스
+                        </td>
+                        <td scope="row">
+                        카드 결제·계좌 이체
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                개인정보 제공에 동의하지 않으실 수 있으며, 동의하지 않으실 경우 서비스 이용이 제한될 수 있습니다.
+				<br>그 밖의 사항은 Spring.B 개인정보처리방침에 따릅니다.
 	        </div>
 	      </div>
 	      <div class="terms-detail-confirm">
@@ -1023,11 +1143,11 @@ header a:after, footer a:after{height:0;}
 	        <div class="terms-content-container">
 	          <div class="terms-content-top">
 	            <div class="terms-content-top__subject">
-	              개인정보 수집 이용 및 제 3자 제공 동의
+	              개인정보 수집 이용 및 위탁 동의
 	            </div>
 	            <div class="terms-content-top__itemBox">
 	              <div class="terms-content-top__topic">
-	                개인정보 제 3자 제공
+	                개인정보 수집 및 이용
 	              </div>
 	              <div class="terms-content-top__view">
 	                <a href="javascript:void(0);" onclick="openTerms('firstTerms');">약관 보기</a>
@@ -1035,7 +1155,7 @@ header a:after, footer a:after{height:0;}
 	            </div>
 	            <div class="terms-content-top__itemBox">
 	              <div class="terms-content-top__topic">
-	                개인정보 수집 및 이용
+	                수집한 개인정보의 위탁
 	              </div>
 	              <div class="terms-content-top__view">
 	                <a href="javascript:void(0);" onclick="openTerms('secondTerms');">약관 보기</a>
