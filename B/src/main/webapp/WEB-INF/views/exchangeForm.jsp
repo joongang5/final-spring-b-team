@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="./resources/js/inParentWindow.js"></script>
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
 <link rel="stylesheet" href="./resources/css/mypage.css">
 <link rel="stylesheet" href="./resources/css/invoice.css">
@@ -13,6 +14,8 @@
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
+window.addEventListener('DOMContentLoaded', saveLocation("AskExchange.do"+location.search));
+
 function whyExchange(reason){
 	var e_reason = reason.value
 	if(e_reason == 1){

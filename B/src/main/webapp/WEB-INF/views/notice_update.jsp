@@ -19,6 +19,8 @@
 	<script src="./resources/js/summernote-ko-KR.js"></script>
 	<script src="./resources/js/inParentWindow.js"></script>
 	<script>
+	window.addEventListener('DOMContentLoaded', saveLocation("notice_update.do"+location.search));
+	
 	    $(document).ready(function() {
 	  	  $('#summernote').summernote({
 	   	    	placeholder: 'content',
@@ -140,7 +142,7 @@
  </head>
 <body>
 <c:if test="${sessionScope.m_grade ne 1 }">
-	<c:redirect url="login.do" />
+	<script> noSession(); </script>
 </c:if>
 <div id="layout-container">
    <div id="myPage-main-container">

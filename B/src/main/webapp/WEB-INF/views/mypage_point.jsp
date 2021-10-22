@@ -12,6 +12,9 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
     <script src="./resources/js/inParentWindow.js"></script>
     <script>
+
+    window.addEventListener('DOMContentLoaded', saveLocation("mypage_point.do"));
+    
 	function linkPage(pageNo) {
 		location.href = "mypage_point.do?pageNo="
 				+ pageNo
@@ -197,7 +200,7 @@
 </head>
 <body>
 <c:if test="${sessionScope.m_id eq null }">
-	<script> inParentWindow(); </script>
+	<script> noSession(); </script>
 </c:if>
 <!--myPage 공통 부분-->
 <div id="layout-container">

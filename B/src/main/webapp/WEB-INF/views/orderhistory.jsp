@@ -501,6 +501,8 @@ header, footer, aside, nav, section, article {
 	src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/i18n/datepicker-ko.js"></script>
 
 <script>
+window.addEventListener('DOMContentLoaded', saveLocation("orderhistory1.do"));
+
 	$(document).ready(function() {
 
 		//datepicker 한국어로 사용하기 위한 언어설정
@@ -626,7 +628,7 @@ header, footer, aside, nav, section, article {
 </head>
 <body>
 <c:if test="${sessionScope.m_id eq null }">
-	<script> inParentWindow(); </script>
+	<script> noSession(); </script>
 </c:if>
 	<!--myPage 공통 부분-->
 	<div id="layout-container">

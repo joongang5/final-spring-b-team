@@ -9,6 +9,20 @@
 <link href="./resources/css/header.css" rel="stylesheet"/>
 <link href="./resources/css/reset.css" rel="stylesheet"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+
+window.addEventListener('DOMContentLoaded', (event) => {
+	if(window.location.search.indexOf("init") > -1) {
+		sessionStorage.removeItem("currentLocation");
+		if(window.location.search.indexOf("myinfo.do") > -1) location.replace("mypage_iframe.do?to=myinfo.do");
+		else if(window.location.search.indexOf("orderhistory1.do") > -1) location.replace("mypage_iframe.do?to=orderhistory1.do");
+	}
+	if(sessionStorage.getItem("currentLocation") != null) {
+		document.getElementById("mypage").src = sessionStorage.getItem("currentLocation");
+	} 
+});
+
+</script>
 <style>
 body {
 	overflow: hidden;
@@ -26,8 +40,8 @@ body {
     position: relative;
 }
 
-#iframe-content object,
-#iframe-content embed {
+#iframe-content iframe {
+	border: none;
     margin: 0;
     padding: 0;  
     width: 100%; 
@@ -50,27 +64,9 @@ body {
 <c:import url="/header.do"/>
 </div>
 <div id="iframe-content">
-	<object data="./
-		<c:choose>
-			<c:when test="${to == 'orderhistory'}">
-			orderhistory1.do
-			</c:when>
-			<c:otherwise>
-			myinfo.do
-			</c:otherwise>
-		</c:choose>
-		" width="1920px" height="813px">
-	    <embed src="./
-			<c:choose>
-			<c:when test="${to == 'orderhistory'}">
-			orderhistory1.do
-			</c:when>
-			<c:otherwise>
-			myinfo.do
-			</c:otherwise>
-		</c:choose>" width="1920px" height="813px"> </embed>
+	<iframe src="<c:if test="${param.to != null}">${param.to}</c:if>" width="1920px" height="813px" id="mypage" title="마이페이지">
 	    Error: 마이페이지를 정상적으로 불러오지 못했습니다.
-	</object>
+	</iframe>
 </div>
 <footer id="footerSpace">
 </footer>

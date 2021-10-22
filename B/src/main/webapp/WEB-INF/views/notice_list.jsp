@@ -112,6 +112,8 @@
 
 </style>
 <script type="text/javascript">
+window.addEventListener('DOMContentLoaded', saveLocation("notice_list"));
+
 function linkPage(pageNo) {
 location.href = "./notice_list.do?pageNo="+pageNo;
 }
@@ -119,9 +121,6 @@ location.href = "./notice_list.do?pageNo="+pageNo;
 </script>
 </head>
 <body>
-<c:if test="${sessionScope.m_id eq null }">
-	<c:redirect url="login.do" />
-</c:if> 
 <div id="layout-container">
     <div id="myPage-main-container">
         <nav id="myPage-sideMenu">

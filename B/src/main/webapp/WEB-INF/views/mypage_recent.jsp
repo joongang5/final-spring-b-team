@@ -10,6 +10,9 @@
   <title>최근 본 상품 | Spring.B</title>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
   <script src="./resources/js/inParentWindow.js"></script>
+  <script>
+  window.addEventListener('DOMContentLoaded', saveLocation("mypage_recent.do"));
+  </script>
   <link rel="stylesheet" href="./resources/css/base.css">
   <link rel="stylesheet" href="./resources/css/mypage.css">
   <link href="./resources/css/footer.css" rel="stylesheet"/>
@@ -94,7 +97,7 @@
 </head>
 <body>
 <c:if test="${sessionScope.m_id eq null }">
-	<script> inParentWindow(); </script>
+	<script> noSession(); </script>
 </c:if>
 <!--myPage 공통 부분-->
 <div id="layout-container">

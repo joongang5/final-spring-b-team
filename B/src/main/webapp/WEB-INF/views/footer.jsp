@@ -3,14 +3,16 @@
 <script>
 $(function(){
 	//법률 정보
-	$("#view, #full").hide();
+	//$("#view, #full").hide();
 	$("#law span").click(function(){
-		$("#view, #full").show();
+		//$("#view, #full").show();
+		$("#view, #full").css({"display":"block"});
 		$("."+$(this).attr("id")).css({"display":"block"});
 		return false;
 	});
 	$("#view, #full").click(function(){
-		$("#view, #full").hide();
+		//$("#view, #full").hide();
+		$("#view, #full").css({"display":"none"});
 		$("#view div").css({"display":"none"});
 	});
 });

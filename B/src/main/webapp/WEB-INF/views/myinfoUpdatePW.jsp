@@ -10,6 +10,7 @@
 <script src="./resources/js/inParentWindow.js"></script>
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js"></script>
 <script type="text/javascript">
+window.addEventListener('DOMContentLoaded', saveLocation("myinfoUpdatePW.do"));
 
 	function pw1Check() {
 		var pw1 = $("#pw1").val();
@@ -99,7 +100,7 @@
 </head>
 <body>
 <c:if test="${sessionScope.m_id eq null }">
-	<script> inParentWindow(); </script>
+	<script> noSession(); </script>
 </c:if>
 <!--myPage 공통 부분-->
 <div id="layout-container">

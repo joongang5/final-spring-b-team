@@ -270,6 +270,7 @@ public class OrderController {
 			logService.writeLog(paymentErrorInfo); 
 			return mv;
 		}
+		//errorMsg을 축적해서 나중에 한꺼번에 보내고 예외 처리에서 return은 없애기
 		
 		//payment 테이블 다녀오기
 		try {

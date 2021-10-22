@@ -10,6 +10,8 @@
 <script src="./resources/js/inParentWindow.js"></script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
+window.addEventListener('DOMContentLoaded', saveLocation("myinfo.do"));
+
 	function DaumPostcode() {
 		new daum.Postcode({
 			oncomplete : function(data) {
@@ -228,8 +230,7 @@
 </head>
 <body>
 <c:if test="${sessionScope.m_id eq null }">
-	<script> alert("?");
-	inParentWindow(); </script>
+	<script> noSession(); </script>
 </c:if>
 	<!--myPage 공통 부분-->
 	<div id="layout-container">

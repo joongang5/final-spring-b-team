@@ -148,7 +148,7 @@ header a:after, footer a:after{height:0;}
           </div>
         </div>
         <div class="payment-afterAction">
-          <button type="button" onclick="location.href='./mypage_iframe.do?to=orderhistory'">구매 내역 확인하기</button>
+          <button type="button" onclick="location.href='./mypage_iframe.do?to=orderhistory1.do?init'">구매 내역 확인하기</button>
           <button type="button" onclick="location.href='./index.do'">쇼핑 계속 하기</button>
         </div>
       </div>

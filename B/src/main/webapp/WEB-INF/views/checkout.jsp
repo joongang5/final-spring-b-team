@@ -201,7 +201,6 @@
 		    function (data) {
 		    	console.log("재고 체크 종료");
 		    	if(data * 1) {
-		    		document.getElementById("loading").style.display = "none";
 		    		iamport();
 		    	} else {
 		    		alert("구매하시려는 상품의 재고가 부족합니다. 상품을 다시 담아주세요.");
@@ -230,7 +229,6 @@
 		}, function (rsp) {
 			if ( rsp.success ) {
 			console.log(rsp);
-			document.getElementById("loading").style.display = "block";
 			// 결제 위변조 검증
 			$.ajax({
 	        	url : 'verifyPayment/' + rsp.imp_uid + '.do',
@@ -743,6 +741,13 @@ header a:after, footer a:after{height:0;}
       color: #403429;
       font-weight:800;
     }
+    
+    .invalidRequest {
+      height: 400px;
+      margin-bottom: 100px;
+      /* text-align: center; */
+      padding: 25px 0;
+    }
 
 </style>
 </head>
@@ -800,17 +805,14 @@ header a:after, footer a:after{height:0;}
 	  <c:import url="/header.do"/>
 	  </div>
 	<div id="layout-container">
+	<c:choose>
+		<c:when test="${fn:length(orderProductList) > 0}">
 	  <div id="payment-main-container">
 	    <main>
 	      <div class="payment-title">
 	        <h1>주문 / 결제</h1>
 	      </div>
 	      <div class="payment-detail-container">
-	<c:choose>
-		<c:when test="${noProduct ne null}">
-		${noProduct}
-		</c:when>
-		<c:when test="${fn:length(orderProductList) > 0}">
 	        <div class="payment-delivery">
 	          <div class="payment-section-header payment-delivery__header">
 	            <h2>배송지</h2>
@@ -1051,11 +1053,24 @@ header a:after, footer a:after{height:0;}
 	      </div>
 	    </aside>
 	  </div>
-	  </c:when>
-	  <c:otherwise>
-	 	 유효하지 않는 요청입니다. 다시 시도하세요.
-	  </c:otherwise>
-</c:choose>
+	</c:when>
+	<c:when test="${noProduct ne null}">
+		<div class="payment-title">
+	        <h1>주문 / 결제</h1>
+	    </div>
+		<div class="invalidRequest">
+		${noProduct}
+		</div>
+	</c:when>
+	<c:otherwise>
+		<div class="payment-title">
+	        <h1>주문 / 결제</h1>
+	    </div>
+		<div class="invalidRequest">
+	 	 유효하지 않는 요청입니다.
+	 	 </div>
+	</c:otherwise>
+	</c:choose>
 </div>
 <div id="footer-space">
 	<c:import url="./footer.jsp"/>
