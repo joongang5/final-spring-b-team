@@ -314,6 +314,7 @@
 			    function (data) {
 			    	$("body").empty();
 			    	$("body").append(data);
+			    	$('html').scrollTop(0);
 			    	$('html > head > title').text($("#title").val());
 			    });
 			

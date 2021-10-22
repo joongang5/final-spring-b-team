@@ -150,7 +150,7 @@
 	                </div>
 	                <div class="product-content__tag-container">
 	                <div class="product-content__name">
-	                    <a href="javascript:void(0);" onclick="inParentWindow('./detail.do?category=${list.c_main}&&sub=${list.c_sub}&&product=${list.p_no}');">${list.p_title}</a>
+	                    <a href="javascript:void(0);" onclick="anotherLocation('./detail.do?category=${list.c_main}&&sub=${list.c_sub}&&product=${list.p_no}');">${list.p_title}</a>
 	                </div>
 	                <div class="product-content__price">
 	                  <span class="amount__value"><fmt:formatNumber value="${list.p_price}" pattern="#,###"/></span>원

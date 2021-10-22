@@ -10,6 +10,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,7 +46,8 @@ public class OrderController {
 	private MypageService mypageService;
 	@Resource (name = "logService")
 	private LogServiceImpl logService;
-
+	@Autowired
+	private Util util;
 
 	
 	@RequestMapping(value = "/orderhistory.do")
@@ -257,20 +259,19 @@ public class OrderController {
 		mv.addObject("paymentInfo", paymentInfo);
 		
 		
-		Map<String, Object> paymentErrorInfo = null;
+		Map<String, Object> paymentErrorInfo = new HashMap<>();
+		List<String> errorMsg = new ArrayList<>();
 		
 		if(jsonDTO.get("errorMsg") != null) {
 			mv.addObject("result", "error");
-			mv.addObject("errorMsg", jsonDTO.get("errorMsg"));
-			paymentErrorInfo = new HashMap<>();
-			paymentErrorInfo.put("l_ip", ""); //ip 입력은 일단 미루자
+			errorMsg.add(jsonDTO.get("errorMsg").toString());
+			mv.addObject("errorMsg", errorMsg);
+			paymentErrorInfo.put("l_ip", util.getUserIp(request));
 			paymentErrorInfo.put("l_target", "Checkout");
 			paymentErrorInfo.put("l_data", "[결제 오류]" + jsonDTO.get("errorMsg"));
 			paymentErrorInfo.put("l_id", id);
-			logService.writeLog(paymentErrorInfo); 
-			return mv;
+			logService.writeLog(paymentErrorInfo);
 		}
-		//errorMsg을 축적해서 나중에 한꺼번에 보내고 예외 처리에서 return은 없애기
 		
 		//payment 테이블 다녀오기
 		try {
@@ -278,16 +279,15 @@ public class OrderController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			mv.addObject("result", "error");
-			mv.addObject("errorMsg", "결제는 진행되었으나 결제 정보 데이터 생성에 실패했습니다. 관리자에게 문의해주세요.");
+			errorMsg.add("결제는 진행되었으나 결제 정보 데이터 생성에 실패했습니다.");
+			mv.addObject("errorMsg", errorMsg);
 			//결제 데이터 생성 중 에러 발생하면 관리자도 알 수 있게 로그 등록
 			//결제 진행중에 발생한 오류는 아임포트에서 확인 가능하지만, 결제 데이터 생성 중에 발생한 오류는 여기서 처리해야 한다.
-			paymentErrorInfo = new HashMap<>();
-			paymentErrorInfo.put("l_ip", ""); //ip 입력은 일단 미루자
+			paymentErrorInfo.put("l_ip", util.getUserIp(request));
 			paymentErrorInfo.put("l_target", "Checkout");
 			paymentErrorInfo.put("l_data", "[결제 오류] payment 테이블에 결제 정보 생성 실패");
 			paymentErrorInfo.put("l_id", id);
 			logService.writeLog(paymentErrorInfo); 
-			return mv;
 		}
 		
 		//order_list 테이블 다녀오기 + 물건 재고 감소시키기
@@ -311,14 +311,13 @@ public class OrderController {
 			} catch (Exception e) {
 				e.printStackTrace();
 				mv.addObject("result", "error");
-				mv.addObject("errorMsg", "결제는 진행되었으나 결제 상품 데이터 반영에 실패했습니다. 관리자에게 문의해주세요.");
-				paymentErrorInfo = new HashMap<>();
-				paymentErrorInfo.put("l_ip", ""); //ip 입력은 일단 미루자
+				errorMsg.add("결제는 진행되었으나 결제 상품 데이터 반영에 실패했습니다.");
+				mv.addObject("errorMsg", errorMsg);
+				paymentErrorInfo.put("l_ip", util.getUserIp(request));
 				paymentErrorInfo.put("l_target", "Checkout");
 				paymentErrorInfo.put("l_data", "[결제 오류] 상품 재고 반영 실패");
 				paymentErrorInfo.put("l_id", id);
-				logService.writeLog(paymentErrorInfo); 
-				return mv;
+				logService.writeLog(paymentErrorInfo);
 			}
 			//주문서 생성
 			try {
@@ -326,14 +325,13 @@ public class OrderController {
 			} catch (Exception e) {
 				e.printStackTrace();
 				mv.addObject("result", "error");
-				mv.addObject("errorMsg", "결제는 진행되었으나 주문서 생성중에 문제가 발생했습니다. 관리자에게 문의해주세요.");
-				paymentErrorInfo = new HashMap<>();
-				paymentErrorInfo.put("l_ip", ""); //ip 입력은 일단 미루자
+				errorMsg.add("결제는 진행되었으나 주문서 생성중에 문제가 발생했습니다.");
+				mv.addObject("errorMsg", errorMsg);
+				paymentErrorInfo.put("l_ip", util.getUserIp(request));
 				paymentErrorInfo.put("l_target", "Checkout");
 				paymentErrorInfo.put("l_data", "[결제 오류] order_list 테이블에 주문서 생성 실패");
 				paymentErrorInfo.put("l_id", id);
-				logService.writeLog(paymentErrorInfo); 
-				return mv;
+				logService.writeLog(paymentErrorInfo);
 			}
 			
 			//장바구니에서 구매한 상품 삭제
@@ -342,14 +340,13 @@ public class OrderController {
 			} catch (Exception e) {
 					e.printStackTrace();
 					mv.addObject("result", "error");
-					mv.addObject("errorMsg", "결제는 진행되었으나 주문 데이터 반영에 문제가 발생했습니다. 관리자에게 문의해주세요.");
-					paymentErrorInfo = new HashMap<>();
-					paymentErrorInfo.put("l_ip", ""); //ip 입력은 일단 미루자
+					errorMsg.add("결제는 진행되었으나 주문 데이터 반영에 문제가 발생했습니다.");
+					mv.addObject("errorMsg", errorMsg);
+					paymentErrorInfo.put("l_ip", util.getUserIp(request));
 					paymentErrorInfo.put("l_target", "Checkout");
 					paymentErrorInfo.put("l_data", "[결제 오류] 장바구니에서 구매한 물품 삭제 실패");
 					paymentErrorInfo.put("l_id", id);
 					logService.writeLog(paymentErrorInfo); 
-					return mv;
 			}
 		}
 		
@@ -359,14 +356,13 @@ public class OrderController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			mv.addObject("result", "error");
-			mv.addObject("errorMsg", "결제와 주문서 작성은 진행되었으나 결제 데이터 반영에 실패했습니다. 관리자에게 문의해주세요.");
-			paymentErrorInfo = new HashMap<>();
-			paymentErrorInfo.put("l_ip", ""); //ip 입력은 일단 미루자
+			errorMsg.add("결제와 주문서 작성은 진행되었으나 결제 데이터 반영에 실패했습니다.");
+			mv.addObject("errorMsg", errorMsg);
+			paymentErrorInfo.put("l_ip", util.getUserIp(request));
 			paymentErrorInfo.put("l_target", "Checkout");
 			paymentErrorInfo.put("l_data", "[결제 오류] 적립금 차감 및 적립 실패");
 			paymentErrorInfo.put("l_id", id);
 			logService.writeLog(paymentErrorInfo); 
-			return mv;
 		}
 				
 		//적립금 로그 쓰기
@@ -381,14 +377,13 @@ public class OrderController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			mv.addObject("result", "error");
-			mv.addObject("errorMsg", "결제와 주문서 작성은 진행되었으나 결제 데이터 반영에 실패했습니다. 관리자에게 문의해주세요.");
-			paymentErrorInfo = new HashMap<>();
-			paymentErrorInfo.put("l_ip", ""); //ip 입력은 일단 미루자
+			errorMsg.add("결제와 주문서 작성은 진행되었으나 결제 데이터 반영에 실패했습니다.");
+			mv.addObject("errorMsg", errorMsg);
+			paymentErrorInfo.put("l_ip", util.getUserIp(request));
 			paymentErrorInfo.put("l_target", "Checkout");
 			paymentErrorInfo.put("l_data", "[결제 오류] pointLog 테이블에 적립금 로그 생성 실패");
 			paymentErrorInfo.put("l_id", id);
-			logService.writeLog(paymentErrorInfo); 
-			return mv;
+			logService.writeLog(paymentErrorInfo);
 		}
 		
 		if( Integer.parseInt(jsonDTO.get("usePoint").toString()) != 0 ) {
@@ -399,18 +394,19 @@ public class OrderController {
 			} catch (Exception e) {
 					e.printStackTrace();
 					mv.addObject("result", "error");
-					mv.addObject("errorMsg", "결제와 주문서 작성은 진행되었으나 결제 데이터 반영에 실패했습니다. 관리자에게 문의해주세요.");
-					paymentErrorInfo = new HashMap<>();
-					paymentErrorInfo.put("l_ip", ""); //ip 입력은 일단 미루자
+					errorMsg.add("결제와 주문서 작성은 진행되었으나 결제 데이터 반영에 실패했습니다.");
+					mv.addObject("errorMsg", errorMsg);
+					paymentErrorInfo.put("l_ip", util.getUserIp(request));
 					paymentErrorInfo.put("l_target", "Checkout");
 					paymentErrorInfo.put("l_data", "[결제 오류] pointLog 테이블에 적립금 로그 생성 실패");
 					paymentErrorInfo.put("l_id", id);
-					logService.writeLog(paymentErrorInfo); 
-					return mv;
+					logService.writeLog(paymentErrorInfo);
 			}
 		}
 		
-		mv.addObject("result", "success");
+		if(errorMsg.size() == 0) mv.addObject("result", "success");
+		
+		
 		return mv;
 	}
 	

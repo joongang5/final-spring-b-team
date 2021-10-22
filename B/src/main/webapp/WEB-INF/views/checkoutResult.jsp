@@ -107,7 +107,10 @@ header a:after, footer a:after{height:0;}
         <div class="payment-result">
           <h2>${result == 'success'? '구매가 정상적으로 완료되었습니다.':'주문 처리에 문제가 발생했습니다.'}</h2>
           <c:if test="${errorMsg ne null}">
-          <h3>${errorMsg}</h3>
+          	<c:forEach items="${errorMsg}" var="msg">
+          		<h3>${msg}</h3>
+         	 </c:forEach>
+         	 <h3>관리자에게 문의해주세요.</h3>
           </c:if>
         </div>
         <div class="payment-result-detail-container">
