@@ -11,7 +11,7 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
     <script src="./resources/js/inParentWindow.js"></script>
     <script type="text/javascript">
-    window.addEventListener('DOMContentLoaded', saveLocation("notice_list.do"+location.search));
+    window.addEventListener('DOMContentLoaded', saveLocation("notice_detail.do"+location.search));
     
 		function del(no){
 			if(confirm("해당 게시글을 삭제하시겠습니까?")){
