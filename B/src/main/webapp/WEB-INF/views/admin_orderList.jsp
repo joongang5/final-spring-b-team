@@ -208,7 +208,7 @@ $(".checkbox").click(function(){
 									<img src="./resources/images/support.png">
 								</div>
 								<div>
-									<a href="">고객 응대</a>
+									<a href="https://dashboard.tawk.to/#/chat">고객 응대</a>
 								</div>
 							</div>
 							<div class="sideMenu-sub-container">
