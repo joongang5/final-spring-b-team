@@ -762,11 +762,11 @@ header a:after, footer a:after{height:0;}
 	  <div class="terms-detail__popup">
 	    <div class="terms-detail__container">
 	      <div class="terms-detail__topic">
-	        개인정보 제 3자 제공
+	        개인정보 수집 및 이용
 	      </div>
 	      <div class="terms-detail__content-container">
 	        <div class="terms-detail__content">
-	          당신의 개인 정보를 제 3자에게 제공할 거임.
+	          당신의 개인 정보를 수집 및 이용할 거임.
 	        </div>
 	      </div>
 	      <div class="terms-detail-confirm">
@@ -782,11 +782,11 @@ header a:after, footer a:after{height:0;}
 	  <div class="terms-detail__popup">
 	    <div class="terms-detail__container">
 	      <div class="terms-detail__topic">
-	        개인정보 수집 및 이용
+	        개인정보 위탁
 	      </div>
 	      <div class="terms-detail__content-container">
 	        <div class="terms-detail__content">
-	          당신의 개인 정보를 수집 및 이용할 거임.
+	          당신의 개인 정보를 위탁할 거임.
 	        </div>
 	      </div>
 	      <div class="terms-detail-confirm">

@@ -19,7 +19,7 @@
 	<script src="./resources/js/summernote-ko-KR.js"></script>
 	<script src="./resources/js/inParentWindow.js"></script>
 	<script>
-	window.addEventListener('DOMContentLoaded', saveLocation("notice_write"));
+	window.addEventListener('DOMContentLoaded', saveLocation("notice_write.do"));
 	
 	    $(document).ready(function() {
 	  	  $('#summernote').summernote({

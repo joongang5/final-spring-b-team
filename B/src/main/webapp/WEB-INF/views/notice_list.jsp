@@ -112,7 +112,7 @@
 
 </style>
 <script type="text/javascript">
-window.addEventListener('DOMContentLoaded', saveLocation("notice_list"));
+window.addEventListener('DOMContentLoaded', saveLocation("notice_list.do"));
 
 function linkPage(pageNo) {
 location.href = "./notice_list.do?pageNo="+pageNo;

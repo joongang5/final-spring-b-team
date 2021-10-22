@@ -268,7 +268,7 @@ public class OrderController {
 			mv.addObject("errorMsg", errorMsg);
 			paymentErrorInfo.put("l_ip", util.getUserIp(request));
 			paymentErrorInfo.put("l_target", "Checkout");
-			paymentErrorInfo.put("l_data", "[결제 오류]" + jsonDTO.get("errorMsg"));
+			paymentErrorInfo.put("l_data", "[결제 #"+jsonDTO.get("pa_id")+" 오류]" + jsonDTO.get("errorMsg"));
 			paymentErrorInfo.put("l_id", id);
 			logService.writeLog(paymentErrorInfo);
 		}
@@ -285,7 +285,7 @@ public class OrderController {
 			//결제 진행중에 발생한 오류는 아임포트에서 확인 가능하지만, 결제 데이터 생성 중에 발생한 오류는 여기서 처리해야 한다.
 			paymentErrorInfo.put("l_ip", util.getUserIp(request));
 			paymentErrorInfo.put("l_target", "Checkout");
-			paymentErrorInfo.put("l_data", "[결제 오류] payment 테이블에 결제 정보 생성 실패");
+			paymentErrorInfo.put("l_data", "[결제 #"+jsonDTO.get("pa_id")+" 오류] payment 테이블에 결제 정보 생성 실패");
 			paymentErrorInfo.put("l_id", id);
 			logService.writeLog(paymentErrorInfo); 
 		}
@@ -315,7 +315,7 @@ public class OrderController {
 				mv.addObject("errorMsg", errorMsg);
 				paymentErrorInfo.put("l_ip", util.getUserIp(request));
 				paymentErrorInfo.put("l_target", "Checkout");
-				paymentErrorInfo.put("l_data", "[결제 오류] 상품 재고 반영 실패");
+				paymentErrorInfo.put("l_data", "[결제 #"+jsonDTO.get("pa_id")+" 오류] 상품 재고 반영 실패");
 				paymentErrorInfo.put("l_id", id);
 				logService.writeLog(paymentErrorInfo);
 			}
@@ -329,7 +329,7 @@ public class OrderController {
 				mv.addObject("errorMsg", errorMsg);
 				paymentErrorInfo.put("l_ip", util.getUserIp(request));
 				paymentErrorInfo.put("l_target", "Checkout");
-				paymentErrorInfo.put("l_data", "[결제 오류] order_list 테이블에 주문서 생성 실패");
+				paymentErrorInfo.put("l_data", "[결제 #"+jsonDTO.get("pa_id")+" 오류] order_list 테이블에 주문서 생성 실패");
 				paymentErrorInfo.put("l_id", id);
 				logService.writeLog(paymentErrorInfo);
 			}
@@ -344,7 +344,7 @@ public class OrderController {
 					mv.addObject("errorMsg", errorMsg);
 					paymentErrorInfo.put("l_ip", util.getUserIp(request));
 					paymentErrorInfo.put("l_target", "Checkout");
-					paymentErrorInfo.put("l_data", "[결제 오류] 장바구니에서 구매한 물품 삭제 실패");
+					paymentErrorInfo.put("l_data", "[결제 #"+jsonDTO.get("pa_id")+" 오류] 장바구니에서 구매한 물품 삭제 실패");
 					paymentErrorInfo.put("l_id", id);
 					logService.writeLog(paymentErrorInfo); 
 			}
@@ -360,7 +360,7 @@ public class OrderController {
 			mv.addObject("errorMsg", errorMsg);
 			paymentErrorInfo.put("l_ip", util.getUserIp(request));
 			paymentErrorInfo.put("l_target", "Checkout");
-			paymentErrorInfo.put("l_data", "[결제 오류] 적립금 차감 및 적립 실패");
+			paymentErrorInfo.put("l_data", "[결제 #"+jsonDTO.get("pa_id")+" 오류] 적립금 차감 및 적립 실패");
 			paymentErrorInfo.put("l_id", id);
 			logService.writeLog(paymentErrorInfo); 
 		}
@@ -381,7 +381,7 @@ public class OrderController {
 			mv.addObject("errorMsg", errorMsg);
 			paymentErrorInfo.put("l_ip", util.getUserIp(request));
 			paymentErrorInfo.put("l_target", "Checkout");
-			paymentErrorInfo.put("l_data", "[결제 오류] pointLog 테이블에 적립금 로그 생성 실패");
+			paymentErrorInfo.put("l_data", "[결제 #"+jsonDTO.get("pa_id")+" 오류] pointLog 테이블에 적립금 로그 생성 실패");
 			paymentErrorInfo.put("l_id", id);
 			logService.writeLog(paymentErrorInfo);
 		}
@@ -398,7 +398,7 @@ public class OrderController {
 					mv.addObject("errorMsg", errorMsg);
 					paymentErrorInfo.put("l_ip", util.getUserIp(request));
 					paymentErrorInfo.put("l_target", "Checkout");
-					paymentErrorInfo.put("l_data", "[결제 오류] pointLog 테이블에 적립금 로그 생성 실패");
+					paymentErrorInfo.put("l_data", "[결제 #"+jsonDTO.get("pa_id")+" 오류] pointLog 테이블에 적립금 로그 생성 실패");
 					paymentErrorInfo.put("l_id", id);
 					logService.writeLog(paymentErrorInfo);
 			}
