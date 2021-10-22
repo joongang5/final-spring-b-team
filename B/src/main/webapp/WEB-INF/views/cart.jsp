@@ -341,6 +341,7 @@ function onclickCheckBoxAJAX() {
 	// 만약 선택된 체크박스가 하나도 없다면
 	if (checkValueArr.length <= 0){
 		// 합계를 계산 할 필요가 없기 때문에 그냥 0으로 설정 후 마친다.
+		$("#productPrice").text("0");
 		$("#totalPrice").text("0");
 		return;
 	}

@@ -262,7 +262,7 @@
 									<option value="ip"
 										<c:if test="${searchName eq 'ip'}">selected="selected"</c:if>>IP</option>
 									<option value="id"
-										<c:if test="${searchName eq 'id'}">selected="selected"</c:if>>아이디</option>
+										<c:if test="${searchName eq 'id'}">selected="selected"</c:if>>ID</option>
 									<option value="target"
 										<c:if test="${searchName eq 'target'}">selected="selected"</c:if>>Target</option>
 									<option value="content"
@@ -297,7 +297,7 @@
 										<th scope="col">로그 번호</th>
 										<th scope="col">입력일</th>
 										<th scope="col">IP</th>
-										<th scope="col">아이디</th>
+										<th scope="col">ID</th>
 										<th scope="col">
 											<!-- <select id="sort__by-target">
 												<option>Target</option>
