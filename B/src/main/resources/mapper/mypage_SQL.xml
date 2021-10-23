@@ -65,18 +65,18 @@
 	</select>
 	
 	<select id="getPointLogTotalList" parameterType="HashMap" resultType="Integer">
-		SELECT COUNT(*) FROM pointLog 
+		SELECT COUNT(*) FROM pointLog WHERE 
 			<if test="category != null">
 				<choose>
 					<when test='category == "gain"'>
-					WHERE po_vary = '+' 
+					po_vary = '+' AND 
 					</when>
-					<when test='category == "gain"'>
-					WHERE po_vary = '-' 
+					<when test='category == "use"'>
+					po_vary = '-' AND 
 					</when>
 				</choose>
 			</if>
-		WHERE m_no = (SELECT m_no FROM member WHERE m_id=#{m_id})
+		m_no = (SELECT m_no FROM member WHERE m_id=#{m_id})
 	</select>
 	
 	<insert id="inputRecentLog" parameterType="hashMap">

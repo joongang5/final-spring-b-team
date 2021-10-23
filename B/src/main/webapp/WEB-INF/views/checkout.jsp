@@ -1023,6 +1023,7 @@ header a:after, footer a:after{height:0;}
 	          </div>
 	          <div class="payment-section-body payment-coupon__body">
 	            <!--쿠폰 시스템 도입시 쿠폰 목록 출력 / 반복문 사용-->
+	            해당 서비스는 준비 중입니다.
 	          </div>
 	        </div>
 	        <div class="payment-point">

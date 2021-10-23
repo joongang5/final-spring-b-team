@@ -260,10 +260,12 @@ public class OrderController {
 		}
 		mv.addObject("paymentInfo", paymentInfo);
 		
-		if(jsonDTO.get("errorMsg").toString().indexOf("취소") > -1) {
-			mv.addObject("result", "error");
-			mv.addObject("errorMsg", jsonDTO.get("errorMsg"));
-			return mv;
+		if(jsonDTO.get("errorMsg") != null) {
+			if(jsonDTO.get("errorMsg").toString().indexOf("취소") > -1) {
+				mv.addObject("result", "error");
+				mv.addObject("errorMsg", jsonDTO.get("errorMsg"));
+				return mv;
+			}
 		}
 		
 		Map<String, Object> paymentErrorInfo = new HashMap<>();
@@ -318,11 +320,11 @@ public class OrderController {
 			} catch (Exception e) {
 				e.printStackTrace();
 				mv.addObject("result", "error");
-				errorMsg.add("결제는 진행되었으나 결제 상품 데이터 반영에 실패했습니다.");
+				errorMsg.add("상품 번호 "+orderedProduct.get("p_no")+": 결제는 진행되었으나 결제 상품 데이터 반영에 실패했습니다.");
 				mv.addObject("errorMsg", errorMsg);
 				paymentErrorInfo.put("l_ip", util.getUserIp(request));
 				paymentErrorInfo.put("l_target", "Checkout");
-				paymentErrorInfo.put("l_data", "[결제 #"+jsonDTO.get("pa_id")+" 오류] 상품 재고 반영 실패");
+				paymentErrorInfo.put("l_data", "[결제 #"+orderedProduct.get("pa_id")+" 오류] 상품 번호 "+orderedProduct.get("p_no")+"재고 반영 실패");
 				paymentErrorInfo.put("l_id", id);
 				logService.writeLog(paymentErrorInfo);
 			}
@@ -332,11 +334,11 @@ public class OrderController {
 			} catch (Exception e) {
 				e.printStackTrace();
 				mv.addObject("result", "error");
-				errorMsg.add("결제는 진행되었으나 주문서 생성중에 문제가 발생했습니다.");
+				errorMsg.add("상품 번호 "+orderedProduct.get("p_no")+": 결제는 진행되었으나 주문서 생성중에 문제가 발생했습니다.");
 				mv.addObject("errorMsg", errorMsg);
 				paymentErrorInfo.put("l_ip", util.getUserIp(request));
 				paymentErrorInfo.put("l_target", "Checkout");
-				paymentErrorInfo.put("l_data", "[결제 #"+jsonDTO.get("pa_id")+" 오류] order_list 테이블에 주문서 생성 실패");
+				paymentErrorInfo.put("l_data", "[결제 #"+jsonDTO.get("pa_id")+" 오류] 상품 번호 " +orderedProduct.get("p_no")+"order_list 테이블에 주문서 생성 실패");
 				paymentErrorInfo.put("l_id", id);
 				logService.writeLog(paymentErrorInfo);
 			}
@@ -347,11 +349,11 @@ public class OrderController {
 			} catch (Exception e) {
 					e.printStackTrace();
 					mv.addObject("result", "error");
-					errorMsg.add("결제는 진행되었으나 주문 데이터 반영에 문제가 발생했습니다.");
+					errorMsg.add("상품 번호 "+orderedProduct.get("p_no")+": 결제는 진행되었으나 주문 데이터 반영에 문제가 발생했습니다.");
 					mv.addObject("errorMsg", errorMsg);
 					paymentErrorInfo.put("l_ip", util.getUserIp(request));
 					paymentErrorInfo.put("l_target", "Checkout");
-					paymentErrorInfo.put("l_data", "[결제 #"+jsonDTO.get("pa_id")+" 오류] 장바구니에서 구매한 물품 삭제 실패");
+					paymentErrorInfo.put("l_data", "[결제 #"+jsonDTO.get("pa_id")+" 오류] 상품 번호 "+orderedProduct.get("p_no")+"장바구니에서 구매한 물품 삭제 실패");
 					paymentErrorInfo.put("l_id", id);
 					logService.writeLog(paymentErrorInfo); 
 			}
