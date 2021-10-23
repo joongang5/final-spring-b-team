@@ -234,6 +234,8 @@ public class OrderController {
        		}
 		 */
 		ModelAndView mv = new ModelAndView();
+		
+		
 		Map<String, Object> paymentInfo = new HashMap<>();
 		
 		HttpSession session = request.getSession();
@@ -258,6 +260,11 @@ public class OrderController {
 		}
 		mv.addObject("paymentInfo", paymentInfo);
 		
+		if(jsonDTO.get("errorMsg").toString().indexOf("취소") > -1) {
+			mv.addObject("result", "error");
+			mv.addObject("errorMsg", jsonDTO.get("errorMsg"));
+			return mv;
+		}
 		
 		Map<String, Object> paymentErrorInfo = new HashMap<>();
 		List<String> errorMsg = new ArrayList<>();

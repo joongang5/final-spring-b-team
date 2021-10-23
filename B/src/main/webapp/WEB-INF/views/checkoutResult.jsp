@@ -110,7 +110,9 @@ header a:after, footer a:after{height:0;}
           	<c:forEach items="${errorMsg}" var="msg">
           		<h3>${msg}</h3>
          	 </c:forEach>
-         	 <h3>관리자에게 문의해주세요.</h3>
+         	 <c:if test="${fn:indexOf(errorMsg,'취소') == -1}">
+         	 	<h3>관리자에게 문의해주세요.</h3>
+         	 </c:if>
           </c:if>
         </div>
         <div class="payment-result-detail-container">
