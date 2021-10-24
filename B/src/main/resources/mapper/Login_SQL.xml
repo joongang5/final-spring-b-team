@@ -7,12 +7,16 @@
 		SELECT * FROM member_view WHERE m_id=#{m_id}
 	</select>
 	
+	<select id="login2" parameterType="HashMap" resultType="HashMap">
+		SELECT * FROM member_view WHERE m_id=#{m_id} AND m_pw=HEX(AES_ENCRYPT(#{m_pw}, 'SpringB'))  
+	</select>
+	
 	<select id="checkId" parameterType="String" resultType="Integer" >
 		SELECT count(*) FROM member WHERE m_id=#{m_id}
 	</select>
 	
 	<select id="join" parameterType="HashMap" >
-		INSERT INTO member(m_name,m_id,m_pw,m_email,m_addr,m_phone) VALUES(#{m_name},#{m_id},#{m_pw},#{m_email},#{m_addr},#{m_phone})
+		INSERT INTO member(m_name,m_id,m_pw,m_email,m_addr,m_phone) VALUES(#{m_name},#{m_id},HEX(AES_ENCRYPT(#{m_pw}, 'SpringB')) ,#{m_email},#{m_addr},#{m_phone})
 	</select>
 	
 	<select id="getId" parameterType="HashMap" resultType="String">
@@ -22,5 +26,9 @@
 	<select id="getPw" parameterType="HashMap" resultType="String">
 		SELECT m_pw FROM member WHERE m_name=#{m_name1} AND m_email=#{m_email1} AND m_id=#{m_id1}
 	</select>
+	
+	<update id="changePW">
+		UPDATE member SET m_pw=	HEX(AES_ENCRYPT(#{newpw}, 'SpringB')) WHERE m_id = #{idd}
+	</update>
 </mapper>
 

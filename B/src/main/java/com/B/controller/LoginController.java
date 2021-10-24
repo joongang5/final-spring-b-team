@@ -47,16 +47,18 @@ public class LoginController {
 	@PostMapping(value="/login.do")
 	@ResponseBody
 	public int login (HttpServletRequest request, Map<String, Object> map) {	//ajax로 
-		String id =  request.getParameter("m_id");
-	    String pw = request.getParameter("m_pw");
+		map.put("m_id",request.getParameter("m_id") );
+		map.put("m_pw",request.getParameter("m_pw"));
+	   
 	    
 	    map.put("l_ip", util.getUserIp(request));
 	    map.put("l_target", "Login");
 	
-		Map<String, Object> login = loginService.login(id);
+		Map<String, Object> login = loginService.login2(map);
 		
+	
 			//System.out.println(login.get("m_pw"));
-			if(login.get("m_pw").equals(pw)) {
+			if(login.isEmpty() || !login.get("m_name").equals(" ") ) {
 				HttpSession session = request.getSession();
 				session.setAttribute("m_id", login.get("m_id"));
 				session.setAttribute("m_name", login.get("m_name"));
@@ -301,9 +303,9 @@ public class LoginController {
 		System.out.println(map.getMap());
 		HttpSession session = req.getSession();
 		if(userKey.equals(session.getAttribute("key2"))) {
-			String userPw = loginService.getPw(map.getMap());
 			
-			return userPw;
+			
+			return (String) map.getMap().get("m_id1");
 		}else {
 			return "1";
 		}
@@ -311,5 +313,22 @@ public class LoginController {
 		
 	}
 	
+	@PostMapping(value="/modiPW.do")
+	@ResponseBody
+	public int modiPW(HttpServletRequest req,CommandMap map) {
+		map.put("newpw", req.getParameter("newpw"));
+		map.put("newpw2", req.getParameter("newpw2"));
+		map.put("idd", req.getParameter("idd"));
+	
+		if (req.getParameter("newpw").equals(req.getParameter("newpw2"))) {
+			loginService.changePW(map.getMap());
+			return 0;
+		}else {
+			return 1;
+		}
+
+		
+		
+	}
 	
 }

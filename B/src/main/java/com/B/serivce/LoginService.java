@@ -2,6 +2,8 @@ package com.B.serivce;
 
 import java.util.Map;
 
+import com.B.common.CommandMap;
+
 public interface LoginService {
 	
 	public Map<String, Object> login(String id);
@@ -13,4 +15,8 @@ public interface LoginService {
 	public String getId(Map<String, Object> map);
 	
 	public String getPw(Map<String, Object> map);
+	
+	public Map<String, Object> login2(Map<String, Object> map);
+	
+	
 }

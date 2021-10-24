@@ -112,9 +112,8 @@ function validKey2(){
 			data : {"userKey1" : inputByUser,"m_name1" : m_name, "m_email1" : m_email, "m_id1": m_id},
 			success : function(data) {
 				if(data != "1"){
-					
-					 $('input[name=userKey2]').attr("value", "당신의 비밀번호는 "  + data + " 입니다.")
-					 $('input[name=userKey2]').attr("type","text");
+					$('input[name=idd]').attr("value", data)
+					jQuery('#modiPW').show();
 					 
 				}else{
 					 $('input[name=userKey2]').attr("type","hidden");
@@ -127,6 +126,29 @@ function validKey2(){
 	
 	
 	
+}
+
+function modiPW(){
+	var newpw = $('#newPW').val();
+	var newpw2 = $('#newPW2').val();
+	var id = $('#idd').val();
+	
+	$.ajax({
+		url : "modiPW.do",
+		type : "post",
+		data : {"newpw" : newpw, "newpw2" : newpw2 , "idd" : id},
+		success : function(data) {
+			if(data == 0){
+			alert("비밀번호가 변경되었습니다.")
+			location.href="./login.do"
+			}else{
+				alert("입력하신 두 개의 값이 서로 다릅니다.")
+			}
+		},
+		
+	
+
+	})
 }
 
 </script>
@@ -174,7 +196,7 @@ function validKey2(){
 </div>
 
 <div id="withEmail" style="display:none">
-이메일 인증
+❤회원가입 하셨을 때 이메일을 적어주세요. <br>
 <input type="text" name="m_email" id="m_email" placeholder="ex)0000@0000"> <button onclick="sendEmail()">인증번호 보내기</button>
 </div>
 
@@ -192,7 +214,7 @@ function validKey2(){
 <input type="text" name="m_name1" id="m_name1" placeholder="ex)홍길동"> <br>
   아이디
 <input type="text" name="m_id1" id="m_id1">  <br>
-  이메일 인증
+  ❤회원가입 하셨을 때 이메일을 적어주세요. <br>
 <input type="text" name="m_email1" id="m_email1" placeholder="ex)0000@0000"> <button onclick="sendEmail2()">인증번호 보내기</button>  	
 </div>
 
@@ -200,7 +222,14 @@ function validKey2(){
 <input name="valid3" id="valid3" type="text" placeholder="인증번호를 입력하세요">  <button onclick="validKey2()">확인</button>
 </div>
 
-<input name="userKey2" id="userKey2" type="hidden" style="width:300px;border:none;" value="">
+<div id="modiPW" style="display:none;" >
+비밀번호 수정
+<input type="hidden" name="idd" id="idd" value="">
+새로운 비밀 번호
+<input  id="newPW" type="password"  > <br>
+비밀번호 확인
+<input  id="newPW2"  type="password"  >  <button onclick="modiPW()">확인</button>
+</div>
 
 </div>
 

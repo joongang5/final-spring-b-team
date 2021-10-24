@@ -26,7 +26,7 @@
 	</update>
 	
 	<update id ="myAccountUpdatePW" parameterType="HashMap">
-		UPDATE member SET m_pw=#{pw1} WHERE m_id=#{m_id} 
+		UPDATE member SET m_pw=HEX(AES_ENCRYPT(#{pw1}, 'SpringB')) WHERE m_id=#{m_id} 
 	</update>
 	
 	<select id ="cartList" parameterType="HashMap" resultType="HashMap">

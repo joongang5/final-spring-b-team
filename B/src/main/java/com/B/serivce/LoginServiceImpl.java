@@ -5,6 +5,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.B.common.CommandMap;
 import com.B.dao.LoginDAO;
 
 @Service("loginService")
@@ -39,6 +40,18 @@ public class LoginServiceImpl implements LoginService {
 		// TODO Auto-generated method stub
 		return loginDAO.getId("login.getPw",map);
 	}
+
+	public Map<String, Object> login2(Map<String, Object> map) {
+		
+		return loginDAO.login2(map);
+	}
+
+	public void changePW(Map<String, Object> map) {
+		loginDAO.update("login.changePW", map);
+		
+	}
+
+	
 
 	
 
