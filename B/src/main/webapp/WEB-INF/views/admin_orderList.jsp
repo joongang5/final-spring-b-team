@@ -328,8 +328,8 @@ $(".checkbox").click(function(){
               <!--여기서 주문 내역은 간결하게 출력한다. ex) 상품 ooo 외 *개-->
               <td><a href="./admin_orderDetail.do?pa_id=${ao.pa_id }" ><c:if test="${ao.total_cnt gt 1}">${ao.p_title} 외 ${ao.total_cnt -1} 개</c:if>
               <c:if test="${ao.total_cnt eq 1}">${ao.p_title}</c:if></a></td>
-              <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${ao.pa_amount }" />원</td>      
-              <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${ ao.pa_amount - ao.pa_usePoint }" />원</td>
+              <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${ao.pa_amount + ao.pa_usePoint }" />원</td>      
+              <td><fmt:formatNumber type="number" maxFractionDigits="3" value="${ ao.pa_amount}" />원</td>
               <td><c:if test="${ao.o_state eq 2 }">출고 완료✔</c:if><c:if test="${ao.o_state eq 1 }">출고 준비📦</c:if> <c:if test="${ao.o_state eq 0 }">결제 완료💸</c:if>
               <c:if test="${ao.o_state eq 3 }">교환 접수🔄</c:if>
               </td>
