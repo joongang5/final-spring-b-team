@@ -8,6 +8,112 @@
 
 <meta charset="UTF-8">
 <title>회원가입</title>
+<style type="text/css">
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+#wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+	background: #EDEDED;
+}
+
+#h1 {
+	display: block;
+}
+
+#registerform {
+	display: table;
+	width: auto;
+	height: auto;
+	margin: 0 auto;
+}
+
+.registerform {
+	position: absolute;
+	width: 400px;
+	height: 400px;
+	padding: 30px, 20px;
+	background-color: #FFFFFF;
+	text-align: center;
+	top: 40%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 15px;
+}
+
+.fieldlabel {
+	width: 130px;
+	height: 35px;
+	line-height: 35px;
+	margin: 0 10px;
+	padding: 0 15px;
+	border: 1px solid rgb(255, 138, 0);
+	border-radius: 25px;
+	background-color: white;
+}
+
+input {
+	height: 25px;
+	line-height: 35px;
+	margin: 0 15px;
+	padding: 0 35px;
+	border: 1px solid rgb(255, 138, 0);
+}
+
+label {
+	display: block;
+	text-align: center;
+}
+
+.joinbtn {
+	width: 110px;
+	border: 1px solid rgb(255, 138, 0);
+	background-color: white;
+	color: rgb(0, 0, 0);
+	border-radius: 25px;
+	cursor: pointer;
+	text-align: center;
+	float: right;
+	display: block;
+	text-align: center;
+}
+
+li {
+	list-style: none;
+}
+
+.small-button {
+	width: 110px;
+	border: 1px solid rgb(255, 138, 0);
+	background-color: white;
+	color: rgb(0, 0, 0);
+	border-radius: 25px;
+	cursor: pointer;
+	text-align: center;
+	display: inline-block;
+	display: block;
+	text-align: center;
+}
+
+}
+#joinbt {
+	position: absolute;
+	bottom: 200px;
+	left: 30px;
+}
+
+#form8 {
+	display: flex;
+	justify-content: center;
+	background: #EDEDED;
+}
+</style>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 
@@ -137,7 +243,7 @@ function domain2(domain){
 <body>
 
 <div id="wrapper">
-            <a href="./index.do" ><img class="img-logo"  src="./resources/images/Logo.png"/>메인</a> 
+            <a href="./index.do" ><img class="img-logo"  src="./resources/images/Logo.png"/></a> 
       
    <br>
    <div id=h1>
@@ -152,11 +258,9 @@ function domain2(domain){
          <div class="address payment-delivery__form">
          <button class="small-button" onclick="DaumPostcode()">주소 찾기</button><br>
             <input type="text" id="postcode" name="postcode" placeholder="우편 번호"
-               readonly="readonly"><br> <input type="text" id="address" name="address"
-               placeholder="주소"> <br><input type="text" id="detailAddress" name="detailAddress"
-               placeholder="상세 주소">
-               </div>
-               
+               readonly="readonly"><br> <input type="text" id="address" name="address" placeholder="주소"> <br>
+            <input type="text" id="detailAddress" name="detailAddress" placeholder="상세 주소">
+         </div>      
          </div>
       </div>
    <br>
@@ -165,8 +269,6 @@ function domain2(domain){
 <form id="registerform">
 
 
-      
-      
       <div id="form1">
       <h1>회원가입</h1><br><br>
            <div class="fieldlabel"><label for="m_id">*아이디</label></div>
@@ -187,17 +289,16 @@ function domain2(domain){
         
         <div id="form4">
         <div class="fieldlabel"><label for="m_pw">*패스워드</label></div>
-         <input type="password" id="m_pw" name="m_pw" maxlength="20" autocomplete="off"placeholder="사용하실 비밀번호를 입력하세요."></div><br>
+         <input type="password" id="m_pw" name="m_pw" maxlength="20" autocomplete="off"placeholder="사용할 비밀번호를 입력"></div><br>
       <div id="form5">
         <div class="fieldlabel"><label for="passwordCheck">패스워드확인</label></div>
-      <input type="password" id="passwordCheck" name="passwordCheck" maxlength="20" autocomplete="off"placeholder="비밀번호를 동일하게 입력하세요."></div><br>
+      <input type="password" id="passwordCheck" name="passwordCheck" maxlength="20" autocomplete="off"placeholder="비밀번호를 동일하게 입력"></div><br>
        
       <div id="form6">
         <div class="fieldlabel"><label for="m_email">*이메일</label></div>
         <div class="formfield">
-        <input type="text" id="m_email" name="email" size="20" maxlength="20" 
-             value="" autocomplete="off"placeholder="아이디만입력해주세요."><span>@</span>
-            <input type="text" id="domain" list="domains" name="domain" value="" placeholder="ex)gmail.com">
+        <input type="text" id="m_email" name="email" size="20" maxlength="20" value="" autocomplete="off"placeholder="아이디만입력해주세요.">@
+            <input type="text" id="domain" list="domains" name="domain" value="" placeholder="ex) gmail.com">
             <select onchange="domain2(this)">
             	<option>도메인을 선택해주세요</option>
             	<option value="gmail.com">gmail.com </option>
@@ -215,126 +316,16 @@ function domain2(domain){
             
                </div>
                
-           <!--    <datalist id="domains">
-                <option value="naver.com">
-                <option value="daum.net">
-                <option value="gmail.com">
-                <option value="yahoo.co.kr">-->
          
         </div>
         <br><br>
        <div id="joinbt">
-                 <input type="button" class="small-button" onclick="signUpValidation()" value="회원가입">
-        </div>   
-             </div>
+       <input type="button" class="small-button" onclick="signUpValidation()" value="회원가입">
+       </div>   
+       </div>
     </form>
 
- 
-
-      <style type="text/css">
-      
-  *{padding:0;margin:0;box-sizing:border-box;}
-  
-  #wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: #EDEDED;
-  }
-  
-  #h1{
-  display:block;
-  
-  }
-   #registerform{
-   display:table;
-   width: auto;
-   height: auto;
-   margin:0 auto;
-
-   }
-
-   .registerform{
-  position:absolute;
-  width:400px;
-  height:400px;
-  padding: 30px, 20px;
-  background-color:#FFFFFF;
-  text-align:center;
-  top:40%;
-  left:50%;
-  transform: translate(-50%,-50%);
-  border-radius: 15px;
-   }
-  .fieldlabel{ 
-   width: 130px;
-   height: 35px;
-   line-height: 35px;
-   margin: 0 10px;
-   padding: 0 15px; 
-   border: 1px solid rgb(255, 138, 0);
-   border-radius: 25px;
-   background-color: white;
-    }
-    input {
-    height: 25px;
-    line-height: 35px;
-    margin: 0 30px;
-    padding: 0 35px;
-    border: 1px solid rgb(255, 138, 0);
-    }
-label{
-display:block;
-text-align:center;
-}
-.joinbtn{
-   width: 110px;
-   border: 1px solid rgb(255, 138, 0);
-   background-color: white;
-   color: rgb(0, 0, 0); 
-   border-radius: 25px;
-   cursor: pointer;
-   text-align: center;
-   float: right;
-   display:block;
-   text-align:center;
-}
-
-li{
-   list-style:none;
-}
-.small-button{
- width: 110px;
-   border: 1px solid rgb(255, 138, 0);
-   background-color: white;
-   color: rgb(0, 0, 0); 
-   border-radius: 25px;
-   cursor: pointer;
-   text-align: center;
-   display: inline-block;
-   display:block;
-   text-align:center;
-}
 
 
-
-
-}
-#joinbt{
- 
-    position: absolute;
-    bottom: 200px;
-    left: 30px;
-}
-#form8{
-  display: flex;
-  justify-content: center;
-  background: #EDEDED;
-  
-}
-
-    </style>
-        
 </body>
 </html>
