@@ -455,7 +455,7 @@ function registerWaybill(){
                                 합계 금액
                             </div>
                             <div class="payment personalInfo-content__value">
-                               <fmt:formatNumber type="number" maxFractionDigits="1" value="${orderDetail.pa_amount}" /> 원
+                               <fmt:formatNumber type="number" maxFractionDigits="1" value="${orderDetail.pa_amount + orderDetail.pa_usePoint}" /> 원
                             </div>
                         </div>
                         <div class="payment personalInfo-content__short-container">
@@ -488,7 +488,7 @@ function registerWaybill(){
                                 결제 금액
                             </div>
                             <div class="payment personalInfo-content__value">
-                                <fmt:formatNumber type="number" maxFractionDigits="1" value="${orderDetail.pa_amount - orderDetail.pa_usePoint}" />원
+                                <fmt:formatNumber type="number" maxFractionDigits="1" value="${orderDetail.pa_amount}" />원
                             </div>
                         </div>
                         <div class="payment personalInfo-content__short-container">
