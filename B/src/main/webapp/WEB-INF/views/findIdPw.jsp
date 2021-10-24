@@ -163,6 +163,7 @@ function modiPW(){
    background: #EDEDED; 
    background-size: cover;
    text-align: center;
+   font-size: 20px;
     }
 
    
@@ -172,67 +173,65 @@ function modiPW(){
 </style>
 <body>
 
-<div >
-<h1>아이디/비밀번호 찾기</h1> <br>
-<div><a href="./index.do" >메인으로 가기</a> &nbsp; <a href="./login.do" >로그인하러 가기</a></div>
-
-<select onchange="select(this)">
-	<option value="nn">선택해주세요</option>
+<div style="width: 50%; height: 75%; border: dashed 2px #403429;border-radius:15px;" > <br>
+<h1>아이디 / 비밀번호 찾기</h1><br>
+<div><a href="./index.do">메인으로 가기</a> &nbsp; <a href="./login.do" >로그인하러 가기</a></div> <br>
+<div style="margin-left : 5%;width:90%;height: 70%; border: solid 2px #403429;border-radius:15px;"><br>
+<select onchange="select(this)" style="width: 65%; height: 35px;">
+	<option value="nn">찾는 것을 선택해주세요.</option>
 	<option value="id">아이디 찾기</option>
 	<option value="pw">비밀번호 찾기</option>
-</select>
-
+</select><br>
+<br>
 <div id="findId" style="display:none;" >
-이름
-<input type="text" name="m_name" id="m_name" placeholder="ex)홍길동">
-<select onchange="fwith(this)">
+<p style=" margin-right: 60%;">*이름<br></p>
+<input type="text" name="m_name" id="m_name" placeholder="ex)홍길동" style="width: 65%; height: 35px;"> <br>
+<br><select onchange="fwith(this)"style="width: 65%; height: 35px;">
 	<option value="n">인증 수단을 선택해주세요</option>
 	<option value="email">이메일로 본인 인증하기</option>	
 </select>
+<br>
 
-<div id="withPhone" style="display:none">
-휴대폰 번호 인증
-<input type="text" name="m_phone" id="m_phone" placeholder="ex)01012345678">
-</div>
-
-<div id="withEmail" style="display:none">
-❤회원가입 하셨을 때 이메일을 적어주세요. <br>
-<input type="text" name="m_email" id="m_email" placeholder="ex)0000@0000"> <button onclick="sendEmail()">인증번호 보내기</button>
+<div id="withEmail" style="display:none"><br>
+<p style=" margin-right: 30%;">*회원 가입 당시 이메일</p>
+<input type="text" name="m_email" id="m_email" placeholder="ex)0000@0000" style="width: 65%; height: 35px;"> <br>
+<button onclick="sendEmail()" style="width: 20%; height: 35px;margin-top:10px;background-color:#FF8A00;">인증번호 보내기</button><br>
 </div>
 
 <div id="valid" style="display:none;">
-<input name="valid1" id="valid1" type="text" placeholder="인증번호를 입력하세요">  <button onclick="validKey()">확인</button>
+<input name="valid1" id="valid1" type="text" placeholder="인증번호를 입력하세요"style="width: 65%; height: 35px;margin-top:5px;margin-left:20px;"> 
+<br> <button onclick="validKey()"style="width: 20%; height: 35px;background-color:#FF8A00;margin-top:5px;">확인</button>
 </div>
 
-<input name="userKey" id="userKey" type="hidden" style="width:300px;border:none;" value="">
+<input name="userKey" id="userKey" type="hidden" style="width:200px;;hegiht:100px;border:none;" value="">
 
 </div>
 
 
 <div id="findPw" style="display:none;" >
-  이름
-<input type="text" name="m_name1" id="m_name1" placeholder="ex)홍길동"> <br>
-  아이디
-<input type="text" name="m_id1" id="m_id1">  <br>
-  ❤회원가입 하셨을 때 이메일을 적어주세요. <br>
-<input type="text" name="m_email1" id="m_email1" placeholder="ex)0000@0000"> <button onclick="sendEmail2()">인증번호 보내기</button>  	
+<p style=" margin-right: 60%;">*이름<br></p>
+<input type="text" name="m_name1" id="m_name1" placeholder="ex)홍길동" style="width: 65%; height: 35px;"> <br>
+<p style=" margin-right: 60%;">*아이디<br></p>
+<input type="text" name="m_id1" id="m_id1" style="width: 65%; height: 35px;">  <br>
+ <p style=" margin-right: 38%;">*회원 가입 당시 이메일</p>
+<input type="text" name="m_email1" id="m_email1" placeholder="ex)0000@0000" style="width: 65%; height: 35px;"><br>
+ <button onclick="sendEmail2()"style="width: 20%; height: 35px;margin-top:10px;background-color:#FF8A00;">인증번호 보내기</button>  <br>	
 </div>
 
 <div id="valid2" style="display:none;">
-<input name="valid3" id="valid3" type="text" placeholder="인증번호를 입력하세요">  <button onclick="validKey2()">확인</button>
+<input name="valid3" id="valid3" type="text" placeholder="인증번호를 입력하세요" style="width: 45%; height: 35px;margin-left:20px;margin-top:5px;">  <button onclick="validKey2()" style="width: 20%; height: 35px;background-color:#FF8A00;">확인</button>
 </div>
 
 <div id="modiPW" style="display:none;" >
-비밀번호 수정
-<input type="hidden" name="idd" id="idd" value="">
-새로운 비밀 번호
-<input  id="newPW" type="password"  > <br>
-비밀번호 확인
-<input  id="newPW2"  type="password"  >  <button onclick="modiPW()">확인</button>
+<input type="hidden" name="idd" id="idd" value="" style="width: 65%; height: 35px;">
+<p style=" margin-right: 30%;">*새로운 비밀 번호</p>
+<input  id="newPW" type="password"  style="width: 65%; height: 35px;"> <br>
+<p style=" margin-right: 30%;">*비밀번호 확인</p>
+<input  id="newPW2"  type="password" style="width: 45%; height: 35px;" >  <button onclick="modiPW()"style="width: 20%; height: 35px;background-color:#FF8A00;">확인</button>
 </div>
 
 </div>
 
-
+</div>
 </body>
 </html>
