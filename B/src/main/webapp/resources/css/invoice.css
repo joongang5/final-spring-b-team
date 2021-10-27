@@ -17,9 +17,6 @@
     text-decoration-thickness: from-font;
 }
 
-.order-content__orderDate{
-
-}
 
 .order-content__body{
     display: flex;
@@ -96,9 +93,6 @@
     margin: auto;
 }
 
-.order-content__delivery{
-
-}
 
 .order-content__delivery-tracking{
     font-size: 11pt;
@@ -139,14 +133,6 @@
     display: flex;
 }
 
-.delivery{
-
-}
-
-.payment{
-
-}
-
 .personalInfo-content__short-container{
     display: flex;
     border-bottom: 1px solid #e5e5e5;
@@ -170,10 +156,6 @@
 
 .personalInfo-content__long-container .personalInfo-content__section{
     border-bottom: 1px solid #e5e5e5;
-}
-
-.personalInfo-content__long-container .personalInfo-content__value{
-
 }
 
 .personalInfo-content-container{

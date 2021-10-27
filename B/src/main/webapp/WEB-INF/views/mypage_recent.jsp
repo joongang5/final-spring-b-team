@@ -17,18 +17,9 @@
   <link rel="stylesheet" href="./resources/css/mypage.css">
   <link href="./resources/css/footer.css" rel="stylesheet"/>
   <style>
-    .recent-notice{
-    }
-
-    .recent-notice h3{
-    }
-
     .recentList-contents-container{
       margin-top: 30px;
       border-top: 4px solid #eeded5;
-    }
-
-    .recent-content{
     }
 
     .recent-content__body{
@@ -45,11 +36,7 @@
       width: 90%;
       align-items: center;
     }
-
-    .recent-product-left-block{
-
-    }
-
+    
     .product-content__productThumbnail{
       width: 150px;
       height: 150px;

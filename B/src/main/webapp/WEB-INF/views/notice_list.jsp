@@ -44,10 +44,6 @@
         background: #eeded580; /*#eeded5에서 불투명도 0.5인 색*/
     }
 
-    .boardList__normal{
-
-    }
-
     .boardList__important .boardList__title{
     font-weight: 700;
 }

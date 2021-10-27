@@ -80,11 +80,6 @@ window.addEventListener('DOMContentLoaded', saveLocation("myinfoUpdatePW.do"));
             font-weight: 500;
             width: 22%;
         }
-
-        .change-password__value{
-
-        }
-
         .change-password-footer{
             margin-top: 25px;
         }

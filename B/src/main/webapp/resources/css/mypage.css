@@ -9,11 +9,6 @@
     text-align: right;
     /* margin-right: 50px; */
 }
-
-.sideMenu__items{
-
-}
-
 .sideMenu__block-container{
     margin-right: 16%;
 }
@@ -38,13 +33,6 @@
     padding-right: 10px;
 }
 
-.sideMenu__item li{
-}
-
-.sideMenu__item li:hover{
-
-}
-
 .sideMenu__item--active{
     font-weight: bold;
     border-right: 3px solid #ff8a00;
@@ -57,8 +45,4 @@
 
 main{
     width: 75%;
-}
-
-.myPage-title{
-
 }

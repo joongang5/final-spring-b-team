@@ -20,10 +20,6 @@
 
         .order-content__header{border-bottom: none;background: #eeded5;}
 
-		.order-content_body{
-
-        }
-        
         .order-content__container{
 			display: flex;
         }
@@ -36,34 +32,12 @@
             width: 30%;
         }
 
-        .order-content__delivery{
-
-        }
-
-        /**/
-
-        .order-content__delivery select{
-
-        }
-
         .order-delivery__released{
             text-align: left;
             border: 1px solid #eeded5;
             padding: 15px;
             margin-top: 10px;
             /* display: none; */
-        }
-
-        .order-delivery__courier{
-
-        }
-
-        .order-delivery__tracking{
-
-        }
-
-        .order-delivery__tracking label{
-
         }
 
         label p{
@@ -92,40 +66,12 @@
             margin-top: 30px;
         }
 
-        .personalInfo-content-container{
-
-        }
-
-        .personalInfo-content__header{
-
-        }
-
         .personalInfo-content__body{
             height: 100%;
         }
 
-        .personalInfo-content__section{
-
-        }
-
-        .personalInfo-content__value{
-
-        }
-
-
-        .delivery{
-
-        }
-
         .personalInfo-name, .personalInfo-tel{
 			width: 90%;
-        }
-
-        .personalInfo-name{
-
-        }
-
-        .personalInfo-tel{
         }
 
         .personalInfo-address, .personalInfo-memo{
@@ -135,9 +81,6 @@
 
 
         .post-code {width: 30%;}
-
-        .payment{
-}
 
         .orderState-save-container{
             text-align: center;

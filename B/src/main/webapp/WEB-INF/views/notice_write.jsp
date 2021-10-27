@@ -101,10 +101,6 @@
             background-position-y: 57%;
         }
 
-        .boardWrite-wideContainer{
-
-        }
-
         .boardWrite-wideContainer__content{
             padding: 20px 4%;
         }

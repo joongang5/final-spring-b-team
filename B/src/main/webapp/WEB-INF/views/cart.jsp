@@ -21,10 +21,6 @@ header a:link, header a:visited, footer a:link, footer a:visited {color:black;}
 header a:hover, header a:focus, footer a:hover, footer a:focus{text-decoration:underline;}
 header a:after, footer a:after{height:0;}
 
-label {
-	
-}
-
 label p {
 	margin-left: 39px;
 }
@@ -43,33 +39,9 @@ label p {
 	align-items: center;
 }
 
-.all-select-box {
-	/* display: flex; */
-	/* align-items: baseline; */
-	
-}
-
-.all-select-box input[type="checkbox"] {
-	
-}
-
-.all-select-box .checkMark {
-	/* height: 22px; */
-	/* width: 22px; */
-	
-}
-
-.all-select-box label .checkMark:after {
-	/* left: 9px; */
-	/* top: 4px; */
-	
-}
 
 .delete-select-box {
 	font-size: 11pt;
-}
-
-.payment-product-container {
 }
 
 .product-select-box {
@@ -80,9 +52,6 @@ label p {
 .product-select-box .checkMark {
 	top: -11px;
 	left: -11px;
-}
-
-.product-content__cancel {
 }
 
 .product-content__cancel button {
@@ -139,17 +108,11 @@ label p {
 	background-size: contain;
 }
 
-.quantity__minus, .quantity__plus {
-	
-}
 
 .quantity__value {
 	margin: 0 5px;
 }
 
-.quantity__value span{
-
-}
 
 .quantity__value input[type="text"] {
 	width: 35px;
@@ -173,10 +136,6 @@ label p {
 	align-self: center;
     line-height: 10px;
     margin-right: 5px;
-}
-
-.product-select-box input[type="checkbox"] {
-	
 }
 
 .payment-empty-cart{

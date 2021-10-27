@@ -27,10 +27,6 @@ main{
     font-weight: 600;
 }
 
-.payment-sum__value span::after{
-
-}
-
 .total-amount{
     /* margin: 40px 0 0 0; */
     font-weight: 800;
@@ -70,11 +66,6 @@ main{
     font-size: 16pt;
     font-weight: 600;
 }
-
-.payment-title{
-
-}
-
 
 label{
     position: relative;

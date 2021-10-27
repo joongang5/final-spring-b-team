@@ -44,10 +44,6 @@
         border-bottom: 1px solid #4034295e;
     }
 
-    tr:first-child{
-
-    }
-
     tr:nth-child(2) {
         height: 37px;
     }
@@ -80,10 +76,6 @@
     .boardDetail-date__value{
         text-align: left;
         padding-left: 10px;
-    }
-
-    .boardDetail-content__section{
-
     }
 
     .boardDetail-content__value{

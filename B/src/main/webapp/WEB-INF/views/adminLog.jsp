@@ -19,29 +19,11 @@
 <link rel="stylesheet" href="./resources/css/base.css">
 <link rel="stylesheet" href="./resources/css/admin.css">
 <style>
-.selects-container {
-	
-}
-
-.logList-container {
-	
-}
-
-.logList {
-	
-}
 
 .period-search-box label p {
 	margin-right: 40px;
 }
 
-.logList th:nth-child(5) {
-	
-}
-
-.logList th:nth-child(6) {
-	
-}
 </style>
 <script type="text/javascript">
 	function linkPage(pageNo) {

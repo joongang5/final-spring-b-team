@@ -15,13 +15,6 @@
 <link rel="stylesheet" href="./resources/css/base.css">
 <link rel="stylesheet" href="./resources/css/admin.css">
 <style>
-.memberList-container {
-	
-}
-
-.memberList {
-	
-}
 
 th:first-child {
 	width: auto;

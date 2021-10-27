@@ -148,10 +148,6 @@ window.addEventListener('DOMContentLoaded', saveLocation("myinfo.do"));
 	font-size: 12pt;
 }
 
-.phoneNo {
-	
-}
-
 .change-content-container {
 	padding: 10px 0 10px 20px;
 	margin-left: 20%;
@@ -161,11 +157,6 @@ window.addEventListener('DOMContentLoaded', saveLocation("myinfo.do"));
 .change-content {
 	margin-bottom: 15px;
 }
-
-.change-form {
-	
-}
-
 .changePhoneNo {
 	display: none;
 }
@@ -184,10 +175,6 @@ window.addEventListener('DOMContentLoaded', saveLocation("myinfo.do"));
 	width: 110px;
 	border-radius: 10px;
 	font-size: 12pt;
-}
-
-.email-address {
-	
 }
 
 .changeEmail {

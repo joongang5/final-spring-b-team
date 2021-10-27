@@ -9,9 +9,6 @@
 <link rel="stylesheet" href="./resources/css/base.css">
 <link rel="stylesheet" href="./resources/css/admin2.css">
 <style>
-	.productDetail {
-	}
-	
 	.productDetail tr{
 		height: 60px;
 	}
@@ -23,12 +20,6 @@
 	.productDetail td{
 		text-align: left;
         padding-left: 10px;
-	}
-	
-	.productDetail tr:nth-child(10){
-	}
-	
-	.productDetail tr:nth-child(10) th{
 	}
 	
 	.productDetail tr:nth-child(10) td{

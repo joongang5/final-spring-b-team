@@ -56,21 +56,13 @@
             margin-right: 20px;
         }
 
-        .point-summary__value{
-
-        }
-
         .amount__value{
             font-family: math;
             margin-right: 5px;
             color: #ff8a00;
             font-weight: 600;
         }
-
-        .pointLogList-container{
-
-        }
-
+        
         .pointLogList-category-container{
             margin: 10px 0;
         }
@@ -172,9 +164,6 @@
             /* color: #e8610c; */
         }
 
-        .plusPoint{
-        }
-
         .plusPoint::before{
             content: '적립';
             color: royalblue;
@@ -183,10 +172,7 @@
             border-radius: 20px;
             margin-right: 5px;
         }
-
-        .minusPoint{
-        }
-
+        
         .minusPoint::before{
             content: '사용';
             color: crimson;

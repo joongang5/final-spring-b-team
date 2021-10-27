@@ -145,8 +145,15 @@
 			usePoint = maxPoint;
 			document.getElementById("usePoint").value = maxPoint;
 		}
-		if (totalAmount < usePoint) {
-			usePoint = Math.floor(totalAmount / 10) * 10; //적립금은 10원 단위로만 사용 가능하므로 결제금액이 10 단위가 아닐 때를 위한 처리
+		if (totalAmount <= usePoint) {
+			if (totalAmount == Math.floor(totalAmount / 10) * 10) {
+				alert("적립금으로 전액 결제를 할 수 없습니다. \n적립금 이외의 수단으로 최소 10원 결제해야 합니다.");
+				usePoint = totalAmount - 10;
+			} 
+			else if (totalAmount - Math.floor(totalAmount / 10) * 10 < 10) {
+				alert("적립금으로 전액 결제를 할 수 없습니다. \n적립금 이외의 수단으로 최소 10원 결제해야 합니다.");
+				usePoint = Math.floor(totalAmount / 10) * 10 - 10;
+			}else  usePoint = Math.floor(totalAmount / 10) * 10;
 			document.getElementById("usePoint").value = usePoint;
 		}
 		
@@ -568,9 +575,6 @@ header a:after, footer a:after{height:0;}
 	/* text-align: center; */
 	}
 	
-	.termsTable th:nth-child(3){
-	}
-	
 	.termsTable td{
 	padding: 10px;
 	border: 1px solid #403429;
@@ -690,10 +694,6 @@ header a:after, footer a:after{height:0;}
     .number__value{
       font-family: math;
       margin-right: 5px;
-    }
-
-    .option-content__price{
-      
     }
 
     .option-content__quantity ::before{

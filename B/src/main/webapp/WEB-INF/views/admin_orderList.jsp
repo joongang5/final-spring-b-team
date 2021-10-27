@@ -19,15 +19,6 @@
   <link rel="stylesheet" href="./resources/css/base.css">
   <link rel="stylesheet" href="./resources/css/admin.css">
   <style>
-    .change-orderState-box{
-
-    }
-
-
-    .change-orderState-box label{
-
-    }
-
     #change-orderState {
       background-color: #eeded5;
       width: 115px;
@@ -47,23 +38,6 @@
     .orderList th:nth-child(2){
         width: 55px;
     }
-
-    .orderList th:nth-child(8){
-
-    }
-
-    #sort__by-orderState{
-
-    }
-
-    .orderList td{
-
-    }
-
-    .orderList__paging {
-
-    }
-
   </style>
 <script type="text/javascript">
 $(document).ready(function(){
