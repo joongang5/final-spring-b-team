@@ -1,11 +1,11 @@
 # Spring Project TeamB
 
 <h2>프로젝트 개요</h2>
-    <h3>&emsp;- 프로젝트 일정</h3>
-    <h3>&emsp;- 프로젝트 소개</h3>
-    <h3>&emsp;- Tech Stack</h3>
-    <h3>&emsp;- ERD</h3>
-    <h3>&emsp;- Author</h3>
+    <h3>- 프로젝트 일정</h3>
+    <h3>- 프로젝트 소개</h3>
+    <h3>- Tech Stack</h3>
+    <h3>- ERD</h3>
+    <h3>- Author</h3>
 <br>
 <h3>- 프로젝트 일정</h3>
 <img src="/assets/img/SpringB_개발일정.PNG"><br>
