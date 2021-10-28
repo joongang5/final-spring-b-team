@@ -1,22 +1,36 @@
 # Spring Project TeamB
 
-프로젝트 개요<br/>
-    - 프로젝트 소개<br/>
-    - Tech Stack<br/>
-    - ERD<br/>
-    - Author<br/>
-<br/>
-- 프로젝트 소개<br>
-1. Index page<br>
-<img src="/assets/img/Bg01.gif">
-<img src="/assets/img/Bg02.gif">
-<img src="/assets/img/Bg03.gif">
-<br><br>2. 카테고리별 page<br>
-<img src="/assets/img/Bg04.gif">
-<br><br>3. 상품 상세 페이지<br>
-<img src="/assets/img/Bg05.gif">
-<br><br>4. 상품 검색 page<br>
+<h2>프로젝트 개요</h2>
+    <h3>&emsp;- 프로젝트 일정</h3>
+    <h3>&emsp;- 프로젝트 소개</h3>
+    <h3>&emsp;- Tech Stack</h3>
+    <h3>&emsp;- ERD</h3>
+    <h3>&emsp;- Author</h3>
+<br>
+<h3>- 프로젝트 일정</h3>
+<img src="/assets/img/SpringB_개발일정.PNG"><br>
+<h3>- 프로젝트 소개</h3>
+<h4>1. 로그인</h4>
+<img src="/assets/img/me01.gif"><br>
+<h4>2. 메인 > 장바구니 > 결제</h4>
+<img src="/assets/img/me02.gif"><br>
+<h4>3. 관리자 > 주문관리 > 고객관리 > 사이트관리(로그기록) > 상품관리(등록)</h4>
+<img src="/assets/img/me03.gif"><br>
+<h4>4. 최근 본 상품 > 교환신청</h4>
+<img src="/assets/img/me04.gif"><br>
+<h4>5. 재고별 상세페이지 표현 > 바로구매</h4>
+<img src="/assets/img/me05.gif"><br>
+<h4>6. 상품 검색</h4>
 <img src="/assets/img/Bg06.gif">
+<br><br>
+<h3>- Tech Stack</h3>
+<img src="/assets/img/img02.png">
+<br><br>
+<h3>- ERD</h3>
+<img src="/assets/img/SpringB ERD.png">
+<br><br>
+<h3>- Author</h3>
+<img src="/assets/img/img01.png">
 
 
 
