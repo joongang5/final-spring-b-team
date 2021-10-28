@@ -188,8 +188,12 @@ function signUpValidation(){
    var postcode = document.getElementById('postcode').value
    var checkk =  /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
    var validd = false
-   
-  if(!m_id){
+  
+   if(checkk.test(m_id)){
+	   $("#idCheck").text("한글은 아이디로 사용하실 수 없습니다.");
+       $("#idCheck").css({"color":"red"});
+       $("#m_id").focus();
+   }if(!m_id){
       alert("아이디 입력은 필수입니다.");
       $("#m_id").focus();
    }else if(!m_pw){
