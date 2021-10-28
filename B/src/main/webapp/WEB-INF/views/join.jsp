@@ -182,9 +182,14 @@ function signUpValidation(){
    var m_pw = $("#m_pw").val();
    var m_pwCheck = $("#passwordCheck").val();
    var m_email = $("#m_email").val();
+   var m_phone = $("m_phone").val();
+   var address = document.getElementById('address').value
+   var detailAddress = document.getElementById('detailAddress').value
+   var postcode = document.getElementById('postcode').value
+   var checkk =  /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+   var validd = false
    
-   
-   if(!m_id){
+  if(!m_id){
       alert("아이디 입력은 필수입니다.");
       $("#m_id").focus();
    }else if(!m_pw){
@@ -202,8 +207,19 @@ function signUpValidation(){
    }else if(!m_email){
       alert("이메일 입력은 필수입니다.");
       $("#m_email").focus();
-   }else {
-      signUp();
+   }else if(!address && !detailAddress && !postcode){
+		alert("모든 입력값을 입력해주세요.")   
+   }else if(m_id !="" && m_pw != "" && m_pwCheck != ""  && address != "" && detailAddress != "" && postcode != "" ) {
+	   
+	   if(checkk.test(m_id)){
+		   $("#idCheck").text("한글은 아이디로 사용하실 수 없습니다.");
+	       $("#idCheck").css({"color":"red"});
+	       $("#m_id").focus();
+	       validd =true;
+	   }
+	  if(!validd){
+         signUp(); 
+	  } 
    }
    
 }
@@ -217,7 +233,7 @@ function signUp(){
       data :  $("#registerform").serialize(),
       success:function(data){
          if(data == 0){
-            alert("회원가입이 완료됐습니다.^^");
+            alert("회원가입이 완료됐습니다.");
             location.href = "login.do"
          }else if(data == 1){
             $("#idCheck").text("중복된 아이디 입니다.");
