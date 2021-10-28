@@ -11,7 +11,7 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-Version 1.2.0.js"></script>
 <script type="text/javascript">
 
-function select(idpw){
+function select(idpw){ //찾고 싶은 정보 id vs pw
 	var idpw = idpw.value
 	if(idpw == "id"){
 		jQuery('#findPw').hide();
@@ -26,7 +26,7 @@ function select(idpw){
 }
 }
 
-function fwith(method){
+function fwith(method){  // 이메일
 	var method = method.value
 	
 if(method == "email"){
@@ -37,11 +37,24 @@ if(method == "email"){
 }
 }
 
-function sendEmail(){
+function sendEmail(){  //이메일 보내기
 	var m_name = $('#m_name').val()
 	var m_email = $('#m_email').val()
-
-$.ajax({
+   
+	if(m_name == "" && m_email ==""){
+		$('input[name=writeName]').attr("type","text")
+		$('input[name=writeE]').attr("type","text")
+	}if(m_name == "" && m_email != ""){
+		$('input[name=writeName]').attr("type","text")
+		$('input[name=writeE]').attr("type","hidden")
+	}if(m_email =="" && m_name != ""){
+		$('input[name=writeE]').attr("type","text")
+		$('input[name=writeName]').attr("type","hidden")
+	}if(m_name != "" && m_email != ""){
+		$('input[name=writeName]').attr("type","hidden")
+		$('input[name=writeE]').attr("type","hidden")
+		
+		$.ajax({
 			url : "findIdwithEmail.do",
 			type : "post",
 			data : {"m_name" : m_name, "m_email" : m_email},
@@ -51,16 +64,52 @@ $.ajax({
 			},
 
 		})
-	
-	 
+		
+		
+	}
+		 
 }
 
 function sendEmail2(){
 	var m_name = $('#m_name1').val()
 	var m_id = $('#m_id1').val()
 	var m_email = $('#m_email1').val()
-
-$.ajax({
+	
+	if(m_id == "" && m_name == "" && m_email ==""){
+		$('input[name=writeId]').attr("type","text")
+		$('input[name=writeName2]').attr("type","text")
+		$('input[name=writeE2]').attr("type","text")
+	}if(m_id == "" && m_name !="" && m_email !=""){
+		$('input[name=writeId]').attr("type","text")
+		$('input[name=writeName2]').attr("type","hidden")
+		$('input[name=writeE2]').attr("type","hidden")
+	}if(m_name == "" && m_email != "" && m_id != "" ){
+		$('input[name=writeName2]').attr("type","text")
+		$('input[name=writeE2]').attr("type","hidden")
+		$('input[name=writeId]').attr("type","hidden")
+    }if(m_email == "" && m_name != "" && m_id != ""){
+    	$('input[name=writeE2]').attr("type","text")
+    	$('input[name=writeName2]').attr("type","hidden")
+    	$('input[name=writeId]').attr("type","hidden")
+	} if (m_id == "" && m_name == "" && m_email != "" ){
+		$('input[name=writeId]').attr("type","text")
+		$('input[name=writeName2]').attr("type","text")
+		$('input[name=writeE2]').attr("type","hidden")
+	}if (m_id == "" && m_name != "" && m_email == ""){
+		$('input[name=writeId]').attr("type","text")
+		$('input[name=writeName2]').attr("type","hidden")
+		$('input[name=writeE2]').attr("type","text")
+	}if(m_id != "" && m_name =="" && m_email ==""){
+		$('input[name=writeId]').attr("type","hidden")
+		$('input[name=writeName2]').attr("type","text")
+		$('input[name=writeE2]').attr("type","text")
+	}if(m_id !="" && m_name != "" && m_email !="" ){
+		
+		$('input[name=writeName2]').attr("type","hidden")
+		$('input[name=writeE2]').attr("type","hidden")
+		$('input[name=writeId]').attr("type","hidden")
+		
+		$.ajax({
 			url : "findIdwithEmailPW.do",
 			type : "post",
 			data : {"m_name" : m_name, "m_email" : m_email, "m_id" : m_id},
@@ -69,7 +118,9 @@ $.ajax({
 				jQuery('#valid2').show();
 			},
 
-		})
+		})		
+	}
+
 	
 	 
 }
@@ -173,10 +224,10 @@ function modiPW(){
 </style>
 <body>
 
-<div style="width: 50%; height: 75%; border: dashed 2px #403429;border-radius:15px;" > <br>
+<div style="width: 50%; height: 90%; border: dashed 2px #403429;border-radius:15px;" > <br>
 <h1>아이디 / 비밀번호 찾기</h1><br>
 <div><a href="./index.do">메인으로 가기</a> &nbsp; <a href="./login.do" >로그인하러 가기</a></div> <br>
-<div style="margin-left : 5%;width:90%;height: 70%; border: solid 2px #403429;border-radius:15px;"><br>
+
 <select onchange="select(this)" style="width: 65%; height: 35px;">
 	<option value="nn">찾는 것을 선택해주세요.</option>
 	<option value="id">아이디 찾기</option>
@@ -186,6 +237,7 @@ function modiPW(){
 <div id="findId" style="display:none;" >
 <p style=" margin-right: 60%;">*이름<br></p>
 <input type="text" name="m_name" id="m_name" placeholder="ex)홍길동" style="width: 65%; height: 35px;"> <br>
+<input name="writeName" type="hidden" style="width:200px;;height:20px;border:none;" value="이름을 입력하셔야 해요"> <br>
 <br><select onchange="fwith(this)"style="width: 65%; height: 35px;">
 	<option value="n">인증 수단을 선택해주세요</option>
 	<option value="email">이메일로 본인 인증하기</option>	
@@ -194,32 +246,36 @@ function modiPW(){
 
 <div id="withEmail" style="display:none"><br>
 <p style=" margin-right: 30%;">*회원 가입 당시 이메일</p>
-<input type="text" name="m_email" id="m_email" placeholder="ex)0000@0000" style="width: 65%; height: 35px;"> <br>
+<input type="text" name="m_email" id="m_email" placeholder="ex)0000@0000" style="width: 65%; height: 35px;" required> <br>
+<input name="writeE" type="hidden" style="width:200px;;height:20px;border:none;" value="이메일을 입력하셔야 해요"> <br>
 <button onclick="sendEmail()" style="width: 20%; height: 35px;margin-top:10px;background-color:#FF8A00;">인증번호 보내기</button><br>
 </div>
 
 <div id="valid" style="display:none;">
-<input name="valid1" id="valid1" type="text" placeholder="인증번호를 입력하세요"style="width: 65%; height: 35px;margin-top:5px;margin-left:20px;"> 
+<input name="valid1" id="valid1" type="text" placeholder="인증번호를 입력하세요"style="width: 66%; height: 35px;margin-top:5px;margin-left:12px;" required> 
 <br> <button onclick="validKey()"style="width: 20%; height: 35px;background-color:#FF8A00;margin-top:5px;">확인</button>
 </div>
 
-<input name="userKey" id="userKey" type="hidden" style="width:200px;;hegiht:100px;border:none;" value="">
+<input name="userKey" id="userKey" type="hidden" style="width:200px;height:20px;border:none;" value="">
 
 </div>
 
 
 <div id="findPw" style="display:none;" >
 <p style=" margin-right: 60%;">*이름<br></p>
-<input type="text" name="m_name1" id="m_name1" placeholder="ex)홍길동" style="width: 65%; height: 35px;"> <br>
+<input type="text" name="m_name1" id="m_name1" placeholder="ex)홍길동" style="width: 65%; height: 35px;" required> <br>
+<input name="writeName2" type="hidden" style="width:200px;;height:20px;border:none;" value="이름을 입력하셔야 해요"> <br>
 <p style=" margin-right: 60%;">*아이디<br></p>
-<input type="text" name="m_id1" id="m_id1" style="width: 65%; height: 35px;">  <br>
+<input type="text" name="m_id1" id="m_id1" style="width: 65%; height: 35px;" required>  <br>
+<input name="writeId" type="hidden" style="width:200px;;height:20px;border:none;" value="아이디를 입력하셔야 해요"> <br>
  <p style=" margin-right: 38%;">*회원 가입 당시 이메일</p>
 <input type="text" name="m_email1" id="m_email1" placeholder="ex)0000@0000" style="width: 65%; height: 35px;"><br>
+<input name="writeE2" type="hidden" style="width:200px;;height:20px;border:none;" value="이메일을 입력하셔야 해요"> <br>
  <button onclick="sendEmail2()"style="width: 20%; height: 35px;margin-top:10px;background-color:#FF8A00;">인증번호 보내기</button>  <br>	
 </div>
 
-<div id="valid2" style="display:none;">
-<input name="valid3" id="valid3" type="text" placeholder="인증번호를 입력하세요" style="width: 45%; height: 35px;margin-left:20px;margin-top:5px;">  <button onclick="validKey2()" style="width: 20%; height: 35px;background-color:#FF8A00;">확인</button>
+<div id="valid2" style="display:none; margin-right:12px;">
+<input name="valid3" id="valid3" type="text" placeholder="인증번호를 입력하세요" style="width: 47%; height: 35px;margin-left:20px;margin-top:5px;">  <button onclick="validKey2()" style="width: 19%; height: 35px;background-color:#FF8A00;">확인</button>
 </div>
 
 <div id="modiPW" style="display:none;" >
@@ -232,6 +288,6 @@ function modiPW(){
 
 </div>
 
-</div>
+
 </body>
 </html>
