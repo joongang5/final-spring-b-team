@@ -36,16 +36,27 @@
 <h4>6. 상품 검색</h4>
 <img src="/assets/img/Bg06.gif">
 <br><br>
-<h3 id="b3">- 🔧Tech Stack</h3>
+<h3 id="b3">🔧Tech Stack</h3>
 
 <img src="/assets/img/img02.png">
 <br><br>
-<h3 id="b4">- ✏️ERD</h3>
+<h3 id="b4">✏️ERD</h3>
 
 <img src="/assets/img/SpringB ERD.png">
 <br><br>
-<h3 id="b5">- 🤼‍♂️Author</h3>
-<img src="/assets/img/img01.png">
+<h3 id="b5">🤼‍♂️Author</h3>
+
+Team Leader :  **이현아**❤
+
+Frontend : **강재하**❤
+
+Frontend : **이윤지**❤
+
+Frontend : **박진원**❤
+
+Backend : **정원우**❤
+
+Backend : **권오선**❤
 
 
 
