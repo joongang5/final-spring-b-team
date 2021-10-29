@@ -48,7 +48,7 @@
 
 <h3 id="b5">🤼‍♂️Author</h3>
 
-Team Leader :  ❤**이현아**
+Team Leader : **이현아**❤
 
 Frontend : **강재하**❤
 
