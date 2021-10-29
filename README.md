@@ -11,7 +11,7 @@
 <h3 id="b1">- 프로젝트 일정</h3>
 <img src="/assets/img/SpringB_개발일정.PNG"><br>
 
-![image-20211029142803384](C:\Users\money\AppData\Roaming\Typora\typora-user-images\image-20211029142803384.png)
+![test](https://user-images.githubusercontent.com/84365905/139381112-ac3e0a00-97cc-40a6-8e65-65c11f9bce73.jpg)
 
 <h3 id="b2">- 프로젝트 소개</h3>
 <h4>1. 로그인</h4>
