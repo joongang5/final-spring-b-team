@@ -46,17 +46,17 @@
 <br><br>
 <h3 id="b5">🤼‍♂️Author</h3>
 
-Team Leader :  **이현아**❤
+Team Leader :  ❤**이현아**
 
-Frontend : **강재하**❤
+Frontend : ❤**강재하**
 
-Frontend : **이윤지**❤
+Frontend : ❤**이윤지**
 
-Frontend : **박진원**❤
+Frontend : ❤**박진원**
 
-Backend : **정원우**❤
+Backend : ❤**정원우**
 
-Backend : **권오선**❤
+Backend : ❤**권오선**
 
 
 
