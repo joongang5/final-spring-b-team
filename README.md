@@ -12,11 +12,11 @@
 
 <h2>🔍프로젝트 개요</h2>
 
-- 1
-- 2
-- 3
-- 4
-- 5
+- 프로젝트 일정
+- 프로젝트 소개
+- Tech Stack
+- ERD
+- Tips
 
 <h3 id="b1">- 프로젝트 일정</h3>
 <img src="/assets/img/SpringB_개발일정.PNG"><br>
@@ -44,19 +44,24 @@
 
 <img src="/assets/img/SpringB ERD.png">
 <br><br>
+
 <h3 id="b5">🤼‍♂️Author</h3>
 
 Team Leader :  ❤**이현아**
 
-Frontend : ❤**강재하**
+Frontend : **강재하**❤
 
-Frontend : ❤**이윤지**
+Frontend : **이윤지**❤
 
-Frontend : ❤**박진원**
+Frontend : **박진원**❤
 
-Backend : ❤**정원우**
+Backend : **정원우**❤
 
-Backend : ❤**권오선**
+Backend : **권오선**❤
 
 
+
+### 📍Tips
+
+> 팁을 공유하는 자리입니다.
 
