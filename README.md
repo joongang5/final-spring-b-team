@@ -65,3 +65,14 @@ Backend : **권오선**❤
 
 > 팁을 공유하는 자리입니다.
 
+- 기존에 쓰고 있던 DB를 다른 DB로 옮기는 방법
+
+  ![img](https://user-images.githubusercontent.com/84365905/139384362-4da8956c-4d1e-4535-b758-b69b54fb6a49.png)
+
+- 채팅 위젯 tawk
+
+![image](https://user-images.githubusercontent.com/84365905/139384743-99ed6605-4d89-4f55-8e7c-127b13edab53.png)
+
+- 사진 클라우드 사이트 'Blogger'
+
+![image](https://user-images.githubusercontent.com/84365905/139384984-ff743860-2f5f-48d0-9440-a534c24a65d9.png)
