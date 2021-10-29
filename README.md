@@ -1,7 +1,6 @@
 # Spring Project TeamB
 
 <h2>프로젝트 개요</h2>
-
     <h3>- <a href="#b1">프로젝트 일정</a></h3>
     <h3>- <a href="#b2">프로젝트 소개</a></h3>
     <h3>- <a href="#b3">Tech Stack</a></h3>
@@ -11,6 +10,7 @@
 
 <h3 id="b1">- 프로젝트 일정</h3>
 <img src="/assets/img/SpringB_개발일정.PNG"><br>
+
 <h3 id="b2">- 프로젝트 소개</h3>
 <h4>1. 로그인</h4>
 <img src="/assets/img/me01.gif"><br>
