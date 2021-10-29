@@ -1,9 +1,5 @@
 # Spring Project TeamB
 
-![image-20211029142057977](C:\Users\money\AppData\Roaming\Typora\typora-user-images\image-20211029142057977.png)
-
-> SpringB / B:싼 개발자들 (Spring 2nd 프로젝트)
-
 <h2>프로젝트 개요</h2>
 
     <h3>- <a href="#b1">프로젝트 일정</a></h3>
@@ -12,6 +8,7 @@
     <h3>- <a href="#b4">ERD</a></h3>
     <h3>- <a href="#b5">Author</a></h3>
 <br>
+
 <h3 id="b1">- 프로젝트 일정</h3>
 <img src="/assets/img/SpringB_개발일정.PNG"><br>
 <h3 id="b2">- 프로젝트 소개</h3>
